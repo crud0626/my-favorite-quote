@@ -1,0 +1,8 @@
+{
+  "name": "myfavoritequotes",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "author": "crud0626 <sisofiy6048@gmail.com>",
+  "license": "MIT"
+}
