@@ -4,5 +4,11 @@
   "private": true,
   "main": "index.js",
   "author": "crud0626 <sisofiy6048@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.18.10",
+    "@babel/core": "^7.18.10",
+    "@babel/preset-env": "^7.18.10",
+    "@babel/preset-react": "^7.18.6"
+  }
 }
