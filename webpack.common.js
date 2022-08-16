@@ -3,9 +3,13 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: path.join(__dirname, 'src', 'index.js'),
+    entry: path.join(__dirname, 'src', 'index.tsx'),
     output: {
+        filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'build'),
+    },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js'],
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -16,17 +20,18 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.?(js|jsx)$/,
-                exclude: /node_modules/,
+                test: /\.(js|ts)x?$/,
                 use: {
-                    loader: 'babel-loader',
+                    loader: "babel-loader",
                     options: {
-                        presets: ['@babel/preset-env', '@babel/preset-react'],
-                    },
+                        presets: [
+                            "@babel/preset-env",
+                            "@babel/preset-react",
+                            "@babel/preset-typescript",
+                        ]
+                    }
                 },
-                resolve: {
-                    extensions: ['', '.js', '.jsx'],
-                },
+                exclude: /node-modules/,
             },
             {
                 test: /\.css$/i,
@@ -37,5 +42,5 @@ module.exports = {
                 use: ['file-loader'],
             },
         ],
-    }
+    },
 }
