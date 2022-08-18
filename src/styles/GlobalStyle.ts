@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import * as colors from './common/colors';
 
 const GlobalStyle = createGlobalStyle`
     * {
@@ -62,6 +63,7 @@ const GlobalStyle = createGlobalStyle`
         width: 100%;
         height: 100%;
         font-family: 'Noto Serif KR', 'Nanum Myeongjo', serif;
+        color: ${colors.MAIN_WHITE};
     }
 `;
 

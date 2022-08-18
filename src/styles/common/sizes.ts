@@ -4,8 +4,7 @@ export const FOOTER_HEIGHT = "49px";
 export const SECTION_HEIGHT = `100vh - ${HEADER_HEIGHT} - ${FOOTER_HEIGHT}`;
 
 // Icon
-export const DEFAULT_ICON_SIZE = "24px";
-export const LARGE_ICON_SIZE = "32px";
+export const DEFAULT_ICON_SIZE = "32px";
 export const CHEVRON_ICON_SIZE = "64px";
 
 // Viewport
@@ -19,8 +18,8 @@ export const CARD_TITLE_FONT_SIZE = "1.3rem";
 export const CARD_AUTHOR_FONT_SIZE = "1rem";
 
 // Font
-export const HEAD_SIZE = "1.5rem";
-export const NAV_AUTHOR_FONT_SIZE = "0.8rem";
+export const HEAD_FONT_SIZE = "1.5rem";
+export const SUB_FONT_SIZE = "0.8rem";
 
 // Margin & Padding
 export const DEFAULT_SPACE_SIZE = "28px";

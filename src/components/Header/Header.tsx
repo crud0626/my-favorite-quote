@@ -21,7 +21,7 @@ const StyledHeader = styled.header`
 
 const Logo = styled.a.attrs(() => ({href: '/'}))`
     color: ${colors.MAIN_WHITE};
-    font-size: ${sizes.HEAD_SIZE};
+    font-size: ${sizes.HEAD_FONT_SIZE};
     font-weight: lighter;
     text-decoration: none;
 `;
@@ -37,7 +37,7 @@ const Header = () => {
                     <h1>myFavoriteQuotes</h1>
                 </Logo>
             </div>
-            <UserThumbnail size={sizes.LARGE_ICON_SIZE} />
+            <UserThumbnail size={sizes.DEFAULT_ICON_SIZE} />
         </StyledHeader>
     );
 }
