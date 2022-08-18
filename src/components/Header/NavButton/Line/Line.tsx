@@ -7,7 +7,7 @@ interface IProps {
 
 export const Line = styled.span<IProps>`
     display: block;
-    margin: auto;
+    margin: 0 auto;
     width: 24px;
     height: 3px;
     border-radius: 5px;
@@ -18,7 +18,7 @@ export const Line = styled.span<IProps>`
 
     &:nth-child(1) {
         transform: ${props => props.isOpen && 
-            "translateY(9px) rotate(45deg);"
+            "translateY(8px) rotate(45deg);"
         }
     }
 
@@ -29,7 +29,7 @@ export const Line = styled.span<IProps>`
 
     &:nth-child(3) {
         transform: ${props => props.isOpen && 
-            "translateY(-9px) rotate(-45deg);"
+            "translateY(-8px) rotate(-45deg);"
         }
     }
 `;

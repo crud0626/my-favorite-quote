@@ -22,8 +22,11 @@ const StyledHeader = styled.header`
 const Logo = styled.a.attrs(() => ({href: '/'}))`
     color: ${colors.MAIN_WHITE};
     font-size: ${sizes.HEAD_FONT_SIZE};
-    font-weight: lighter;
     text-decoration: none;
+
+    & h1 {
+        font-weight: 100;
+    }
 `;
 
 const Header = () => {
