@@ -5,7 +5,6 @@ module.exports = merge(common, {
   mode: 'development',
   devServer: {
     client: {
-      progress: true,
       overlay: {
         errors: true,
         warnings: false,
