@@ -19,7 +19,7 @@ export const CARD_TITLE_FONT_SIZE = "1.3rem";
 export const CARD_AUTHOR_FONT_SIZE = "1rem";
 
 // Font
-export const HEAD_SIZE = "2rem";
+export const HEAD_SIZE = "1.5rem";
 export const NAV_AUTHOR_FONT_SIZE = "0.8rem";
 
 // Margin & Padding
