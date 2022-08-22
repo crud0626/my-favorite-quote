@@ -5,6 +5,11 @@ import * as sizes from '../../styles/common/sizes';
 import { NavButton } from './NavButton/NavButton';
 import UserThumbnail from '../UserThumbnail/UserThumbnail';
 
+interface IProps {
+    isNavOpen: boolean;
+    handleNav(): void;
+}
+
 const StyledHeader = styled.header`
     display: flex;
     justify-content: space-between;
@@ -29,11 +34,14 @@ const Logo = styled.a.attrs(() => ({href: '/'}))`
     }
 `;
 
-const Header = () => {
+const Header = ({ isNavOpen, handleNav }: IProps) => {
     return (
         <StyledHeader>
             <div>
-                <NavButton />
+                <NavButton 
+                    isNavOpen={isNavOpen} 
+                    handleNav={handleNav}
+                />
             </div>
             <div>
                 <Logo>
