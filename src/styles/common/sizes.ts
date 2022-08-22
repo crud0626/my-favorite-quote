@@ -5,6 +5,7 @@ export const SECTION_HEIGHT = `100vh - ${HEADER_HEIGHT} - ${FOOTER_HEIGHT}`;
 
 // Icon
 export const DEFAULT_ICON_SIZE = "32px";
+export const LARGE_ICON_SIZE = "40px";
 export const CHEVRON_ICON_SIZE = "64px";
 
 // Viewport

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import * as sizes from './common/sizes';
 
-export const StyledButton = styled.div`
+export const StyledButton = styled.button`
     width: ${sizes.DEFAULT_ICON_SIZE};
     height: ${sizes.DEFAULT_ICON_SIZE};
     padding: 0;
