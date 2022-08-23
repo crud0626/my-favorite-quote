@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import NavContentWrapper from "./NavContentWrapper";
 
-interface IQuotes {
+export interface IQuotes {
     quote: string;
     author: string;
     favorite: boolean;
@@ -31,7 +31,7 @@ export const NavBody = () => {
             <NavContentWrapper 
                 title={"Favorite"}
                 contents={[{
-                    quote: "From every mountainside, let freedom ring.",
+                    quote: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, soluta natus ea accusamus reiciendis maxime consequatur, quam distinctio magni nobis veritatis at dolorem? Temporibus, quibusdam dolorem placeat sapiente ipsum aliquid!",
                     author: "MARTIN LUTHER KING JR.",
                     favorite: true
                 }]}

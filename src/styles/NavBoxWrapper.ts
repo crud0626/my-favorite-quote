@@ -9,12 +9,8 @@ export const NavBoxWrapper = styled.div`
     align-items: center;
     width: 100%;
 
-    & div:first-child {
+    & :first-child {
         display: flex;
         align-items: center;
-
-        & :first-child {
-            margin-right: ${sizes.SMALL_SPACE_SIZE};
-        }
     }
 `;
