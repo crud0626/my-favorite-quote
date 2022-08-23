@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import * as colors from '../../../styles/common/colors';
 import { NavHeader } from './NavHeader';
+import { NavBody } from './NavBody';
 
 interface IProps {
     isNavOpen: boolean;
@@ -31,6 +32,7 @@ const Nav = ({ isNavOpen }: IProps) => {
         <NavContainer isNavOpen={isNavOpen}>
             <StyledNav isNavOpen={isNavOpen}>
                 <NavHeader />
+                <NavBody />
             </StyledNav>
         </NavContainer>
     );
