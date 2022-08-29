@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import * as sizes from '../../styles/common/sizes';
 import * as colors from '../../styles/common/colors';
 import Nav from './Nav/Nav';
+import Section from './Section/Section';
 
 interface IProps {
     isNavOpen: boolean;
@@ -17,14 +18,10 @@ const StyledMain = styled.main`
 
 const Main = ({ isNavOpen }: IProps) => {
     return(
-        <>
-            <StyledMain>
-                <div style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center", position: "absolute" }}>
-                    <span>HiHiHi</span>
-                </div>
-                <Nav isNavOpen={isNavOpen} />
-            </StyledMain>
-        </>
+        <StyledMain>
+            <Section />
+            <Nav isNavOpen={isNavOpen} />
+        </StyledMain>
     );
 }
 
