@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { navBoxMixin } from "./navBoxMixin";
-import * as sizes from './common/sizes';
 
 export const NavBoxWrapper = styled.div`
     ${navBoxMixin}

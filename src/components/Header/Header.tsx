@@ -14,13 +14,13 @@ const StyledHeader = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 ${sizes.DEFAULT_SPACE_SIZE};
+    padding: 0 ${sizes.SPACE_7X};
     width: 100%;
     height: ${sizes.HEADER_HEIGHT};
     background-color: ${colors.SUB_BLACK};
 
     @media screen and (max-width: ${sizes.TABLET_VIEWPORT_SIZE}) {
-        padding: ${sizes.SMALL_SPACE_SIZE}
+        padding: ${sizes.SPACE_2X}
     }
 `;
 

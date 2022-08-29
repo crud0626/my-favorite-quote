@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import * as colors from '../../../styles/common/colors';
+import * as sizes from '../../../styles/common/sizes';
 import { NavHeader } from './NavHeader';
 import { NavBody } from './NavBody';
 
@@ -18,7 +19,7 @@ const NavContainer = styled.div<IProps>`
 `;
 
 const StyledNav = styled.nav<IProps>`
-    width: 350px;
+    width: ${sizes.DEFAULT_NAV_SIZE};
     height: 100%;
     background-color: ${colors.MAIN_WHITE};
     transition: all 0.2s ease-in-out;

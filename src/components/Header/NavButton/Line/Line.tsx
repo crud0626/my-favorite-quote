@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import * as colors from '../../../../styles/common/colors';
+import * as sizes from '../../../../styles/common/sizes';
 
 interface IProps {
     isOpen: boolean;
@@ -8,9 +9,9 @@ interface IProps {
 export const Line = styled.span<IProps>`
     display: block;
     margin: 0 auto;
-    width: 24px;
+    width: ${sizes.SMALL_ICON_SIZE};
     height: 3px;
-    border-radius: 5px;
+    border-radius: ${sizes.DEFAULT_BORDER_RADIUS};
     background-color: ${colors.MAIN_WHITE};
     -webkit-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;

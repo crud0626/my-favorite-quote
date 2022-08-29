@@ -3,7 +3,7 @@ import * as sizes from './common/sizes';
 import * as colors from './common/colors';
 
 export const StyledFooter = styled.footer`
-    padding: 0 ${sizes.DEFAULT_SPACE_SIZE};
+    padding: 0 ${sizes.SPACE_7X};
     display: flex;
     justify-content: space-between;
     align-items: center;

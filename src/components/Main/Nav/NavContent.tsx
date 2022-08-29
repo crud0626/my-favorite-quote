@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import * as colors from '../../../styles/common/colors';
 import * as sizes from '../../../styles/common/sizes';
 import { faHeart as faRegularHeart } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as faSolidHeart }  from '@fortawesome/free-solid-svg-icons';
@@ -43,7 +42,7 @@ const SpanWrapper = styled.div`
 `;
 
 const FavoriteButton = styled(StyledButton)`
-    margin-left: ${sizes.SMALL_SPACE_SIZE};
+    margin-left: ${sizes.SPACE_2X};
     flex-shrink: 0;
 `;
 

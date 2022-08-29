@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import NavContent from './NavContent';
 import * as colors from '../../../styles/common/colors';
 import * as sizes from '../../../styles/common/sizes';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
@@ -7,7 +8,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { StyledButton } from '../../../styles/StyledButton';
 import { ContentProps } from './NavBody';
 import { NavBoxWrapper } from '../../../styles/NavBoxWrapper';
-import NavContent from './NavContent';
 
 interface ButtonProps {
     isOpen: boolean;
@@ -32,7 +32,7 @@ const StyledContentWrapper = styled(NavBoxWrapper)`
     cursor: pointer;
 
     & > :first-child {
-        margin-right: ${sizes.SMALL_SPACE_SIZE};
+        margin-right: ${sizes.SPACE_2X};
     }
 `;
 

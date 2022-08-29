@@ -24,7 +24,7 @@ const StyledCard = styled.div`
         bottom: 0;
         background: no-repeat center / cover url(${cardBg});
         opacity: 0.6;
-        border-radius: 20px;
+        border-radius: ${sizes.CARD_BORDER_RADIUS};
     }
 
     & > .card_content {
@@ -38,13 +38,13 @@ const StyledCard = styled.div`
             position: relative;
 
             &.quote {
-            margin-bottom: 20px;
+            margin-bottom: ${sizes.SPACE_5X};
             font-size: ${sizes.HEAD_FONT_SIZE};
             align-self: flex-start;
         }
 
         &.author {
-            margin-top: 20px;
+            margin-top: ${sizes.SPACE_5X};
             font-size: ${sizes.SUB_FONT_SIZE};
             align-self: flex-end;
 
@@ -57,8 +57,8 @@ const StyledCard = styled.div`
 `;
 
 const InnerBtnWrapper = styled.div`
-    top: 10px;
-    right: 10px;
+    top: ${sizes.SPACE_5X};
+    right: ${sizes.SPACE_5X};
     position: absolute;
     z-index: 1;
 `;
