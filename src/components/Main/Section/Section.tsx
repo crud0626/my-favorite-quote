@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import * as sizes from '../../../styles/common/sizes';
 import ChevronWrapper from '../ChevronWrapper';
+import CardWrapper from './CardWrapper/CardWrapper';
 
 const StyledSection = styled.section`
     display: flex;
@@ -23,6 +24,7 @@ const Section = () => {
     return (
         <StyledSection>
             <div className='card_section'>
+                <CardWrapper />
                 <ChevronWrapper />
             </div>
         </StyledSection>
