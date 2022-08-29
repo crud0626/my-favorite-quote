@@ -61,6 +61,10 @@ const InnerBtnWrapper = styled.div`
     right: ${sizes.SPACE_5X};
     position: absolute;
     z-index: 1;
+
+    & :not(:first-child) {
+        margin-left: ${sizes.SPACE_2X};
+    }
 `;
 
 const Card = () => {
@@ -71,10 +75,10 @@ const Card = () => {
                 <span className='author'>MARTIN LUTHER KING JR.</span>
             </div>
             <InnerBtnWrapper>
-                <StyledButton>
+                <StyledButton size={sizes.SMALL_ICON_SIZE}>
                     <FontAwesomeIcon icon={faHeart} style={{ width: "100%", height: "100%" }} color={colors.MAIN_WHITE} />
                 </StyledButton>
-                <StyledButton>
+                <StyledButton size={sizes.SMALL_ICON_SIZE}>
                     <FontAwesomeIcon icon={faEllipsisVertical} style={{ width: "100%", height: "100%" }} color={colors.MAIN_WHITE} />
                 </StyledButton>
             </InnerBtnWrapper>
