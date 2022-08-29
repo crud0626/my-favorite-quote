@@ -6,15 +6,15 @@ export const SECTION_HEIGHT = `100vh - ${HEADER_HEIGHT} - ${FOOTER_HEIGHT}`;
 // Icon
 export const DEFAULT_ICON_SIZE = "32px";
 export const LARGE_ICON_SIZE = "40px";
-export const CHEVRON_ICON_SIZE = "64px";
+export const CHEVRON_CONTAINER_SIZE = "80px";
 
 // Viewport
 export const TABLET_VIEWPORT_SIZE = "768px";
 export const MOBILE_VIEWPORT_SIZE = "320px";
 
 // Card
-export const CARD_WIDTH = "500px";
-export const CARD_HEIGHT = "700px";
+export const CARD_ASPECT_RATIO = 7.5 / 10;
+export const CARD_HEIGHT = "90%";
 export const CARD_TITLE_FONT_SIZE = "1.3rem";
 export const CARD_AUTHOR_FONT_SIZE = "1rem";
 

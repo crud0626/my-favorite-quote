@@ -10,3 +10,7 @@ export const ALERT_ALPHA = "rgba(0, 0, 0, 0.5)";
 export const BUTTON_RED = "#DC0000";
 export const BUTTON_HOVER = "rgba(0, 0, 0, 0.05)";
 export const BUTTON_ACTIVE = "rgba(0, 0, 0, 0.1)";
+
+// Chevron
+export const CHEVRON_BG_HOVER = "rgba(0, 0, 0, 0.5)";
+export const CHEVRON_BG_ACTIVE = "rgba(0, 0, 0, 0.8)";
