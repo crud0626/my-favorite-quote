@@ -1,0 +1,1 @@
+export const rotateRegex = /(?<=rotateY\()\-?\d{1,}\.?\d?/;

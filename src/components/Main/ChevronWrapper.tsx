@@ -5,9 +5,14 @@ import * as sizes from '../../styles/common/sizes';
 import { StyledButton } from '../../styles/StyledButton';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ChevronEventTypes } from './Section/Section';
 
 interface ChevronProps {
-    direction: "left" | "right";
+    direction: ChevronEventTypes;
+}
+
+interface IChevronWrapper {
+    handleCardFilp(direction: ChevronEventTypes): void;
 }
 
 const StyledChevronWrapper = styled.div`
@@ -29,11 +34,11 @@ const StyledChevronWrapper = styled.div`
 `;
 
 const ChevronButton = styled(StyledButton)<ChevronProps>`
-    padding: ${sizes.SMALL_SPACE_SIZE};
+    padding: ${sizes.SPACE_2X};
     width: ${sizes.CHEVRON_CONTAINER_SIZE};
     height: ${sizes.CHEVRON_CONTAINER_SIZE};
     border-radius: 3px;
-    transform: translateX(${props => props.direction === "left" ? "-200%" : "200%" });
+    transform: translateX(${props => props.direction === "prev" ? "-200%" : "200%" });
 
     &:hover {
         background-color: ${colors.CHEVRON_BG_HOVER};
@@ -44,13 +49,13 @@ const ChevronButton = styled(StyledButton)<ChevronProps>`
     }
 `;
 
-const ChevronWrapper = () => {
+const ChevronWrapper = ({ handleCardFilp }: IChevronWrapper) => {
     return (
         <StyledChevronWrapper>
-            <ChevronButton direction={"left"}>
+            <ChevronButton direction={"prev"} data-role="prev" onClick={() => handleCardFilp("prev")}>
                 <FontAwesomeIcon icon={faChevronLeft} style={{ width: "100%", height: "100%" }} color={colors.MAIN_WHITE} />
             </ChevronButton>
-            <ChevronButton direction={"right"}>
+            <ChevronButton direction={"next"} data-role="next" onClick={() => handleCardFilp("next")}>
                 <FontAwesomeIcon icon={faChevronRight} style={{ width: "100%", height: "100%" }} color={colors.MAIN_WHITE} />
             </ChevronButton>
         </StyledChevronWrapper>

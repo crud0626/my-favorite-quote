@@ -7,13 +7,19 @@ import { StyledButton } from '../../../../styles/StyledButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical, faHeart } from '@fortawesome/free-solid-svg-icons';
 
-const StyledCard = styled.div`
+interface IProps {
+    position: "front" | "back";
+}
+
+const StyledCard = styled.div<IProps>`
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
+    position: absolute;
     width: 100%;
     height: 100%;
+    transform: ${props => props.position === "front" ? "rotateY(0turn)" : "rotateY(-0.5turn)" };
+    backface-visibility: hidden;
     
     &::before {
         content: "";
@@ -67,9 +73,9 @@ const InnerBtnWrapper = styled.div`
     }
 `;
 
-const Card = () => {
+const Card = ({ position }: IProps) => {
     return (
-        <StyledCard>
+        <StyledCard position={position}>
             <div className='card_content'>
                 <span className='quote'>From every mountainside, let freedom ring.</span>
                 <span className='author'>MARTIN LUTHER KING JR.</span>
