@@ -5,22 +5,30 @@ import * as sizes from '../../../../styles/common/sizes';
 import cardBg from '../../../../assets/card_bg.jpg';
 import { StyledButton } from '../../../../styles/StyledButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsisVertical, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faFileArrowDown, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { CardPositionTypes } from '../Section';
 
-interface IProps {
-    position: "front" | "back";
+interface StyledProps {
+    exposedCard: CardPositionTypes;
+    position: CardPositionTypes;
 }
 
-const StyledCard = styled.div<IProps>`
+interface RenderProps extends StyledProps {
+    downloadImage(): void;
+}
+
+const StyledCard = styled.div<StyledProps>`
     display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
     width: 100%;
     height: 100%;
-    transform: ${props => props.position === "front" ? "rotateY(0turn)" : "rotateY(-0.5turn)" };
     backface-visibility: hidden;
-    
+    transition: visibility 0.6s ease-in-out;
+    transform: ${({ position }) => position === "front" ? "rotateY(0turn)" : "rotateY(-0.5turn)" };
+    visibility: ${({ position, exposedCard }) => position === exposedCard ? "visible" : "hidden"};
+
     &::before {
         content: "";
         position: absolute;
@@ -73,19 +81,19 @@ const InnerBtnWrapper = styled.div`
     }
 `;
 
-const Card = ({ position }: IProps) => {
+const Card = ({ position, exposedCard, downloadImage }: RenderProps) => {
     return (
-        <StyledCard position={position}>
+        <StyledCard position={position} exposedCard={exposedCard}>
             <div className='card_content'>
                 <span className='quote'>From every mountainside, let freedom ring.</span>
                 <span className='author'>MARTIN LUTHER KING JR.</span>
             </div>
-            <InnerBtnWrapper>
+            <InnerBtnWrapper className='inner_btn_wrapper'>
                 <StyledButton size={sizes.SMALL_ICON_SIZE}>
                     <FontAwesomeIcon icon={faHeart} style={{ width: "100%", height: "100%" }} color={colors.MAIN_WHITE} />
                 </StyledButton>
-                <StyledButton size={sizes.SMALL_ICON_SIZE}>
-                    <FontAwesomeIcon icon={faEllipsisVertical} style={{ width: "100%", height: "100%" }} color={colors.MAIN_WHITE} />
+                <StyledButton size={sizes.SMALL_ICON_SIZE} onClick={() => downloadImage()}>
+                    <FontAwesomeIcon icon={faFileArrowDown} style={{ width: "100%", height: "100%" }} color={colors.MAIN_WHITE} />
                 </StyledButton>
             </InnerBtnWrapper>
         </StyledCard>
