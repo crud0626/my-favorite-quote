@@ -2,11 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import * as colors from '../../../../styles/common/colors';
 import * as sizes from '../../../../styles/common/sizes';
-import cardBg from '../../../../assets/card_bg.jpg';
 import { StyledButton } from '../../../../styles/StyledButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileArrowDown, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { CardPositionTypes } from '../Section';
+import { QuoteData } from '../../../../services/quotesApi';
+import cardBg from '../../../../assets/card_bg.jpg';
 
 interface StyledProps {
     exposedCard: CardPositionTypes;
@@ -15,6 +16,7 @@ interface StyledProps {
 
 interface RenderProps extends StyledProps {
     downloadImage(): void;
+    quoteData: QuoteData | null;
 }
 
 const StyledCard = styled.div<StyledProps>`
@@ -81,13 +83,15 @@ const InnerBtnWrapper = styled.div`
     }
 `;
 
-const Card = ({ position, exposedCard, downloadImage }: RenderProps) => {
+const Card = ({ position, exposedCard, quoteData, downloadImage }: RenderProps) => {
     return (
         <StyledCard position={position} exposedCard={exposedCard}>
-            <div className='card_content'>
-                <span className='quote'>From every mountainside, let freedom ring.</span>
-                <span className='author'>MARTIN LUTHER KING JR.</span>
-            </div>
+            {quoteData &&
+                <div data-id={quoteData.id} className='card_content'>
+                    <span className='quote'>{quoteData.quote}</span>
+                    <span className='author'>{quoteData.author}</span>
+                </div>
+            }
             <InnerBtnWrapper className='inner_btn_wrapper'>
                 <StyledButton size={sizes.SMALL_ICON_SIZE}>
                     <FontAwesomeIcon icon={faHeart} style={{ width: "100%", height: "100%" }} color={colors.MAIN_WHITE} />

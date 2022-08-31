@@ -2,10 +2,12 @@ import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import Card from './Card';
 import { CardPositionTypes } from '../Section';
+import { QuoteData } from '../../../../services/quotesApi';
 
 interface IProps {
     exposedCard: CardPositionTypes;
     downloadImage(): void;
+    quoteData: QuoteData | null;
 }
 
 const StyledCardWrapper = styled.div`

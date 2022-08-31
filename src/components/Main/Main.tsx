@@ -1,12 +1,14 @@
 import React from 'react';
+import Nav from './Nav/Nav';
+import Section from './Section/Section';
 import styled from 'styled-components';
 import * as sizes from '../../styles/common/sizes';
 import * as colors from '../../styles/common/colors';
-import Nav from './Nav/Nav';
-import Section from './Section/Section';
+import { QuoteData } from '../../services/quotesApi';
 
 interface IProps {
     isNavOpen: boolean;
+    quoteData: QuoteData | null;
 }
 
 const StyledMain = styled.main`
@@ -16,10 +18,10 @@ const StyledMain = styled.main`
     background-color: ${colors.MAIN_BLACK};
 `;
 
-const Main = ({ isNavOpen }: IProps) => {
+const Main = ({ isNavOpen, quoteData }: IProps) => {
     return(
         <StyledMain>
-            <Section />
+            <Section quoteData={quoteData}/>
             <Nav isNavOpen={isNavOpen} />
         </StyledMain>
     );

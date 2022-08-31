@@ -1,13 +1,17 @@
 import React, { useCallback, useRef, useState } from 'react';
 import styled from 'styled-components';
-import * as sizes from '../../../styles/common/sizes';
-import { rotateRegex } from '../../../utils/regexPatterns';
+import html2canvas from 'html2canvas';
 import ChevronWrapper from '../ChevronWrapper';
 import CardWrapper from './CardWrapper/CardWrapper';
-import html2canvas from 'html2canvas';
+import * as sizes from '../../../styles/common/sizes';
+import { rotateRegex } from '../../../utils/regexPatterns';
+import { QuoteData } from '../../../services/quotesApi';
 
 export type ChevronEventTypes = "prev" | "next";
 export type CardPositionTypes = "front" | "back";
+interface IProps {
+    quoteData: QuoteData | null;
+}
 
 const StyledSection = styled.section`
     display: flex;
@@ -25,7 +29,7 @@ const StyledSection = styled.section`
     }
 `;
 
-const Section = () => {
+const Section = ({ quoteData }: IProps) => {
     const cardWrapperRef = useRef<HTMLDivElement | null>(null);
     const [exposedCard, setExposedCard] = useState<CardPositionTypes>("front");
 
@@ -68,6 +72,7 @@ const Section = () => {
                     ref={cardWrapperRef} 
                     exposedCard={exposedCard}
                     downloadImage={downloadImage}
+                    quoteData={quoteData}
                 />
                 <ChevronWrapper handleCardFilp={handleCardFilp} />
             </div>
