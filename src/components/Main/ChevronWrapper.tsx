@@ -7,7 +7,7 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ChevronEventTypes } from './Section/Section';
 
-interface ChevronProps {
+interface StyledProps {
     direction: ChevronEventTypes;
 }
 
@@ -17,15 +17,17 @@ interface IChevronWrapper {
 
 const StyledChevronWrapper = styled.div`
     top: 0;
-    left: 0;
+    bottom: 0;
+    margin: auto 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: 0px;
     background-color: transparent;
 
+    /* 삭제해야함. */
     & .inner_btn_wrapper {
         top: 10px;
         right: 10px;
@@ -33,7 +35,7 @@ const StyledChevronWrapper = styled.div`
     }
 `;
 
-const ChevronButton = styled(StyledButton)<ChevronProps>`
+const ChevronButton = styled(StyledButton)<StyledProps>`
     padding: ${sizes.SPACE_2X};
     width: ${sizes.CHEVRON_CONTAINER_SIZE};
     height: ${sizes.CHEVRON_CONTAINER_SIZE};
