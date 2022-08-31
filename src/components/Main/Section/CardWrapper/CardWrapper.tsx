@@ -1,6 +1,12 @@
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import Card from './Card';
+import { CardPositionTypes } from '../Section';
+
+interface IProps {
+    exposedCard: CardPositionTypes;
+    downloadImage(): void;
+}
 
 const StyledCardWrapper = styled.div`
     position: relative;
@@ -10,11 +16,11 @@ const StyledCardWrapper = styled.div`
     transition: transform 0.6s ease-in-out;
 `;
 
-const CardWrapper = forwardRef<HTMLDivElement | null>((props, ref) => {
+const CardWrapper = forwardRef<HTMLDivElement | null, IProps>((props, ref) => {
     return (
         <StyledCardWrapper ref={ref}>
-            <Card position={"front"} />
-            <Card position={"back"} />
+            <Card position={"front"} { ...props } />
+            <Card position={"back"} { ...props } />
         </StyledCardWrapper>
     );
 });
