@@ -26,13 +26,6 @@ const StyledChevronWrapper = styled.div`
     width: 100%;
     height: 0px;
     background-color: transparent;
-
-    /* 삭제해야함. */
-    & .inner_btn_wrapper {
-        top: 10px;
-        right: 10px;
-        position: absolute;
-    }
 `;
 
 const ChevronButton = styled(StyledButton)<StyledProps>`

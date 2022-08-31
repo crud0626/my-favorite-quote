@@ -11,6 +11,7 @@ export type ChevronEventTypes = "prev" | "next";
 export type CardPositionTypes = "front" | "back";
 interface IProps {
     quoteData: QuoteData | null;
+    requestData(id?: string): Promise<any>;
 }
 
 const StyledSection = styled.section`
@@ -29,7 +30,7 @@ const StyledSection = styled.section`
     }
 `;
 
-const Section = ({ quoteData }: IProps) => {
+const Section = ({ quoteData, requestData }: IProps) => {
     const cardWrapperRef = useRef<HTMLDivElement | null>(null);
     const [exposedCard, setExposedCard] = useState<CardPositionTypes>("front");
 
@@ -54,16 +55,20 @@ const Section = ({ quoteData }: IProps) => {
         }
     }
 
-    const handleCardFilp = useCallback((direction: ChevronEventTypes): void => {
+    const handleCardFilp = async (direction: ChevronEventTypes): Promise<any> => {
         if(cardWrapperRef.current) {
-            const matched = cardWrapperRef.current.style.transform.match(rotateRegex);
-            const prevValue = matched ? +matched[0] : 0;
-            const newValue = direction === "prev" ? prevValue - 0.5 : prevValue + 0.5;
-
-            cardWrapperRef.current.style.transform = `rotateY(${newValue}turn)`;
-            setExposedCard((prevState) => prevState === "front" ? "back" : "front");
+            const res = await requestData();
+            console.log(res);
+            if(res) {
+                const matched = cardWrapperRef.current.style.transform.match(rotateRegex);
+                const prevValue = matched ? +matched[0] : 0;
+                const newValue = direction === "prev" ? prevValue - 0.5 : prevValue + 0.5;
+    
+                cardWrapperRef.current.style.transform = `rotateY(${newValue}turn)`;
+                setExposedCard((prevState) => prevState === "front" ? "back" : "front");
+            }
         }
-    }, []);
+    }
 
     return (
         <StyledSection>

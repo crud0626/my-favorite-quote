@@ -1,39 +1,29 @@
 import React from "react";
 import styled from "styled-components";
+import { QuoteData } from "../../../services/quotesApi";
 import NavContentWrapper from "./NavContentWrapper";
 
-export interface IQuotes {
-    quote: string;
-    author: string;
-    favorite: boolean;
-}
-
-export interface ContentProps {
-    title: "History" | "Favorite";
-    contents: IQuotes[];
+interface IProps {
+    quoteHistory: QuoteData[];
 }
 
 const StyledNavBody = styled.div`
     width: 100%;
 `;
 
-export const NavBody = () => {
+export const NavBody = ({ quoteHistory }: IProps) => {
     return (
         <StyledNavBody>
             <NavContentWrapper 
                 title={"History"}
-                contents={[{
-                    quote: "From every mountainside, let freedom ring.",
-                    author: "MARTIN LUTHER KING JR.",
-                    favorite: false
-                }]}
+                contents={quoteHistory}
             />
             <NavContentWrapper 
                 title={"Favorite"}
                 contents={[{
+                    id: "123",
                     quote: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, soluta natus ea accusamus reiciendis maxime consequatur, quam distinctio magni nobis veritatis at dolorem? Temporibus, quibusdam dolorem placeat sapiente ipsum aliquid!",
                     author: "MARTIN LUTHER KING JR.",
-                    favorite: true
                 }]}
             />
         </StyledNavBody>

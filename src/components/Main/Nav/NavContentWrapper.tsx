@@ -6,11 +6,16 @@ import * as sizes from '../../../styles/common/sizes';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { StyledButton } from '../../../styles/StyledButton';
-import { ContentProps } from './NavBody';
 import { NavBoxWrapper } from '../../../styles/NavBoxWrapper';
+import { QuoteData } from '../../../services/quotesApi';
 
 interface ButtonProps {
     isOpen: boolean;
+}
+
+export interface ContentProps {
+    title: "History" | "Favorite";
+    contents: QuoteData[];
 }
 
 const StyledContainer = styled.div`
@@ -61,8 +66,9 @@ const NavContentWrapper = ({title, contents}: ContentProps) => {
                 </StyledContentWrapper>
                 {
                     isOpen &&
-                    contents.map(content =>
+                    contents.map((content) =>
                         <NavContent 
+                            key={content.id}
                             className={"content"}
                             { ...content } 
                         />

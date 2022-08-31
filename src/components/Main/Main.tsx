@@ -9,6 +9,8 @@ import { QuoteData } from '../../services/quotesApi';
 interface IProps {
     isNavOpen: boolean;
     quoteData: QuoteData | null;
+    quoteHistory: QuoteData[];
+    requestData(id?: string): Promise<any>;
 }
 
 const StyledMain = styled.main`
@@ -18,11 +20,17 @@ const StyledMain = styled.main`
     background-color: ${colors.MAIN_BLACK};
 `;
 
-const Main = ({ isNavOpen, quoteData }: IProps) => {
+const Main = ({ isNavOpen, quoteData, quoteHistory, requestData }: IProps) => {
     return(
         <StyledMain>
-            <Section quoteData={quoteData}/>
-            <Nav isNavOpen={isNavOpen} />
+            <Section 
+                quoteData={quoteData}
+                requestData={requestData}
+            />
+            <Nav 
+                isNavOpen={isNavOpen} 
+                quoteHistory={quoteHistory}
+            />
         </StyledMain>
     );
 }

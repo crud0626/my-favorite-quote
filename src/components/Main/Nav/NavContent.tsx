@@ -2,13 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import * as sizes from '../../../styles/common/sizes';
 import { faHeart as faRegularHeart } from '@fortawesome/free-regular-svg-icons';
-import { faHeart as faSolidHeart }  from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { StyledButton } from '../../../styles/StyledButton';
-import { IQuotes } from './NavBody';
 import { navBoxMixin } from '../../../styles/navBoxMixin';
+import { QuoteData } from '../../../services/quotesApi';
 
-interface IProps extends IQuotes {
+interface IProps extends QuoteData {
     className: string;
 }
 
@@ -46,7 +45,7 @@ const FavoriteButton = styled(StyledButton)`
     flex-shrink: 0;
 `;
 
-const NavContent = ({ quote, author, favorite, className }: IProps) => {
+const NavContent = ({ id, quote, author, className }: IProps) => {
     return (
         <StyledContent className={className}>
             <SpanWrapper>
@@ -55,7 +54,7 @@ const NavContent = ({ quote, author, favorite, className }: IProps) => {
             </SpanWrapper>
             <FavoriteButton>
                 <FontAwesomeIcon 
-                    icon={favorite ? faRegularHeart : faSolidHeart}
+                    icon={faRegularHeart}
                     style={{ width: "100%", height: "100%" }}
                 />
             </FavoriteButton>
