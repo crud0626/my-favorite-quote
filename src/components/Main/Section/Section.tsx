@@ -4,8 +4,10 @@ import * as sizes from '../../../styles/common/sizes';
 import { rotateRegex } from '../../../utils/regexPatterns';
 import ChevronWrapper from '../ChevronWrapper';
 import CardWrapper from './CardWrapper/CardWrapper';
+import html2canvas from 'html2canvas';
 
 export type ChevronEventTypes = "prev" | "next";
+export type CardPositionTypes = "front" | "back";
 
 const StyledSection = styled.section`
     display: flex;
@@ -25,6 +27,28 @@ const StyledSection = styled.section`
 
 const Section = () => {
     const cardWrapperRef = useRef<HTMLDivElement | null>(null);
+    const [exposedCard, setExposedCard] = useState<CardPositionTypes>("front");
+
+    const downloadImage = () => {
+        const configObj = {
+            ignoreElements: (el: Element): boolean => (
+                el instanceof HTMLDivElement 
+                ? el.className.includes("inner_btn_wrapper") 
+                : false
+            ),
+            backgroundColor: null
+        };
+
+        if(cardWrapperRef.current) {
+            html2canvas(cardWrapperRef.current, configObj)
+            .then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'myFavoriteQuotes.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        }
+    }
 
     const handleCardFilp = useCallback((direction: ChevronEventTypes): void => {
         if(cardWrapperRef.current) {
@@ -33,13 +57,18 @@ const Section = () => {
             const newValue = direction === "prev" ? prevValue - 0.5 : prevValue + 0.5;
 
             cardWrapperRef.current.style.transform = `rotateY(${newValue}turn)`;
+            setExposedCard((prevState) => prevState === "front" ? "back" : "front");
         }
     }, []);
 
     return (
         <StyledSection>
             <div className='card_section'>
-                <CardWrapper ref={cardWrapperRef} />
+                <CardWrapper 
+                    ref={cardWrapperRef} 
+                    exposedCard={exposedCard}
+                    downloadImage={downloadImage}
+                />
                 <ChevronWrapper handleCardFilp={handleCardFilp} />
             </div>
         </StyledSection>
