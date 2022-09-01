@@ -18,10 +18,10 @@ const App = () => {
         let newHistory: Array<QuoteData> = quoteHistory.filter(quote => quote.id !== newItem.id);
         
         if(quoteHistory.length > 9) {
-            newHistory = newHistory.slice(-9);
+            newHistory = newHistory.slice(0, 9);
         } 
 
-        newHistory.push(newItem);
+        newHistory.unshift(newItem);
         setQuoteHistory(newHistory);
     }
 
