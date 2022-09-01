@@ -14,15 +14,25 @@ const App = () => {
 
     const handleNav = () => setIsNavOpen(state => !state);
 
+    const updateHistory = (newItem: QuoteData) => {
+        let newHistory: Array<QuoteData> = [];
+        
+        if(quoteHistory.length > 9) {
+            newHistory = quoteHistory.slice(-9);
+        } else {
+            newHistory = [...quoteHistory];
+        }
+
+        newHistory.push(newItem);
+        setQuoteHistory(newHistory);
+    }
+
     const requestData = async (id?: string): Promise<any> => {
         try {
             const resData = await quotesAPI.getQuotesData(id);
             if (resData) {
-                const newHistoryList = [...quoteHistory];
-                newHistoryList.unshift(resData);
-
                 setQuoteData(resData);
-                setQuoteHistory(newHistoryList);
+                updateHistory(resData);
                 return true;
             }
         } catch (error) {
