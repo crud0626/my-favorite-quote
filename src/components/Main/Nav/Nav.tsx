@@ -11,6 +11,7 @@ interface StyledProps {
 }
 interface RenderProps extends StyledProps {
     quoteHistory: QuoteData[];
+    requestData(id?: string): Promise<any>;
 }
 
 const NavContainer = styled.div<StyledProps>`
@@ -32,12 +33,15 @@ const StyledNav = styled.nav<StyledProps>`
     color: ${colors.MAIN_BLACK};
 `;
 
-const Nav = ({ isNavOpen, quoteHistory }: RenderProps) => {
+const Nav = ({ isNavOpen, quoteHistory, requestData }: RenderProps) => {
     return (
         <NavContainer isNavOpen={isNavOpen}>
             <StyledNav isNavOpen={isNavOpen}>
                 <NavHeader />
-                <NavBody quoteHistory={quoteHistory} />
+                <NavBody 
+                    quoteHistory={quoteHistory} 
+                    requestData={requestData}
+                />
             </StyledNav>
         </NavContainer>
     );

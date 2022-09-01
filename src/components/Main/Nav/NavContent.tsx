@@ -10,6 +10,7 @@ import { QuoteData } from '../../../services/quotesApi';
 
 interface IProps extends QuoteData {
     className: string;
+    requestData(id?: string): Promise<any>;
 }
 
 const StyledContent = styled.div`
@@ -55,9 +56,9 @@ const FavoriteButton = styled(StyledButton)`
     flex-shrink: 0;
 `;
 
-const NavContent = ({ id, quote, author, className }: IProps) => {
+const NavContent = ({ id, quote, author, className, requestData }: IProps) => {
     return (
-        <StyledContent className={className}>
+        <StyledContent className={className} onClick={() => requestData(id)}>
             <SpanWrapper>
                 <span>{quote}</span>
                 <span>{author}</span>

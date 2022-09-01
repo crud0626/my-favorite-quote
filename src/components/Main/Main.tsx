@@ -30,6 +30,7 @@ const Main = ({ isNavOpen, quoteData, quoteHistory, requestData }: IProps) => {
             <Nav 
                 isNavOpen={isNavOpen} 
                 quoteHistory={quoteHistory}
+                requestData={requestData}
             />
         </StyledMain>
     );

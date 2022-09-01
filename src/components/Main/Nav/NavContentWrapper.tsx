@@ -16,6 +16,7 @@ interface ButtonProps {
 export interface ContentProps {
     title: "History" | "Favorite";
     contents: QuoteData[];
+    requestData(id?: string): Promise<any>;
 }
 
 const StyledContainer = styled.div`
@@ -47,7 +48,7 @@ const NavBodyButton = styled(StyledButton)<ButtonProps>`
     transform-origin: center;
 `;
 
-const NavContentWrapper = ({title, contents}: ContentProps) => {
+const NavContentWrapper = ({ title, contents, requestData }: ContentProps) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const handleContent = () => setIsOpen(state => !state);
@@ -70,6 +71,7 @@ const NavContentWrapper = ({title, contents}: ContentProps) => {
                         <NavContent 
                             key={content.id}
                             className={"content"}
+                            requestData={requestData}
                             { ...content } 
                         />
                     )
