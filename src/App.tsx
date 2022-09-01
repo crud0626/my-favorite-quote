@@ -15,13 +15,11 @@ const App = () => {
     const handleNav = () => setIsNavOpen(state => !state);
 
     const updateHistory = (newItem: QuoteData) => {
-        let newHistory: Array<QuoteData> = [];
+        let newHistory: Array<QuoteData> = quoteHistory.filter(quote => quote.id !== newItem.id);
         
         if(quoteHistory.length > 9) {
-            newHistory = quoteHistory.slice(-9);
-        } else {
-            newHistory = [...quoteHistory];
-        }
+            newHistory = newHistory.slice(-9);
+        } 
 
         newHistory.push(newItem);
         setQuoteHistory(newHistory);
