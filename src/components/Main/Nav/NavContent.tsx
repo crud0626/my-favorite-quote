@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import * as sizes from '../../../styles/common/sizes';
+import * as colors from '../../../styles/common/colors';
 import { faHeart as faRegularHeart } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { StyledButton } from '../../../styles/StyledButton';
@@ -16,6 +17,15 @@ const StyledContent = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
+
+    &:hover {
+        background-color: ${colors.BUTTON_HOVER};
+    }
+
+    &:active {
+        background-color: ${colors.BUTTON_ACTIVE};
+    }
 `;
 
 const SpanWrapper = styled.div`
