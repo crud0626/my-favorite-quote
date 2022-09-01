@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { StyledButton } from '../../../styles/StyledButton';
 import { NavBoxWrapper } from '../../../styles/NavBoxWrapper';
 import { QuoteData } from '../../../services/quotesApi';
+import NoContents from './NoContents';
 
 interface ButtonProps {
     isOpen: boolean;
@@ -28,7 +29,7 @@ const StyledContainer = styled.div`
         border-bottom: 1px solid ${colors.LIGHT_GRAY};
     }
     
-    & > .content:nth-child(2) {
+    & > :nth-child(2) {
         border-top: 1px solid ${colors.LIGHT_GRAY};
     }
 `;
@@ -53,6 +54,15 @@ const NavContentWrapper = ({ title, contents, requestData }: ContentProps) => {
 
     const handleContent = () => setIsOpen(state => !state);
 
+    const contentsElement = contents.map((content) =>
+        <NavContent 
+            key={content.id}
+            className={"content"}
+            requestData={requestData}
+            { ...content } 
+        />
+    );
+
     return (
         <>
             <StyledContainer>
@@ -66,15 +76,8 @@ const NavContentWrapper = ({ title, contents, requestData }: ContentProps) => {
                     <span>{title}</span>
                 </StyledContentWrapper>
                 {
-                    isOpen &&
-                    contents.map((content) =>
-                        <NavContent 
-                            key={content.id}
-                            className={"content"}
-                            requestData={requestData}
-                            { ...content } 
-                        />
-                    )
+                    isOpen && 
+                    (contents.length === 0 ? <NoContents /> : contentsElement )
                 }
             </StyledContainer>
         </>
