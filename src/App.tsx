@@ -68,6 +68,7 @@ const App = () => {
                     quoteData={quoteData}
                     quoteHistory={quoteHistory}
                     requestData={requestData}
+                    handleNav={handleNav}
                 />
                 <Footer />
         </>

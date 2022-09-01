@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import styled from 'styled-components';
 import * as colors from '../../../styles/common/colors';
 import * as sizes from '../../../styles/common/sizes';
@@ -12,6 +12,7 @@ interface StyledProps {
 interface RenderProps extends StyledProps {
     quoteHistory: QuoteData[];
     requestData(id?: string): Promise<any>;
+    handleNav(): void;
 }
 
 const NavContainer = styled.div<StyledProps>`
@@ -33,9 +34,15 @@ const StyledNav = styled.nav<StyledProps>`
     color: ${colors.MAIN_BLACK};
 `;
 
-const Nav = ({ isNavOpen, quoteHistory, requestData }: RenderProps) => {
+const Nav = ({ isNavOpen, quoteHistory, requestData, handleNav }: RenderProps) => {
+    const onClick = (event: React.MouseEvent) => {
+        if(event.target === event.currentTarget) {
+            handleNav();
+        }
+    }
+
     return (
-        <NavContainer isNavOpen={isNavOpen}>
+        <NavContainer isNavOpen={isNavOpen} onClick={onClick}>
             <StyledNav isNavOpen={isNavOpen}>
                 <NavHeader />
                 <NavBody 

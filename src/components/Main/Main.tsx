@@ -11,6 +11,7 @@ interface IProps {
     quoteData: QuoteData | null;
     quoteHistory: QuoteData[];
     requestData(id?: string): Promise<any>;
+    handleNav(): void;
 }
 
 const StyledMain = styled.main`
@@ -20,7 +21,7 @@ const StyledMain = styled.main`
     background-color: ${colors.MAIN_BLACK};
 `;
 
-const Main = ({ isNavOpen, quoteData, quoteHistory, requestData }: IProps) => {
+const Main = ({ isNavOpen, quoteData, quoteHistory, requestData, handleNav }: IProps) => {
     return(
         <StyledMain>
             <Section 
@@ -31,6 +32,7 @@ const Main = ({ isNavOpen, quoteData, quoteHistory, requestData }: IProps) => {
                 isNavOpen={isNavOpen} 
                 quoteHistory={quoteHistory}
                 requestData={requestData}
+                handleNav={handleNav}
             />
         </StyledMain>
     );
