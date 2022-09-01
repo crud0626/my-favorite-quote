@@ -15,7 +15,7 @@ interface StyledProps {
 }
 
 interface RenderProps extends StyledProps {
-    downloadImage(): void;
+    onDownload(): void;
     quoteData: QuoteData | null;
 }
 
@@ -83,7 +83,7 @@ const InnerBtnWrapper = styled.div`
     }
 `;
 
-const Card = ({ position, exposedCard, quoteData, downloadImage }: RenderProps) => {
+const Card = ({ position, exposedCard, quoteData, onDownload }: RenderProps) => {
     return (
         <StyledCard position={position} exposedCard={exposedCard}>
             {quoteData &&
@@ -96,7 +96,7 @@ const Card = ({ position, exposedCard, quoteData, downloadImage }: RenderProps) 
                 <StyledButton size={sizes.SMALL_ICON_SIZE}>
                     <FontAwesomeIcon icon={faHeart} style={{ width: "100%", height: "100%" }} color={colors.MAIN_WHITE} />
                 </StyledButton>
-                <StyledButton size={sizes.SMALL_ICON_SIZE} onClick={() => downloadImage()}>
+                <StyledButton size={sizes.SMALL_ICON_SIZE} onClick={() => onDownload()}>
                     <FontAwesomeIcon icon={faFileArrowDown} style={{ width: "100%", height: "100%" }} color={colors.MAIN_WHITE} />
                 </StyledButton>
             </InnerBtnWrapper>

@@ -6,7 +6,7 @@ import { QuoteData } from '../../../../services/quotesApi';
 
 interface IProps {
     exposedCard: CardPositionTypes;
-    downloadImage(): void;
+    onDownload(): void;
     quoteData: QuoteData | null;
 }
 

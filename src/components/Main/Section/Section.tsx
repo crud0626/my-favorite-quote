@@ -1,11 +1,11 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
-import html2canvas from 'html2canvas';
 import ChevronWrapper from '../ChevronWrapper';
 import CardWrapper from './CardWrapper/CardWrapper';
 import * as sizes from '../../../styles/common/sizes';
 import { rotateRegex } from '../../../utils/regexPatterns';
 import { QuoteData } from '../../../services/quotesApi';
+import { downloadToImg } from '../../../services/html2canvas';
 
 export type ChevronEventTypes = "prev" | "next";
 export type CardPositionTypes = "front" | "back";
@@ -32,33 +32,18 @@ const StyledSection = styled.section`
 
 const Section = ({ quoteData, requestData }: IProps) => {
     const cardWrapperRef = useRef<HTMLDivElement | null>(null);
+    
     const [exposedCard, setExposedCard] = useState<CardPositionTypes>("front");
 
-    const downloadImage = () => {
-        const configObj = {
-            ignoreElements: (el: Element): boolean => (
-                el instanceof HTMLDivElement 
-                ? el.className.includes("inner_btn_wrapper") 
-                : false
-            ),
-            backgroundColor: null
-        };
-
+    const onDownload = (): void => {
         if(cardWrapperRef.current) {
-            html2canvas(cardWrapperRef.current, configObj)
-            .then(canvas => {
-                const link = document.createElement('a');
-                link.download = 'myFavoriteQuotes.png';
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-            });
+            downloadToImg(cardWrapperRef.current);
         }
     }
 
     const handleCardFilp = async (direction: ChevronEventTypes): Promise<any> => {
         if(cardWrapperRef.current) {
             const res = await requestData();
-            console.log(res);
             if(res) {
                 const matched = cardWrapperRef.current.style.transform.match(rotateRegex);
                 const prevValue = matched ? +matched[0] : 0;
@@ -76,7 +61,7 @@ const Section = ({ quoteData, requestData }: IProps) => {
                 <CardWrapper 
                     ref={cardWrapperRef} 
                     exposedCard={exposedCard}
-                    downloadImage={downloadImage}
+                    onDownload={onDownload}
                     quoteData={quoteData}
                 />
                 <ChevronWrapper handleCardFilp={handleCardFilp} />
