@@ -4,6 +4,7 @@ import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 import GlobalStyle from './styles/GlobalStyle';
 import { QuoteData, QuotesAPI } from './services/quotesApi';
+import { getStorageData, saveStorageData } from './utils/sessionStorage';
 
 const quotesAPI = new QuotesAPI();
 
@@ -23,6 +24,7 @@ const App = () => {
 
         newHistory.unshift(newItem);
         setQuoteHistory(newHistory);
+        saveStorageData(newHistory);
     }
 
     const requestData = async (id?: string): Promise<any> => {
@@ -39,8 +41,19 @@ const App = () => {
         }
     }
 
+    const init = () => {
+        const storageData: QuoteData[] | null = getStorageData();
+        if(storageData) {
+            const mostRecentData = storageData[0];
+            setQuoteHistory(storageData);
+            setQuoteData(mostRecentData);
+        } else {
+            requestData();
+        }
+    }
+
     useEffect(() => {
-        requestData();
+        init();
     }, []);
 
     return (
