@@ -5,15 +5,18 @@ import Main from './components/Main/Main';
 import GlobalStyle from './styles/GlobalStyle';
 import { QuoteData, QuotesAPI } from './services/quotesApi';
 import { getStorageData, saveStorageData } from './utils/sessionStorage';
+import LoginWrapper from './components/LoginWrapper/LoginWrapper';
 
 const quotesAPI = new QuotesAPI();
 
 const App = () => {
     const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
+    const [isLoginOpen, setIsLoginOpen] = useState<boolean>(true);
     const [quoteData, setQuoteData] = useState<QuoteData | null>(null);
     const [quoteHistory, setQuoteHistory] = useState<QuoteData[]>([]);
 
     const handleNav = () => setIsNavOpen(state => !state);
+    const handleLoginWrapper = () => setIsLoginOpen(state => !state);
 
     const updateHistory = (newItem: QuoteData) => {
         let newHistory: Array<QuoteData> = quoteHistory.filter(quote => quote.id !== newItem.id);
@@ -71,6 +74,12 @@ const App = () => {
                     handleNav={handleNav}
                 />
                 <Footer />
+                {
+                    isLoginOpen &&
+                    <LoginWrapper
+                        handleLoginWrapper={handleLoginWrapper}
+                    />
+                }
         </>
     );
 };
