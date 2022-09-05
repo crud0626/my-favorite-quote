@@ -2,16 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import Icon from '../../../Icon/Icon';
 import { QuoteData } from '../../../../services/quotesApi';
+import { CardPositionType } from '../../../../App';
 import * as colors from '../../../../styles/common/colors';
 import * as sizes from '../../../../styles/common/sizes';
 import { StyledButton } from '../../../../styles/StyledButton';
-import { CardPositionTypes } from '../Section';
 import { DOWNLOAD_ICON, FILL_HEART_ICON } from '../../../../styles/common/iconPath';
 import cardBg from '../../../../assets/card_bg.jpg';
 
 interface StyledProps {
-    exposedCard: CardPositionTypes;
-    position: CardPositionTypes;
+    exposedCard: CardPositionType;
+    position: CardPositionType;
 }
 
 interface RenderProps extends StyledProps {

@@ -1,15 +1,17 @@
 import React from 'react';
+import styled from 'styled-components';
 import Nav from './Nav/Nav';
 import Section from './Section/Section';
-import styled from 'styled-components';
+import { CardPositionType, QuoteStateType } from '../../App';
 import * as sizes from '../../styles/common/sizes';
 import * as colors from '../../styles/common/colors';
 import { QuoteData } from '../../services/quotesApi';
 
 interface IProps {
     isNavOpen: boolean;
-    quoteData: QuoteData | null;
+    quoteData: QuoteStateType;
     quoteHistory: QuoteData[];
+    exposedCard: CardPositionType;
     requestData(id?: string): Promise<any>;
     handleNav(): void;
 }
@@ -21,12 +23,13 @@ const StyledMain = styled.main`
     background-color: ${colors.MAIN_BLACK};
 `;
 
-const Main = ({ isNavOpen, quoteData, quoteHistory, requestData, handleNav }: IProps) => {
+const Main = ({ isNavOpen, quoteData, quoteHistory, exposedCard, requestData, handleNav }: IProps) => {
     return(
         <StyledMain>
             <Section 
                 quoteData={quoteData}
                 requestData={requestData}
+                exposedCard={exposedCard}
             />
             <Nav 
                 isNavOpen={isNavOpen} 

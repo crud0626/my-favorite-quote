@@ -1,16 +1,16 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import ChevronWrapper from '../ChevronWrapper';
 import CardWrapper from './CardWrapper/CardWrapper';
-import * as sizes from '../../../styles/common/sizes';
-import { rotateRegex } from '../../../utils/regexPatterns';
-import { QuoteData } from '../../../services/quotesApi';
 import { downloadToImg } from '../../../services/html2canvas';
+import { rotateRegex } from '../../../utils/regexPatterns';
+import { CardPositionType, QuoteStateType } from '../../../App';
+import * as sizes from '../../../styles/common/sizes';
 
 export type ChevronEventTypes = "prev" | "next";
-export type CardPositionTypes = "front" | "back";
 interface IProps {
-    quoteData: QuoteData | null;
+    quoteData: QuoteStateType;
+    exposedCard: CardPositionType;
     requestData(id?: string): Promise<any>;
 }
 
@@ -30,10 +30,10 @@ const StyledSection = styled.section`
     }
 `;
 
-const Section = ({ quoteData, requestData }: IProps) => {
+const Section = ({ quoteData, exposedCard, requestData }: IProps) => {
     const cardWrapperRef = useRef<HTMLDivElement | null>(null);
     
-    const [exposedCard, setExposedCard] = useState<CardPositionTypes>("front");
+    
 
     const onDownload = (): void => {
         if(cardWrapperRef.current) {
@@ -50,7 +50,6 @@ const Section = ({ quoteData, requestData }: IProps) => {
                 const newValue = direction === "prev" ? prevValue - 0.5 : prevValue + 0.5;
     
                 cardWrapperRef.current.style.transform = `rotateY(${newValue}turn)`;
-                setExposedCard((prevState) => prevState === "front" ? "back" : "front");
             }
         }
     }

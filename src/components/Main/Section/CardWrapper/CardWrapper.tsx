@@ -1,13 +1,12 @@
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import Card from './Card';
-import { CardPositionTypes } from '../Section';
-import { QuoteData } from '../../../../services/quotesApi';
+import { CardPositionType, QuoteStateType } from '../../../../App';
 
 interface IProps {
-    exposedCard: CardPositionTypes;
+    exposedCard: CardPositionType;
     onDownload(): void;
-    quoteData: QuoteData | null;
+    quoteData: QuoteStateType;
 }
 
 const StyledCardWrapper = styled.div`
@@ -18,11 +17,21 @@ const StyledCardWrapper = styled.div`
     transition: transform 0.6s ease-in-out;
 `;
 
-const CardWrapper = forwardRef<HTMLDivElement | null, IProps>((props, ref) => {
+const CardWrapper = forwardRef<HTMLDivElement | null, IProps>(({ exposedCard, quoteData, onDownload }, ref) => {
     return (
         <StyledCardWrapper ref={ref}>
-            <Card position={"front"} { ...props } />
-            <Card position={"back"} { ...props } />
+            <Card 
+                position={"front"} 
+                exposedCard={exposedCard}
+                quoteData={quoteData.front}
+                onDownload={onDownload}
+            />
+            <Card 
+                position={"back"} 
+                exposedCard={exposedCard}
+                quoteData={quoteData.back}
+                onDownload={onDownload}
+            />
         </StyledCardWrapper>
     );
 });
