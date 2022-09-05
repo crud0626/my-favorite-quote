@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import Icon from '../../Icon/Icon';
+import { QuoteData } from '../../../services/quotesApi';
 import * as sizes from '../../../styles/common/sizes';
 import * as colors from '../../../styles/common/colors';
-import { faHeart as faRegularHeart } from '@fortawesome/free-regular-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { EMPTY_HEART_ICON } from '../../../styles/common/iconPath';
 import { StyledButton } from '../../../styles/StyledButton';
 import { navBoxMixin } from '../../../styles/navBoxMixin';
-import { QuoteData } from '../../../services/quotesApi';
 
 interface IProps extends QuoteData {
     className: string;
@@ -64,9 +64,10 @@ const NavContent = ({ id, quote, author, className, requestData }: IProps) => {
                 <span>{author}</span>
             </SpanWrapper>
             <FavoriteButton>
-                <FontAwesomeIcon 
-                    icon={faRegularHeart}
-                    style={{ width: "100%", height: "100%" }}
+                <Icon 
+                    define={EMPTY_HEART_ICON}
+                    color={colors.MAIN_BLACK}
+                    isHoverColor={true}
                 />
             </FavoriteButton>
         </StyledContent>

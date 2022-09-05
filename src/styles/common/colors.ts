@@ -14,3 +14,5 @@ export const BUTTON_ACTIVE = "rgba(0, 0, 0, 0.1)";
 // Chevron
 export const CHEVRON_BG_HOVER = "rgba(0, 0, 0, 0.5)";
 export const CHEVRON_BG_ACTIVE = "rgba(0, 0, 0, 0.8)";
+
+export const ICON_HOVER_COLOR = "#808080";

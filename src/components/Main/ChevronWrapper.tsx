@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import Icon from '../Icon/Icon';
+import { ChevronEventTypes } from './Section/Section';
 import * as colors from '../../styles/common/colors';
 import * as sizes from '../../styles/common/sizes';
 import { StyledButton } from '../../styles/StyledButton';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ChevronEventTypes } from './Section/Section';
+import { LEFT_CHEVRON_ICON, RIGHT_CHEVRON_ICON } from "../../styles/common/iconPath";
 
 interface StyledProps {
     direction: ChevronEventTypes;
@@ -48,10 +48,16 @@ const ChevronWrapper = ({ handleCardFilp }: IChevronWrapper) => {
     return (
         <StyledChevronWrapper>
             <ChevronButton direction={"prev"} data-role="prev" onClick={() => handleCardFilp("prev")}>
-                <FontAwesomeIcon icon={faChevronLeft} style={{ width: "100%", height: "100%" }} color={colors.MAIN_WHITE} />
+                <Icon 
+                    define={LEFT_CHEVRON_ICON}
+                    color={colors.MAIN_WHITE}
+                />
             </ChevronButton>
             <ChevronButton direction={"next"} data-role="next" onClick={() => handleCardFilp("next")}>
-                <FontAwesomeIcon icon={faChevronRight} style={{ width: "100%", height: "100%" }} color={colors.MAIN_WHITE} />
+                <Icon 
+                    define={RIGHT_CHEVRON_ICON}
+                    color={colors.MAIN_WHITE}
+                />
             </ChevronButton>
         </StyledChevronWrapper>
     );

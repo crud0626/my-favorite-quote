@@ -1,11 +1,12 @@
 import React from "react";
-import * as sizes from '../../../styles/common/sizes';
-import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { StyledButton } from "../../../styles/StyledButton";
-import UserThumbnail from "../../UserThumbnail/UserThumbnail";
-import { NavBoxWrapper } from "../../../styles/NavBoxWrapper";
 import styled from "styled-components";
+import UserThumbnail from "../../UserThumbnail/UserThumbnail";
+import Icon from "../../Icon/Icon";
+import * as sizes from '../../../styles/common/sizes';
+import * as colors from '../../../styles/common/colors';
+import { StyledButton } from "../../../styles/StyledButton";
+import { NavBoxWrapper } from "../../../styles/NavBoxWrapper";
+import { LOGOUT_ICON } from "../../../styles/common/iconPath";
 
 const StyledNavHeader = styled(NavBoxWrapper)`
     & > :first-child > :first-child {
@@ -21,9 +22,9 @@ export const NavHeader = () => {
                 <span>Nickname</span>
             </div>
             <StyledButton>
-                <FontAwesomeIcon 
-                    icon={faArrowRightFromBracket} 
-                    style={{ width: "100%", height: "100%", cursor: "pointer" }}
+                <Icon 
+                    define={LOGOUT_ICON}
+                    color={colors.MAIN_BLACK}
                 />
             </StyledButton>
         </StyledNavHeader>

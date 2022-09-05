@@ -18,9 +18,5 @@ export const StyledFooter = styled.footer`
     & .github {
         width: ${sizes.DEFAULT_ICON_SIZE};
         height: ${sizes.DEFAULT_ICON_SIZE};
-        
-        & a {
-            color: ${colors.MAIN_WHITE};
-        }
     }
 `;

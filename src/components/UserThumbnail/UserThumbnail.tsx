@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import Icon from '../Icon/Icon';
 import * as sizes from '../../styles/common/sizes';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleUser } from '@fortawesome/free-regular-svg-icons';
+import * as colors from '../../styles/common/colors';
+import { USER_ICON } from '../../styles/common/iconPath';
 
 interface IStyledProps {
     size?: string;
@@ -28,9 +29,9 @@ const UserThumbnail = ({ src, size = sizes.DEFAULT_ICON_SIZE }: IProps) => {
         <StyledThumbnail size={size}>
             { 
                 src ||
-                <FontAwesomeIcon 
-                    icon={faCircleUser} 
-                    style={{ width: "100%", height: "100%" }}
+                <Icon 
+                    color={colors.MAIN_BLACK}
+                    define={USER_ICON}
                 />
             }
         </StyledThumbnail>

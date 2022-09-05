@@ -1,13 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
+import Icon from '../Icon/Icon';
+import { NavButton } from './NavButton/NavButton';
 import * as colors from '../../styles/common/colors';
 import * as sizes from '../../styles/common/sizes';
-import { NavButton } from './NavButton/NavButton';
-import UserThumbnail from '../UserThumbnail/UserThumbnail';
+import { StyledButton } from '../../styles/StyledButton';
+import { LOGIN_ICON } from '../../styles/common/iconPath';
 
 interface IProps {
     isNavOpen: boolean;
     handleNav(): void;
+    onLogIn(): void;
 }
 
 const StyledHeader = styled.header`
@@ -34,7 +37,7 @@ const Logo = styled.a.attrs(() => ({href: '/'}))`
     }
 `;
 
-const Header = ({ isNavOpen, handleNav }: IProps) => {
+const Header = ({ isNavOpen, handleNav, onLogIn }: IProps) => {
     return (
         <StyledHeader>
             <div>
@@ -48,7 +51,16 @@ const Header = ({ isNavOpen, handleNav }: IProps) => {
                     <h1>myFavoriteQuotes</h1>
                 </Logo>
             </div>
-            <UserThumbnail size={sizes.DEFAULT_ICON_SIZE} />
+            <StyledButton 
+                size={sizes.SMALL_ICON_SIZE}
+                onClick={() => onLogIn()}
+            >
+                <Icon 
+                    define={LOGIN_ICON}
+                    color={colors.MAIN_WHITE}
+                    isHoverColor={true}
+                />
+            </StyledButton>
         </StyledHeader>
     );
 }

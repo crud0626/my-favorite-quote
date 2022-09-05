@@ -1,7 +1,8 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import Icon from '../Icon/Icon';
+import * as colors from '../../styles/common/colors';
 import { StyledFooter } from '../../styles/StyledFooter';
+import { GITHUB_LOGO_ICON } from '../../styles/common/iconPath';
 
 const Footer = () => {
     return (
@@ -11,9 +12,10 @@ const Footer = () => {
             </div>
             <div className="github">
                 <a href="https://github.com/crud0626" rel='noopener noreferrer' >
-                    <FontAwesomeIcon 
-                        icon={faGithub} 
-                        style={{ width: "100%", height: "100%" }} 
+                    <Icon 
+                        define={GITHUB_LOGO_ICON}
+                        color={colors.MAIN_WHITE}
+                        isHoverColor={true}
                     />
                 </a>
             </div>

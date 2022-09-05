@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import NavContent from './NavContent';
+import NoContents from './NoContents';
+import Icon from '../../Icon/Icon';
+import { QuoteData } from '../../../services/quotesApi';
 import * as colors from '../../../styles/common/colors';
 import * as sizes from '../../../styles/common/sizes';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { StyledButton } from '../../../styles/StyledButton';
 import { NavBoxWrapper } from '../../../styles/NavBoxWrapper';
-import { QuoteData } from '../../../services/quotesApi';
-import NoContents from './NoContents';
+import { BOTTOM_CHEVRON_ICON } from '../../../styles/common/iconPath';
 
 interface ButtonProps {
     isOpen: boolean;
@@ -64,23 +64,21 @@ const NavContentWrapper = ({ title, contents, requestData }: ContentProps) => {
     );
 
     return (
-        <>
-            <StyledContainer>
-                <StyledContentWrapper onClick={() => handleContent()}>
-                    <NavBodyButton isOpen={isOpen}>
-                        <FontAwesomeIcon 
-                            icon={faChevronDown}
-                            style={{ width: "100%", height: "100%" }}
-                        />
-                    </NavBodyButton>
-                    <span>{title}</span>
-                </StyledContentWrapper>
-                {
-                    isOpen && 
-                    (contents.length === 0 ? <NoContents /> : contentsElement )
-                }
-            </StyledContainer>
-        </>
+        <StyledContainer>
+            <StyledContentWrapper onClick={() => handleContent()}>
+                <NavBodyButton isOpen={isOpen}>
+                    <Icon 
+                        define={BOTTOM_CHEVRON_ICON}
+                        color={colors.MAIN_BLACK}
+                    />
+                </NavBodyButton>
+                <span>{title}</span>
+            </StyledContentWrapper>
+            {
+                isOpen && 
+                (contents.length === 0 ? <NoContents /> : contentsElement )
+            }
+        </StyledContainer>
     );
 };
 

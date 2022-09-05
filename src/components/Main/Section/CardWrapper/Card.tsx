@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import Icon from '../../../Icon/Icon';
+import { QuoteData } from '../../../../services/quotesApi';
 import * as colors from '../../../../styles/common/colors';
 import * as sizes from '../../../../styles/common/sizes';
 import { StyledButton } from '../../../../styles/StyledButton';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFileArrowDown, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { CardPositionTypes } from '../Section';
-import { QuoteData } from '../../../../services/quotesApi';
+import { DOWNLOAD_ICON, FILL_HEART_ICON } from '../../../../styles/common/iconPath';
 import cardBg from '../../../../assets/card_bg.jpg';
 
 interface StyledProps {
@@ -94,10 +94,18 @@ const Card = ({ position, exposedCard, quoteData, onDownload }: RenderProps) => 
             }
             <InnerBtnWrapper className='inner_btn_wrapper'>
                 <StyledButton size={sizes.SMALL_ICON_SIZE}>
-                    <FontAwesomeIcon icon={faHeart} style={{ width: "100%", height: "100%" }} color={colors.MAIN_WHITE} />
+                    <Icon 
+                        define={FILL_HEART_ICON}
+                        color={colors.MAIN_WHITE}
+                        isHoverColor={true}
+                    />
                 </StyledButton>
                 <StyledButton size={sizes.SMALL_ICON_SIZE} onClick={() => onDownload()}>
-                    <FontAwesomeIcon icon={faFileArrowDown} style={{ width: "100%", height: "100%" }} color={colors.MAIN_WHITE} />
+                    <Icon 
+                        define={DOWNLOAD_ICON}
+                        color={colors.MAIN_WHITE}
+                        isHoverColor={true}
+                    />
                 </StyledButton>
             </InnerBtnWrapper>
         </StyledCard>
