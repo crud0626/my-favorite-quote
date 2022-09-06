@@ -1,12 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import UserThumbnail from "../../UserThumbnail/UserThumbnail";
+import LoginButton from "./LoginButton";
 import Icon from "../../Icon/Icon";
+import { IUserInfo } from "../../../services/authService";
 import * as sizes from '../../../styles/common/sizes';
 import * as colors from '../../../styles/common/colors';
 import { StyledButton } from "../../../styles/StyledButton";
 import { NavBoxWrapper } from "../../../styles/NavBoxWrapper";
 import { LOGOUT_ICON } from "../../../styles/common/iconPath";
+
+interface IProps {
+    userInfo: IUserInfo;
+    isLoggedIn: boolean;
+}
 
 const StyledNavHeader = styled(NavBoxWrapper)`
     & > :first-child > :first-child {
@@ -14,12 +21,14 @@ const StyledNavHeader = styled(NavBoxWrapper)`
     }
 `;
 
-export const NavHeader = () => {
-    return (
-        <StyledNavHeader>
+export const NavHeader = ({ userInfo, isLoggedIn }: IProps) => {
+    const { displayName, photoURL } = userInfo;
+
+    const loggedInElements =
+        <>
             <div>
-                <UserThumbnail size={sizes.LARGE_ICON_SIZE} />
-                <span>Nickname</span>
+                <UserThumbnail userPhotoSrc={photoURL} size={sizes.LARGE_ICON_SIZE} />
+                <span>{isLoggedIn && displayName}</span>
             </div>
             <StyledButton>
                 <Icon 
@@ -27,6 +36,16 @@ export const NavHeader = () => {
                     color={colors.MAIN_BLACK}
                 />
             </StyledButton>
+        </>
+    ;
+
+    return (
+        <StyledNavHeader>
+            {
+                isLoggedIn 
+                ? loggedInElements
+                : <LoginButton />
+            }
         </StyledNavHeader>
     );
 }

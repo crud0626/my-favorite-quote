@@ -5,6 +5,7 @@ export const SUB_BLACK = "#292A2E";
 export const LIGHT_GRAY = "#D3D3D3";
 export const CONTAINER_ALPHA = "rgba(0, 0, 0, 0.3)";
 export const ALERT_ALPHA = "rgba(0, 0, 0, 0.5)";
+export const LINK_BLUE = "#065fd4";
 
 // Button
 export const BUTTON_RED = "#DC0000";
