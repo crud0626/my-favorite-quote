@@ -9,7 +9,7 @@ import { LOGIN_ICON, LOGOUT_ICON } from '../../styles/common/iconPath';
 
 interface IProps {
     isNavOpen: boolean;
-    userThumbnail: string | null;
+    isLoggedIn: boolean;
     handleNav(): void;
     onLogin(): Promise<void>;
     onLogout(): Promise<void>;
@@ -39,10 +39,10 @@ const Logo = styled.a.attrs(() => ({href: '/'}))`
     }
 `;
 
-const Header = ({ isNavOpen, userThumbnail, handleNav, onLogin, onLogout }: IProps) => {
+const Header = ({ isNavOpen, isLoggedIn, handleNav, onLogin, onLogout }: IProps) => {
 
     const onClick = () => {
-        userThumbnail ? onLogout() : onLogin();
+        isLoggedIn ? onLogout() : onLogin();
     }
 
     return (
@@ -63,7 +63,7 @@ const Header = ({ isNavOpen, userThumbnail, handleNav, onLogin, onLogout }: IPro
                 onClick={onClick}
             >
                 <Icon 
-                    define={userThumbnail ? LOGOUT_ICON : LOGIN_ICON}
+                    define={isLoggedIn ? LOGOUT_ICON : LOGIN_ICON}
                     color={colors.MAIN_WHITE}
                     isHoverColor={true}
                 />

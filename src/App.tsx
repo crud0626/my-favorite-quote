@@ -30,6 +30,7 @@ const App = ({ authService }: IProps) => {
     });
     const [quoteHistory, setQuoteHistory] = useState<QuoteData[]>([]);
     const [exposedCard, setExposedCard] = useState<CardPositionType>("front");
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
     const [userInfo, setUserInfo] = useState<IUserInfo>({
         displayName: null,
         photoURL: null,
@@ -73,6 +74,7 @@ const App = ({ authService }: IProps) => {
         const userData = await authService.requestLogin();
         if(userData) {
             setUserInfo(userData);
+            setIsLoggedIn(true);
         }
     }
 
@@ -85,6 +87,7 @@ const App = ({ authService }: IProps) => {
                 photoURL: null,
                 uid: null
             });
+            setIsLoggedIn(false);
             return;
         }
 
@@ -99,7 +102,10 @@ const App = ({ authService }: IProps) => {
                     photoURL: user.photoURL,
                     uid: user.uid
                 });
+                setIsLoggedIn(true);
+                return;
             }
+            setIsLoggedIn(false);
         });
     }
 
@@ -134,7 +140,7 @@ const App = ({ authService }: IProps) => {
             <GlobalStyle />
                 <Header 
                     isNavOpen={isNavOpen} 
-                    userThumbnail={userInfo.photoURL}
+                    isLoggedIn={isLoggedIn}
                     handleNav={handleNav}
                     onLogin={onLogin}
                     onLogout={onLogout}
@@ -144,6 +150,7 @@ const App = ({ authService }: IProps) => {
                     quoteData={quoteData}
                     quoteHistory={quoteHistory}
                     exposedCard={exposedCard}
+                    isLoggedIn={isLoggedIn}
                     userInfo={userInfo}
                     requestData={requestData}
                     handleNav={handleNav}
