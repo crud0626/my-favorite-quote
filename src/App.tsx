@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
-import LoginWrapper from './components/LoginWrapper/LoginWrapper';
 import GlobalStyle from './styles/GlobalStyle';
 import { QuoteData, QuotesAPI } from './services/quotesApi';
 import { IAuthService, IUserInfo } from './services/authService';
@@ -23,14 +22,13 @@ interface IProps {
 
 const App = ({ authService }: IProps) => {
     const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
-    const [isLoginOpen, setIsLoginOpen] = useState<boolean>(true);
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+    const [quoteHistory, setQuoteHistory] = useState<QuoteData[]>([]);
+    const [exposedCard, setExposedCard] = useState<CardPositionType>("front");
     const [quoteData, setQuoteData] = useState<QuoteStateType>({
         front: null,
         back: null
     });
-    const [quoteHistory, setQuoteHistory] = useState<QuoteData[]>([]);
-    const [exposedCard, setExposedCard] = useState<CardPositionType>("front");
-    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
     const [userInfo, setUserInfo] = useState<IUserInfo>({
         displayName: null,
         photoURL: null,
@@ -38,7 +36,6 @@ const App = ({ authService }: IProps) => {
     });
 
     const handleNav = () => setIsNavOpen(state => !state);
-    const handleLoginWrapper = () => setIsLoginOpen(state => !state);
 
     const updateHistory = (newItem: QuoteData) => {
         let newHistory: Array<QuoteData> = quoteHistory.filter(quote => quote.id !== newItem.id);
@@ -154,12 +151,10 @@ const App = ({ authService }: IProps) => {
                     userInfo={userInfo}
                     requestData={requestData}
                     handleNav={handleNav}
+                    onLogin={onLogin}
+                    onLogout={onLogout}
                 />
                 <Footer />
-                {
-                    isLoginOpen &&
-                    <LoginWrapper handleLoginWrapper={handleLoginWrapper} />
-                }
         </>
     );
 };

@@ -1,18 +1,24 @@
 import React, { MouseEventHandler } from 'react';
 import styled from 'styled-components';
-import * as colors from '../../../styles/common/colors';
-import * as sizes from '../../../styles/common/sizes';
 import { NavHeader } from './NavHeader';
 import { NavBody } from './NavBody';
 import { QuoteData } from '../../../services/quotesApi';
+import { IUserInfo } from '../../../services/authService';
+import * as colors from '../../../styles/common/colors';
+import * as sizes from '../../../styles/common/sizes';
 
 interface StyledProps {
     isNavOpen: boolean;
 }
+
 interface RenderProps extends StyledProps {
     quoteHistory: QuoteData[];
+    userInfo: IUserInfo;
+    isLoggedIn: boolean;
     requestData(id?: string): Promise<any>;
     handleNav(): void;
+    onLogin(): Promise<void>;
+    onLogout(): Promise<void>;
 }
 
 const NavContainer = styled.div<StyledProps>`
@@ -34,7 +40,7 @@ const StyledNav = styled.nav<StyledProps>`
     color: ${colors.MAIN_BLACK};
 `;
 
-const Nav = ({ isNavOpen, quoteHistory, requestData, handleNav }: RenderProps) => {
+const Nav = ({ isNavOpen, quoteHistory, userInfo, isLoggedIn, requestData, handleNav, onLogin, onLogout }: RenderProps) => {
     const onClick = (event: React.MouseEvent) => {
         if(event.target === event.currentTarget) {
             handleNav();
@@ -44,10 +50,16 @@ const Nav = ({ isNavOpen, quoteHistory, requestData, handleNav }: RenderProps) =
     return (
         <NavContainer isNavOpen={isNavOpen} onClick={onClick}>
             <StyledNav isNavOpen={isNavOpen}>
-                <NavHeader />
+                <NavHeader 
+                    userInfo={userInfo}
+                    isLoggedIn={isLoggedIn}
+                    onLogin={onLogin}
+                    onLogout={onLogout}
+                />
                 <NavBody 
                     quoteHistory={quoteHistory} 
                     requestData={requestData}
+                    isLoggedIn={isLoggedIn}
                 />
             </StyledNav>
         </NavContainer>

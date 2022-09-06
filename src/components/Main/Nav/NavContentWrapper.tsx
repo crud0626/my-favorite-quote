@@ -17,6 +17,7 @@ interface ButtonProps {
 export interface ContentProps {
     title: "History" | "Favorite";
     contents: QuoteData[];
+    isLoggedIn?: boolean;
     requestData(id?: string): Promise<any>;
 }
 
@@ -49,7 +50,8 @@ const NavBodyButton = styled(StyledButton)<ButtonProps>`
     transform-origin: center;
 `;
 
-const NavContentWrapper = ({ title, contents, requestData }: ContentProps) => {
+const NavContentWrapper = ({ title, contents, isLoggedIn, requestData }: ContentProps) => {
+    console.log(isLoggedIn);
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const handleContent = () => setIsOpen(state => !state);

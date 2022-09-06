@@ -6,6 +6,9 @@ import * as colors from '../../../styles/common/colors';
 import * as sizes from '../../../styles/common/sizes';
 import { LOGIN_ICON } from '../../../styles/common/iconPath';
 
+interface IProps {
+    onLogin(): Promise<void>;
+}
 
 const StyledLoginButton = styled(StyledButton)`
     display: flex;
@@ -27,9 +30,9 @@ const StyledLoginButton = styled(StyledButton)`
     }
 `;
 
-const LoginButton = () => {
+const LoginButton = ({ onLogin }: IProps) => {
     return (
-        <StyledLoginButton>
+        <StyledLoginButton onClick={onLogin}>
             <span>LOGIN</span>
             <div className='login_icon_wrapper'>
                 <Icon 

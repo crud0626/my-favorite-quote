@@ -9,6 +9,10 @@ interface IStyledProps {
     size?: string;
 }
 
+interface IProps extends IStyledProps {
+    userPhotoSrc: string | null;
+}
+
 const StyledThumbnail = styled.div<IStyledProps>`
     width: ${props => props.size || sizes.DEFAULT_ICON_SIZE};
     height: ${props => props.size || sizes.DEFAULT_ICON_SIZE};
@@ -20,19 +24,13 @@ const StyledThumbnail = styled.div<IStyledProps>`
     }
 `;
 
-interface IProps extends IStyledProps {
-    src?: string;
-}
-
-const UserThumbnail = ({ src, size = sizes.DEFAULT_ICON_SIZE }: IProps) => {
+const UserThumbnail = ({ userPhotoSrc, size = sizes.DEFAULT_ICON_SIZE }: IProps) => {
     return (
         <StyledThumbnail size={size}>
-            { 
-                src ||
-                <Icon 
-                    color={colors.MAIN_BLACK}
-                    define={USER_ICON}
-                />
+            {
+                userPhotoSrc 
+                ? <img src={userPhotoSrc} alt="user thumbnail" /> 
+                : <Icon color={colors.MAIN_BLACK} define={USER_ICON} />
             }
         </StyledThumbnail>
     );

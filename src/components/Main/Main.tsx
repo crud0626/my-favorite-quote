@@ -3,17 +3,22 @@ import styled from 'styled-components';
 import Nav from './Nav/Nav';
 import Section from './Section/Section';
 import { CardPositionType, QuoteStateType } from '../../App';
+import { QuoteData } from '../../services/quotesApi';
+import { IUserInfo } from '../../services/authService';
 import * as sizes from '../../styles/common/sizes';
 import * as colors from '../../styles/common/colors';
-import { QuoteData } from '../../services/quotesApi';
 
 interface IProps {
     isNavOpen: boolean;
     quoteData: QuoteStateType;
     quoteHistory: QuoteData[];
     exposedCard: CardPositionType;
+    userInfo: IUserInfo;
+    isLoggedIn: boolean;
     requestData(id?: string): Promise<any>;
     handleNav(): void;
+    onLogin(): Promise<void>;
+    onLogout(): Promise<void>;
 }
 
 const StyledMain = styled.main`
@@ -23,7 +28,7 @@ const StyledMain = styled.main`
     background-color: ${colors.MAIN_BLACK};
 `;
 
-const Main = ({ isNavOpen, quoteData, quoteHistory, exposedCard, requestData, handleNav }: IProps) => {
+const Main = ({ isNavOpen, quoteData, quoteHistory, exposedCard, userInfo, isLoggedIn, requestData, handleNav, onLogin, onLogout }: IProps) => {
     return(
         <StyledMain>
             <Section 
@@ -34,8 +39,12 @@ const Main = ({ isNavOpen, quoteData, quoteHistory, exposedCard, requestData, ha
             <Nav 
                 isNavOpen={isNavOpen} 
                 quoteHistory={quoteHistory}
+                userInfo={userInfo}
+                isLoggedIn={isLoggedIn}
                 requestData={requestData}
                 handleNav={handleNav}
+                onLogin={onLogin}
+                onLogout={onLogout}
             />
         </StyledMain>
     );
