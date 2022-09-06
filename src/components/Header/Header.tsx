@@ -5,12 +5,13 @@ import { NavButton } from './NavButton/NavButton';
 import * as colors from '../../styles/common/colors';
 import * as sizes from '../../styles/common/sizes';
 import { StyledButton } from '../../styles/StyledButton';
-import { LOGIN_ICON } from '../../styles/common/iconPath';
+import { LOGIN_ICON, LOGOUT_ICON } from '../../styles/common/iconPath';
 
 interface IProps {
     isNavOpen: boolean;
+    userThumbnail: string | null;
     handleNav(): void;
-    onLogIn(): void;
+    onLogin(): Promise<void>;
 }
 
 const StyledHeader = styled.header`
@@ -37,7 +38,7 @@ const Logo = styled.a.attrs(() => ({href: '/'}))`
     }
 `;
 
-const Header = ({ isNavOpen, handleNav, onLogIn }: IProps) => {
+const Header = ({ isNavOpen, userThumbnail, handleNav, onLogin }: IProps) => {
     return (
         <StyledHeader>
             <div>
@@ -53,10 +54,10 @@ const Header = ({ isNavOpen, handleNav, onLogIn }: IProps) => {
             </div>
             <StyledButton 
                 size={sizes.SMALL_ICON_SIZE}
-                onClick={() => onLogIn()}
+                onClick={() => onLogin()}
             >
                 <Icon 
-                    define={LOGIN_ICON}
+                    define={userThumbnail ? LOGOUT_ICON : LOGIN_ICON}
                     color={colors.MAIN_WHITE}
                     isHoverColor={true}
                 />

@@ -4,6 +4,7 @@ import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 import GlobalStyle from './styles/GlobalStyle';
 import { QuoteData, QuotesAPI } from './services/quotesApi';
+import { IAuthService, IUserInfo } from './services/authService';
 import { getStorageData, saveStorageData } from './utils/sessionStorage';
 import LoginWrapper from './components/LoginWrapper/LoginWrapper';
 
@@ -16,10 +17,10 @@ export interface QuoteStateType {
 }
 
 interface IProps {
-    onLogIn(): void;
+    authService: IAuthService;
 }
 
-const App = ({ onLogIn }: IProps) => {
+const App = ({ authService }: IProps) => {
     const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
     const [isLoginOpen, setIsLoginOpen] = useState<boolean>(true);
     const [quoteData, setQuoteData] = useState<QuoteStateType>({
@@ -28,8 +29,11 @@ const App = ({ onLogIn }: IProps) => {
     });
     const [quoteHistory, setQuoteHistory] = useState<QuoteData[]>([]);
     const [exposedCard, setExposedCard] = useState<CardPositionType>("front");
-
-
+    const [userInfo, setUserInfo] = useState<IUserInfo>({
+        displayName: null,
+        photoURL: null,
+        uid: null
+    });
 
     const handleNav = () => setIsNavOpen(state => !state);
     const handleLoginWrapper = () => setIsLoginOpen(state => !state);
@@ -64,6 +68,13 @@ const App = ({ onLogIn }: IProps) => {
         }
     }
 
+    const onLogin = async (): Promise<void> => {
+        const userData = await authService.requestLogin();
+        if(userData) {
+            setUserInfo(userData);
+        }
+    }
+
     const init = async () => {
         const storageData: QuoteData[] | null = getStorageData();
         if(storageData) {
@@ -95,7 +106,8 @@ const App = ({ onLogIn }: IProps) => {
                 <Header 
                     isNavOpen={isNavOpen} 
                     handleNav={handleNav}
-                    onLogIn={onLogIn}
+                    onLogin={onLogin}
+                    userThumbnail={userInfo.photoURL}
                 />
                 <Main 
                     isNavOpen={isNavOpen} 
@@ -108,9 +120,7 @@ const App = ({ onLogIn }: IProps) => {
                 <Footer />
                 {
                     isLoginOpen &&
-                    <LoginWrapper
-                        handleLoginWrapper={handleLoginWrapper}
-                    />
+                    <LoginWrapper handleLoginWrapper={handleLoginWrapper} />
                 }
         </>
     );
