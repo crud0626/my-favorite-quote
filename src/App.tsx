@@ -7,6 +7,7 @@ import GlobalStyle from './styles/GlobalStyle';
 import { QuoteData, QuotesAPI } from './services/quotesApi';
 import { IAuthService, IUserInfo } from './services/authService';
 import { getStorageData, saveStorageData } from './utils/sessionStorage';
+import { onAuthStateChanged } from 'firebase/auth';
 
 const quotesAPI = new QuotesAPI();
 
@@ -90,7 +91,19 @@ const App = ({ authService }: IProps) => {
         alert("로그아웃 도중 에러가 발생했습니다.");
     }
 
-    const init = async () => {
+    const checkUserInfo = () => {
+        onAuthStateChanged(authService.auth, (user) => {
+            if(user) {
+                setUserInfo({
+                    displayName: user.displayName,
+                    photoURL: user.photoURL,
+                    uid: user.uid
+                });
+            }
+        });
+    }
+
+    const initData = async () => {
         const storageData: QuoteData[] | null = getStorageData();
         if(storageData) {
             const mostRecentData = storageData[0];
@@ -112,7 +125,8 @@ const App = ({ authService }: IProps) => {
     }
 
     useEffect(() => {
-        init();
+        checkUserInfo();
+        initData();
     }, []);
 
     return (

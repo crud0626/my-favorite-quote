@@ -1,4 +1,4 @@
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { Auth, getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { firebaseApp } from "./firebase";
 
 export interface IUserInfo {
@@ -8,12 +8,13 @@ export interface IUserInfo {
 }
 
 export interface IAuthService {
+    readonly auth: Auth;
     requestLogin(): Promise<IUserInfo | undefined>;
     requestLogout(): Promise<any>;
 }
 
 export class AuthService implements IAuthService {
-    private auth = getAuth(firebaseApp);
+    auth = getAuth(firebaseApp);
     private googleProvider = new GoogleAuthProvider();
     
     constructor() {
@@ -34,11 +35,11 @@ export class AuthService implements IAuthService {
             }
         } catch (error) {
             let errMessage = "Unknown message";
-            
+
             if(error instanceof Error) {
                 errMessage = error.message;
             }
-            
+
             throw new Error(`로그인 중 에러가 발생했습니다 : ${errMessage}`);
         }
     }
