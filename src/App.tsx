@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
+import LoginWrapper from './components/LoginWrapper/LoginWrapper';
 import GlobalStyle from './styles/GlobalStyle';
 import { QuoteData, QuotesAPI } from './services/quotesApi';
 import { IAuthService, IUserInfo } from './services/authService';
 import { getStorageData, saveStorageData } from './utils/sessionStorage';
-import LoginWrapper from './components/LoginWrapper/LoginWrapper';
 
 const quotesAPI = new QuotesAPI();
 
@@ -75,6 +75,21 @@ const App = ({ authService }: IProps) => {
         }
     }
 
+    const onLogout = async (): Promise<void> => {
+        const status = await authService.requestLogout();
+
+        if(status) {
+            setUserInfo({
+                displayName: null,
+                photoURL: null,
+                uid: null
+            });
+            return;
+        }
+
+        alert("로그아웃 도중 에러가 발생했습니다.");
+    }
+
     const init = async () => {
         const storageData: QuoteData[] | null = getStorageData();
         if(storageData) {
@@ -105,15 +120,17 @@ const App = ({ authService }: IProps) => {
             <GlobalStyle />
                 <Header 
                     isNavOpen={isNavOpen} 
+                    userThumbnail={userInfo.photoURL}
                     handleNav={handleNav}
                     onLogin={onLogin}
-                    userThumbnail={userInfo.photoURL}
+                    onLogout={onLogout}
                 />
                 <Main 
                     isNavOpen={isNavOpen} 
                     quoteData={quoteData}
                     quoteHistory={quoteHistory}
                     exposedCard={exposedCard}
+                    userInfo={userInfo}
                     requestData={requestData}
                     handleNav={handleNav}
                 />

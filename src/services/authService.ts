@@ -1,4 +1,4 @@
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { firebaseApp } from "./firebase";
 
 export interface IUserInfo {
@@ -9,6 +9,7 @@ export interface IUserInfo {
 
 export interface IAuthService {
     requestLogin(): Promise<IUserInfo | undefined>;
+    requestLogout(): Promise<any>;
 }
 
 export class AuthService implements IAuthService {
@@ -33,10 +34,23 @@ export class AuthService implements IAuthService {
             }
         } catch (error) {
             let errMessage = "Unknown message";
+            
             if(error instanceof Error) {
                 errMessage = error.message;
             }
+            
             throw new Error(`로그인 중 에러가 발생했습니다 : ${errMessage}`);
+        }
+    }
+
+    async requestLogout() {
+        try {
+            return await signOut(this.auth).then(() => true);
+        } catch (error) {
+            if(error instanceof Error) {
+                throw new Error(`로그아웃 도중 에러가 발생했습니다. ${error.message}`);
+            }
+            throw new Error(`로그아웃 도중 예기치 않은 에러가 발생했습니다. ${error}`);
         }
     }
 }

@@ -12,6 +12,7 @@ interface IProps {
     userThumbnail: string | null;
     handleNav(): void;
     onLogin(): Promise<void>;
+    onLogout(): Promise<void>;
 }
 
 const StyledHeader = styled.header`
@@ -38,7 +39,12 @@ const Logo = styled.a.attrs(() => ({href: '/'}))`
     }
 `;
 
-const Header = ({ isNavOpen, userThumbnail, handleNav, onLogin }: IProps) => {
+const Header = ({ isNavOpen, userThumbnail, handleNav, onLogin, onLogout }: IProps) => {
+
+    const onClick = () => {
+        userThumbnail ? onLogout() : onLogin();
+    }
+
     return (
         <StyledHeader>
             <div>
@@ -54,7 +60,7 @@ const Header = ({ isNavOpen, userThumbnail, handleNav, onLogin }: IProps) => {
             </div>
             <StyledButton 
                 size={sizes.SMALL_ICON_SIZE}
-                onClick={() => onLogin()}
+                onClick={onClick}
             >
                 <Icon 
                     define={userThumbnail ? LOGOUT_ICON : LOGIN_ICON}
