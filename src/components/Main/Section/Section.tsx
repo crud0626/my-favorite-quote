@@ -4,7 +4,7 @@ import ChevronWrapper from '../ChevronWrapper';
 import CardWrapper from './CardWrapper/CardWrapper';
 import { downloadToImg } from '../../../services/html2canvas';
 import { rotateRegex } from '../../../utils/regexPatterns';
-import { CardPositionType, QuoteStateType } from '../../../App';
+import { CardPositionType, QuoteData, QuoteStateType } from '../../../App';
 import * as sizes from '../../../styles/common/sizes';
 
 export type ChevronEventTypes = "prev" | "next";
@@ -12,6 +12,7 @@ interface IProps {
     quoteData: QuoteStateType;
     exposedCard: CardPositionType;
     requestData(id?: string): Promise<any>;
+    onChangeFavorite(target: QuoteData): void;
 }
 
 const StyledSection = styled.section`
@@ -30,7 +31,7 @@ const StyledSection = styled.section`
     }
 `;
 
-const Section = ({ quoteData, exposedCard, requestData }: IProps) => {
+const Section = ({ quoteData, exposedCard, requestData, onChangeFavorite }: IProps) => {
     const cardWrapperRef = useRef<HTMLDivElement | null>(null);
     
     
@@ -60,8 +61,9 @@ const Section = ({ quoteData, exposedCard, requestData }: IProps) => {
                 <CardWrapper 
                     ref={cardWrapperRef} 
                     exposedCard={exposedCard}
-                    onDownload={onDownload}
                     quoteData={quoteData}
+                    onDownload={onDownload}
+                    onChangeFavorite={onChangeFavorite}
                 />
                 <ChevronWrapper handleCardFilp={handleCardFilp} />
             </div>

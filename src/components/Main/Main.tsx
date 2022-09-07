@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Nav from './Nav/Nav';
 import Section from './Section/Section';
 import { CardPositionType, QuoteStateType } from '../../App';
-import { QuoteData } from '../../services/quotesApi';
+import { QuoteData } from '../../App';
 import { IUserInfo } from '../../services/authService';
 import * as sizes from '../../styles/common/sizes';
 import * as colors from '../../styles/common/colors';
@@ -12,6 +12,7 @@ interface IProps {
     isNavOpen: boolean;
     quoteData: QuoteStateType;
     quoteHistory: QuoteData[];
+    favoriteQuotes: QuoteData[];
     exposedCard: CardPositionType;
     userInfo: IUserInfo;
     isLoggedIn: boolean;
@@ -19,6 +20,7 @@ interface IProps {
     handleNav(): void;
     onLogin(): Promise<void>;
     onLogout(): Promise<void>;
+    onChangeFavorite(target: QuoteData): void;
 }
 
 const StyledMain = styled.main`
@@ -28,23 +30,26 @@ const StyledMain = styled.main`
     background-color: ${colors.MAIN_BLACK};
 `;
 
-const Main = ({ isNavOpen, quoteData, quoteHistory, exposedCard, userInfo, isLoggedIn, requestData, handleNav, onLogin, onLogout }: IProps) => {
+const Main = ({ isNavOpen, quoteData, quoteHistory, exposedCard, favoriteQuotes, userInfo, isLoggedIn, requestData, handleNav, onLogin, onLogout, onChangeFavorite }: IProps) => {
     return(
         <StyledMain>
             <Section 
                 quoteData={quoteData}
-                requestData={requestData}
                 exposedCard={exposedCard}
+                requestData={requestData}
+                onChangeFavorite={onChangeFavorite}
             />
             <Nav 
                 isNavOpen={isNavOpen} 
                 quoteHistory={quoteHistory}
                 userInfo={userInfo}
                 isLoggedIn={isLoggedIn}
+                favoriteQuotes={favoriteQuotes}
                 requestData={requestData}
                 handleNav={handleNav}
                 onLogin={onLogin}
                 onLogout={onLogout}
+                onChangeFavorite={onChangeFavorite}
             />
         </StyledMain>
     );

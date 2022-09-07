@@ -1,16 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import Icon from '../../Icon/Icon';
-import { QuoteData } from '../../../services/quotesApi';
+import { QuoteData } from '../../../App';
 import * as sizes from '../../../styles/common/sizes';
 import * as colors from '../../../styles/common/colors';
-import { EMPTY_HEART_ICON } from '../../../styles/common/iconPath';
+import { EMPTY_HEART_ICON, FILL_HEART_ICON } from '../../../styles/common/iconPath';
 import { StyledButton } from '../../../styles/StyledButton';
 import { navBoxMixin } from '../../../styles/navBoxMixin';
 
-interface IProps extends QuoteData {
+interface IProps {
+    content: QuoteData;
     className: string;
     requestData(id?: string): Promise<any>;
+    onChangeFavorite(target: QuoteData): void;
 }
 
 const StyledContent = styled.div`
@@ -56,19 +58,25 @@ const FavoriteButton = styled(StyledButton)`
     flex-shrink: 0;
 `;
 
-const NavContent = ({ id, quote, author, className, requestData }: IProps) => {
+const NavContent = ({ content, className, requestData, onChangeFavorite }: IProps) => {
+    const onClickHeart = (event: React.MouseEvent) => {
+        event.stopPropagation();
+        onChangeFavorite(content);
+    }
+
     return (
-        <StyledContent className={className} onClick={() => requestData(id)}>
+        <StyledContent className={className} onClick={() => requestData(content.id)}>
             <SpanWrapper>
-                <span>{quote}</span>
-                <span>{author}</span>
+                <span>{content.quote}</span>
+                <span>{content.author}</span>
             </SpanWrapper>
-            <FavoriteButton>
-                <Icon 
-                    define={EMPTY_HEART_ICON}
-                    color={colors.MAIN_BLACK}
-                    isHoverColor={true}
-                />
+            <FavoriteButton onClick={onClickHeart}>
+                {
+                    content.favorite
+                    ? <Icon define={FILL_HEART_ICON} color={colors.BUTTON_RED} isHoverColor={true} />
+                    : <Icon define={EMPTY_HEART_ICON} color={colors.MAIN_BLACK} isHoverColor={true} />
+                }
+                
             </FavoriteButton>
         </StyledContent>
     );

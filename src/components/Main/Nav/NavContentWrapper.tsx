@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import NavContent from './NavContent';
 import NoContents from './NoContents';
 import Icon from '../../Icon/Icon';
-import { QuoteData } from '../../../services/quotesApi';
+import { QuoteData } from '../../../App';
 import * as colors from '../../../styles/common/colors';
 import * as sizes from '../../../styles/common/sizes';
 import { StyledButton } from '../../../styles/StyledButton';
@@ -19,6 +19,7 @@ export interface ContentProps {
     contents: QuoteData[];
     isLoggedIn?: boolean;
     requestData(id?: string): Promise<any>;
+    onChangeFavorite(target: QuoteData): void;
 }
 
 const StyledContainer = styled.div`
@@ -50,8 +51,7 @@ const NavBodyButton = styled(StyledButton)<ButtonProps>`
     transform-origin: center;
 `;
 
-const NavContentWrapper = ({ title, contents, isLoggedIn, requestData }: ContentProps) => {
-    console.log(isLoggedIn);
+const NavContentWrapper = ({ title, contents, isLoggedIn, requestData, onChangeFavorite }: ContentProps) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const handleContent = () => setIsOpen(state => !state);
@@ -61,7 +61,8 @@ const NavContentWrapper = ({ title, contents, isLoggedIn, requestData }: Content
             key={content.id}
             className={"content"}
             requestData={requestData}
-            { ...content } 
+            onChangeFavorite={onChangeFavorite}
+            content={content}
         />
     );
 

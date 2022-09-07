@@ -1,12 +1,13 @@
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import Card from './Card';
-import { CardPositionType, QuoteStateType } from '../../../../App';
+import { CardPositionType, QuoteData, QuoteStateType } from '../../../../App';
 
 interface IProps {
     exposedCard: CardPositionType;
-    onDownload(): void;
     quoteData: QuoteStateType;
+    onDownload(): void;
+    onChangeFavorite(target: QuoteData): void;
 }
 
 const StyledCardWrapper = styled.div`
@@ -17,7 +18,7 @@ const StyledCardWrapper = styled.div`
     transition: transform 0.6s ease-in-out;
 `;
 
-const CardWrapper = forwardRef<HTMLDivElement | null, IProps>(({ exposedCard, quoteData, onDownload }, ref) => {
+const CardWrapper = forwardRef<HTMLDivElement | null, IProps>(({ exposedCard, quoteData, onDownload, onChangeFavorite }, ref) => {
     return (
         <StyledCardWrapper ref={ref}>
             <Card 
@@ -25,12 +26,14 @@ const CardWrapper = forwardRef<HTMLDivElement | null, IProps>(({ exposedCard, qu
                 exposedCard={exposedCard}
                 quoteData={quoteData.front}
                 onDownload={onDownload}
+                onChangeFavorite={onChangeFavorite}
             />
             <Card 
                 position={"back"} 
                 exposedCard={exposedCard}
                 quoteData={quoteData.back}
                 onDownload={onDownload}
+                onChangeFavorite={onChangeFavorite}
             />
         </StyledCardWrapper>
     );
