@@ -18,7 +18,7 @@ export interface ContentProps {
     title: "History" | "Favorite";
     contents: QuoteData[];
     isLoggedIn?: boolean;
-    requestData(id?: string): Promise<any>;
+    onClickNavContent(target: QuoteData): void;
     onChangeFavorite(target: QuoteData): void;
 }
 
@@ -51,7 +51,7 @@ const NavBodyButton = styled(StyledButton)<ButtonProps>`
     transform-origin: center;
 `;
 
-const NavContentWrapper = ({ title, contents, isLoggedIn, requestData, onChangeFavorite }: ContentProps) => {
+const NavContentWrapper = ({ title, contents, isLoggedIn, onClickNavContent, onChangeFavorite }: ContentProps) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const handleContent = () => setIsOpen(state => !state);
@@ -60,7 +60,7 @@ const NavContentWrapper = ({ title, contents, isLoggedIn, requestData, onChangeF
         <NavContent 
             key={content.id}
             className={"content"}
-            requestData={requestData}
+            onClickNavContent={onClickNavContent}
             onChangeFavorite={onChangeFavorite}
             content={content}
         />

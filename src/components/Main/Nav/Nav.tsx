@@ -16,7 +16,7 @@ interface RenderProps extends StyledProps {
     userInfo: IUserInfo;
     isLoggedIn: boolean;
     favoriteQuotes: QuoteData[];
-    requestData(id?: string): Promise<any>;
+    onClickNavContent(target: QuoteData): void;
     handleNav(): void;
     onLogin(): Promise<void>;
     onLogout(): Promise<void>;
@@ -42,7 +42,7 @@ const StyledNav = styled.nav<StyledProps>`
     color: ${colors.MAIN_BLACK};
 `;
 
-const Nav = ({ isNavOpen, quoteHistory, userInfo, isLoggedIn, favoriteQuotes, requestData, handleNav, onLogin, onLogout, onChangeFavorite }: RenderProps) => {
+const Nav = ({ isNavOpen, quoteHistory, userInfo, isLoggedIn, favoriteQuotes, onClickNavContent, handleNav, onLogin, onLogout, onChangeFavorite }: RenderProps) => {
     const onClick = (event: React.MouseEvent) => {
         if(event.target === event.currentTarget) {
             handleNav();
@@ -62,7 +62,7 @@ const Nav = ({ isNavOpen, quoteHistory, userInfo, isLoggedIn, favoriteQuotes, re
                     quoteHistory={quoteHistory} 
                     isLoggedIn={isLoggedIn}
                     favoriteQuotes={favoriteQuotes}
-                    requestData={requestData}
+                    onClickNavContent={onClickNavContent}
                     onChangeFavorite={onChangeFavorite}
                 />
             </StyledNav>

@@ -7,7 +7,7 @@ interface IProps {
     quoteHistory: QuoteData[];
     favoriteQuotes: QuoteData[];
     isLoggedIn: boolean;
-    requestData(id?: string): Promise<any>;
+    onClickNavContent(target: QuoteData): void;
     onChangeFavorite(target: QuoteData): void;
 }
 
@@ -15,19 +15,19 @@ const StyledNavBody = styled.div`
     width: 100%;
 `;
 
-export const NavBody = ({ quoteHistory, favoriteQuotes, isLoggedIn, requestData, onChangeFavorite }: IProps) => {
+export const NavBody = ({ quoteHistory, favoriteQuotes, isLoggedIn, onClickNavContent, onChangeFavorite }: IProps) => {
     return (
         <StyledNavBody>
             <NavContentWrapper 
                 title={"History"}
                 contents={quoteHistory}
-                requestData={requestData}
+                onClickNavContent={onClickNavContent}
                 onChangeFavorite={onChangeFavorite}
             />
             <NavContentWrapper 
                 title={"Favorite"}
                 contents={favoriteQuotes}
-                requestData={requestData}
+                onClickNavContent={onClickNavContent}
                 onChangeFavorite={onChangeFavorite}
             />
         </StyledNavBody>

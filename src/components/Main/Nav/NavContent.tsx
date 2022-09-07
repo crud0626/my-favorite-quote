@@ -11,7 +11,7 @@ import { navBoxMixin } from '../../../styles/navBoxMixin';
 interface IProps {
     content: QuoteData;
     className: string;
-    requestData(id?: string): Promise<any>;
+    onClickNavContent(target: QuoteData): void;
     onChangeFavorite(target: QuoteData): void;
 }
 
@@ -58,14 +58,14 @@ const FavoriteButton = styled(StyledButton)`
     flex-shrink: 0;
 `;
 
-const NavContent = ({ content, className, requestData, onChangeFavorite }: IProps) => {
+const NavContent = ({ content, className, onClickNavContent, onChangeFavorite }: IProps) => {
     const onClickHeart = (event: React.MouseEvent) => {
         event.stopPropagation();
         onChangeFavorite(content);
     }
 
     return (
-        <StyledContent className={className} onClick={() => requestData(content.id)}>
+        <StyledContent className={className} onClick={() => onClickNavContent(content)}>
             <SpanWrapper>
                 <span>{content.quote}</span>
                 <span>{content.author}</span>

@@ -21,6 +21,7 @@ interface IProps {
     onLogin(): Promise<void>;
     onLogout(): Promise<void>;
     onChangeFavorite(target: QuoteData): void;
+    onClickNavContent(target: QuoteData): void;
 }
 
 const StyledMain = styled.main`
@@ -30,7 +31,7 @@ const StyledMain = styled.main`
     background-color: ${colors.MAIN_BLACK};
 `;
 
-const Main = ({ isNavOpen, quoteData, quoteHistory, exposedCard, favoriteQuotes, userInfo, isLoggedIn, requestData, handleNav, onLogin, onLogout, onChangeFavorite }: IProps) => {
+const Main = ({ isNavOpen, quoteData, quoteHistory, exposedCard, favoriteQuotes, userInfo, isLoggedIn, requestData, handleNav, onLogin, onLogout, onChangeFavorite, onClickNavContent }: IProps) => {
     return(
         <StyledMain>
             <Section 
@@ -45,7 +46,7 @@ const Main = ({ isNavOpen, quoteData, quoteHistory, exposedCard, favoriteQuotes,
                 userInfo={userInfo}
                 isLoggedIn={isLoggedIn}
                 favoriteQuotes={favoriteQuotes}
-                requestData={requestData}
+                onClickNavContent={onClickNavContent}
                 handleNav={handleNav}
                 onLogin={onLogin}
                 onLogout={onLogout}

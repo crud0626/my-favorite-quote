@@ -162,6 +162,13 @@ const App = ({ authService }: IProps) => {
         });
     }
 
+    const onClickNavContent = (target: QuoteData): void => {
+        const displayedQuote = exposedCard === "front" ? quoteData.front : quoteData.back;
+        if(displayedQuote?.id !== target.id) {
+            requestData(target.id);
+        }
+    }
+
     const initData = async () => {
         const storageData: QuoteData[] | null = getStorageData();
         if(storageData) {
@@ -214,6 +221,7 @@ const App = ({ authService }: IProps) => {
                     onLogin={onLogin}
                     onLogout={onLogout}
                     onChangeFavorite={onChangeFavorite}
+                    onClickNavContent={onClickNavContent}
                 />
                 <Footer />
         </>

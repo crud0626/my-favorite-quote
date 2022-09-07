@@ -33,8 +33,6 @@ const StyledSection = styled.section`
 
 const Section = ({ quoteData, exposedCard, requestData, onChangeFavorite }: IProps) => {
     const cardWrapperRef = useRef<HTMLDivElement | null>(null);
-    
-    
 
     const onDownload = (): void => {
         if(cardWrapperRef.current) {
