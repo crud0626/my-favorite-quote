@@ -8,7 +8,7 @@ import { IAuthService, IUserInfo } from './services/authService';
 import { IFirebaseDB } from './services/database';
 import { getStorageData, saveStorageData } from './utils/sessionStorage';
 import { onAuthStateChanged } from 'firebase/auth';
-import LoginWrapper from './components/LoginWrapper/LoginWrapper';
+import LoginBox from './components/LoginBox/LoginBox';
 
 const quotesAPI = new QuotesAPI();
 
@@ -225,7 +225,7 @@ const App = ({ authService, firebaseDB }: IProps) => {
         }
     }
 
-    const handleLoginWrapper = (): void => {
+    const handleLoginBox = (): void => {
         setIsLoginBoxOpen((prev) => !prev);
     }
 
@@ -262,9 +262,9 @@ const App = ({ authService, firebaseDB }: IProps) => {
                 <Footer />
                 {
                     isLoginBoxOpen &&
-                    <LoginWrapper 
+                    <LoginBox 
                         onLogin={onLogin}
-                        handleLoginWrapper={handleLoginWrapper}
+                        handleLoginBox={handleLoginBox}
                     />
                 }
         </>

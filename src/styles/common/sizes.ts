@@ -22,10 +22,13 @@ export const CARD_BORDER_RADIUS = "20px";
 
 // Font
 export const HEAD_FONT_SIZE = "1.5rem";
+export const SUB_HEAD_FONT_SIZE = "1.2rem";
 export const SUB_FONT_SIZE = "0.8rem";
 
-// Margin & Padding
+// Margin & Padding, 1X = 4px
 export const SPACE_2X = "8px";
+export const SPACE_3X = "12px";
+export const SPACE_4X = "16px";
 export const SPACE_5X = "20px";
 export const SPACE_7X = "28px";
 
@@ -35,3 +38,7 @@ export const DEFAULT_BORDER_RADIUS = "5px";
 
 // Nav
 export const DEFAULT_NAV_SIZE = "350px";
+
+// Login Box
+export const SOCIAL_LOGIN_COTENT_WIDTH = "300px";
+export const SOCIAL_LOGIN_COTENT_HEIGHT = "40px";
