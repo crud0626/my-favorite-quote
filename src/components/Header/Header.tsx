@@ -11,7 +11,7 @@ interface IProps {
     isNavOpen: boolean;
     isLoggedIn: boolean;
     handleNav(): void;
-    onLogin(): Promise<void>;
+    handleLoginBox(): void;
     onLogout(): Promise<void>;
 }
 
@@ -39,10 +39,10 @@ const Logo = styled.a.attrs(() => ({href: '/'}))`
     }
 `;
 
-const Header = ({ isNavOpen, isLoggedIn, handleNav, onLogin, onLogout }: IProps) => {
+const Header = ({ isNavOpen, isLoggedIn, handleNav, handleLoginBox, onLogout }: IProps) => {
 
     const onClick = () => {
-        isLoggedIn ? onLogout() : onLogin();
+        isLoggedIn ? onLogout() : handleLoginBox();
     }
 
     return (

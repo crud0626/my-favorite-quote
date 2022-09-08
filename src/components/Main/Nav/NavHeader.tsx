@@ -13,7 +13,7 @@ import { LOGOUT_ICON } from "../../../styles/common/iconPath";
 interface IProps {
     userInfo: IUserInfo;
     isLoggedIn: boolean;
-    onLogin(): Promise<void>;
+    handleLoginBox(): void;
     onLogout(): Promise<void>;
 }
 
@@ -23,7 +23,7 @@ const StyledNavHeader = styled(NavBoxWrapper)`
     }
 `;
 
-export const NavHeader = ({ userInfo, isLoggedIn, onLogin, onLogout  }: IProps) => {
+export const NavHeader = ({ userInfo, isLoggedIn, handleLoginBox, onLogout  }: IProps) => {
     const { displayName, photoURL } = userInfo;
 
     const loggedInElements =
@@ -46,7 +46,7 @@ export const NavHeader = ({ userInfo, isLoggedIn, onLogin, onLogout  }: IProps) 
             {
                 isLoggedIn 
                 ? loggedInElements
-                : <LoginButton onLogin={onLogin} />
+                : <LoginButton handleLoginBox={handleLoginBox} />
             }
         </StyledNavHeader>
     );

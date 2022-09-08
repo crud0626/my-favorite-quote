@@ -7,7 +7,7 @@ import * as sizes from '../../../styles/common/sizes';
 import { LOGIN_ICON } from '../../../styles/common/iconPath';
 
 interface IProps {
-    onLogin(): Promise<void>;
+    handleLoginBox(): void;
 }
 
 const StyledLoginButton = styled(StyledButton)`
@@ -30,9 +30,9 @@ const StyledLoginButton = styled(StyledButton)`
     }
 `;
 
-const LoginButton = ({ onLogin }: IProps) => {
+const LoginButton = ({ handleLoginBox }: IProps) => {
     return (
-        <StyledLoginButton onClick={onLogin}>
+        <StyledLoginButton onClick={handleLoginBox}>
             <span>LOGIN</span>
             <div className='login_icon_wrapper'>
                 <Icon 

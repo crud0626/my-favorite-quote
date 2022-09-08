@@ -28,7 +28,7 @@ interface IProps {
 }
 
 const App = ({ authService, firebaseDB }: IProps) => {
-    const [isLoginBoxOpen, setIsLoginBoxOpen] = useState<boolean>(true);
+    const [isLoginBoxOpen, setIsLoginBoxOpen] = useState<boolean>(false);
     const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
     const [quoteHistory, setQuoteHistory] = useState<QuoteData[]>([]);
@@ -44,7 +44,8 @@ const App = ({ authService, firebaseDB }: IProps) => {
         uid: null
     });
 
-    const handleNav = () => setIsNavOpen(state => !state);
+    const handleNav = (): void => setIsNavOpen(state => !state);
+    const handleLoginBox = (): void => setIsLoginBoxOpen((prev) => !prev);
 
     const onChangeFavorite = (target: QuoteData) => {
         // 선택된 quote의 favorite 값 반대로 변환
@@ -225,10 +226,6 @@ const App = ({ authService, firebaseDB }: IProps) => {
         }
     }
 
-    const handleLoginBox = (): void => {
-        setIsLoginBoxOpen((prev) => !prev);
-    }
-
     useEffect(() => {
         checkUserInfo();
         initData();
@@ -241,7 +238,7 @@ const App = ({ authService, firebaseDB }: IProps) => {
                     isNavOpen={isNavOpen} 
                     isLoggedIn={isLoggedIn}
                     handleNav={handleNav}
-                    onLogin={onLogin}
+                    handleLoginBox={handleLoginBox}
                     onLogout={onLogout}
                 />
                 <Main 
@@ -254,7 +251,7 @@ const App = ({ authService, firebaseDB }: IProps) => {
                     favoriteQuotes={favoriteQuotes}
                     requestData={requestData}
                     handleNav={handleNav}
-                    onLogin={onLogin}
+                    handleLoginBox={handleLoginBox}
                     onLogout={onLogout}
                     onChangeFavorite={onChangeFavorite}
                     onClickNavContent={onClickNavContent}
