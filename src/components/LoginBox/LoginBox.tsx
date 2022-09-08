@@ -28,12 +28,12 @@ const StyledLoginBoxWrapper = styled.div`
         display: flex;
         flex-direction: column;
         position: relative;
-        padding: 20px;
+        padding: ${sizes.SPACE_5X};
         background-color: ${colors.MAIN_BLACK};
         border-radius: ${sizes.CARD_BORDER_RADIUS};
 
         & > .login_box_header {
-            margin: 20px 0;
+            margin: ${sizes.SPACE_5X} 0;
             text-align: center;
 
             & > .title {
@@ -42,7 +42,7 @@ const StyledLoginBoxWrapper = styled.div`
 
             & > .sub_title {
                 display: block;
-                margin-top: 8px;
+                margin-top: ${sizes.SPACE_2X};
             }
         }
     }
@@ -73,8 +73,8 @@ const LoginBox = ({ onLogin, handleLoginBox }: IProps) => {
                     handleLoginBox={handleLoginBox}
                 />
                 <CloseBtn 
-                    onClick={handleLoginBox}
                     size={sizes.SMALL_ICON_SIZE}
+                    onClick={handleLoginBox}
                 >
                     <Icon 
                         define={CLOSE_ICON}
