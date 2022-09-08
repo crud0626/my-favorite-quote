@@ -8,6 +8,7 @@ import { IAuthService, IUserInfo } from './services/authService';
 import { IFirebaseDB } from './services/database';
 import { getStorageData, saveStorageData } from './utils/sessionStorage';
 import { onAuthStateChanged } from 'firebase/auth';
+import LoginWrapper from './components/LoginWrapper/LoginWrapper';
 
 const quotesAPI = new QuotesAPI();
 
@@ -27,6 +28,7 @@ interface IProps {
 }
 
 const App = ({ authService, firebaseDB }: IProps) => {
+    const [isLoginBoxOpen, setIsLoginBoxOpen] = useState<boolean>(true);
     const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
     const [quoteHistory, setQuoteHistory] = useState<QuoteData[]>([]);
@@ -223,6 +225,10 @@ const App = ({ authService, firebaseDB }: IProps) => {
         }
     }
 
+    const handleLoginWrapper = (): void => {
+        setIsLoginBoxOpen((prev) => !prev);
+    }
+
     useEffect(() => {
         checkUserInfo();
         initData();
@@ -254,6 +260,13 @@ const App = ({ authService, firebaseDB }: IProps) => {
                     onClickNavContent={onClickNavContent}
                 />
                 <Footer />
+                {
+                    isLoginBoxOpen &&
+                    <LoginWrapper 
+                        onLogin={onLogin}
+                        handleLoginWrapper={handleLoginWrapper}
+                    />
+                }
         </>
     );
 };
