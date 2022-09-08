@@ -5,6 +5,7 @@ import Main from './components/Main/Main';
 import GlobalStyle from './styles/GlobalStyle';
 import { ResponseQuote, QuotesAPI } from './services/quotesApi';
 import { IAuthService, IUserInfo } from './services/authService';
+import { IFirebaseDB } from './services/database';
 import { getStorageData, saveStorageData } from './utils/sessionStorage';
 import { onAuthStateChanged } from 'firebase/auth';
 
@@ -22,9 +23,10 @@ export interface QuoteStateType {
 
 interface IProps {
     authService: IAuthService;
+    firebaseDB: IFirebaseDB;
 }
 
-const App = ({ authService }: IProps) => {
+const App = ({ authService, firebaseDB }: IProps) => {
     const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
     const [quoteHistory, setQuoteHistory] = useState<QuoteData[]>([]);
@@ -76,6 +78,7 @@ const App = ({ authService }: IProps) => {
         
         setQuoteHistory(newHistory);
         setFavoriteQuotes(newFavorite);
+        saveUserData(newHistory, newFavorite);
     };
 
     const updateHistory = (newItem: QuoteData) => {
@@ -87,7 +90,12 @@ const App = ({ authService }: IProps) => {
 
         newHistory.unshift(newItem);
         setQuoteHistory(newHistory);
-        saveStorageData(newHistory);
+
+        if(userInfo.uid) {
+            saveUserData(newHistory);
+        } else {
+            saveStorageData(newHistory);
+        }
     }
 
     const checkFavoriteQuote = (resQuote: ResponseQuote) => {
@@ -124,10 +132,13 @@ const App = ({ authService }: IProps) => {
     }
 
     const onLogin = async (): Promise<void> => {
-        const userData = await authService.requestLogin();
-        if(userData) {
-            setUserInfo(userData);
+        const userInfo = await authService.requestLogin();
+        if(userInfo) {
+            setUserInfo(userInfo);
             setIsLoggedIn(true);
+            if(userInfo.uid) {
+                getUserData(userInfo.uid);
+            }
         }
     }
 
@@ -140,6 +151,8 @@ const App = ({ authService }: IProps) => {
                 photoURL: null,
                 uid: null
             });
+            setQuoteHistory([]);
+            setFavoriteQuotes([]);
             setIsLoggedIn(false);
             return;
         }
@@ -156,6 +169,7 @@ const App = ({ authService }: IProps) => {
                     uid: user.uid
                 });
                 setIsLoggedIn(true);
+                getUserData(user.uid);
                 return;
             }
             setIsLoggedIn(false);
@@ -190,6 +204,22 @@ const App = ({ authService }: IProps) => {
                 alert("데이터를 요청 하던 도중 에러가 발생했습니다.");
                 return false;
             }
+        }
+    }
+
+    const saveUserData = (newHistory?: QuoteData[], newFavorite?: QuoteData[]) => {
+        const newHis = newHistory ? newHistory : quoteHistory;
+        const newFav = newFavorite ? newFavorite : favoriteQuotes;
+        if(userInfo.uid) {
+            firebaseDB.writeUserData(userInfo.uid, newHis, newFav);
+        }
+    }
+
+    const getUserData = async (userId: string): Promise<void> => {
+        const { history, favorite } = await firebaseDB.readUserData(userId);
+        if(history && favorite) {
+            setQuoteHistory(history);
+            setFavoriteQuotes(favorite);
         }
     }
 
