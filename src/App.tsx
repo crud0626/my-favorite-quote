@@ -8,7 +8,7 @@ import { IAuthService, IUserInfo } from './services/authService';
 import { IFirebaseDB } from './services/database';
 import { getStorageData, saveStorageData } from './utils/sessionStorage';
 import { onAuthStateChanged } from 'firebase/auth';
-import LoginBox from './components/LoginBox/LoginBox';
+import LoginBox from './components/LoginModal/LoginModal';
 
 const quotesAPI = new QuotesAPI();
 
