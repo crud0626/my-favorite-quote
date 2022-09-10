@@ -1,18 +1,11 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import NavContent from './NavContent';
 import NoContents from './NoContents';
 import Icon from '../../Icon/Icon';
 import { QuoteData } from '../../../App';
 import * as colors from '../../../styles/common/colors';
-import * as sizes from '../../../styles/common/sizes';
-import { StyledButton } from '../../../styles/common/StyledButton';
-import { NavBoxWrapper } from '../../../styles/Nav/NavBoxWrapper';
 import { BOTTOM_CHEVRON_ICON } from '../../../styles/common/iconPath';
-
-interface ButtonProps {
-    isOpen: boolean;
-}
+import { ContentController, NavBodyButton, StyledNavContentWrapper } from '../../../styles/Nav/StyledNavContentWrapper';
 
 export interface ContentProps {
     title: "History" | "Favorite";
@@ -21,35 +14,6 @@ export interface ContentProps {
     onClickNavContent(target: QuoteData): void;
     onChangeFavorite(target: QuoteData): void;
 }
-
-const StyledContainer = styled.div`
-    min-height: 70px;
-    height: auto;
-    border-top: 1px solid ${colors.LIGHT_GRAY};
-
-    &:last-child {
-        border-bottom: 1px solid ${colors.LIGHT_GRAY};
-    }
-    
-    & > :nth-child(2) {
-        border-top: 1px solid ${colors.LIGHT_GRAY};
-    }
-`;
-
-const StyledContentWrapper = styled(NavBoxWrapper)`
-    justify-content: flex-start;
-    cursor: pointer;
-
-    & > :first-child {
-        margin-right: ${sizes.SPACE_2X};
-    }
-`;
-
-const NavBodyButton = styled(StyledButton)<ButtonProps>`
-    transition: all 0.3s ease-in-out;
-    transform: ${props => props.isOpen ? "rotate(-180deg)" : "rotate(0deg)" };
-    transform-origin: center;
-`;
 
 const NavContentWrapper = ({ title, contents, isLoggedIn, onClickNavContent, onChangeFavorite }: ContentProps) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -67,8 +31,8 @@ const NavContentWrapper = ({ title, contents, isLoggedIn, onClickNavContent, onC
     );
 
     return (
-        <StyledContainer>
-            <StyledContentWrapper onClick={() => handleContent()}>
+        <StyledNavContentWrapper>
+            <ContentController onClick={handleContent}>
                 <NavBodyButton isOpen={isOpen}>
                     <Icon 
                         define={BOTTOM_CHEVRON_ICON}
@@ -76,21 +40,9 @@ const NavContentWrapper = ({ title, contents, isLoggedIn, onClickNavContent, onC
                     />
                 </NavBodyButton>
                 <span>{title}</span>
-            </StyledContentWrapper>
+            </ContentController>
             {isOpen && (contents.length === 0 ? <NoContents /> : contentsElement )}
-        </StyledContainer>
-        // <StyledContainer>
-        //     <StyledContentWrapper onClick={() => handleContent()}>
-        //         <NavBodyButton isOpen={isOpen}>
-        //             <Icon 
-        //                 define={BOTTOM_CHEVRON_ICON}
-        //                 color={colors.MAIN_BLACK}
-        //             />
-        //         </NavBodyButton>
-        //         <span>{title}</span>
-        //     </StyledContentWrapper>
-        //     {isOpen && (contents.length === 0 ? <NoContents /> : contentsElement )}
-        // </StyledContainer>
+        </StyledNavContentWrapper>
     );
 };
 
