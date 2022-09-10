@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { navBoxMixin } from '../../../styles/mixins/navBoxMixin';
+import { navBoxMixin } from '~/styles/mixins/navBoxMixin';
 
 const StyledNoContents = styled.div`
     ${navBoxMixin}

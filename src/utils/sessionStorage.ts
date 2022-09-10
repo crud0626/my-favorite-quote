@@ -1,5 +1,5 @@
-import { QuoteData } from './../App';
-import { ResponseQuote } from '../services/quotesApi';
+import { QuoteData } from '~/App';
+import { ResponseQuote } from '~/services/quotesApi';
 
 const STORAGE = window.sessionStorage;
 

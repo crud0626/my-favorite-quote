@@ -1,5 +1,5 @@
 import { Auth, getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
-import { firebaseApp } from "./firebase";
+import { firebaseApp } from "~/services/firebase";
 
 export interface IUserInfo {
     displayName: string | null;

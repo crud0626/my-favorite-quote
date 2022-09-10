@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import * as colors from '../../styles/common/colors';
+import * as colors from '~/styles/common/colors';
 
 interface StyledProps {
     color: string;

@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import Icon from '../../../Icon/Icon';
-import { QuoteData } from '../../../../App';
-import * as colors from '../../../../styles/common/colors';
-import * as sizes from '../../../../styles/common/sizes';
-import { StyledButton } from '../../../../styles/common/StyledButton';
-import { DOWNLOAD_ICON, EMPTY_HEART_ICON, FILL_HEART_ICON } from '../../../../styles/common/iconPath';
-import { StyledCard, StyledCardProps } from '../../../../styles/Section/Card/StyledCard';
+import Icon from '~/components/Icon/Icon';
+import { QuoteData } from '~/App';
+import * as colors from '~/styles/common/colors';
+import * as sizes from '~/styles/common/sizes';
+import { StyledButton } from '~/styles/common/StyledButton';
+import { DOWNLOAD_ICON, EMPTY_HEART_ICON, FILL_HEART_ICON } from '~/styles/common/iconPath';
+import { StyledCard, StyledCardProps } from '~/styles/Section/Card/StyledCard';
 
 interface RenderProps extends StyledCardProps {
     quoteData: QuoteData | null;

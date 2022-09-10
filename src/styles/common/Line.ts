@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import * as colors from './colors';
-import * as sizes from './sizes';
+import * as colors from '~/styles/common/colors';
+import * as sizes from '~/styles/common/sizes';
 
 interface IProps {
     isOpen: boolean;

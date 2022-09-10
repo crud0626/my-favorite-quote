@@ -1,8 +1,8 @@
 import React from 'react';
-import Icon from '../Icon/Icon';
-import * as colors from '../../styles/common/colors';
-import { StyledFooter } from '../../styles/Footer/StyledFooter';
-import { GITHUB_LOGO_ICON } from '../../styles/common/iconPath';
+import Icon from '~/components/Icon/Icon';
+import * as colors from '~/styles/common/colors';
+import { StyledFooter } from '~/styles/Footer/StyledFooter';
+import { GITHUB_LOGO_ICON } from '~/styles/common/iconPath';
 
 const Footer = () => {
     return (

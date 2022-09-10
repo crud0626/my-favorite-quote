@@ -1,8 +1,8 @@
 import React from "react";
 import { createRoot } from 'react-dom/client';
-import App from "./App";
-import { AuthService } from "./services/authService";
-import { FirebaseDB } from "./services/database";
+import App from "~/App";
+import { AuthService } from "~/services/authService";
+import { FirebaseDB } from "~/services/database";
 
 const authService = new AuthService();
 const firebaseDB = new FirebaseDB();

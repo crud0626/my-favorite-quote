@@ -1,9 +1,9 @@
 import React from 'react';
-import { NavHeader } from './NavHeader';
-import { NavBody } from './NavBody';
-import { QuoteData } from '../../../App';
-import { IUserInfo } from '../../../services/authService';
-import { StyledNav, StyledNavProps } from '../../../styles/Nav/StyledNav';
+import { NavHeader } from '~/components/Main/Nav/NavHeader';
+import { NavBody } from '~/components/Main/Nav/NavBody';
+import { QuoteData } from '~/App';
+import { IUserInfo } from '~/services/authService';
+import { StyledNav, StyledNavProps } from '~/styles/Nav/StyledNav';
 
 interface RenderProps extends StyledNavProps {
     quoteHistory: QuoteData[];

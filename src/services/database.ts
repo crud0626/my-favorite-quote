@@ -1,6 +1,6 @@
-import { QuoteData } from './../App';
+import { QuoteData } from '~/App';
 import { getDatabase, ref, set, get, child } from "firebase/database";
-import { firebaseApp } from "./firebase";
+import { firebaseApp } from "~/services/firebase";
 
 export interface IFirebaseDB {
     writeUserData(userId: string, history: QuoteData[], favorite: QuoteData[]): void;

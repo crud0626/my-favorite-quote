@@ -1,9 +1,9 @@
 import React from 'react';
-import Icon from '../../Icon/Icon';
-import { QuoteData } from '../../../App';
-import * as colors from '../../../styles/common/colors';
-import { EMPTY_HEART_ICON, FILL_HEART_ICON } from '../../../styles/common/iconPath';
-import { NavFavoriteButton, StyledNavContent } from '../../../styles/Nav/StyledNavContent';
+import Icon from '~/components/Icon/Icon';
+import { QuoteData } from '~/App';
+import * as colors from '~/styles/common/colors';
+import { EMPTY_HEART_ICON, FILL_HEART_ICON } from '~/styles/common/iconPath';
+import { NavFavoriteButton, StyledNavContent } from '~/styles/Nav/StyledNavContent';
 
 interface IProps {
     content: QuoteData;

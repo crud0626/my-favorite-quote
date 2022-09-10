@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import Footer from './components/Footer/Footer';
-import Header from './components/Header/Header';
-import Main from './components/Main/Main';
-import GlobalStyle from './styles/common/GlobalStyle';
-import { ResponseQuote, QuotesAPI } from './services/quotesApi';
-import { IAuthService, IUserInfo } from './services/authService';
-import { IFirebaseDB } from './services/database';
-import { getStorageData, saveStorageData } from './utils/sessionStorage';
+import Footer from '~/components/Footer/Footer';
+import Header from '~/components/Header/Header';
+import Main from '~/components/Main/Main';
+import GlobalStyle from '~/styles/common/GlobalStyle';
+import { ResponseQuote, QuotesAPI } from '~/services/quotesApi';
+import { IAuthService, IUserInfo } from '~/services/authService';
+import { IFirebaseDB } from '~/services/database';
+import { getStorageData, saveStorageData } from '~/utils/sessionStorage';
 import { onAuthStateChanged } from 'firebase/auth';
-import LoginBox from './components/LoginModal/LoginModal';
+import LoginBox from '~/components/LoginModal/LoginModal';
 
 const quotesAPI = new QuotesAPI();
 

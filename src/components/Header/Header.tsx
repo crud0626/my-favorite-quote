@@ -1,11 +1,11 @@
 import React from 'react';
-import Icon from '../Icon/Icon';
-import { NavButton } from './NavButton/NavButton';
-import * as colors from '../../styles/common/colors';
-import * as sizes from '../../styles/common/sizes';
-import { StyledButton } from '../../styles/common/StyledButton';
-import { LOGIN_ICON, LOGOUT_ICON } from '../../styles/common/iconPath';
-import { MainLogo, StyledHeader } from '../../styles/Header/StyledHeader';
+import Icon from '~/components/Icon/Icon';
+import { NavButton } from '~/components/Header/NavButton/NavButton';
+import * as colors from '~/styles/common/colors';
+import * as sizes from '~/styles/common/sizes';
+import { StyledButton } from '~/styles/common/StyledButton';
+import { LOGIN_ICON, LOGOUT_ICON } from '~/styles/common/iconPath';
+import { MainLogo, StyledHeader } from '~/styles/Header/StyledHeader';
 
 interface IProps {
     isNavOpen: boolean;

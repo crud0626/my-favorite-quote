@@ -1,7 +1,7 @@
 import React from 'react';
-import { ProviderNames } from './LoginBoxBody';
-import googleLogo from '../../assets/google-logo.png';
-import { StyledSocialBox } from '../../styles/LoginModal/StyledSocialBox';
+import { ProviderNames } from '~/components/LoginModal/LoginBoxBody';
+import { StyledSocialBox } from '~/styles/LoginModal/StyledSocialBox';
+import googleLogo from '~/assets/google-logo.png';
 
 interface IProps {
     providerName: ProviderNames;

@@ -10,6 +10,9 @@ module.exports = {
         path: path.resolve(__dirname, 'build'),
     },
     resolve: {
+        alias: {
+            "~": path.resolve(__dirname, './src'),
+        },
         extensions: ['.tsx', '.ts', '.js'],
     },
     plugins: [

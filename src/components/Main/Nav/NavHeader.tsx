@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import UserThumbnail from "../../UserThumbnail/UserThumbnail";
-import LoginButton from "./LoginButton";
-import Icon from "../../Icon/Icon";
-import { IUserInfo } from "../../../services/authService";
-import * as sizes from '../../../styles/common/sizes';
-import * as colors from '../../../styles/common/colors';
-import { StyledButton } from "../../../styles/common/StyledButton";
-import { NavBoxWrapper } from "../../../styles/Nav/NavBoxWrapper";
-import { LOGOUT_ICON } from "../../../styles/common/iconPath";
+import UserThumbnail from "~/components/UserThumbnail/UserThumbnail";
+import LoginButton from "~/components/Main/Nav/LoginButton";
+import Icon from "~/components/Icon/Icon";
+import { IUserInfo } from "~/services/authService";
+import * as sizes from '~/styles/common/sizes';
+import * as colors from '~/styles/common/colors';
+import { StyledButton } from "~/styles/common/StyledButton";
+import { NavBoxWrapper } from "~/styles/Nav/NavBoxWrapper";
+import { LOGOUT_ICON } from "~/styles/common/iconPath";
 
 interface IProps {
     userInfo: IUserInfo;

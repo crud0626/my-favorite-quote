@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Icon from '../Icon/Icon';
-import * as sizes from '../../styles/common/sizes';
-import * as colors from '../../styles/common/colors';
-import { USER_ICON } from '../../styles/common/iconPath';
+import Icon from '~/components/Icon/Icon';
+import * as sizes from '~/styles/common/sizes';
+import * as colors from '~/styles/common/colors';
+import { USER_ICON } from '~/styles/common/iconPath';
 
 interface IStyledProps {
     size?: string;

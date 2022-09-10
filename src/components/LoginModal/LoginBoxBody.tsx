@@ -1,5 +1,5 @@
 import React from 'react';
-import SocialBox from './SocialBox';
+import SocialBox from '~/components/LoginModal/SocialBox';
 
 export type ProviderNames = "google";
 

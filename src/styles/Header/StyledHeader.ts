@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { StyledButton } from '../common/StyledButton';
-import * as colors from '../common/colors';
-import * as sizes from '../common/sizes';
+import { StyledButton } from '~/styles/common/StyledButton';
+import * as colors from '~/styles/common/colors';
+import * as sizes from '~/styles/common/sizes';
 
 export const StyledHeader = styled.header`
     display: flex;

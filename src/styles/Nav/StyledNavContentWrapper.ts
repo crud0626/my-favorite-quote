@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import * as colors from '../common/colors';
-import * as sizes from '../common/sizes';
-import { StyledButton } from "../common/StyledButton";
-import { NavBoxWrapper } from "./NavBoxWrapper";
+import * as colors from '~/styles/common/colors';
+import * as sizes from '~/styles/common/sizes';
+import { StyledButton } from "~/styles/common/StyledButton";
+import { NavBoxWrapper } from "~/styles/Nav/NavBoxWrapper";
 
 interface NavButtonProps {
     isOpen: boolean;

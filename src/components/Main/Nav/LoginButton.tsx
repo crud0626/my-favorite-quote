@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import Icon from '../../Icon/Icon';
-import { StyledButton } from '../../../styles/common/StyledButton';
-import * as colors from '../../../styles/common/colors';
-import * as sizes from '../../../styles/common/sizes';
-import { LOGIN_ICON } from '../../../styles/common/iconPath';
+import Icon from '~/components/Icon/Icon';
+import * as colors from '~/styles/common/colors';
+import * as sizes from '~/styles/common/sizes';
+import { StyledButton } from '~/styles/common/StyledButton';
+import { LOGIN_ICON } from '~/styles/common/iconPath';
 
 interface IProps {
     handleLoginBox(): void;

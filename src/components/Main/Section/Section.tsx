@@ -1,11 +1,11 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-import ChevronWrapper from '../ChevronWrapper';
-import CardWrapper from './CardWrapper/CardWrapper';
-import { downloadToImg } from '../../../services/html2canvas';
-import { rotateRegex } from '../../../utils/regexPatterns';
-import { CardPositionType, QuoteData, QuoteStateType } from '../../../App';
-import * as sizes from '../../../styles/common/sizes';
+import ChevronWrapper from '~/components/Main/ChevronWrapper';
+import CardWrapper from '~/components/Main/Section/CardWrapper/CardWrapper';
+import { downloadToImg } from '~/services/html2canvas';
+import { rotateRegex } from '~/utils/regexPatterns';
+import { CardPositionType, QuoteData, QuoteStateType } from '~/App';
+import * as sizes from '~/styles/common/sizes';
 
 export type ChevronEventTypes = "prev" | "next";
 interface IProps {

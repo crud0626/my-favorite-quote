@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { StyledButton } from "../common/StyledButton";
-import * as sizes from '../common/sizes';
-import * as colors from '../common/colors';
+import { StyledButton } from "~/styles/common/StyledButton";
+import * as sizes from '~/styles/common/sizes';
+import * as colors from '~/styles/common/colors';
 
 export const StyledSocialBox = styled(StyledButton)`
     display: flex;
