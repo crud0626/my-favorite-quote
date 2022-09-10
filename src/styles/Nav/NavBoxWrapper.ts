@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { navBoxMixin } from "./navBoxMixin";
+import { navBoxMixin } from "../mixins/navBoxMixin";
 
 export const NavBoxWrapper = styled.div`
     ${navBoxMixin}

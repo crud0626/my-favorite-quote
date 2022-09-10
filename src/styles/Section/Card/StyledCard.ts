@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { CardPositionType } from '../App';
-import * as sizes from './common/sizes';
-import cardBg from '../assets/card_bg.jpg';
+import { CardPositionType } from '../../../App';
+import * as sizes from '../../common/sizes';
+import cardBg from '../../../assets/card_bg.jpg';
 
 export interface StyledCardProps {
     exposedCard: CardPositionType;

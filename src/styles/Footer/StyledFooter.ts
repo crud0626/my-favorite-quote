@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import * as sizes from './common/sizes';
-import * as colors from './common/colors';
+import * as sizes from '../common/sizes';
+import * as colors from '../common/colors';
 
 export const StyledFooter = styled.footer`
     padding: 0 ${sizes.SPACE_7X};

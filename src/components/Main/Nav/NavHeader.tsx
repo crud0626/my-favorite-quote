@@ -6,8 +6,8 @@ import Icon from "../../Icon/Icon";
 import { IUserInfo } from "../../../services/authService";
 import * as sizes from '../../../styles/common/sizes';
 import * as colors from '../../../styles/common/colors';
-import { StyledButton } from "../../../styles/StyledButton";
-import { NavBoxWrapper } from "../../../styles/NavBoxWrapper";
+import { StyledButton } from "../../../styles/common/StyledButton";
+import { NavBoxWrapper } from "../../../styles/Nav/NavBoxWrapper";
 import { LOGOUT_ICON } from "../../../styles/common/iconPath";
 
 interface IProps {

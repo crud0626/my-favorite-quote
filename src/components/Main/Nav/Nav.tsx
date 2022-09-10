@@ -3,7 +3,7 @@ import { NavHeader } from './NavHeader';
 import { NavBody } from './NavBody';
 import { QuoteData } from '../../../App';
 import { IUserInfo } from '../../../services/authService';
-import { StyledNav, StyledNavProps } from '../../../styles/StyledNav';
+import { StyledNav, StyledNavProps } from '../../../styles/Nav/StyledNav';
 
 interface RenderProps extends StyledNavProps {
     quoteHistory: QuoteData[];

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import * as colors from './common/colors';
-import * as sizes from './common/sizes';
+import * as colors from '../common/colors';
+import * as sizes from '../common/sizes';
 
 export const StyledLoginModal = styled.div`
     top: 0;

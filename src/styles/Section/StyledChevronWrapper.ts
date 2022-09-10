@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import * as sizes from './common/sizes';
-import * as colors from './common/colors';
-import { ChevronEventTypes } from '../components/Main/Section/Section';
-import { StyledButton } from "./StyledButton";
+import * as sizes from '../common/sizes';
+import * as colors from '../common/colors';
+import { ChevronEventTypes } from '../../components/Main/Section/Section';
+import { StyledButton } from '../common/StyledButton';
 
 interface StyledChevronButtonProps {
     direction: ChevronEventTypes;

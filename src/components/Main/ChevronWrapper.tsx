@@ -3,7 +3,7 @@ import Icon from '../Icon/Icon';
 import { ChevronEventTypes } from './Section/Section';
 import * as colors from '../../styles/common/colors';
 import { LEFT_CHEVRON_ICON, RIGHT_CHEVRON_ICON } from "../../styles/common/iconPath";
-import { ChevronButton, StyledChevronWrapper } from '../../styles/StyledChevronWrapper';
+import { ChevronButton, StyledChevronWrapper } from '../../styles/Section/StyledChevronWrapper';
 
 interface IChevronWrapper {
     handleCardFilp(direction: ChevronEventTypes): void;

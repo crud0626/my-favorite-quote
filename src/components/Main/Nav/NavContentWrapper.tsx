@@ -6,8 +6,8 @@ import Icon from '../../Icon/Icon';
 import { QuoteData } from '../../../App';
 import * as colors from '../../../styles/common/colors';
 import * as sizes from '../../../styles/common/sizes';
-import { StyledButton } from '../../../styles/StyledButton';
-import { NavBoxWrapper } from '../../../styles/NavBoxWrapper';
+import { StyledButton } from '../../../styles/common/StyledButton';
+import { NavBoxWrapper } from '../../../styles/Nav/NavBoxWrapper';
 import { BOTTOM_CHEVRON_ICON } from '../../../styles/common/iconPath';
 
 interface ButtonProps {
@@ -77,11 +77,20 @@ const NavContentWrapper = ({ title, contents, isLoggedIn, onClickNavContent, onC
                 </NavBodyButton>
                 <span>{title}</span>
             </StyledContentWrapper>
-            {
-                isOpen && 
-                (contents.length === 0 ? <NoContents /> : contentsElement )
-            }
+            {isOpen && (contents.length === 0 ? <NoContents /> : contentsElement )}
         </StyledContainer>
+        // <StyledContainer>
+        //     <StyledContentWrapper onClick={() => handleContent()}>
+        //         <NavBodyButton isOpen={isOpen}>
+        //             <Icon 
+        //                 define={BOTTOM_CHEVRON_ICON}
+        //                 color={colors.MAIN_BLACK}
+        //             />
+        //         </NavBodyButton>
+        //         <span>{title}</span>
+        //     </StyledContentWrapper>
+        //     {isOpen && (contents.length === 0 ? <NoContents /> : contentsElement )}
+        // </StyledContainer>
     );
 };
 

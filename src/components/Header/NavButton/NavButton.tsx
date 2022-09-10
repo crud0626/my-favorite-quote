@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { StyledButton } from "../../../styles/StyledButton";
-import { Line } from "../../../styles/Line";
+import { StyledButton } from "../../../styles/common/StyledButton";
+import { Line } from "../../../styles/common/Line";
 
 const iconCount = new Array(3).fill("");
 

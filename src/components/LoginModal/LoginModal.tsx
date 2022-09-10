@@ -5,8 +5,8 @@ import Icon from '../Icon/Icon';
 import * as colors from '../../styles/common/colors';
 import * as sizes from '../../styles/common/sizes';
 import { CLOSE_ICON } from '../../styles/common/iconPath';
-import { StyledButton } from '../../styles/StyledButton';
-import { StyledLoginModal } from '../../styles/StyledLoginModal';
+import { StyledButton } from '../../styles/common/StyledButton';
+import { StyledLoginModal } from '../../styles/LoginModal/StyledLoginModal';
 
 interface IProps {
     onLogin(): Promise<void>;

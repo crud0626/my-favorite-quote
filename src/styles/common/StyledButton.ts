@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import * as sizes from './common/sizes';
+import * as sizes from './sizes';
 
 interface IProps {
     size?: string;

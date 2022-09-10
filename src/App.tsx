@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
-import GlobalStyle from './styles/GlobalStyle';
+import GlobalStyle from './styles/common/GlobalStyle';
 import { ResponseQuote, QuotesAPI } from './services/quotesApi';
 import { IAuthService, IUserInfo } from './services/authService';
 import { IFirebaseDB } from './services/database';

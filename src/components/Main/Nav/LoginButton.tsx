@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Icon from '../../Icon/Icon';
-import { StyledButton } from '../../../styles/StyledButton';
+import { StyledButton } from '../../../styles/common/StyledButton';
 import * as colors from '../../../styles/common/colors';
 import * as sizes from '../../../styles/common/sizes';
 import { LOGIN_ICON } from '../../../styles/common/iconPath';

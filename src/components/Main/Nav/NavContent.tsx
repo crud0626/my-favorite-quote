@@ -5,8 +5,8 @@ import { QuoteData } from '../../../App';
 import * as sizes from '../../../styles/common/sizes';
 import * as colors from '../../../styles/common/colors';
 import { EMPTY_HEART_ICON, FILL_HEART_ICON } from '../../../styles/common/iconPath';
-import { StyledButton } from '../../../styles/StyledButton';
-import { navBoxMixin } from '../../../styles/navBoxMixin';
+import { StyledButton } from '../../../styles/common/StyledButton';
+import { navBoxMixin } from '../../../styles/mixins/navBoxMixin';
 
 interface IProps {
     content: QuoteData;

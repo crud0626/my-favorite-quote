@@ -1,5 +1,5 @@
 import { css } from 'styled-components';
-import * as sizes from "./common/sizes";
+import * as sizes from "../common/sizes";
 
 export const navBoxMixin = css`
     padding: 0 ${sizes.SPACE_7X};

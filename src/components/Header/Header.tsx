@@ -3,9 +3,9 @@ import Icon from '../Icon/Icon';
 import { NavButton } from './NavButton/NavButton';
 import * as colors from '../../styles/common/colors';
 import * as sizes from '../../styles/common/sizes';
-import { StyledButton } from '../../styles/StyledButton';
+import { StyledButton } from '../../styles/common/StyledButton';
 import { LOGIN_ICON, LOGOUT_ICON } from '../../styles/common/iconPath';
-import { MainLogo, StyledHeader } from '../../styles/StyledHeader';
+import { MainLogo, StyledHeader } from '../../styles/Header/StyledHeader';
 
 interface IProps {
     isNavOpen: boolean;
