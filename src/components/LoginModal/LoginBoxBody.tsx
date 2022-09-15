@@ -1,7 +1,6 @@
 import React from 'react';
 import SocialBox from '~/components/LoginModal/SocialBox';
-
-export type ProviderNames = "google";
+import { ProviderNames } from '~/types/type';
 
 interface IProps {
     onLogin(): Promise<void>;

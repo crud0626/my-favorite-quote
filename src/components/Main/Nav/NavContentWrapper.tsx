@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import NavContent from '~/components/Main/Nav/NavContent';
 import NoContents from '~/components/Main/Nav/NoContents';
 import Icon from '~/components/Icon/Icon';
-import { QuoteData } from '~/App';
+import { QuoteData } from '~/types/interface';
 import * as colors from '~/styles/common/colors';
 import { BOTTOM_CHEVRON_ICON } from '~/styles/common/iconPath';
 import { ContentController, NavBodyButton, StyledNavContentWrapper } from '~/styles/Nav/StyledNavContentWrapper';

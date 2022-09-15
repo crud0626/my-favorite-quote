@@ -1,6 +1,6 @@
 import React from 'react';
 import Icon from '~/components/Icon/Icon';
-import { ChevronEventTypes } from '~/components/Main/Section/Section';
+import { ChevronEventTypes } from '~/types/type';
 import * as colors from '~/styles/common/colors';
 import { LEFT_CHEVRON_ICON, RIGHT_CHEVRON_ICON } from "~/styles/common/iconPath";
 import { ChevronButton, StyledChevronWrapper } from '~/styles/Section/StyledChevronWrapper';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProviderNames } from '~/components/LoginModal/LoginBoxBody';
+import { ProviderNames } from '~/types/type';
 import { StyledSocialBox } from '~/styles/LoginModal/StyledSocialBox';
 import googleLogo from '~/assets/google-logo.png';
 

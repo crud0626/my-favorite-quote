@@ -3,25 +3,15 @@ import Footer from '~/components/Footer/Footer';
 import Header from '~/components/Header/Header';
 import Main from '~/components/Main/Main';
 import GlobalStyle from '~/styles/common/GlobalStyle';
-import { ResponseQuote, QuotesAPI } from '~/services/quotesApi';
+import { QuotesAPI } from '~/services/quotesApi';
 import { IAuthService, IUserInfo } from '~/services/authService';
 import { IFirebaseDB } from '~/services/database';
 import { getStorageData, saveStorageData } from '~/utils/sessionStorage';
 import { onAuthStateChanged } from 'firebase/auth';
 import LoginBox from '~/components/LoginModal/LoginModal';
+import { CardPositionType, QuoteData, QuoteStateType, ResponseQuote } from './types/interface';
 
 const quotesAPI = new QuotesAPI();
-
-export type CardPositionType = "front" | "back";
-
-export interface QuoteData extends ResponseQuote {
-    readonly favorite: boolean;
-}
-export interface QuoteStateType {
-    front: QuoteData | null;
-    back: QuoteData | null;
-}
-
 interface IProps {
     authService: IAuthService;
     firebaseDB: IFirebaseDB;

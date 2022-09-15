@@ -1,7 +1,8 @@
 import React from "react";
+import { QuoteData } from "~/types/interface";
 import styled from "styled-components";
 import NavContentWrapper from "~/components/Main/Nav/NavContentWrapper";
-import { QuoteData } from '~/App';
+
 
 interface IProps {
     quoteHistory: QuoteData[];

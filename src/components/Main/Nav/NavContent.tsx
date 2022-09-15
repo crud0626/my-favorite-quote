@@ -1,6 +1,6 @@
 import React from 'react';
 import Icon from '~/components/Icon/Icon';
-import { QuoteData } from '~/App';
+import { QuoteData } from '~/types/interface';
 import * as colors from '~/styles/common/colors';
 import { EMPTY_HEART_ICON, FILL_HEART_ICON } from '~/styles/common/iconPath';
 import { NavFavoriteButton, StyledNavContent } from '~/styles/Nav/StyledNavContent';

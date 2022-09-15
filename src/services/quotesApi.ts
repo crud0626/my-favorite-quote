@@ -1,11 +1,6 @@
+import { ResponseQuote } from "~/types/interface";
+
 const API_END_POINT = "https://api.quotable.io";
-
-export interface ResponseQuote {
-    readonly id: string;
-    readonly quote: string;
-    readonly author: string;
-}
-
 export class QuotesAPI {
     getQuotesData = async (id?: string): Promise<ResponseQuote> => {
         const requestURL = id ? `${API_END_POINT}/quotes/${id}` : `${API_END_POINT}/random`;

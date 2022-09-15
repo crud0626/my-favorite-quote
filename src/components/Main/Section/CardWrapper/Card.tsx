@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Icon from '~/components/Icon/Icon';
-import { QuoteData } from '~/App';
+import { QuoteData } from '~/types/interface';
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
 import { StyledButton } from '~/styles/common/StyledButton';

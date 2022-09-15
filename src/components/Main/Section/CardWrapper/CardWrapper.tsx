@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
+import { CardPositionType, QuoteData, QuoteStateType } from '~/types/interface';
 import styled from 'styled-components';
 import Card from '~/components/Main/Section/CardWrapper/Card';
-import { CardPositionType, QuoteData, QuoteStateType } from '~/App';
 
 interface IProps {
     exposedCard: CardPositionType;
