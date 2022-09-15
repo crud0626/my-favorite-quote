@@ -1,20 +1,20 @@
 import React from 'react';
 import { NavHeader } from '~/components/Main/Nav/NavHeader';
 import { NavBody } from '~/components/Main/Nav/NavBody';
-import { QuoteData } from '~/types/interface';
+import { IQuoteData } from '~/types/interface';
 import { IUserInfo } from '~/services/authService';
 import { StyledNav, StyledNavProps } from '~/styles/Nav/StyledNav';
 
 interface RenderProps extends StyledNavProps {
-    quoteHistory: QuoteData[];
-    favoriteQuotes: QuoteData[];
+    quoteHistory: IQuoteData[];
+    favoriteQuotes: IQuoteData[];
     userInfo: IUserInfo;
     isLoggedIn: boolean;
     handleNav(): void;
     handleLoginBox(): void;
     onLogout(): Promise<void>;
-    onClickNavContent(target: QuoteData): void;
-    onChangeFavorite(target: QuoteData): void;
+    onClickNavContent(target: IQuoteData): void;
+    onChangeFavorite(target: IQuoteData): void;
 }
 
 const Nav = ({ isNavOpen, quoteHistory, userInfo, isLoggedIn, favoriteQuotes, onClickNavContent, handleNav, handleLoginBox, onLogout, onChangeFavorite }: RenderProps) => {

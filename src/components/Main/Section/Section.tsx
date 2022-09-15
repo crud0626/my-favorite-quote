@@ -1,17 +1,17 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-import { QuoteData, QuoteStateType } from '~/types/interface';
-import { CardPositionType, ChevronEventTypes } from '~/types/type';
+import { IQuoteData, IQuotesState } from '~/types/interface';
+import { CardPositionType, ChevronEventType } from '~/types/type';
 import ChevronWrapper from '~/components/Main/ChevronWrapper';
 import CardWrapper from '~/components/Main/Section/CardWrapper/CardWrapper';
 import { downloadToImg } from '~/services/html2canvas';
 import { rotateRegex } from '~/utils/regexPatterns';
 import * as sizes from '~/styles/common/sizes';
 interface IProps {
-    quoteData: QuoteStateType;
+    quoteData: IQuotesState;
     exposedCard: CardPositionType;
     requestData(id?: string): Promise<any>;
-    onChangeFavorite(target: QuoteData): void;
+    onChangeFavorite(target: IQuoteData): void;
 }
 
 const StyledSection = styled.section`
@@ -46,7 +46,7 @@ const Section = ({ quoteData, exposedCard, requestData, onChangeFavorite }: IPro
         }
     }
 
-    const handleCardFilp = async (direction: ChevronEventTypes): Promise<any> => {
+    const handleCardFilp = async (direction: ChevronEventType): Promise<any> => {
         if(cardWrapperRef.current) {
             const res = await requestData();
             if(res) {

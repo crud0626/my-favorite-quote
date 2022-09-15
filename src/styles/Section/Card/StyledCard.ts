@@ -1,5 +1,6 @@
+import { CardPositionType } from '~/types/type';
 import styled from 'styled-components';
-import { CardPositionType } from '~/App';
+
 import * as sizes from '~/styles/common/sizes';
 import cardBg from '~/assets/card_bg.jpg';
 

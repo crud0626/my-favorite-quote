@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Icon from '~/components/Icon/Icon';
-import { QuoteData } from '~/types/interface';
+import { IQuoteData } from '~/types/interface';
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
 import { StyledButton } from '~/styles/common/StyledButton';
@@ -9,9 +9,9 @@ import { DOWNLOAD_ICON, EMPTY_HEART_ICON, FILL_HEART_ICON } from '~/styles/commo
 import { StyledCard, StyledCardProps } from '~/styles/Section/Card/StyledCard';
 
 interface RenderProps extends StyledCardProps {
-    quoteData: QuoteData | null;
+    quoteData: IQuoteData | null;
     onDownload(): void;
-    onChangeFavorite(target: QuoteData): void;
+    onChangeFavorite(target: IQuoteData): void;
 }
 
 const InnerBtnWrapper = styled.div`

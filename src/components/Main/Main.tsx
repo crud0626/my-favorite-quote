@@ -5,14 +5,14 @@ import Section from '~/components/Main/Section/Section';
 import { IUserInfo } from '~/services/authService';
 import * as sizes from '~/styles/common/sizes';
 import * as colors from '~/styles/common/colors';
-import { QuoteData, QuoteStateType } from '~/types/interface';
+import { IQuoteData, IQuotesState } from '~/types/interface';
 import { CardPositionType } from '~/types/type';
 
 interface IProps {
     isNavOpen: boolean;
-    quoteData: QuoteStateType;
-    quoteHistory: QuoteData[];
-    favoriteQuotes: QuoteData[];
+    quoteData: IQuotesState;
+    quoteHistory: IQuoteData[];
+    favoriteQuotes: IQuoteData[];
     exposedCard: CardPositionType;
     userInfo: IUserInfo;
     isLoggedIn: boolean;
@@ -20,8 +20,8 @@ interface IProps {
     handleNav(): void;
     handleLoginBox(): void;
     onLogout(): Promise<void>;
-    onChangeFavorite(target: QuoteData): void;
-    onClickNavContent(target: QuoteData): void;
+    onChangeFavorite(target: IQuoteData): void;
+    onClickNavContent(target: IQuoteData): void;
 }
 
 const StyledMain = styled.main`

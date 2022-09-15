@@ -1,15 +1,15 @@
 import React from 'react';
 import Icon from '~/components/Icon/Icon';
-import { QuoteData } from '~/types/interface';
+import { IQuoteData } from '~/types/interface';
 import * as colors from '~/styles/common/colors';
 import { EMPTY_HEART_ICON, FILL_HEART_ICON } from '~/styles/common/iconPath';
 import { NavFavoriteButton, StyledNavContent } from '~/styles/Nav/StyledNavContent';
 
 interface IProps {
-    content: QuoteData;
+    content: IQuoteData;
     className: string;
-    onClickNavContent(target: QuoteData): void;
-    onChangeFavorite(target: QuoteData): void;
+    onClickNavContent(target: IQuoteData): void;
+    onChangeFavorite(target: IQuoteData): void;
 }
 
 const NavContent = ({ content, className, onClickNavContent, onChangeFavorite }: IProps) => {

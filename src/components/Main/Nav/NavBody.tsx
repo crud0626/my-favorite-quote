@@ -1,15 +1,15 @@
 import React from "react";
-import { QuoteData } from "~/types/interface";
+import { IQuoteData } from "~/types/interface";
 import styled from "styled-components";
 import NavContentWrapper from "~/components/Main/Nav/NavContentWrapper";
 
 
 interface IProps {
-    quoteHistory: QuoteData[];
-    favoriteQuotes: QuoteData[];
+    quoteHistory: IQuoteData[];
+    favoriteQuotes: IQuoteData[];
     isLoggedIn: boolean;
-    onClickNavContent(target: QuoteData): void;
-    onChangeFavorite(target: QuoteData): void;
+    onClickNavContent(target: IQuoteData): void;
+    onChangeFavorite(target: IQuoteData): void;
 }
 
 const StyledNavBody = styled.div`

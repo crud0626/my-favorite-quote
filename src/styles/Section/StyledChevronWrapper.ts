@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import * as sizes from '~/styles/common/sizes';
 import * as colors from '~/styles/common/colors';
-import { ChevronEventTypes } from '~/components/Main/Section/Section';
+import { ChevronEventType } from "~/types/type";
 import { StyledButton } from '~/styles/common/StyledButton';
 
 interface StyledChevronButtonProps {
-    direction: ChevronEventTypes;
+    direction: ChevronEventType;
 }
 
 export const StyledChevronWrapper = styled.div`

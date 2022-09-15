@@ -1,14 +1,14 @@
-export interface ResponseQuote {
+export interface IResponseQuote {
     readonly id: string;
     readonly quote: string;
     readonly author: string;
 }
 
-export interface QuoteData extends ResponseQuote {
+export interface IQuoteData extends IResponseQuote {
     readonly favorite: boolean;
 }
 
-export interface QuoteStateType {
-    front: QuoteData | null;
-    back: QuoteData | null;
+export interface IQuotesState {
+    front: IQuoteData | null;
+    back: IQuoteData | null;
 }
