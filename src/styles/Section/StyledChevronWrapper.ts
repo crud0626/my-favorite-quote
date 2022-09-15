@@ -26,6 +26,7 @@ export const ChevronButton = styled(StyledButton)<StyledChevronButtonProps>`
     width: ${sizes.CHEVRON_CONTAINER_SIZE};
     height: ${sizes.CHEVRON_CONTAINER_SIZE};
     border-radius: ${sizes.SMALL_BORDER_RADIUS};
+    transition: opacity 0.3s;
     transform: translateX(${props => props.direction === "prev" ? "-200%" : "200%" });
 
     &:hover {
@@ -34,5 +35,18 @@ export const ChevronButton = styled(StyledButton)<StyledChevronButtonProps>`
 
     &:active {
         background-color: ${colors.CHEVRON_BG_ACTIVE};
+    }
+
+    @media screen and (min-width: ${sizes.TABLET_VIEWPORT_SIZE}) and (max-width: ${sizes.LAPTOP_VIEWPORT_SIZE}) {
+        transform: translateX(${props => props.direction === "prev" ? "-100%" : "100%" });
+    }
+
+    @media screen and (max-width: ${sizes.TABLET_VIEWPORT_SIZE}) {
+        transform: translateX(0%);
+        opacity: 0;
+
+        &:hover {
+            opacity: 1;
+        }
     }
 `;

@@ -26,8 +26,15 @@ const StyledSection = styled.section`
 
     & .card_section {
         position: relative;
+        max-width: 90%;
         height: ${sizes.CARD_HEIGHT};
         aspect-ratio: ${sizes.CARD_ASPECT_RATIO};
+    }
+
+    @media screen and (max-width: ${sizes.TABLET_VIEWPORT_SIZE}){
+        & .card_section {
+            height: ${sizes.MOBILE_CARD_HEIGHT};
+        }
     }
 `;
 

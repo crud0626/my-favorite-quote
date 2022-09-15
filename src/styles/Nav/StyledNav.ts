@@ -23,4 +23,10 @@ export const StyledNav = styled.nav<StyledNavProps>`
         overflow-y: auto;
         color: ${colors.MAIN_BLACK};
     }
+
+    @media screen and (max-width: ${sizes.TABLET_VIEWPORT_SIZE}) {
+        & > div {
+            width: 100%;
+        }
+    }
 `;

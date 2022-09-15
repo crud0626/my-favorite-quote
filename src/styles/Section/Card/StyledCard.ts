@@ -59,4 +59,19 @@ export const StyledCard = styled.div<StyledCardProps>`
             }
         }
     }
+
+    /* ????? 안먹히는데 */
+    @media screen and (max-width: ${sizes.TABLET_VIEWPORT_SIZE}) {
+        & > .card_content {
+            & span {
+                &.quote {
+                    font-size: ${sizes.MOBILE_HEAD_FONT_SIZE};
+                }
+
+                &.author {
+                    font-size: ${sizes.MOBILE_SUB_FONT_SIZE};
+                }
+            }
+        }
+    }
 `;

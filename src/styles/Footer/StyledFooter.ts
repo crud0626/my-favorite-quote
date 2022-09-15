@@ -19,4 +19,12 @@ export const StyledFooter = styled.footer`
         width: ${sizes.DEFAULT_ICON_SIZE};
         height: ${sizes.DEFAULT_ICON_SIZE};
     }
+
+    @media screen and (max-width: ${sizes.TABLET_VIEWPORT_SIZE}) {
+        padding: ${sizes.SPACE_2X};
+
+        & .copyright {
+            font-size: ${sizes.MOBILE_SUB_FONT_SIZE};
+        }
+    }
 `;

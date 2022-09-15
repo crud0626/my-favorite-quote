@@ -25,4 +25,10 @@ export const MainLogo = styled(StyledButton).attrs(() => ({href: '/'}))`
         font-weight: 100;
         font-size: ${sizes.HEAD_FONT_SIZE};
     }
+
+    @media screen and (max-width: ${sizes.TABLET_VIEWPORT_SIZE}) {
+        & h1 {
+            font-size: ${sizes.MOBILE_HEAD_FONT_SIZE}
+        }
+    }
 `;
