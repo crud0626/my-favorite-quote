@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
+import { navBoxMixin } from "~/styles/mixins/navBoxMixin";
 
 export interface StyledNavProps {
     isNavOpen: boolean;
@@ -28,5 +29,22 @@ export const StyledNav = styled.nav<StyledNavProps>`
         & > div {
             width: 100%;
         }
+    }
+`;
+
+export const NavBody = styled.div`
+    width: 100%;
+`;
+
+export const StyledNavBox = styled.div`
+    ${navBoxMixin}
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    & :first-child {
+        display: flex;
+        align-items: center;
     }
 `;

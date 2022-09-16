@@ -1,11 +1,11 @@
-import React from 'react';
-import { NavHeader } from '~/components/Main/Nav/NavHeader';
-import { NavBody } from '~/components/Main/Nav/NavBody';
+import React, { useCallback } from 'react';
+import { NavHeader } from '~/components/Main/Nav/NavHeader/NavHeader';
+import NavContentWrapper from '~/components/Main/Nav/NavContentWrapper/NavContentWrapper';
 import { IQuoteData } from '~/types/interface';
 import { IUserInfo } from '~/services/authService';
-import { StyledNav, StyledNavProps } from '~/styles/Nav/StyledNav';
+import { StyledNav, NavBody, StyledNavProps } from '~/styles/Nav/StyledNav';
 
-interface RenderProps extends StyledNavProps {
+interface IProps extends StyledNavProps {
     historyList: IQuoteData[];
     favoriteList: IQuoteData[];
     userInfo: IUserInfo;
@@ -17,12 +17,12 @@ interface RenderProps extends StyledNavProps {
     onChangeFavorite(target: IQuoteData): void;
 }
 
-const Nav = ({ isNavOpen, historyList, userInfo, isLoggedIn, favoriteList, onClickNavContent, handleNav, handleLoginBox, onLogout, onChangeFavorite }: RenderProps) => {
-    const onClick = (event: React.MouseEvent) => {
+const Nav = ({ isNavOpen, historyList, userInfo, isLoggedIn, favoriteList, onClickNavContent, handleNav, handleLoginBox, onLogout, onChangeFavorite }: IProps) => {
+    const onClick = useCallback((event: React.MouseEvent) => {
         if(event.target === event.currentTarget) {
             handleNav();
         }
-    }
+    }, []);
 
     return (
         <StyledNav isNavOpen={isNavOpen} onClick={onClick}>
@@ -33,13 +33,20 @@ const Nav = ({ isNavOpen, historyList, userInfo, isLoggedIn, favoriteList, onCli
                     handleLoginBox={handleLoginBox}
                     onLogout={onLogout}
                 />
-                <NavBody 
-                    historyList={historyList} 
-                    isLoggedIn={isLoggedIn}
-                    favoriteList={favoriteList}
-                    onClickNavContent={onClickNavContent}
-                    onChangeFavorite={onChangeFavorite}
-                />
+                <NavBody>
+                    <NavContentWrapper 
+                        title={"History"}
+                        contents={historyList}
+                        onClickNavContent={onClickNavContent}
+                        onChangeFavorite={onChangeFavorite}
+                    />
+                    <NavContentWrapper 
+                        title={"Favorite"}
+                        contents={favoriteList}
+                        onClickNavContent={onClickNavContent}
+                        onChangeFavorite={onChangeFavorite}
+                    />
+                </NavBody>
             </div>
         </StyledNav>
     );

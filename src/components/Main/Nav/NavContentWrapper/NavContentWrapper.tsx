@@ -1,24 +1,25 @@
-import React, { useState } from 'react';
-import NavContent from '~/components/Main/Nav/NavContent';
-import NoContents from '~/components/Main/Nav/NoContents';
+import React, { useCallback, useState } from 'react';
+import NavContent from '~/components/Main/Nav/NavContentWrapper/NavContent';
+import NoContents from '~/components/Main/Nav/NavContentWrapper/NoContents';
 import Icon from '~/components/Icon/Icon';
-import { IQuoteData } from '~/types/interface';
 import * as colors from '~/styles/common/colors';
+import { IQuoteData } from '~/types/interface';
 import { BOTTOM_CHEVRON_ICON } from '~/styles/common/iconPath';
-import { ContentController, NavBodyButton, StyledNavContentWrapper } from '~/styles/Nav/StyledNavContentWrapper';
+import { ContentController, NavBodyButton, StyledNavContentWrapper } from '~/styles/Nav/NavContentWrapper/StyledNavContentWrapper';
 
 export interface ContentProps {
     title: "History" | "Favorite";
     contents: IQuoteData[];
-    isLoggedIn?: boolean;
     onClickNavContent(target: IQuoteData): void;
     onChangeFavorite(target: IQuoteData): void;
 }
 
-const NavContentWrapper = ({ title, contents, isLoggedIn, onClickNavContent, onChangeFavorite }: ContentProps) => {
+const NavContentWrapper = ({ title, contents, onClickNavContent, onChangeFavorite }: ContentProps) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
-    const handleContent = () => setIsOpen(state => !state);
+    const handleContent = useCallback(() => 
+        setIsOpen((prevState) => !prevState)
+    , []);
 
     const contentsElement = contents.map((content) =>
         <NavContent 

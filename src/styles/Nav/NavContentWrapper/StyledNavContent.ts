@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { navBoxMixin } from "~/styles/mixins/navBoxMixin";
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
+import { navBoxMixin } from "~/styles/mixins/navBoxMixin";
 import { StyledButton } from "~/styles/common/StyledButton";
 
 export const StyledNavContent = styled.div`
