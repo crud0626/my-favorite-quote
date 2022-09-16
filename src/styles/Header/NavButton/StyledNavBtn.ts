@@ -1,21 +1,30 @@
 import styled from "styled-components";
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
+import { StyledButton } from "~/styles/common/StyledButton";
 
-interface IProps {
+interface ILineProp {
     isOpen: boolean;
 }
 
-export const Line = styled.span<IProps>`
+export const StyledNavBtn = styled(StyledButton)`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &:hover > span {
+        background-color: ${colors.ICON_HOVER_COLOR};
+    }
+`;
+
+export const HamburgerLine = styled.span<ILineProp>`
     display: block;
     margin: 0 auto;
     width: ${sizes.SMALL_ICON_SIZE};
     height: 3px;
     border-radius: ${sizes.DEFAULT_BORDER_RADIUS};
     background-color: ${colors.MAIN_WHITE};
-    -webkit-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
 
     &:nth-child(1) {
         transform: ${props => props.isOpen && 
