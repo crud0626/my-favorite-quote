@@ -1,11 +1,10 @@
-import { CardPositionType } from '~/types/type';
 import styled from 'styled-components';
-
+import { CardPositionType } from '~/types/type';
 import * as sizes from '~/styles/common/sizes';
 import cardBg from '~/assets/card_bg.jpg';
 
 export interface StyledCardProps {
-    exposedCard: CardPositionType;
+    cardPosition: CardPositionType;
     position: CardPositionType;
 }
 
@@ -19,7 +18,7 @@ export const StyledCard = styled.div<StyledCardProps>`
     backface-visibility: hidden;
     transition: visibility 0.6s ease-in-out;
     transform: ${({ position }) => position === "front" ? "rotateY(0turn)" : "rotateY(-0.5turn)" };
-    visibility: ${({ position, exposedCard }) => position === exposedCard ? "visible" : "hidden"};
+    visibility: ${({ position, cardPosition }) => position === cardPosition ? "visible" : "hidden"};
 
     &::before {
         content: "";

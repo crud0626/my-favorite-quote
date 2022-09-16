@@ -9,7 +9,7 @@ import { DOWNLOAD_ICON, EMPTY_HEART_ICON, FILL_HEART_ICON } from '~/styles/commo
 import { StyledCard, StyledCardProps } from '~/styles/Section/Card/StyledCard';
 
 interface RenderProps extends StyledCardProps {
-    quoteData: IQuoteData | null;
+    quoteContent: IQuoteData | null;
     onDownload(): void;
     onChangeFavorite(target: IQuoteData): void;
 }
@@ -25,19 +25,19 @@ const InnerBtnWrapper = styled.div`
     }
 `;
 
-const Card = ({ position, exposedCard, quoteData, onDownload, onChangeFavorite }: RenderProps) => {
+const Card = ({ position, cardPosition, quoteContent, onDownload, onChangeFavorite }: RenderProps) => {
     return (
-        <StyledCard position={position} exposedCard={exposedCard}>
-            {quoteData &&
+        <StyledCard position={position} cardPosition={cardPosition}>
+            {quoteContent &&
                 <>
-                    <div data-id={quoteData.id} className='card_content'>
-                        <span className='quote'>{quoteData.quote}</span>
-                        <span className='author'>{quoteData.author}</span>
+                    <div data-id={quoteContent.id} className='card_content'>
+                        <span className='quote'>{quoteContent.quote}</span>
+                        <span className='author'>{quoteContent.author}</span>
                     </div>
                     <InnerBtnWrapper className='inner_btn_wrapper'>
-                        <StyledButton size={sizes.SMALL_ICON_SIZE} onClick={() => onChangeFavorite(quoteData)}>
+                        <StyledButton size={sizes.SMALL_ICON_SIZE} onClick={() => onChangeFavorite(quoteContent)}>
                             {
-                                quoteData?.favorite
+                                quoteContent?.favorite
                                 ? <Icon define={FILL_HEART_ICON} color={colors.BUTTON_RED} isHoverColor={true} />
                                 : <Icon define={EMPTY_HEART_ICON} color={colors.MAIN_WHITE} isHoverColor={true} />
                             }

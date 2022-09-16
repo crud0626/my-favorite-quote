@@ -7,9 +7,10 @@ import CardWrapper from '~/components/Main/Section/CardWrapper/CardWrapper';
 import { downloadToImg } from '~/services/html2canvas';
 import { rotateRegex } from '~/utils/regexPatterns';
 import * as sizes from '~/styles/common/sizes';
+
 interface IProps {
-    quoteData: IQuotesState;
-    exposedCard: CardPositionType;
+    displayQuotes: IQuotesState;
+    cardPosition: CardPositionType;
     requestData(id?: string): Promise<any>;
     onChangeFavorite(target: IQuoteData): void;
 }
@@ -37,7 +38,7 @@ const StyledSection = styled.section`
     }
 `;
 
-const Section = ({ quoteData, exposedCard, requestData, onChangeFavorite }: IProps) => {
+const Section = ({ displayQuotes, cardPosition, requestData, onChangeFavorite }: IProps) => {
     const cardWrapperRef = useRef<HTMLDivElement | null>(null);
 
     const onDownload = (): void => {
@@ -64,8 +65,8 @@ const Section = ({ quoteData, exposedCard, requestData, onChangeFavorite }: IPro
             <div className='card_section'>
                 <CardWrapper 
                     ref={cardWrapperRef} 
-                    exposedCard={exposedCard}
-                    quoteData={quoteData}
+                    cardPosition={cardPosition}
+                    displayQuotes={displayQuotes}
                     onDownload={onDownload}
                     onChangeFavorite={onChangeFavorite}
                 />

@@ -6,8 +6,8 @@ import { IUserInfo } from '~/services/authService';
 import { StyledNav, StyledNavProps } from '~/styles/Nav/StyledNav';
 
 interface RenderProps extends StyledNavProps {
-    quoteHistory: IQuoteData[];
-    favoriteQuotes: IQuoteData[];
+    historyList: IQuoteData[];
+    favoriteList: IQuoteData[];
     userInfo: IUserInfo;
     isLoggedIn: boolean;
     handleNav(): void;
@@ -17,7 +17,7 @@ interface RenderProps extends StyledNavProps {
     onChangeFavorite(target: IQuoteData): void;
 }
 
-const Nav = ({ isNavOpen, quoteHistory, userInfo, isLoggedIn, favoriteQuotes, onClickNavContent, handleNav, handleLoginBox, onLogout, onChangeFavorite }: RenderProps) => {
+const Nav = ({ isNavOpen, historyList, userInfo, isLoggedIn, favoriteList, onClickNavContent, handleNav, handleLoginBox, onLogout, onChangeFavorite }: RenderProps) => {
     const onClick = (event: React.MouseEvent) => {
         if(event.target === event.currentTarget) {
             handleNav();
@@ -34,9 +34,9 @@ const Nav = ({ isNavOpen, quoteHistory, userInfo, isLoggedIn, favoriteQuotes, on
                     onLogout={onLogout}
                 />
                 <NavBody 
-                    quoteHistory={quoteHistory} 
+                    historyList={historyList} 
                     isLoggedIn={isLoggedIn}
-                    favoriteQuotes={favoriteQuotes}
+                    favoriteList={favoriteList}
                     onClickNavContent={onClickNavContent}
                     onChangeFavorite={onChangeFavorite}
                 />

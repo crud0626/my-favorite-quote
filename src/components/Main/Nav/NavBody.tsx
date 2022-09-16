@@ -5,8 +5,8 @@ import NavContentWrapper from "~/components/Main/Nav/NavContentWrapper";
 
 
 interface IProps {
-    quoteHistory: IQuoteData[];
-    favoriteQuotes: IQuoteData[];
+    historyList: IQuoteData[];
+    favoriteList: IQuoteData[];
     isLoggedIn: boolean;
     onClickNavContent(target: IQuoteData): void;
     onChangeFavorite(target: IQuoteData): void;
@@ -16,18 +16,18 @@ const StyledNavBody = styled.div`
     width: 100%;
 `;
 
-export const NavBody = ({ quoteHistory, favoriteQuotes, isLoggedIn, onClickNavContent, onChangeFavorite }: IProps) => {
+export const NavBody = ({ historyList, favoriteList, isLoggedIn, onClickNavContent, onChangeFavorite }: IProps) => {
     return (
         <StyledNavBody>
             <NavContentWrapper 
                 title={"History"}
-                contents={quoteHistory}
+                contents={historyList}
                 onClickNavContent={onClickNavContent}
                 onChangeFavorite={onChangeFavorite}
             />
             <NavContentWrapper 
                 title={"Favorite"}
-                contents={favoriteQuotes}
+                contents={favoriteList}
                 onClickNavContent={onClickNavContent}
                 onChangeFavorite={onChangeFavorite}
             />

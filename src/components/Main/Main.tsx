@@ -10,10 +10,10 @@ import { CardPositionType } from '~/types/type';
 
 interface IProps {
     isNavOpen: boolean;
-    quoteData: IQuotesState;
-    quoteHistory: IQuoteData[];
-    favoriteQuotes: IQuoteData[];
-    exposedCard: CardPositionType;
+    displayQuotes: IQuotesState;
+    historyList: IQuoteData[];
+    favoriteList: IQuoteData[];
+    cardPosition: CardPositionType;
     userInfo: IUserInfo;
     isLoggedIn: boolean;
     requestData(id?: string): Promise<any>;
@@ -31,21 +31,21 @@ const StyledMain = styled.main`
     background-color: ${colors.MAIN_BLACK};
 `;
 
-const Main = ({ isNavOpen, quoteData, quoteHistory, exposedCard, favoriteQuotes, userInfo, isLoggedIn, requestData, handleNav, handleLoginBox, onLogout, onChangeFavorite, onClickNavContent }: IProps) => {
+const Main = ({ isNavOpen, displayQuotes, historyList, cardPosition, favoriteList, userInfo, isLoggedIn, requestData, handleNav, handleLoginBox, onLogout, onChangeFavorite, onClickNavContent }: IProps) => {
     return(
         <StyledMain>
             <Section 
-                quoteData={quoteData}
-                exposedCard={exposedCard}
+                displayQuotes={displayQuotes}
+                cardPosition={cardPosition}
                 requestData={requestData}
                 onChangeFavorite={onChangeFavorite}
             />
             <Nav 
                 isNavOpen={isNavOpen} 
-                quoteHistory={quoteHistory}
+                historyList={historyList}
                 userInfo={userInfo}
                 isLoggedIn={isLoggedIn}
-                favoriteQuotes={favoriteQuotes}
+                favoriteList={favoriteList}
                 onClickNavContent={onClickNavContent}
                 handleNav={handleNav}
                 handleLoginBox={handleLoginBox}

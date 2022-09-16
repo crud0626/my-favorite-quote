@@ -1,13 +1,14 @@
 import React, { forwardRef } from 'react';
-import { CardPositionType, QuoteData, QuoteStateType } from '~/types/interface';
 import styled from 'styled-components';
+import { IQuoteData, IQuotesState } from '~/types/interface';
+import { CardPositionType } from '~/types/type';
 import Card from '~/components/Main/Section/CardWrapper/Card';
 
 interface IProps {
-    exposedCard: CardPositionType;
-    quoteData: QuoteStateType;
+    cardPosition: CardPositionType;
+    displayQuotes: IQuotesState;
     onDownload(): void;
-    onChangeFavorite(target: QuoteData): void;
+    onChangeFavorite(target: IQuoteData): void;
 }
 
 const StyledCardWrapper = styled.div`
@@ -18,20 +19,20 @@ const StyledCardWrapper = styled.div`
     transition: transform 0.6s ease-in-out;
 `;
 
-const CardWrapper = forwardRef<HTMLDivElement | null, IProps>(({ exposedCard, quoteData, onDownload, onChangeFavorite }, ref) => {
+const CardWrapper = forwardRef<HTMLDivElement | null, IProps>(({ cardPosition, displayQuotes, onDownload, onChangeFavorite }, ref) => {
     return (
         <StyledCardWrapper ref={ref}>
             <Card 
                 position={"front"} 
-                exposedCard={exposedCard}
-                quoteData={quoteData.front}
+                cardPosition={cardPosition}
+                quoteContent={displayQuotes.front}
                 onDownload={onDownload}
                 onChangeFavorite={onChangeFavorite}
             />
             <Card 
                 position={"back"} 
-                exposedCard={exposedCard}
-                quoteData={quoteData.back}
+                cardPosition={cardPosition}
+                quoteContent={displayQuotes.back}
                 onDownload={onDownload}
                 onChangeFavorite={onChangeFavorite}
             />
