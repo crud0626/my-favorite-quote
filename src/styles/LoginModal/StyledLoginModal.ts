@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
+import { StyledButton } from '~/styles/common/StyledButton';
 
 export const StyledLoginModal = styled.div`
     top: 0;
@@ -36,4 +37,10 @@ export const StyledLoginModal = styled.div`
             }
         }
     }
+`;
+
+export const CloseBtn = styled(StyledButton)`
+    position: absolute;
+    top: ${sizes.SPACE_3X};
+    right: ${sizes.SPACE_3X};
 `;

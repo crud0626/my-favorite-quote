@@ -1,30 +1,22 @@
-import React from 'react';
-import styled from 'styled-components';
-import LoginBoxBody from '~/components/LoginModal/LoginBoxBody';
+import React, { useCallback } from 'react';
+import LoginBoxBody from '~/components/LoginModal/LoginBoxBody/LoginBoxBody';
 import Icon from '~/components/Icon/Icon';
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
 import { CLOSE_ICON } from '~/styles/common/iconPath';
-import { StyledButton } from '~/styles/common/StyledButton';
-import { StyledLoginModal } from '~/styles/LoginModal/StyledLoginModal';
+import { StyledLoginModal, CloseBtn } from '~/styles/LoginModal/StyledLoginModal';
 
 interface IProps {
     onLogin(): Promise<void>;
     handleLoginBox(): void;
 }
 
-const CloseBtn = styled(StyledButton)`
-    position: absolute;
-    top: ${sizes.SPACE_3X};
-    right: ${sizes.SPACE_3X};
-`;
-
 const LoginBox = ({ onLogin, handleLoginBox }: IProps) => {
-    const onClick = (event: React.MouseEvent) => {
+    const onClick = useCallback((event: React.MouseEvent) => {
         if(event.target === event.currentTarget) {
             handleLoginBox();
         }
-    }
+    }, [handleLoginBox]);
     
     return (
         <StyledLoginModal onClick={onClick}>

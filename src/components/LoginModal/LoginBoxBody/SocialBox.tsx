@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { ProviderNames } from '~/types/type';
-import { StyledSocialBox } from '~/styles/LoginModal/StyledSocialBox';
+import { StyledSocialBox } from '~/styles/LoginModal/LoginBoxBody/StyledSocialBox';
 import googleLogo from '~/assets/google-logo.png';
 
 interface IProps {
@@ -10,19 +10,19 @@ interface IProps {
 }
 
 const SocialBox = ({ providerName, onLogin, handleLoginBox }: IProps) => {
-    const displayName = providerName[0].toUpperCase() + providerName.slice(1);
-
-    const findLogo = (name: ProviderNames) => {
+    const findLogo = useCallback((name: ProviderNames) => {
         if(name === "google") {
             return googleLogo;
         }
-    }
+    }, []);
 
-    const onClick = () => {
+    const onClick = useCallback(() => {
         onLogin()
         .then(() => handleLoginBox());
-    }
+    }, []);
 
+    const displayName = providerName[0].toUpperCase() + providerName.slice(1);
+    
     return (
         <StyledSocialBox onClick={onClick}>
             <img draggable="false" src={findLogo(providerName)} />

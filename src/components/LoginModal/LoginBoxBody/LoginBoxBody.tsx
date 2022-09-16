@@ -1,5 +1,5 @@
 import React from 'react';
-import SocialBox from '~/components/LoginModal/SocialBox';
+import SocialBox from '~/components/LoginModal/LoginBoxBody/SocialBox';
 import { ProviderNames } from '~/types/type';
 
 interface IProps {
