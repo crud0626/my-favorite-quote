@@ -11,7 +11,7 @@ export const StyledFooter = styled.footer`
     height: ${sizes.FOOTER_HEIGHT};
     background-color: ${colors.SUB_BLACK};
 
-    & .copyright {
+    & .copyright > span {
         font-size: ${sizes.SUB_FONT_SIZE};
     }
 
@@ -22,9 +22,11 @@ export const StyledFooter = styled.footer`
 
     @media screen and (max-width: ${sizes.TABLET_VIEWPORT_SIZE}) {
         padding: ${sizes.SPACE_2X};
+    }
 
-        & .copyright {
-            font-size: ${sizes.MOBILE_SUB_FONT_SIZE};
+    @media screen and (max-width: 425px) {
+        & .copyright > span {
+            white-space: pre-line;
         }
     }
 `;

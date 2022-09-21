@@ -4,14 +4,18 @@ import * as colors from '~/styles/common/colors';
 import { StyledFooter } from '~/styles/Footer/StyledFooter';
 import { GITHUB_LOGO_ICON } from '~/styles/common/iconPath';
 
-const Footer = () => {
+const Footer = React.memo(() => {
     return (
         <StyledFooter>
             <div className="copyright">
-                <span>Copyright 2022. CRUD0626 All rights reserved.</span>
+                <span>{`Copyright 2022. \n CRUD0626 All rights reserved.`}</span>
             </div>
             <div className="github">
-                <a href="https://github.com/crud0626" rel='noopener noreferrer' >
+                <a 
+                    target="_blank" 
+                    href="https://github.com/crud0626" 
+                    rel='noopener noreferrer' 
+                >
                     <Icon 
                         define={GITHUB_LOGO_ICON}
                         color={colors.MAIN_WHITE}
@@ -21,6 +25,6 @@ const Footer = () => {
             </div>
         </StyledFooter>
     );
-};
+});
 
 export default Footer;
