@@ -1,15 +1,15 @@
-import { QuoteData } from '~/App';
 import { getDatabase, ref, set, get, child } from "firebase/database";
 import { firebaseApp } from "~/services/firebase";
+import { IQuoteData } from '~/types/interface';
 
 export interface IFirebaseDB {
-    writeUserData(userId: string, history: QuoteData[], favorite: QuoteData[]): void;
+    writeUserData(userId: string, history: IQuoteData[], favorite: IQuoteData[]): void;
     readUserData(userId: string): Promise<UserData>;
 }
 
 export interface UserData {
-    history: QuoteData[] | null;
-    favorite: QuoteData[] | null;
+    history: IQuoteData[] | null;
+    favorite: IQuoteData[] | null;
 }
 
 export class FirebaseDB implements IFirebaseDB {
@@ -17,7 +17,7 @@ export class FirebaseDB implements IFirebaseDB {
     constructor() {
     }
 
-    writeUserData(userId: string, history: QuoteData[], favorite: QuoteData[]): void {
+    writeUserData(userId: string, history: IQuoteData[], favorite: IQuoteData[]): void {
         set(ref(this.db, `users/${userId}`), {
             history: history,
             favorite: favorite

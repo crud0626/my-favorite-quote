@@ -5,11 +5,10 @@ import Main from '~/components/Main/Main';
 import LoginBox from '~/components/LoginModal/LoginModal';
 import GlobalStyle from '~/styles/common/GlobalStyle';
 import { QuotesAPI } from '~/services/quotesApi';
-import { IAuthService, IUserInfo } from '~/services/authService';
 import { IFirebaseDB } from '~/services/database';
 import { getStorageData, saveStorageData } from '~/utils/sessionStorage';
 import { onAuthStateChanged } from 'firebase/auth';
-import { IQuoteData, IQuotesState, IResponseQuote } from '~/types/interface';
+import { IAuthService, IQuoteData, IQuotesState, IResponseQuote, IUserInfo } from '~/types/interface';
 import { CardPositionType } from '~/types/type';
 
 const quotesAPI = new QuotesAPI();

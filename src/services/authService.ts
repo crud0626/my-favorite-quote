@@ -1,17 +1,6 @@
-import { Auth, getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { IAuthService, IUserInfo } from "~/types/interface";
 import { firebaseApp } from "~/services/firebase";
-
-export interface IUserInfo {
-    displayName: string | null;
-    photoURL: string | null;
-    uid: string | null;
-}
-
-export interface IAuthService {
-    readonly auth: Auth;
-    requestLogin(): Promise<IUserInfo | undefined>;
-    requestLogout(): Promise<any>;
-}
 
 export class AuthService implements IAuthService {
     auth = getAuth(firebaseApp);
