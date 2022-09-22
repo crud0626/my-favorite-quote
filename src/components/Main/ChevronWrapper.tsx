@@ -1,27 +1,26 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import Icon from '~/components/Icon/Icon';
-import { ChevronEventType } from '~/types/type';
 import * as colors from '~/styles/common/colors';
 import { LEFT_CHEVRON_ICON, RIGHT_CHEVRON_ICON } from "~/styles/common/iconPath";
 import { ChevronButton, StyledChevronWrapper } from '~/styles/Section/StyledChevronWrapper';
 import { debounce } from '~/utils/debounce';
 
 interface IChevronWrapper {
-    handleCardFilp(direction: ChevronEventType): void;
+    requestData(id?: string): Promise<any>;
 }
 
-const ChevronWrapper = ({ handleCardFilp }: IChevronWrapper) => {
-    const onClick = debounce(handleCardFilp, 300);
+const ChevronWrapper = ({ requestData }: IChevronWrapper) => {
+    const onClick = debounce(requestData, 300);
 
     return (
         <StyledChevronWrapper>
-            <ChevronButton direction={"prev"} data-role="prev" onClick={() => onClick("prev")}>
+            <ChevronButton direction={"prev"} data-role="prev" onClick={() => onClick()}>
                 <Icon 
                     define={LEFT_CHEVRON_ICON}
                     color={colors.MAIN_WHITE}
                 />
             </ChevronButton>
-            <ChevronButton direction={"next"} data-role="next" onClick={() => onClick("next")}>
+            <ChevronButton direction={"next"} data-role="next" onClick={() => onClick()}>
                 <Icon 
                     define={RIGHT_CHEVRON_ICON}
                     color={colors.MAIN_WHITE}

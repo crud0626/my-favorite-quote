@@ -60,7 +60,6 @@ export const StyledCard = styled.div<StyledCardProps>`
         }
     }
 
-    /* ????? 안먹히는데 */
     @media screen and (max-width: ${sizes.TABLET_VIEWPORT_SIZE}) {
         & > .card_content {
             & span {
