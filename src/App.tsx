@@ -85,13 +85,7 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
 
         newHistory.unshift(newItem);
         setHistoryList(newHistory);
-
-        if(userInfo.uid) {
-            saveUserData(newHistory);
-            return;
-        }
-
-        saveStorageData(newHistory);
+        saveUserData(newHistory);
     }
 
     const checkFavoriteQuote = (resQuote: IResponseQuote) => {
@@ -199,11 +193,12 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
     }
 
     const initData = () => {
-        const storageData: IQuoteData[] | null = getStorageData();
+        const { history, favorite } = getStorageData();
 
-        if(storageData) {
-            const recentQuote = storageData[0];
-            setHistoryList(storageData);
+        if(history && favorite) {
+            const recentQuote = history[0];
+            setHistoryList(history);
+            setFavoriteList(favorite);
             setDisplayQuotes({
                 ...displayQuotes,
                 back: recentQuote
@@ -216,12 +211,16 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
         requestData();
     }
 
-    const saveUserData = (newHistory?: IQuoteData[], newFavorite?: IQuoteData[]) => {
-        const newHis = newHistory ? newHistory : historyList;
-        const newFav = newFavorite ? newFavorite : favoriteList;
+    const saveUserData = (history?: IQuoteData[], favorite?: IQuoteData[]) => {
+        const newHistory = history ? history : historyList;
+        const newFavorite = favorite ? favorite : favoriteList;
+
         if(userInfo.uid) {
-            firebaseDB.writeUserData(userInfo.uid, newHis, newFav);
+            firebaseDB.writeUserData(userInfo.uid, newHistory, newFavorite);
+            return;
         }
+
+        saveStorageData(newHistory, newFavorite);
     }
 
     const getUserData = async (userId: string): Promise<void> => {
