@@ -1,6 +1,6 @@
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { IAuthService, IUserInfo } from "~/types/interface";
-import { firebaseApp } from "~/services/firebase";
+import { firebaseApp } from "~/config/firebase";
 
 export class AuthService implements IAuthService {
     auth = getAuth(firebaseApp);

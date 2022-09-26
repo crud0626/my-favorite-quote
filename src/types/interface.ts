@@ -26,3 +26,13 @@ export interface IAuthService {
     requestLogin(): Promise<IUserInfo | undefined>;
     requestLogout(): Promise<any>;
 }
+
+export interface IFirebaseDB {
+    writeUserData(userId: string, history: IQuoteData[], favorite: IQuoteData[]): void;
+    readUserData(userId: string): Promise<IUserData>;
+}
+
+export interface IUserData {
+    history: IQuoteData[] | null;
+    favorite: IQuoteData[] | null;
+}

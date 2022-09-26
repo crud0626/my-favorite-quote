@@ -1,6 +1,7 @@
 import { IResponseQuote } from "~/types/interface";
 
 const API_END_POINT = "https://api.quotable.io";
+
 export class QuotesAPI {
     getQuotesData = async (id?: string): Promise<IResponseQuote> => {
         const requestURL = id ? `${API_END_POINT}/quotes/${id}` : `${API_END_POINT}/random`;
