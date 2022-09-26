@@ -2,7 +2,7 @@ import React from 'react';
 import Icon from '~/components/Icon/Icon';
 import * as colors from '~/styles/common/colors';
 import { LOGIN_ICON } from '~/styles/common/iconPath';
-import { StyledLoginButton } from '~/styles/Nav/NavHeader/StyledLoginButton';
+import { StyledLoginButton } from '~/styles/Main/Nav/NavHeader/StyledLoginButton';
 
 interface IProps {
     handleLoginBox(): void;

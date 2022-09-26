@@ -5,7 +5,7 @@ import Icon from '~/components/Icon/Icon';
 import * as colors from '~/styles/common/colors';
 import { IQuoteData } from '~/types/interface';
 import { BOTTOM_CHEVRON_ICON } from '~/styles/common/iconPath';
-import { ContentController, NavBodyButton, StyledNavContentWrapper } from '~/styles/Nav/NavContentWrapper/StyledNavContentWrapper';
+import { ContentController, NavBodyButton, StyledNavContentWrapper } from '~/styles/Main/Nav/NavContentWrapper/StyledNavContentWrapper';
 
 export interface ContentProps {
     title: "History" | "Favorite";

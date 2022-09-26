@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react';
-import styled from 'styled-components';
 import { IQuoteData, IQuotesState } from '~/types/interface';
 import { CardPositionType } from '~/types/type';
 import Card from '~/components/Main/Section/CardWrapper/Card';
+import { StyledCardWrapper } from '~/styles/Main/Section/CardWrapper/StyledCardWrapper';
 
 interface IProps {
     cardPosition: CardPositionType;
@@ -10,14 +10,6 @@ interface IProps {
     onDownload(): void;
     onChangeFavorite(target: IQuoteData): void;
 }
-
-const StyledCardWrapper = styled.div`
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    transition: transform 0.6s ease-in-out;
-`;
 
 const CardWrapper = forwardRef<HTMLDivElement | null, IProps>(({ cardPosition, displayQuotes, onDownload, onChangeFavorite }, ref) => {
     return (

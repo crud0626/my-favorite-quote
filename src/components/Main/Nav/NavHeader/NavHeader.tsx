@@ -6,8 +6,8 @@ import * as sizes from '~/styles/common/sizes';
 import * as colors from '~/styles/common/colors';
 import { StyledButton } from "~/styles/common/StyledButton";
 import { LOGOUT_ICON } from "~/styles/common/iconPath";
-import { StyledNavHeader } from "~/styles/Nav/NavHeader/StyledNavHeader";
-import { IUserInfo } from "~/services/authService";
+import { StyledNavHeader } from "~/styles/Main/Nav/NavHeader/StyledNavHeader";
+import { IUserInfo } from "~/types/interface";
 
 interface IProps {
     userInfo: IUserInfo;

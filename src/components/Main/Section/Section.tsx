@@ -1,11 +1,10 @@
-import React, { MutableRefObject, useRef } from 'react';
-import styled from 'styled-components';
+import React, { MutableRefObject } from 'react';
 import { IQuoteData, IQuotesState } from '~/types/interface';
 import { CardPositionType } from '~/types/type';
 import ChevronWrapper from '~/components/Main/ChevronWrapper';
 import CardWrapper from '~/components/Main/Section/CardWrapper/CardWrapper';
 import { downloadToImg } from '~/services/html2canvas';
-import * as sizes from '~/styles/common/sizes';
+import { StyledSection } from '~/styles/Main/Section/StyledSection';
 
 interface IProps {
     cardWrapperRef: MutableRefObject<HTMLDivElement | null>;
@@ -14,29 +13,6 @@ interface IProps {
     requestData(id?: string): Promise<any>;
     onChangeFavorite(target: IQuoteData): void;
 }
-
-const StyledSection = styled.section`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-
-    & .card_section {
-        position: relative;
-        max-width: 90%;
-        height: ${sizes.CARD_HEIGHT};
-        aspect-ratio: ${sizes.CARD_ASPECT_RATIO};
-    }
-
-    @media screen and (max-width: ${sizes.TABLET_VIEWPORT_SIZE}){
-        & .card_section {
-            height: ${sizes.MOBILE_CARD_HEIGHT};
-        }
-    }
-`;
 
 const Section = ({ cardWrapperRef, displayQuotes, cardPosition, requestData, onChangeFavorite }: IProps) => {
     const onDownload = (): void => {

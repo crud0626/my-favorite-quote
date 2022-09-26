@@ -74,3 +74,14 @@ export const StyledCard = styled.div<StyledCardProps>`
         }
     }
 `;
+
+export const InnerBtnWrapper = styled.div`
+    top: ${sizes.SPACE_5X};
+    right: ${sizes.SPACE_5X};
+    position: absolute;
+    z-index: 1;
+
+    & :not(:first-child) {
+        margin-left: ${sizes.SPACE_2X};
+    }
+`;

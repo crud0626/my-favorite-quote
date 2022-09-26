@@ -2,7 +2,7 @@ import React from 'react';
 import Icon from '~/components/Icon/Icon';
 import * as colors from '~/styles/common/colors';
 import { LEFT_CHEVRON_ICON, RIGHT_CHEVRON_ICON } from "~/styles/common/iconPath";
-import { ChevronButton, StyledChevronWrapper } from '~/styles/Section/StyledChevronWrapper';
+import { ChevronButton, StyledChevronWrapper } from '~/styles/Main/Section/StyledChevronWrapper';
 import { debounce } from '~/utils/debounce';
 
 interface IChevronWrapper {
