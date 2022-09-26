@@ -44,13 +44,13 @@ export const StyledCard = styled.div<StyledCardProps>`
 
             &.quote {
             margin-bottom: ${sizes.SPACE_5X};
-            font-size: ${sizes.HEAD_FONT_SIZE};
+            font-size: ${sizes.CARD_TITLE_FONT_SIZE};
             align-self: flex-start;
         }
 
         &.author {
             margin-top: ${sizes.SPACE_5X};
-            font-size: ${sizes.SUB_FONT_SIZE};
+            font-size: ${sizes.CARD_AUTHOR_FONT_SIZE};
             align-self: flex-end;
 
                 &::before {
@@ -64,11 +64,11 @@ export const StyledCard = styled.div<StyledCardProps>`
         & > .card_content {
             & span {
                 &.quote {
-                    font-size: ${sizes.MOBILE_HEAD_FONT_SIZE};
+                    font-size: ${sizes.MOBILE_CARD_TITLE_FONT_SIZE};
                 }
 
                 &.author {
-                    font-size: ${sizes.MOBILE_SUB_FONT_SIZE};
+                    font-size: ${sizes.MOBILE_CARD_AUTHOR_FONT_SIZE};
                 }
             }
         }

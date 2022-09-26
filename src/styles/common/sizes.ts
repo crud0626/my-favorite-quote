@@ -18,8 +18,10 @@ export const MOBILE_VIEWPORT_SIZE = "320px";
 export const CARD_ASPECT_RATIO = 7.5 / 10;
 export const CARD_HEIGHT = "90%";
 export const MOBILE_CARD_HEIGHT = "90%";
-export const CARD_TITLE_FONT_SIZE = "1.3rem";
+export const CARD_TITLE_FONT_SIZE = "1.5rem";
 export const CARD_AUTHOR_FONT_SIZE = "1rem";
+export const MOBILE_CARD_TITLE_FONT_SIZE = "1.2rem";
+export const MOBILE_CARD_AUTHOR_FONT_SIZE = "0.8rem";
 export const CARD_BORDER_RADIUS = "20px";
 
 // Font
