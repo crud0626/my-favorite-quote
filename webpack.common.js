@@ -20,9 +20,7 @@ module.exports = {
             template: path.join(__dirname, 'public', 'index.html'),
         }),
         new webpack.HotModuleReplacementPlugin(),
-        new Dotenv({
-            systemvars: true
-        }),
+        new Dotenv(),
     ],
     module: {
         rules: [
