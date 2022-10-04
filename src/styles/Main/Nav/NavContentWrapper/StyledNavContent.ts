@@ -4,7 +4,7 @@ import * as sizes from '~/styles/common/sizes';
 import { navBoxMixin } from "~/styles/mixins/navBoxMixin";
 import { StyledButton } from "~/styles/common/StyledButton";
 
-export const StyledNavContent = styled.div`
+export const StyledNavContent = styled.li`
     ${navBoxMixin}
     display: flex;
     justify-content: space-between;

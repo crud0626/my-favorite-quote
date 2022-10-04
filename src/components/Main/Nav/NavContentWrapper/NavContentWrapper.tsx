@@ -33,7 +33,7 @@ const NavContentWrapper = ({ title, contents, onClickNavContent, onChangeFavorit
 
     return (
         <StyledNavContentWrapper>
-            <ContentController onClick={handleContent}>
+            <ContentController as={"li"} onClick={handleContent}>
                 <NavBodyButton isOpen={isOpen}>
                     <Icon 
                         define={BOTTOM_CHEVRON_ICON}

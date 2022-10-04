@@ -8,7 +8,7 @@ interface NavButtonProps {
     isOpen: boolean;
 }
 
-export const StyledNavContentWrapper = styled.div`
+export const StyledNavContentWrapper = styled.ul`
     min-height: 70px;
     height: auto;
     border-top: 1px solid ${colors.LIGHT_GRAY};
