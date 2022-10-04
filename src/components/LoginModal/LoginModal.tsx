@@ -5,9 +5,10 @@ import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
 import { CLOSE_ICON } from '~/styles/common/iconPath';
 import { StyledLoginModal, CloseBtn } from '~/styles/LoginModal/StyledLoginModal';
+import { ProviderNames } from '~/types/type';
 
 interface IProps {
-    onLogin(): Promise<void>;
+    onLogin(providerName: ProviderNames): Promise<void>;
     handleLoginBox(): void;
 }
 

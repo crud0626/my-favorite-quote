@@ -2,31 +2,33 @@ import React, { useCallback } from 'react';
 import { ProviderNames } from '~/types/type';
 import { StyledSocialBox } from '~/styles/LoginModal/LoginBoxBody/StyledSocialBox';
 import googleLogo from '~/assets/google-logo.png';
+import facebookLogo from '~/assets/facebook-logo.png';
 
 interface IProps {
     providerName: ProviderNames;
-    onLogin(): Promise<void>;
+    onLogin(providerName: ProviderNames): Promise<void>;
     handleLoginBox(): void;
 }
 
 const SocialBox = ({ providerName, onLogin, handleLoginBox }: IProps) => {
     const findLogo = useCallback((name: ProviderNames) => {
-        if(name === "google") {
-            return googleLogo;
+        switch(name) {
+            case "Google":
+                return googleLogo;
+            case "Facebook":
+                return facebookLogo;
         }
     }, []);
 
     const onClick = useCallback(() => {
-        onLogin()
+        onLogin(providerName)
         .then(() => handleLoginBox());
     }, []);
-
-    const displayName = providerName[0].toUpperCase() + providerName.slice(1);
     
     return (
         <StyledSocialBox onClick={onClick}>
             <img draggable="false" src={findLogo(providerName)} />
-            <span>{`Sign in with ${displayName}`}</span>
+            <span>{`Sign in with ${providerName}`}</span>
         </StyledSocialBox>
     );
 };

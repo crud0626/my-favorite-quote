@@ -1,18 +1,32 @@
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { ProviderNames } from './../types/type';
+import { FacebookAuthProvider, getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { IAuthService, IUserInfo } from "~/types/interface";
 import { firebaseApp } from "~/config/firebase";
 
 export class AuthService implements IAuthService {
     auth = getAuth(firebaseApp);
     private googleProvider = new GoogleAuthProvider();
+    private facebookProvider = new FacebookAuthProvider();
     
     constructor() {
         this.googleProvider.addScope('https://www.googleapis.com/auth/contacts.readonly');
     }
 
-    async requestLogin() {
+    private checkProvider(providerName: ProviderNames) {
+        switch(providerName) {
+            case "Google":
+                return this.googleProvider;
+            case "Facebook":
+                return this.facebookProvider;
+            default:
+                throw new Error(`정의되지 않은 Provider입니다. : ${providerName}`);
+        }
+    }
+
+    async requestLogin(providerName: ProviderNames) {
         try {
-            const response = await signInWithPopup(this.auth, this.googleProvider).then(res => res.user);
+            const provider = this.checkProvider(providerName);
+            const response = await signInWithPopup(this.auth, provider).then(res => res.user);
             if(response) {
                 const userInfo: IUserInfo = {
                     displayName: response.displayName,

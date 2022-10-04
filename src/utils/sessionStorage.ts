@@ -1,9 +1,8 @@
-import { UserData } from '~/services/database';
-import { IQuoteData } from '~/types/interface';
+import { IQuoteData, IUserData } from '~/types/interface';
 
 const STORAGE = window.sessionStorage;
 
-export const getStorageData = (): UserData => {
+export const getStorageData = (): IUserData => {
     const userData = {
         history: null,
         favorite: null

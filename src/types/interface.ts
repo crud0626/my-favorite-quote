@@ -1,4 +1,5 @@
 import { Auth } from "firebase/auth";
+import { ProviderNames } from "./type";
 
 export interface IResponseQuote {
     readonly id: string;
@@ -23,7 +24,7 @@ export interface IUserInfo {
 
 export interface IAuthService {
     readonly auth: Auth;
-    requestLogin(): Promise<IUserInfo | undefined>;
+    requestLogin(providerName: ProviderNames): Promise<IUserInfo | undefined>;
     requestLogout(): Promise<any>;
 }
 

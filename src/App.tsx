@@ -5,11 +5,10 @@ import Main from '~/components/Main/Main';
 import LoginBox from '~/components/LoginModal/LoginModal';
 import GlobalStyle from '~/styles/common/GlobalStyle';
 import { QuotesAPI } from '~/services/quotesApi';
-import { IFirebaseDB } from '~/services/database';
 import { getStorageData, saveStorageData } from '~/utils/sessionStorage';
 import { onAuthStateChanged } from 'firebase/auth';
-import { IAuthService, IQuoteData, IQuotesState, IResponseQuote, IUserInfo } from '~/types/interface';
-import { CardPositionType, ChevronEventType } from '~/types/type';
+import { IAuthService, IFirebaseDB, IQuoteData, IQuotesState, IResponseQuote, IUserInfo } from '~/types/interface';
+import { CardPositionType, ChevronEventType, ProviderNames } from '~/types/type';
 import { rotateRegex } from './utils/regexPatterns';
 
 interface IProps {
@@ -123,8 +122,8 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
         }
     }
 
-    const onLogin = async (): Promise<void> => {
-        const userInfo = await authService.requestLogin();
+    const onLogin = async (providerName: ProviderNames): Promise<void> => {
+        const userInfo = await authService.requestLogin(providerName);
         if(userInfo) {
             setUserInfo(userInfo);
             setIsLoggedIn(true);

@@ -3,12 +3,12 @@ import SocialBox from '~/components/LoginModal/LoginBoxBody/SocialBox';
 import { ProviderNames } from '~/types/type';
 
 interface IProps {
-    onLogin(): Promise<void>;
+    onLogin(providerName: ProviderNames): Promise<void>;
     handleLoginBox(): void;
 }
 
 const LoginBoxBody = ({ onLogin, handleLoginBox }: IProps) => {
-    const socialProviders: ProviderNames[] = ["google"];
+    const socialProviders: ProviderNames[] = ["Google", "Facebook"];
 
     return (
         <div>
