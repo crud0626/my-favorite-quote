@@ -7,9 +7,9 @@ interface IProps {
     handleLoginBox(): void;
 }
 
-const LoginBoxBody = ({ onLogin, handleLoginBox }: IProps) => {
-    const socialProviders: ProviderNames[] = ["Google", "Facebook"];
+const socialProviders: ProviderNames[] = ["Google", "Facebook", "Github"];
 
+const LoginBoxBody = ({ onLogin, handleLoginBox }: IProps) => {
     return (
         <div>
             {socialProviders.map((name, index) => 

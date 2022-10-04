@@ -3,6 +3,7 @@ import { ProviderNames } from '~/types/type';
 import { StyledSocialBox } from '~/styles/LoginModal/LoginBoxBody/StyledSocialBox';
 import googleLogo from '~/assets/google-logo.png';
 import facebookLogo from '~/assets/facebook-logo.png';
+import githubLogo from '~/assets/github-logo.png';
 
 interface IProps {
     providerName: ProviderNames;
@@ -17,6 +18,8 @@ const SocialBox = ({ providerName, onLogin, handleLoginBox }: IProps) => {
                 return googleLogo;
             case "Facebook":
                 return facebookLogo;
+            case "Github":
+                return githubLogo;
         }
     }, []);
 

@@ -1,5 +1,5 @@
 import { ProviderNames } from './../types/type';
-import { FacebookAuthProvider, getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { FacebookAuthProvider, getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { IAuthService, IUserInfo } from "~/types/interface";
 import { firebaseApp } from "~/config/firebase";
 
@@ -7,6 +7,7 @@ export class AuthService implements IAuthService {
     auth = getAuth(firebaseApp);
     private googleProvider = new GoogleAuthProvider();
     private facebookProvider = new FacebookAuthProvider();
+    private githubProvider = new GithubAuthProvider();
     
     constructor() {
         this.googleProvider.addScope('https://www.googleapis.com/auth/contacts.readonly');
@@ -18,6 +19,8 @@ export class AuthService implements IAuthService {
                 return this.googleProvider;
             case "Facebook":
                 return this.facebookProvider;
+            case "Github":
+                return this.githubProvider;
             default:
                 throw new Error(`정의되지 않은 Provider입니다. : ${providerName}`);
         }

@@ -1,4 +1,4 @@
-export type ProviderNames = "Google" | "Facebook";
+export type ProviderNames = "Google" | "Facebook" | "Github";
 
 export type ChevronEventType = "prev" | "next";
 
