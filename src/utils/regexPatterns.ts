@@ -1,1 +1,1 @@
-export const rotateRegex = /(?<=rotateY\()\-?\d{1,}\.?\d?/;
+export const rotateRegex = /\-?\d{1,}\.?\d?(?=turn)/;
