@@ -7,7 +7,7 @@ interface ILineProp {
     isOpen: boolean;
 }
 
-export const StyledNavBtn = styled(StyledButton)`
+export const StyledNavButton = styled(StyledButton)`
     display: flex;
     flex-direction: column;
     justify-content: center;

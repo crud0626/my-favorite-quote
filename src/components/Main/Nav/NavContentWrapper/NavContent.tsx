@@ -2,7 +2,7 @@ import React from 'react';
 import Icon from '~/components/Icon/Icon';
 import * as colors from '~/styles/common/colors';
 import { EMPTY_HEART_ICON, FILL_HEART_ICON } from '~/styles/common/iconPath';
-import { NavFavoriteButton, StyledNavContent } from '~/styles/Main/Nav/NavContentWrapper/StyledNavContent';
+import { StyledNavContent, NavFavoriteButton } from './StyledNavContent';
 import { IQuoteData } from '~/types/interface';
 
 interface IProps {

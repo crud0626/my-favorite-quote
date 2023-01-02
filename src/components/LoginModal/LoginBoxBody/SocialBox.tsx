@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { ProviderNames } from '~/types/type';
-import { StyledSocialBox } from '~/styles/LoginModal/LoginBoxBody/StyledSocialBox';
+import { StyledSocialBox } from './StyledSocialBox';
 import googleLogo from '~/assets/google-logo.png';
 import facebookLogo from '~/assets/facebook-logo.png';
 import githubLogo from '~/assets/github-logo.png';

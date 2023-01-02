@@ -3,7 +3,7 @@ import Icon from '~/components/Icon/Icon';
 import * as sizes from '~/styles/common/sizes';
 import * as colors from '~/styles/common/colors';
 import { USER_ICON } from '~/styles/common/iconPath';
-import { IStyledThumbnail, StyledUserThumbnail } from '~/styles/UserThumbnail/StyledUserThumbnail';
+import { StyledUserThumbnail, IStyledThumbnail } from './StyledUserThumbnail';
 
 interface IProps extends IStyledThumbnail {
     userPhotoSrc: string | null;

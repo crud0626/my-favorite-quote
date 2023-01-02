@@ -4,7 +4,7 @@ import Icon from '~/components/Icon/Icon';
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
 import { CLOSE_ICON } from '~/styles/common/iconPath';
-import { StyledLoginModal, CloseBtn } from '~/styles/LoginModal/StyledLoginModal';
+import { StyledLoginModal, CloseBtn } from './StyledLoginModal';
 import { ProviderNames } from '~/types/type';
 
 interface IProps {

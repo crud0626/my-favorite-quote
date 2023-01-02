@@ -5,7 +5,11 @@ import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
 import { StyledButton } from '~/styles/common/StyledButton';
 import { DOWNLOAD_ICON, EMPTY_HEART_ICON, FILL_HEART_ICON } from '~/styles/common/iconPath';
-import { InnerBtnWrapper, StyledCard, StyledCardProps } from '~/styles/Main/Section/CardWrapper/StyledCard';
+import { 
+    InnerBtnWrapper, 
+    StyledCard, 
+    StyledCardProps
+} from './StyledCard';
 
 interface RenderProps extends StyledCardProps {
     quoteContent: IQuoteData | null;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { IStyledIcon, StyledIcon } from '~/styles/Icon/StyledIcon';
+import { StyledIcon, IStyledIcon } from './StyledIcon';
 
 interface IProps extends IStyledIcon {
     define: string;

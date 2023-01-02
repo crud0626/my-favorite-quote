@@ -4,7 +4,7 @@ import { CardPositionType } from '~/types/type';
 import ChevronWrapper from '~/components/Main/ChevronWrapper';
 import CardWrapper from '~/components/Main/Section/CardWrapper/CardWrapper';
 import { downloadToImg } from '~/services/html2canvas';
-import { StyledSection } from '~/styles/Main/Section/StyledSection';
+import { StyledSection } from './StyledSection';
 
 interface IProps {
     cardWrapperRef: MutableRefObject<HTMLDivElement | null>;

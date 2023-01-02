@@ -5,7 +5,7 @@ import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
 import { StyledButton } from '~/styles/common/StyledButton';
 import { LOGIN_ICON, LOGOUT_ICON } from '~/styles/common/iconPath';
-import { MainLogo, StyledHeader } from '~/styles/Header/StyledHeader';
+import { MainLogo, StyledHeader } from './StyledHeader';
 
 interface IProps {
     isNavOpen: boolean;

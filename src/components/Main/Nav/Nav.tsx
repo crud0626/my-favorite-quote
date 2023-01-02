@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { NavHeader } from '~/components/Main/Nav/NavHeader/NavHeader';
 import NavContentWrapper from '~/components/Main/Nav/NavContentWrapper/NavContentWrapper';
 import { IQuoteData, IUserInfo } from '~/types/interface';
-import { StyledNav, NavBody, StyledNavProps } from '~/styles/Main/Nav/StyledNav';
+import { StyledNav, NavBody, StyledNavProps } from './StyledNav';
 
 interface IProps extends StyledNavProps {
     historyList: IQuoteData[];
