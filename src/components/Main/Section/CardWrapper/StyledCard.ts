@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { CardPositionType } from '~/types/type';
 import * as sizes from '~/styles/common/sizes';
-import cardBg from '~/assets/card_bg.jpg';
+import { CardPositionType } from '~/types/type';
+import { CARD_BG } from '~/assets';
 
 export interface StyledCardProps {
     cardPosition: CardPositionType;
@@ -27,7 +27,7 @@ export const StyledCard = styled.div<StyledCardProps>`
         left: 0;
         right: 0;
         bottom: 0;
-        background: no-repeat center / cover url(${cardBg});
+        background: no-repeat center / cover url(${CARD_BG});
         opacity: 0.6;
         border-radius: ${sizes.CARD_BORDER_RADIUS};
     }

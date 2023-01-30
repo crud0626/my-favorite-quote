@@ -65,6 +65,11 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'Noto Serif KR', 'Nanum Myeongjo', serif;
         color: ${colors.MAIN_WHITE};
     }
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
 `;
 
 export default GlobalStyle;

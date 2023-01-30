@@ -1,9 +1,7 @@
 import React, { useCallback } from 'react';
-import { ProviderNames } from '~/types/type';
 import { StyledSocialBox } from './StyledSocialBox';
-import googleLogo from '~/assets/google-logo.png';
-import facebookLogo from '~/assets/facebook-logo.png';
-import githubLogo from '~/assets/github-logo.png';
+import { ProviderNames } from '~/types/type';
+import { FACEBOOK_LOGO, GITHUB_LOGO, GOOGLE_LOGO } from '~/assets';
 
 interface IProps {
     providerName: ProviderNames;
@@ -15,11 +13,11 @@ const SocialBox = ({ providerName, onLogin, handleLoginBox }: IProps) => {
     const findLogo = useCallback((name: ProviderNames) => {
         switch(name) {
             case "Google":
-                return googleLogo;
+                return GOOGLE_LOGO;
             case "Facebook":
-                return facebookLogo;
+                return FACEBOOK_LOGO;
             case "Github":
-                return githubLogo;
+                return GITHUB_LOGO;
         }
     }, []);
 

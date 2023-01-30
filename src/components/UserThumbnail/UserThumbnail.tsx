@@ -1,9 +1,8 @@
 import React from 'react';
-import Icon from '~/components/Icon/Icon';
 import * as sizes from '~/styles/common/sizes';
 import * as colors from '~/styles/common/colors';
-import { USER_ICON } from '~/styles/common/iconPath';
 import { StyledUserThumbnail, IStyledThumbnail } from './StyledUserThumbnail';
+import { UserIcon } from '~/assets';
 
 interface IProps extends IStyledThumbnail {
     userPhotoSrc: string | null;
@@ -15,7 +14,7 @@ const UserThumbnail = ({ userPhotoSrc, size = sizes.DEFAULT_ICON_SIZE }: IProps)
             {
                 userPhotoSrc 
                 ? <img src={userPhotoSrc} alt="user thumbnail" /> 
-                : <Icon color={colors.MAIN_BLACK} define={USER_ICON} />
+                : <UserIcon color={colors.MAIN_BLACK} />
             }
         </StyledUserThumbnail>
     );

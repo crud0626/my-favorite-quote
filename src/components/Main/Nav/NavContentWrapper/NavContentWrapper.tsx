@@ -1,15 +1,14 @@
 import React, { useCallback, useState } from 'react';
 import NavContent from '~/components/Main/Nav/NavContentWrapper/NavContent';
 import NoContents from '~/components/Main/Nav/NavContentWrapper/NoContents';
-import Icon from '~/components/Icon/Icon';
 import * as colors from '~/styles/common/colors';
 import { IQuoteData } from '~/types/interface';
-import { BOTTOM_CHEVRON_ICON } from '~/styles/common/iconPath';
 import { 
     StyledNavContentWrapper, 
     ContentController, 
     NavBodyButton 
 } from './StyledNavContentWrapper';
+import { BottomChevron } from '~/assets';
 
 
 export interface ContentProps {
@@ -40,10 +39,7 @@ const NavContentWrapper = ({ title, contents, onClickNavContent, onChangeFavorit
         <StyledNavContentWrapper>
             <ContentController as={"li"} onClick={handleContent}>
                 <NavBodyButton isOpen={isOpen}>
-                    <Icon 
-                        define={BOTTOM_CHEVRON_ICON}
-                        color={colors.MAIN_BLACK}
-                    />
+                    <BottomChevron color={colors.MAIN_BLACK} />
                 </NavBodyButton>
                 <span>{title}</span>
             </ContentController>
