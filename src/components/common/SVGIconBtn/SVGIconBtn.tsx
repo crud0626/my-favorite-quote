@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledSVGIconBtn, IStyledSVGIconBtn } from './StyledSVGIconBtn';
+import { StyledSVGIconBtn, IStyledSVGIconBtn } from './SVGIconBtn.styles';
 
 interface IProps extends IStyledSVGIconBtn {
     src: React.ReactNode;

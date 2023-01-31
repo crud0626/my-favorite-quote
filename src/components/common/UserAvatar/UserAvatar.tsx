@@ -1,23 +1,23 @@
 import React from 'react';
 import * as sizes from '~/styles/common/sizes';
 import * as colors from '~/styles/common/colors';
-import { StyledUserThumbnail, IStyledThumbnail } from './StyledUserThumbnail';
+import { StyledUserAvatar, IStyledUserAvatar } from './UserAvatar.styles';
 import { UserIcon } from '~/assets';
 
-interface IProps extends IStyledThumbnail {
+interface IProps extends IStyledUserAvatar {
     userPhotoSrc: string | null;
 }
 
-const UserThumbnail = ({ userPhotoSrc, size = sizes.DEFAULT_ICON_SIZE }: IProps) => {
+const UserAvatar = ({ userPhotoSrc, size = sizes.DEFAULT_ICON_SIZE }: IProps) => {
     return (
-        <StyledUserThumbnail size={size}>
+        <StyledUserAvatar size={size}>
             {
                 userPhotoSrc 
                 ? <img src={userPhotoSrc} alt="user thumbnail" /> 
                 : <UserIcon color={colors.MAIN_BLACK} />
             }
-        </StyledUserThumbnail>
+        </StyledUserAvatar>
     );
 };
 
-export default UserThumbnail;
+export default UserAvatar;

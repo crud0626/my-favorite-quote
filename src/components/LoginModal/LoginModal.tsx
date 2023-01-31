@@ -3,7 +3,7 @@ import SocialLoginBox from './SocialLoginBox';
 import { StyledLoginModal } from './LoginModal.styles';
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
-import SVGIconBtn from '../SVGIconBtn/SVGIconBtn';
+import SVGIconBtn from '../common/SVGIconBtn/SVGIconBtn';
 import { ProviderNames } from '~/types/type';
 import { CloseIcon } from '~/assets';
 

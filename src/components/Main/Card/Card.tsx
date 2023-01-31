@@ -1,5 +1,5 @@
 import React from 'react';
-import SVGIconBtn from '~/components/SVGIconBtn/SVGIconBtn';
+import SVGIconBtn from '~/components/common/SVGIconBtn/SVGIconBtn';
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
 import { InnerBtnWrapper, StyledCard, StyledCardProps } from './Card.styles';

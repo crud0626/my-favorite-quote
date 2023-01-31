@@ -1,5 +1,5 @@
 import React from "react";
-import SVGIconBtn from "~/components/SVGIconBtn/SVGIconBtn";
+import SVGIconBtn from "~/components/common/SVGIconBtn/SVGIconBtn";
 import { ContentBoxWrapper } from "./ContentBox.styles";
 import * as sizes from "~/styles/common/sizes";
 import * as colors from "~/styles/common/colors";

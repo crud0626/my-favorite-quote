@@ -1,8 +1,8 @@
 import React from 'react';
-import SVGIconBtn from '../SVGIconBtn/SVGIconBtn';
+import SVGIconBtn from '../common/SVGIconBtn/SVGIconBtn';
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
-import { StyledFooter } from './StyledFooter';
+import { StyledFooter } from './Footer.styles';
 import { GithubIcon } from '~/assets';
 
 const Footer = React.memo(() => {

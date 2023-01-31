@@ -1,5 +1,5 @@
 import React from "react";
-import UserThumbnail from "~/components/UserThumbnail/UserThumbnail";
+import UserAvatar from "~/components/common/UserAvatar/UserAvatar";
 import * as sizes from '~/styles/common/sizes';
 import * as colors from '~/styles/common/colors';
 import { StyledButton } from "~/styles/common/StyledButton";
@@ -31,7 +31,7 @@ const UserInfo = ({ userInfo, isLoggedIn, onLogout }: Omit<IProps, 'handleLoginB
     return (
         <>
             <div>
-                <UserThumbnail 
+                <UserAvatar 
                     userPhotoSrc={photoURL} 
                     size={sizes.LARGE_ICON_SIZE} 
                 />
