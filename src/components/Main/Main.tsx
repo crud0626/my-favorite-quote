@@ -1,5 +1,5 @@
 import React, { MutableRefObject } from 'react';
-import Nav from '~/components/Main/Nav/Nav';
+import Nav from '~/components/Nav/Nav';
 import Section from '~/components/Main/Section/Section';
 import { StyledMain } from './StyledMain';
 import { IQuoteData, IQuotesState, IUserInfo } from '~/types/interface';

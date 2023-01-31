@@ -1,7 +1,14 @@
 import styled from "styled-components";
-import * as colors from '~/styles/common/colors';
+import { StyledNavBox } from "~/components/Nav/Nav.styles";
 import * as sizes from '~/styles/common/sizes';
-import { StyledButton } from "~/styles/common/StyledButton";
+import * as colors from '~/styles/common/colors';
+import { StyledButton } from '~/styles/common/StyledButton';
+
+export const StyledNavHeader = styled(StyledNavBox)`
+    & > :first-child > :first-child {
+        margin-right: ${sizes.SPACE_2X};
+    }
+`;
 
 export const StyledLoginButton = styled(StyledButton)`
     display: flex;
@@ -17,7 +24,7 @@ export const StyledLoginButton = styled(StyledButton)`
         margin-right: ${sizes.SPACE_2X};
     }
 
-    & > .login_icon_wrapper {
+    & > .icon_wrapper {
         width: ${sizes.SMALL_ICON_SIZE};
         height: ${sizes.SMALL_ICON_SIZE};
     }
