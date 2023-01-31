@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
-import LoginBoxBody from '~/components/LoginModal/LoginBoxBody/LoginBoxBody';
+import SocialLoginBox from './SocialLoginBox';
+import { StyledLoginModal } from './LoginModal.styles';
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
-import SVGIconBtn from '../SVGIconBtn/SVGIconBtn';
-import { StyledLoginModal } from './StyledLoginModal';
+import SVGIconBtn from '../common/SVGIconBtn/SVGIconBtn';
 import { ProviderNames } from '~/types/type';
 import { CloseIcon } from '~/assets';
 
@@ -19,16 +19,15 @@ const LoginBox = ({ onLogin, handleLoginBox }: IProps) => {
     
     return (
         <StyledLoginModal onClick={onClick}>
-            <div className='login_box'>
-                <div className='login_box_header'>
+            <div className='wrapper'>
+                <div className='header'>
                     <h1 className='title'>Welcome back!</h1>
                     <span className='sub_title'>Please enter your details.</span>
                 </div>
-                <LoginBoxBody
+                <SocialLoginBox 
                     onLogin={onLogin}
                     handleLoginBox={handleLoginBox}
                 />
-                {/* 닫기 버튼 */}
                 <SVGIconBtn
                     src={<CloseIcon />}
                     position={'absolute'}

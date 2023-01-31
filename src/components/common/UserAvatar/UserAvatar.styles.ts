@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import * as sizes from '~/styles/common/sizes';
 
-export interface IStyledThumbnail {
+export interface IStyledUserAvatar {
     size?: string;
 }
 
-export const StyledUserThumbnail = styled.div<IStyledThumbnail>`
+export const StyledUserAvatar = styled.div<IStyledUserAvatar>`
     width: ${props => props.size || sizes.DEFAULT_ICON_SIZE};
     height: ${props => props.size || sizes.DEFAULT_ICON_SIZE};
 

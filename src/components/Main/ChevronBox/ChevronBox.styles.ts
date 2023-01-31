@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import * as sizes from '~/styles/common/sizes';
 import * as colors from '~/styles/common/colors';
-import { ChevronEventType } from "~/types/type";
 import { StyledButton } from '~/styles/common/StyledButton';
+import { ChevronEventType } from "~/types/type";
 
-interface StyledChevronButtonProps {
+interface IProps {
     direction: ChevronEventType;
 }
 
-export const StyledChevronWrapper = styled.div`
+export const ChevronWrapper = styled.div`
     top: 0;
     bottom: 0;
     margin: auto 0;
@@ -21,7 +21,7 @@ export const StyledChevronWrapper = styled.div`
     background-color: transparent;
 `;
 
-export const ChevronButton = styled(StyledButton)<StyledChevronButtonProps>`
+export const ChevronButton = styled(StyledButton)<IProps>`
     padding: ${sizes.SPACE_2X};
     width: ${sizes.CHEVRON_CONTAINER_SIZE};
     height: ${sizes.CHEVRON_CONTAINER_SIZE};

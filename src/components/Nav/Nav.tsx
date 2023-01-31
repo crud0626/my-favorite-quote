@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
-import { NavHeader } from '~/components/Main/Nav/NavHeader/NavHeader';
-import NavContentWrapper from '~/components/Main/Nav/NavContentWrapper/NavContentWrapper';
+import NavHeader from './NavHeader/NavHeader';
+import NavAccordion from './NavBody/NavAccordion';
+import { StyledNav, NavBody, StyledNavProps } from './Nav.styles';
 import { IQuoteData, IUserInfo } from '~/types/interface';
-import { StyledNav, NavBody, StyledNavProps } from './StyledNav';
 
 interface IProps extends StyledNavProps {
     historyList: IQuoteData[];
@@ -33,14 +33,14 @@ const Nav = ({ isNavOpen, historyList, userInfo, isLoggedIn, favoriteList, onCli
                     onLogout={onLogout}
                 />
                 <NavBody>
-                    <NavContentWrapper 
-                        title={"History"}
+                    <NavAccordion 
+                        titleName={"history"}
                         contents={historyList}
                         onClickNavContent={onClickNavContent}
                         onChangeFavorite={onChangeFavorite}
                     />
-                    <NavContentWrapper 
-                        title={"Favorite"}
+                    <NavAccordion 
+                        titleName={"favorite"}
                         contents={favoriteList}
                         onClickNavContent={onClickNavContent}
                         onChangeFavorite={onChangeFavorite}

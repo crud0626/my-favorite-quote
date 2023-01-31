@@ -1,12 +1,20 @@
 import styled from "styled-components";
+import { StyledNavBox } from "../Nav.styles";
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
 import { StyledButton } from "~/styles/common/StyledButton";
-import { StyledNavBox } from "~/components/Main/Nav/StyledNav";
+import { navBoxMixin } from "~/styles/mixins/navBoxMixin";
 
 interface NavButtonProps {
     isOpen: boolean;
 }
+
+export const TextBox = styled.li`
+    ${navBoxMixin}
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+`;
 
 export const StyledNavContentWrapper = styled.ul`
     min-height: 70px;
@@ -22,7 +30,7 @@ export const StyledNavContentWrapper = styled.ul`
     }
 `;
 
-export const ContentController = styled(StyledNavBox)`
+export const AccordionTitle = styled(StyledNavBox)`
     justify-content: flex-start;
     cursor: pointer;
 
