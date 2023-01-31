@@ -1,11 +1,11 @@
 import React, { useCallback } from 'react';
 import LoginBoxBody from '~/components/LoginModal/LoginBoxBody/LoginBoxBody';
-import Icon from '~/components/Icon/Icon';
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
-import { CLOSE_ICON } from '~/styles/common/iconPath';
-import { StyledLoginModal, CloseBtn } from '~/styles/LoginModal/StyledLoginModal';
+import SVGIconBtn from '../SVGIconBtn/SVGIconBtn';
+import { StyledLoginModal } from './StyledLoginModal';
 import { ProviderNames } from '~/types/type';
+import { CloseIcon } from '~/assets';
 
 interface IProps {
     onLogin(providerName: ProviderNames): Promise<void>;
@@ -13,10 +13,8 @@ interface IProps {
 }
 
 const LoginBox = ({ onLogin, handleLoginBox }: IProps) => {
-    const onClick = useCallback((event: React.MouseEvent) => {
-        if(event.target === event.currentTarget) {
-            handleLoginBox();
-        }
+    const onClick = useCallback(({ target, currentTarget }: React.MouseEvent) => {
+        if (target === currentTarget) handleLoginBox();
     }, [handleLoginBox]);
     
     return (
@@ -30,16 +28,17 @@ const LoginBox = ({ onLogin, handleLoginBox }: IProps) => {
                     onLogin={onLogin}
                     handleLoginBox={handleLoginBox}
                 />
-                <CloseBtn 
+                {/* 닫기 버튼 */}
+                <SVGIconBtn
+                    src={<CloseIcon />}
+                    position={'absolute'}
+                    top={sizes.SPACE_3X}
+                    right={sizes.SPACE_3X}
                     size={sizes.SMALL_ICON_SIZE}
-                    onClick={handleLoginBox}
-                >
-                    <Icon 
-                        define={CLOSE_ICON}
-                        color={colors.MAIN_WHITE}
-                        isHoverColor={true}
-                    />
-                </CloseBtn>
+                    color={colors.MAIN_WHITE}
+                    hoverColor={colors.ICON_HOVER_COLOR}
+                    onClick={() => handleLoginBox()}
+                />
             </div>
         </StyledLoginModal>
     );

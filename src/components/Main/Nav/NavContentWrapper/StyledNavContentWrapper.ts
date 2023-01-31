@@ -2,7 +2,7 @@ import styled from "styled-components";
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
 import { StyledButton } from "~/styles/common/StyledButton";
-import { StyledNavBox } from "~/styles/Main/Nav/StyledNav";
+import { StyledNavBox } from "~/components/Main/Nav/StyledNav";
 
 interface NavButtonProps {
     isOpen: boolean;

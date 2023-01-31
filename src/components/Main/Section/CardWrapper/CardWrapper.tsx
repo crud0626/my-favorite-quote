@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { IQuoteData, IQuotesState } from '~/types/interface';
 import { CardPositionType } from '~/types/type';
 import Card from '~/components/Main/Section/CardWrapper/Card';
-import { StyledCardWrapper } from '~/styles/Main/Section/CardWrapper/StyledCardWrapper';
+import { StyledCardWrapper } from './StyledCardWrapper';
 
 interface IProps {
     cardPosition: CardPositionType;

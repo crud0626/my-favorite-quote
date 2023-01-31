@@ -1,11 +1,10 @@
 import React from 'react';
-import Icon from '~/components/Icon/Icon';
 import { NavButton } from '~/components/Header/NavButton/NavButton';
+import SVGIconBtn from '~/components/SVGIconBtn/SVGIconBtn';
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
-import { StyledButton } from '~/styles/common/StyledButton';
-import { LOGIN_ICON, LOGOUT_ICON } from '~/styles/common/iconPath';
-import { MainLogo, StyledHeader } from '~/styles/Header/StyledHeader';
+import { MainLogo, StyledHeader } from './StyledHeader';
+import { LoginIcon, LogoutIcon } from '~/assets';
 
 interface IProps {
     isNavOpen: boolean;
@@ -33,16 +32,13 @@ const Header = ({ isNavOpen, isLoggedIn, handleNav, handleLoginBox, onLogout }: 
                     <h1>myFavoriteQuotes</h1>
                 </MainLogo>
             </div>
-            <StyledButton 
+            <SVGIconBtn
+                src={isLoggedIn ? <LogoutIcon /> : <LoginIcon />}
                 size={sizes.SMALL_ICON_SIZE}
-                onClick={onClick}
-            >
-                <Icon 
-                    define={isLoggedIn ? LOGOUT_ICON : LOGIN_ICON}
-                    color={colors.MAIN_WHITE}
-                    isHoverColor={true}
-                />
-            </StyledButton>
+                color={colors.MAIN_WHITE}
+                hoverColor={colors.ICON_HOVER_COLOR}
+                onClick={() => onClick()}
+            />
         </StyledHeader>
     );
 }

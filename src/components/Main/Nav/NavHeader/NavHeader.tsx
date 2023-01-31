@@ -1,13 +1,12 @@
 import React from "react";
 import UserThumbnail from "~/components/UserThumbnail/UserThumbnail";
 import LoginButton from "~/components/Main/Nav/NavHeader/LoginButton";
-import Icon from "~/components/Icon/Icon";
 import * as sizes from '~/styles/common/sizes';
 import * as colors from '~/styles/common/colors';
 import { StyledButton } from "~/styles/common/StyledButton";
-import { LOGOUT_ICON } from "~/styles/common/iconPath";
-import { StyledNavHeader } from "~/styles/Main/Nav/NavHeader/StyledNavHeader";
+import { StyledNavHeader } from "./StyledNavHeader";
 import { IUserInfo } from "~/types/interface";
+import { LogoutIcon } from "~/assets";
 
 interface IProps {
     userInfo: IUserInfo;
@@ -26,10 +25,7 @@ export const NavHeader = ({ userInfo, isLoggedIn, handleLoginBox, onLogout }: IP
                 <span>{isLoggedIn && displayName}</span>
             </div>
             <StyledButton onClick={onLogout}>
-                <Icon 
-                    define={LOGOUT_ICON}
-                    color={colors.MAIN_BLACK}
-                />
+                <LogoutIcon fill={colors.MAIN_BLACK} />
             </StyledButton>
         </>
     ;

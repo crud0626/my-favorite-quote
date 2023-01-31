@@ -1,9 +1,10 @@
 import React from 'react';
-import Icon from '~/components/Icon/Icon';
+import SVGIconBtn from '~/components/SVGIconBtn/SVGIconBtn';
+import { StyledNavContent, NavFavoriteButton } from './StyledNavContent';
+import * as sizes from '~/styles/common/sizes';
 import * as colors from '~/styles/common/colors';
-import { EMPTY_HEART_ICON, FILL_HEART_ICON } from '~/styles/common/iconPath';
-import { NavFavoriteButton, StyledNavContent } from '~/styles/Main/Nav/NavContentWrapper/StyledNavContent';
 import { IQuoteData } from '~/types/interface';
+import { EmptyHeartIcon, FillHeartIcon } from '~/assets';
 
 interface IProps {
     content: IQuoteData;
@@ -25,12 +26,12 @@ const NavContent = ({ content, className, onClickNavContent, onChangeFavorite }:
                 <span>{content.author}</span>
             </div>
             <NavFavoriteButton onClick={onClickHeart}>
-                {
-                    content.favorite
-                    ? <Icon define={FILL_HEART_ICON} color={colors.BUTTON_RED} isHoverColor={true} />
-                    : <Icon define={EMPTY_HEART_ICON} color={colors.MAIN_BLACK} isHoverColor={true} />
-                }
-                
+                <SVGIconBtn 
+                    src={content.favorite ? <FillHeartIcon /> : <EmptyHeartIcon />}
+                    color={content.favorite ? colors.BUTTON_RED : colors.MAIN_BLACK}
+                    size={sizes.SMALL_ICON_SIZE}
+                    hoverColor={colors.ICON_HOVER_COLOR}
+                />
             </NavFavoriteButton>
         </StyledNavContent>
     );

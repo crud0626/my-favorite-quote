@@ -43,9 +43,14 @@ module.exports = {
                 use: ['style-loader', 'css-loader'],
             },
             {
-                test: /\.(png|jp(e*)g|svg|gif)$/,
+                test: /\.(png|jp(e*)g|gif)$/i,
                 use: ['file-loader'],
             },
+            {
+                test: /\.svg$/i,
+                /** icon 속성은 import한 svg를 커스텀할 수 있도록 해주는 옵션 */
+                use: [{ loader: '@svgr/webpack', options: { icon: true } }],
+            }
         ],
     },
 }

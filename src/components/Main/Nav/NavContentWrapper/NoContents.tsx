@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledNoContents } from '~/styles/Main/Nav/NavContentWrapper/StyledNoContents';
+import { StyledNoContents } from './StyledNoContents';
 
 const NoContents = () => {
     return (

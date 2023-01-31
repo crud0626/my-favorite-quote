@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledNavBtn, HamburgerLine } from "~/styles/Header/NavButton/StyledNavBtn";
+import { StyledNavButton, HamburgerLine } from "./StyledNavButton";
 
 const lineCount = new Array(3).fill("");
 
@@ -10,8 +10,8 @@ interface IProps {
 
 export const NavButton = ({ isNavOpen, handleNav }: IProps) => {
     return (
-        <StyledNavBtn onClick={handleNav}>
+        <StyledNavButton onClick={handleNav}>
             {lineCount.map((v, i) => <HamburgerLine key={i} isOpen={isNavOpen} />)}
-        </StyledNavBtn>
+        </StyledNavButton>
     );
 }
