@@ -31,10 +31,6 @@ const GlobalStyle = createGlobalStyle`
         display: block;
     }
 
-    body {
-        line-height: 1;
-    }
-
     ol, ul {
         list-style: none;
     }
