@@ -1,5 +1,4 @@
 import React from 'react';
-import * as sizes from '~/styles/common/sizes';
 import * as colors from '~/styles/common/colors';
 import { StyledUserAvatar, IStyledUserAvatar } from './UserAvatar.styles';
 import { UserIcon } from '~/assets';
@@ -8,7 +7,7 @@ interface IProps extends IStyledUserAvatar {
     userPhotoSrc: string | null;
 }
 
-const UserAvatar = ({ userPhotoSrc, size = sizes.DEFAULT_ICON_SIZE }: IProps) => {
+const UserAvatar = ({ userPhotoSrc, size }: IProps) => {
     return (
         <StyledUserAvatar size={size}>
             {

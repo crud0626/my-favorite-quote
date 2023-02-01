@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import * as sizes from '~/styles/common/sizes';
 import * as colors from '~/styles/common/colors';
-import { StyledButton } from '~/styles/common/StyledButton';
+import { PrimaryButton } from '~/styles/common/PrimaryButton';
 import { ChevronEventType } from "~/types/user.type";
+import { flexAligns } from "~/styles/mixins/flexAligns";
 
 
 interface IProps {
@@ -10,19 +11,17 @@ interface IProps {
 }
 
 export const ChevronWrapper = styled.div`
+    ${flexAligns('space-between')}
     top: 0;
     bottom: 0;
     margin: auto 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     position: absolute;
     width: 100%;
     height: 0px;
     background-color: transparent;
 `;
 
-export const ChevronButton = styled(StyledButton)<IProps>`
+export const ChevronButton = styled(PrimaryButton)<IProps>`
     padding: ${sizes.SPACE_2X};
     width: ${sizes.CHEVRON_CONTAINER_SIZE};
     height: ${sizes.CHEVRON_CONTAINER_SIZE};

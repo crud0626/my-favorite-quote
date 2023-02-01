@@ -66,6 +66,11 @@ const GlobalStyle = createGlobalStyle`
         color: ${colors.MAIN_WHITE};
     }
 
+    a, button {
+        background: transparent;
+        cursor: pointer;
+    }
+
     svg {
         width: 100%;
         height: 100%;

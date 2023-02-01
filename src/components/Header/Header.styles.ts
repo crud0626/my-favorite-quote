@@ -1,20 +1,16 @@
 import styled, { css } from 'styled-components';
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
-import { StyledButton } from '~/styles/common/StyledButton';
+import { PrimaryButton } from '~/styles/common/PrimaryButton';
+import { flexAligns } from '~/styles/mixins/flexAligns';
 
-interface INavBtnWrapper {
+interface IProps {
     isOpen: boolean;
 }
 
-export const NavBtnWrapper = styled(StyledButton)<INavBtnWrapper>`
-    display: flex;
+export const NavBtnWrapper = styled(PrimaryButton)<IProps>`
+    ${flexAligns('center')}
     flex-direction: column;
-    justify-content: center;
-
-    &:hover > .line {
-        background-color: ${colors.ICON_HOVER_COLOR};
-    }
 
     /* lines */
     & > .line {
@@ -46,9 +42,15 @@ export const NavBtnWrapper = styled(StyledButton)<INavBtnWrapper>`
             }
         `}
     }
+
+    &:hover > .line {
+        background-color: ${colors.ICON_HOVER_COLOR};
+    }
 `;
 
-export const MainLogo = styled(StyledButton).attrs(() => ({href: '/'}))`
+export const MainLogo = styled(PrimaryButton).attrs(() => ({
+    href: '/'
+}))`
     color: ${colors.MAIN_WHITE};
     text-decoration: none;
 
@@ -65,13 +67,11 @@ export const MainLogo = styled(StyledButton).attrs(() => ({href: '/'}))`
 `;
 
 export const StyledHeader = styled.header`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    ${flexAligns('space-between')}
     padding: 0 ${sizes.SPACE_7X};
     width: 100%;
     height: ${sizes.HEADER_HEIGHT};
-    background-color: ${colors.SUB_BLACK};
+    background: ${colors.SUB_BLACK};
 
     @media screen and (max-width: ${sizes.TABLET_VIEWPORT_SIZE}) {
         padding: ${sizes.SPACE_2X}

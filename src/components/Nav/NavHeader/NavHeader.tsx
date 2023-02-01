@@ -2,7 +2,7 @@ import React from "react";
 import UserAvatar from "~/components/common/UserAvatar/UserAvatar";
 import * as sizes from '~/styles/common/sizes';
 import * as colors from '~/styles/common/colors';
-import { StyledButton } from "~/styles/common/StyledButton";
+import { PrimaryButton } from "~/styles/common/PrimaryButton";
 import { StyledLoginButton, StyledNavHeader } from "./NavHeader.styles";
 import { IUserInfo } from "~/types/user.type";
 import { LoginIcon, LogoutIcon } from "~/assets";
@@ -41,9 +41,9 @@ const UserInfo = ({ userInfo, isLoggedIn, onLogout }: Omit<IProps, 'handleLoginB
                     {isLoggedIn && displayName}
                 </span>
             </div>
-            <StyledButton onClick={onLogout}>
+            <PrimaryButton onClick={onLogout}>
                 <LogoutIcon fill={colors.MAIN_BLACK} />
-            </StyledButton>
+            </PrimaryButton>
         </>
     );
 }

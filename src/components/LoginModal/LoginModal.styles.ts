@@ -1,16 +1,15 @@
 import styled from 'styled-components';
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
-import { StyledButton } from '~/styles/common/StyledButton';
+import { PrimaryButton } from '~/styles/common/PrimaryButton';
+import { flexAligns } from '~/styles/mixins/flexAligns';
 
-export const SocialBox = styled(StyledButton)`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: ${sizes.SOCIAL_LOGIN_COTENT_WIDTH};
-    height: ${sizes.SOCIAL_LOGIN_COTENT_HEIGHT};
+export const SocialBox = styled(PrimaryButton)`
+    ${flexAligns('space-between')};
     margin-top: ${sizes.SPACE_4X};
     padding: 0 ${sizes.SPACE_7X};
+    width: ${sizes.SOCIAL_LOGIN_COTENT_WIDTH};
+    height: ${sizes.SOCIAL_LOGIN_COTENT_HEIGHT};
     border: 1px solid ${colors.MAIN_WHITE};
     border-radius: ${sizes.DEFAULT_BORDER_RADIUS};
     color: ${colors.MAIN_WHITE};
@@ -27,15 +26,13 @@ export const SocialBox = styled(StyledButton)`
 `;
 
 export const StyledLoginModal = styled.div`
+    ${flexAligns()}
     top: 0;
     left: 0;
     position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
     height: 100%;
-    background-color: ${colors.CONTAINER_ALPHA};
+    background: ${colors.CONTAINER_ALPHA};
     z-index: 5;
 
     & > .wrapper {
@@ -43,7 +40,7 @@ export const StyledLoginModal = styled.div`
         flex-direction: column;
         position: relative;
         padding: ${sizes.SPACE_5X};
-        background-color: ${colors.MAIN_BLACK};
+        background: ${colors.MAIN_BLACK};
         border-radius: ${sizes.CARD_BORDER_RADIUS};
 
         & > .header {

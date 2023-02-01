@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import * as sizes from '~/styles/common/sizes';
 import { CardPositionType } from '~/types/user.type';
 import { CARD_BG } from '~/assets';
+import { flexAligns } from '~/styles/mixins/flexAligns';
 
 export interface StyledCardProps {
     cardPosition: CardPositionType;
@@ -9,9 +10,7 @@ export interface StyledCardProps {
 }
 
 export const StyledCard = styled.div<StyledCardProps>`
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    ${flexAligns()}
     position: absolute;
     width: 100%;
     height: 100%;
@@ -23,19 +22,15 @@ export const StyledCard = styled.div<StyledCardProps>`
     &::before {
         content: "";
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        inset: 0;
         background: no-repeat center / cover url(${CARD_BG});
         opacity: 0.6;
         border-radius: ${sizes.CARD_BORDER_RADIUS};
     }
 
     & > .card_content {
-        display: flex;
+        ${flexAligns()}
         flex-direction: column;
-        justify-content: center;
         width: 80%;
         height: min-content;
 

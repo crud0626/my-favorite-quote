@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import NavHeader from './NavHeader/NavHeader';
 import NavAccordion from './NavBody/NavAccordion';
-import { StyledNav, NavBody, StyledNavProps } from './Nav.styles';
+import { StyledNav, StyledNavProps } from './Nav.styles';
 import { IQuoteContent } from '~/types/quote.type';
 import { IUserInfo } from '~/types/user.type';
 
@@ -33,7 +33,7 @@ const Nav = ({ isNavOpen, historyList, userInfo, isLoggedIn, favoriteList, onCli
                     handleLoginBox={handleLoginBox}
                     onLogout={onLogout}
                 />
-                <NavBody>
+                <div className='nav_body'>
                     <NavAccordion 
                         titleName={"history"}
                         contents={historyList}
@@ -46,7 +46,7 @@ const Nav = ({ isNavOpen, historyList, userInfo, isLoggedIn, favoriteList, onCli
                         onClickNavContent={onClickNavContent}
                         onChangeFavorite={onChangeFavorite}
                     />
-                </NavBody>
+                </div>
             </div>
         </StyledNav>
     );

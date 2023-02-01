@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { StyledNavBox } from "~/components/Nav/Nav.styles";
 import * as sizes from '~/styles/common/sizes';
 import * as colors from '~/styles/common/colors';
-import { StyledButton } from '~/styles/common/StyledButton';
+import { PrimaryButton } from '~/styles/common/PrimaryButton';
+import { flexAligns } from "~/styles/mixins/flexAligns";
 
 export const StyledNavHeader = styled(StyledNavBox)`
     & > :first-child > :first-child {
@@ -10,9 +11,8 @@ export const StyledNavHeader = styled(StyledNavBox)`
     }
 `;
 
-export const StyledLoginButton = styled(StyledButton)`
-    display: flex;
-    justify-content: center;
+export const StyledLoginButton = styled(PrimaryButton)`
+    ${flexAligns()}
     flex-grow: 1;
     height: 60%;
     padding: 5px 10px;
