@@ -8,6 +8,10 @@ export const ContentBoxWrapper = styled.li`
     ${navContentBox}
     ${flexAligns('space-between')}
 
+    &:first-of-type {
+        border-top: 1px solid ${colors.LIGHT_GRAY};
+    }
+
     &:hover {
         background-color: ${colors.BUTTON_HOVER};
     }

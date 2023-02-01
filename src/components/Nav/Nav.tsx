@@ -33,7 +33,7 @@ const Nav = ({ isNavOpen, historyList, userInfo, isLoggedIn, favoriteList, onCli
                     handleLoginBox={handleLoginBox}
                     onLogout={onLogout}
                 />
-                <div className='nav_body'>
+                <ul className='nav_body'>
                     <NavAccordion 
                         titleName={"history"}
                         contents={historyList}
@@ -46,7 +46,7 @@ const Nav = ({ isNavOpen, historyList, userInfo, isLoggedIn, favoriteList, onCli
                         onClickNavContent={onClickNavContent}
                         onChangeFavorite={onChangeFavorite}
                     />
-                </div>
+                </ul>
             </div>
         </StyledNav>
     );

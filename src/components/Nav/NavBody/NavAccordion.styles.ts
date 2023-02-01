@@ -16,22 +16,11 @@ export const TextBox = styled.li`
     cursor: unset;
 `;
 
-export const StyledNavContentWrapper = styled.ul`
+export const AccordionTitle = styled(StyledNavBox)`
+    justify-content: flex-start;
     min-height: 70px;
     height: auto;
     border-top: 1px solid ${colors.LIGHT_GRAY};
-
-    &:last-child {
-        border-bottom: 1px solid ${colors.LIGHT_GRAY};
-    }
-
-    & > :nth-child(2) {
-        border-top: 1px solid ${colors.LIGHT_GRAY};
-    }
-`;
-
-export const AccordionTitle = styled(StyledNavBox)`
-    justify-content: flex-start;
 
     & > :first-child {
         margin-right: ${sizes.SPACE_2X};

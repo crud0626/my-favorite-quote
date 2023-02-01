@@ -1,12 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import ContentBox from './ContentBox';
 import * as colors from '~/styles/common/colors';
-import { 
-    StyledNavContentWrapper, 
-    AccordionTitle, 
-    NavBodyButton, 
-    TextBox
-} from './NavAccordion.styles';
+import { AccordionTitle, NavBodyButton, TextBox } from './NavAccordion.styles';
 import { IQuoteContent, QuotesGroupType } from '~/types/quote.type';
 import { BottomChevron } from '~/assets';
 
@@ -15,6 +10,22 @@ export interface ContentProps {
     contents: IQuoteContent[];
     onClickNavContent(target: IQuoteContent): void;
     onChangeFavorite(target: IQuoteContent): void;
+}
+
+const NavContentWrapper = ({ contents, onClickNavContent, onChangeFavorite }: Omit<ContentProps, 'titleName'>) => {
+    return (
+        <>
+            {contents.map(content => (
+                <ContentBox 
+                    key={content.id}
+                    content={content}
+                    onClickNavContent={onClickNavContent}
+                    onChangeFavorite={onChangeFavorite}
+                />
+            ))
+            }
+        </>
+    );
 }
 
 const NavAccordion = ({ titleName, contents, onClickNavContent, onChangeFavorite }: ContentProps) => {
@@ -28,27 +39,22 @@ const NavAccordion = ({ titleName, contents, onClickNavContent, onChangeFavorite
         setIsOpen((prevState) => !prevState)
     , []);
 
-    const accordionContent = contents.length === 0 
-        ? <TextBox><span>{"No Contents"}</span></TextBox>
-        : contents.map((content) =>
-            <ContentBox 
-                key={content.id}
-                content={content}
-                onClickNavContent={onClickNavContent}
-                onChangeFavorite={onChangeFavorite}
-            />
-    );
-
     return (
-        <StyledNavContentWrapper>
+        <>
             <AccordionTitle as={"li"} onClick={handleContent}>
                 <NavBodyButton isOpen={isOpen}>
                     <BottomChevron color={colors.MAIN_BLACK} />
                 </NavBodyButton>
                 <span>{toCapitalizeFirst(titleName)}</span>
             </AccordionTitle>
-            {isOpen && accordionContent}
-        </StyledNavContentWrapper>
+            <ul>
+                {isOpen && (
+                    contents.length === 0 
+                    ? <TextBox>{"No Contents"}</TextBox> 
+                    : <NavContentWrapper { ...{ contents, onClickNavContent, onChangeFavorite } } />
+                )}
+            </ul>
+        </>
     );
 };
 
