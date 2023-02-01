@@ -12,23 +12,28 @@ export interface ContentProps {
     onChangeFavorite(target: IQuoteContent): void;
 }
 
-const NavContentWrapper = ({ contents, onClickNavContent, onChangeFavorite }: Omit<ContentProps, 'titleName'>) => {
+const NavContentWrapper = (props: Omit<ContentProps, 'titleName'>) => {
+    const { contents, onClickNavContent, onChangeFavorite } = props;
+
     return (
-        <>
-            {contents.map(content => (
-                <ContentBox 
-                    key={content.id}
-                    content={content}
-                    onClickNavContent={onClickNavContent}
-                    onChangeFavorite={onChangeFavorite}
-                />
-            ))
+        <ul>
+            {
+                contents.length === 0 
+                ? <TextBox>{"No Contents"}</TextBox>  
+                : contents.map(content => (
+                    <ContentBox 
+                        key={content.id}
+                        content={content}
+                        onClickNavContent={onClickNavContent}
+                        onChangeFavorite={onChangeFavorite}
+                    />
+                ))
             }
-        </>
+        </ul>
     );
 }
 
-const NavAccordion = ({ titleName, contents, onClickNavContent, onChangeFavorite }: ContentProps) => {
+const NavAccordion = ({ titleName, ...contentProps }: ContentProps) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const toCapitalizeFirst = useCallback((str: string): string => {
@@ -47,13 +52,7 @@ const NavAccordion = ({ titleName, contents, onClickNavContent, onChangeFavorite
                 </NavBodyButton>
                 <span>{toCapitalizeFirst(titleName)}</span>
             </AccordionTitle>
-            <ul>
-                {isOpen && (
-                    contents.length === 0 
-                    ? <TextBox>{"No Contents"}</TextBox> 
-                    : <NavContentWrapper { ...{ contents, onClickNavContent, onChangeFavorite } } />
-                )}
-            </ul>
+            { isOpen && <NavContentWrapper { ...contentProps } /> }
         </>
     );
 };
