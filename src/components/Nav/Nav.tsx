@@ -2,18 +2,19 @@ import React, { useCallback } from 'react';
 import NavHeader from './NavHeader/NavHeader';
 import NavAccordion from './NavBody/NavAccordion';
 import { StyledNav, NavBody, StyledNavProps } from './Nav.styles';
-import { IQuoteData, IUserInfo } from '~/types/interface';
+import { IQuoteContent } from '~/types/quote.type';
+import { IUserInfo } from '~/types/user.type';
 
 interface IProps extends StyledNavProps {
-    historyList: IQuoteData[];
-    favoriteList: IQuoteData[];
-    userInfo: IUserInfo;
+    historyList: IQuoteContent[];
+    favoriteList: IQuoteContent[];
+    userInfo: IUserInfo | null;
     isLoggedIn: boolean;
     handleNav(): void;
     handleLoginBox(): void;
     onLogout(): Promise<void>;
-    onClickNavContent(target: IQuoteData): void;
-    onChangeFavorite(target: IQuoteData): void;
+    onClickNavContent(target: IQuoteContent): void;
+    onChangeFavorite(target: IQuoteContent): void;
 }
 
 const Nav = ({ isNavOpen, historyList, userInfo, isLoggedIn, favoriteList, onClickNavContent, handleNav, handleLoginBox, onLogout, onChangeFavorite }: IProps) => {

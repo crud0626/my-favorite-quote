@@ -1,22 +1,28 @@
 import { getDatabase, ref, set, get, child } from "firebase/database";
 import { firebaseApp } from "~/config/firebase";
-import { IQuoteData, IFirebaseDB, IUserData } from '~/types/interface';
+import { IQuoteContent } from "~/types/quote.type";
+import { UserQuotesType } from "~/types/user.type";
+
+interface IFirebaseDB {
+    writeUserData(userId: string, history: IQuoteContent[], favorite: IQuoteContent[]): void;
+    readUserData(userId: string): Promise<UserQuotesType>;
+}
 
 export class FirebaseDB implements IFirebaseDB {
     private db = getDatabase(firebaseApp);
     constructor() {}
 
-    writeUserData(userId: string, history: IQuoteData[], favorite: IQuoteData[]): void {
+    writeUserData(userId: string, history: IQuoteContent[], favorite: IQuoteContent[]): void {
         set(ref(this.db, `users/${userId}`), {
             history: history,
             favorite: favorite
         });
     }
 
-    async readUserData(userId: string): Promise<IUserData> {
-        const userData = {
-            history: null,
-            favorite: null
+    async readUserData(userId: string): Promise<UserQuotesType> {
+        const userQuotes: UserQuotesType = {
+            history: [],
+            favorite: []
         };
 
         try {
@@ -24,12 +30,12 @@ export class FirebaseDB implements IFirebaseDB {
             .then(snapshot => {
                 if(snapshot.exists()) {
                     const { history, favorite } = snapshot.val();
-                    userData.history = history;
-                    userData.favorite = favorite;
+                    userQuotes.history = history;
+                    userQuotes.favorite = favorite;
                 }
             });
 
-            return userData;
+            return userQuotes;
         } catch (error) {
             if(error instanceof Error) {
                 throw new Error(`유저의 데이터를 가져오는 도중 에러가 발생했습니다. ${error.message}`);

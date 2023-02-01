@@ -2,7 +2,8 @@ import styled from "styled-components";
 import * as sizes from '~/styles/common/sizes';
 import * as colors from '~/styles/common/colors';
 import { StyledButton } from '~/styles/common/StyledButton';
-import { ChevronEventType } from "~/types/type";
+import { ChevronEventType } from "~/types/user.type";
+
 
 interface IProps {
     direction: ChevronEventType;

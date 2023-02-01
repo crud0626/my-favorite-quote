@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import * as sizes from '~/styles/common/sizes';
-import { CardPositionType } from '~/types/type';
+import { CardPositionType } from '~/types/user.type';
 import { CARD_BG } from '~/assets';
 
 export interface StyledCardProps {

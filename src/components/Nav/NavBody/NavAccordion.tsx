@@ -7,15 +7,14 @@ import {
     NavBodyButton, 
     TextBox
 } from './NavAccordion.styles';
-import { IQuoteData } from '~/types/interface';
-import { QuotesGroupType } from '~/types/type';
+import { IQuoteContent, QuotesGroupType } from '~/types/quote.type';
 import { BottomChevron } from '~/assets';
 
 export interface ContentProps {
     titleName: QuotesGroupType;
-    contents: IQuoteData[];
-    onClickNavContent(target: IQuoteData): void;
-    onChangeFavorite(target: IQuoteData): void;
+    contents: IQuoteContent[];
+    onClickNavContent(target: IQuoteContent): void;
+    onChangeFavorite(target: IQuoteContent): void;
 }
 
 const NavAccordion = ({ titleName, contents, onClickNavContent, onChangeFavorite }: ContentProps) => {

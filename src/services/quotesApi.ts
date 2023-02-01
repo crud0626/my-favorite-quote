@@ -1,9 +1,9 @@
-import { IResponseQuote } from "~/types/interface";
+import { ResponseQuote } from "~/types/quote.type";
 
 const API_END_POINT = "https://api.quotable.io";
 
 export class QuotesAPI {
-    getQuotesData = async (id?: string): Promise<IResponseQuote> => {
+    getQuotesData = async (id?: string): Promise<ResponseQuote> => {
         const requestURL = id ? `${API_END_POINT}/quotes/${id}` : `${API_END_POINT}/random`;
 
         try {
@@ -12,7 +12,7 @@ export class QuotesAPI {
             const { _id, content, author } = await response.json();
 
             if(response.ok) {
-                const data: IResponseQuote = {
+                const data: ResponseQuote = {
                     id: _id,
                     quote: content,
                     author

@@ -4,11 +4,11 @@ import * as sizes from '~/styles/common/sizes';
 import * as colors from '~/styles/common/colors';
 import { StyledButton } from "~/styles/common/StyledButton";
 import { StyledLoginButton, StyledNavHeader } from "./NavHeader.styles";
-import { IUserInfo } from "~/types/interface";
+import { IUserInfo } from "~/types/user.type";
 import { LoginIcon, LogoutIcon } from "~/assets";
 
 interface IProps {
-    userInfo: IUserInfo;
+    userInfo: IUserInfo | null;
     isLoggedIn: boolean;
     handleLoginBox(): void;
     onLogout(): Promise<void>;
@@ -26,8 +26,10 @@ const LoginButton = ({ handleLoginBox }: Pick<IProps, 'handleLoginBox'>) => {
 };
 
 const UserInfo = ({ userInfo, isLoggedIn, onLogout }: Omit<IProps, 'handleLoginBox'>) => {
-    const { displayName, photoURL } = userInfo;
+    if (!userInfo) return null;
 
+    const { displayName, photoURL } = userInfo;
+    
     return (
         <>
             <div>
@@ -50,7 +52,7 @@ const NavHeader = ({ userInfo, isLoggedIn, handleLoginBox, onLogout }: IProps) =
     return (
         <StyledNavHeader>
             {
-                isLoggedIn 
+                isLoggedIn && userInfo
                 ? <UserInfo { ...{userInfo, isLoggedIn, onLogout}} />
                 : <LoginButton handleLoginBox={handleLoginBox} />
             }

@@ -3,26 +3,26 @@ import Nav from '~/components/Nav/Nav';
 import Card from './Card/Card';
 import ChevronBox from './ChevronBox/ChevronBox';
 import { CardWrapper, StyledMain } from './Main.styles';
-import { IQuoteData, IQuotesState, IUserInfo } from '~/types/interface';
-import { CardPositionType, ChevronEventType } from '~/types/type';
 import { downloadToImg } from '~/services/html2canvas';
+import { CardPositionType, ChevronEventType, IUserInfo } from '~/types/user.type';
+import { DisplayQuotesType, IQuoteContent } from '~/types/quote.type';
 
 interface IProps {
     cardWrapperRef: MutableRefObject<HTMLDivElement | null>;
     isNavOpen: boolean;
-    displayQuotes: IQuotesState;
-    historyList: IQuoteData[];
-    favoriteList: IQuoteData[];
+    displayQuotes: DisplayQuotesType;
+    historyList: IQuoteContent[];
+    favoriteList: IQuoteContent[];
     cardPosition: CardPositionType;
-    userInfo: IUserInfo;
+    userInfo: IUserInfo | null;
     isLoggedIn: boolean;
     requestData(id?: string): Promise<any>;
     handleNav(): void;
     handleLoginBox(): void;
     handleCardFilp(direction: ChevronEventType): void;
     onLogout(): Promise<void>;
-    onChangeFavorite(target: IQuoteData): void;
-    onClickNavContent(target: IQuoteData): void;
+    onChangeFavorite(target: IQuoteContent): void;
+    onClickNavContent(target: IQuoteContent): void;
 }
 
 const cardPositions: CardPositionType[] = ['front', 'back'];

@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { SocialBox } from './LoginModal.styles';
-import { ProviderNames } from '~/types/type';
+import { ProviderNames } from '~/types/auth.type';
 import { FACEBOOK_LOGO, GITHUB_LOGO, GOOGLE_LOGO } from '~/assets';
 
 interface IProps {
