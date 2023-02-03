@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { ChevronButton, ChevronWrapper } from './ChevronBox.styles';
 import * as colors from '~/styles/common/colors';
 import { debounce } from '~/utils/debounce';
@@ -9,7 +9,7 @@ interface IChevronWrapper {
 }
 
 const ChevronBox = ({ requestData }: IChevronWrapper) => {
-    const onClick = debounce(requestData, 300);
+    const onClick = useCallback(debounce(requestData, 300, true), []);
 
     return (
         <ChevronWrapper>
