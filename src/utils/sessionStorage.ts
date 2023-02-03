@@ -2,6 +2,7 @@ import { IQuoteContent } from '~/types/quote.type';
 import { UserQuotesType } from '~/types/user.type';
 
 const STORAGE = window.sessionStorage;
+const STORAGE_KEY = "mfq-history-list";
 
 export const getStorageData = (): UserQuotesType => {
     const userData = {
@@ -9,7 +10,7 @@ export const getStorageData = (): UserQuotesType => {
         favorite: []
     };
 
-    const savedData = STORAGE.getItem("mfq-history-list");
+    const savedData = STORAGE.getItem(STORAGE_KEY);
 
     if (savedData) {
         const sessionData = JSON.parse(savedData);
@@ -23,5 +24,5 @@ export const getStorageData = (): UserQuotesType => {
 export const saveStorageData = (history: IQuoteContent[], favorite: IQuoteContent[]) => {
     const userData = { history, favorite };
 
-    STORAGE.setItem("mfq-history-list", JSON.stringify(userData));
+    STORAGE.setItem(STORAGE_KEY, JSON.stringify(userData));
 }

@@ -7,7 +7,7 @@ import GlobalStyle from '~/styles/common/GlobalStyle';
 import { QuotesAPI } from '~/services/quotesApi';
 import { getStorageData, saveStorageData } from '~/utils/sessionStorage';
 import { onAuthStateChanged } from 'firebase/auth';
-import { rotateRegex } from './utils/regexPatterns';
+import { rotateRegex } from './constants/regex';
 import { FirebaseDB } from './services/database';
 import { CardPositionType, ChevronEventType, IUserInfo } from './types/user.type';
 import { IAuthService, ProviderNames } from './types/auth.type';
