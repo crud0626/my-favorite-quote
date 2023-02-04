@@ -3,13 +3,13 @@ import SVGIconBtn from '~/components/common/SVGIconBtn/SVGIconBtn';
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
 import { InnerBtnWrapper, StyledCard, StyledCardProps } from './Card.styles';
-import { IQuoteData } from '~/types/interface';
+import { IQuoteContent } from '~/types/quote.type';
 import { DownloadIcon, EmptyHeartIcon, FillHeartIcon } from '~/assets';
 
 interface IProps extends StyledCardProps {
-    quoteContent: IQuoteData | null;
+    quoteContent: IQuoteContent | null;
     onDownload(): void;
-    onChangeFavorite(target: IQuoteData): void;
+    onChangeFavorite(target: IQuoteContent): void;
 }
 
 const Card = ({ position, cardPosition, quoteContent, onDownload, onChangeFavorite }: IProps) => {

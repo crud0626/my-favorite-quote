@@ -1,15 +1,16 @@
 import styled from "styled-components";
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
-import { navBoxMixin } from "~/styles/mixins/navBoxMixin";
-import { StyledButton } from "~/styles/common/StyledButton";
+import { flexAligns } from "~/styles/mixins/flexAligns";
+import { navContentBox } from "~/styles/mixins/navContentBox";
 
 export const ContentBoxWrapper = styled.li`
-    ${navBoxMixin}
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
+    ${navContentBox}
+    ${flexAligns('space-between')}
+
+    &:first-of-type {
+        border-top: 1px solid ${colors.LIGHT_GRAY};
+    }
 
     &:hover {
         background-color: ${colors.BUTTON_HOVER};
@@ -46,8 +47,3 @@ export const ContentBoxWrapper = styled.li`
         flex-shrink: 0;
     }
 `;
-
-// export const NavFavoriteButton = styled(StyledButton)`
-//     margin-left: ${sizes.SPACE_2X};
-//     flex-shrink: 0;
-// `;

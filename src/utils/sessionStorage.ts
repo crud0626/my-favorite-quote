@@ -1,14 +1,15 @@
-import { IQuoteData, IUserData } from '~/types/interface';
+import { UserQuotesType } from '~/types/user.type';
 
 const STORAGE = window.sessionStorage;
+const STORAGE_KEY = "mfq-history-list";
 
-export const getStorageData = (): IUserData => {
+export const getStorageData = (): UserQuotesType => {
     const userData = {
-        history: null,
-        favorite: null
+        history: [],
+        favorite: []
     };
 
-    const savedData = STORAGE.getItem("mfq-history-list");
+    const savedData = STORAGE.getItem(STORAGE_KEY);
 
     if (savedData) {
         const sessionData = JSON.parse(savedData);
@@ -19,8 +20,6 @@ export const getStorageData = (): IUserData => {
     return userData;
 }
 
-export const saveStorageData = (history: IQuoteData[], favorite: IQuoteData[]) => {
-    const userData = { history, favorite };
-
-    STORAGE.setItem("mfq-history-list", JSON.stringify(userData));
+export const saveStorageData = (userData: UserQuotesType) => {
+    STORAGE.setItem(STORAGE_KEY, JSON.stringify(userData));
 }

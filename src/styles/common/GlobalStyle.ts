@@ -31,10 +31,6 @@ const GlobalStyle = createGlobalStyle`
         display: block;
     }
 
-    body {
-        line-height: 1;
-    }
-
     ol, ul {
         list-style: none;
     }
@@ -64,6 +60,11 @@ const GlobalStyle = createGlobalStyle`
         height: 100%;
         font-family: 'Noto Serif KR', 'Nanum Myeongjo', serif;
         color: ${colors.MAIN_WHITE};
+    }
+
+    a, button {
+        background: transparent;
+        cursor: pointer;
     }
 
     svg {

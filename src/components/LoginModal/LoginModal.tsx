@@ -4,7 +4,7 @@ import { StyledLoginModal } from './LoginModal.styles';
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
 import SVGIconBtn from '../common/SVGIconBtn/SVGIconBtn';
-import { ProviderNames } from '~/types/type';
+import { ProviderNames } from '~/types/auth.type';
 import { CloseIcon } from '~/assets';
 
 interface IProps {

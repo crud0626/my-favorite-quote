@@ -12,20 +12,18 @@ export interface IStyledSVGIconBtn {
 }
 
 export const StyledSVGIconBtn = styled('button')<IStyledSVGIconBtn>` 
-    ${({ size }) => css`
-        width: ${size};
-        height: ${size};
-    `}
-    background: transparent;
-    cursor: pointer;
+    width: ${({ size }) => size};
+    height: ${({ size }) => size};
 
     & > svg {
-        fill: ${({ color }) => color}
+        fill: ${({ color }) => color};
     }
-
-    &:hover > svg {
-        ${({ hoverColor }) => hoverColor && `fill: ${hoverColor}`}
-    }
+    
+    ${({ hoverColor }) => hoverColor && css`
+        &:hover > svg {
+            fill: ${hoverColor}
+        }
+    `}
 
     ${({ position, top, right }: IStyledSVGIconBtn) => {
         return css`

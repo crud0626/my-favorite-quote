@@ -3,31 +3,30 @@ import Nav from '~/components/Nav/Nav';
 import Card from './Card/Card';
 import ChevronBox from './ChevronBox/ChevronBox';
 import { CardWrapper, StyledMain } from './Main.styles';
-import { IQuoteData, IQuotesState, IUserInfo } from '~/types/interface';
-import { CardPositionType, ChevronEventType } from '~/types/type';
 import { downloadToImg } from '~/services/html2canvas';
+import { CardPositionType, ChevronEventType, IUserInfo, UserQuotesType } from '~/types/user.type';
+import { DisplayQuotesType, IQuoteContent } from '~/types/quote.type';
 
 interface IProps {
     cardWrapperRef: MutableRefObject<HTMLDivElement | null>;
     isNavOpen: boolean;
-    displayQuotes: IQuotesState;
-    historyList: IQuoteData[];
-    favoriteList: IQuoteData[];
+    displayQuotes: DisplayQuotesType;
+    userQuotes: UserQuotesType;
     cardPosition: CardPositionType;
-    userInfo: IUserInfo;
+    userInfo: IUserInfo | null;
     isLoggedIn: boolean;
     requestData(id?: string): Promise<any>;
     handleNav(): void;
     handleLoginBox(): void;
     handleCardFilp(direction: ChevronEventType): void;
     onLogout(): Promise<void>;
-    onChangeFavorite(target: IQuoteData): void;
-    onClickNavContent(target: IQuoteData): void;
+    onChangeFavorite(target: IQuoteContent): void;
+    onClickNavContent(target: IQuoteContent): void;
 }
 
 const cardPositions: CardPositionType[] = ['front', 'back'];
 
-const Main = ({ cardWrapperRef, isNavOpen, displayQuotes, historyList, cardPosition, favoriteList, userInfo, isLoggedIn, requestData, handleNav, handleLoginBox, onLogout, onChangeFavorite, onClickNavContent }: IProps) => {
+const Main = ({ cardWrapperRef, isNavOpen, displayQuotes, userQuotes, cardPosition, userInfo, isLoggedIn, requestData, handleNav, handleLoginBox, onLogout, onChangeFavorite, onClickNavContent }: IProps) => {
     const onDownload = (): void => {
         if(cardWrapperRef.current) {
             downloadToImg(cardWrapperRef.current);
@@ -55,10 +54,9 @@ const Main = ({ cardWrapperRef, isNavOpen, displayQuotes, historyList, cardPosit
             </section>
             <Nav 
                 isNavOpen={isNavOpen} 
-                historyList={historyList}
+                userQuotes={userQuotes}
                 userInfo={userInfo}
                 isLoggedIn={isLoggedIn}
-                favoriteList={favoriteList}
                 onClickNavContent={onClickNavContent}
                 handleNav={handleNav}
                 handleLoginBox={handleLoginBox}

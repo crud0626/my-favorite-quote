@@ -1,8 +1,5 @@
 import React from 'react';
-import SVGIconBtn from '../common/SVGIconBtn/SVGIconBtn';
-import * as colors from '~/styles/common/colors';
-import * as sizes from '~/styles/common/sizes';
-import { StyledFooter } from './Footer.styles';
+import { FooterLinkBtn, StyledFooter } from './Footer.styles';
 import { GithubIcon } from '~/assets';
 
 const Footer = React.memo(() => {
@@ -13,19 +10,10 @@ const Footer = React.memo(() => {
                     {`Copyright 2022. \n CRUD0626 All rights reserved.`}
                 </span>
             </div>
-            <div className="github">
-                <a 
-                    target="_blank" 
-                    href="https://github.com/crud0626" 
-                    rel='noopener noreferrer' 
-                >
-                    <SVGIconBtn 
-                        src={<GithubIcon />}
-                        size={sizes.DEFAULT_ICON_SIZE}
-                        color={colors.MAIN_WHITE}
-                        hoverColor={colors.ICON_HOVER_COLOR}
-                    />
-                </a>
+            <div>
+                <FooterLinkBtn link='https://github.com/crud0626' >
+                    <GithubIcon />
+                </FooterLinkBtn>
             </div>
         </StyledFooter>
     );

@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
-import { navBoxMixin } from "~/styles/mixins/navBoxMixin";
+import { flexAligns } from "~/styles/mixins/flexAligns";
+import { navContentBox } from "~/styles/mixins/navContentBox";
 
 export interface StyledNavProps {
     isNavOpen: boolean;
@@ -25,6 +26,10 @@ export const StyledNav = styled.nav<StyledNavProps>`
         color: ${colors.MAIN_BLACK};
     }
 
+    & > .nav_body {
+        width: 100%;
+    }
+
     @media screen and (max-width: ${sizes.TABLET_VIEWPORT_SIZE}) {
         & > div {
             width: 100%;
@@ -32,19 +37,12 @@ export const StyledNav = styled.nav<StyledNavProps>`
     }
 `;
 
-export const NavBody = styled.div`
-    width: 100%;
-`;
-
 export const StyledNavBox = styled.div`
-    ${navBoxMixin}
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    ${navContentBox}
+    ${flexAligns('space-between', 'center')}
     width: 100%;
 
     & :first-child {
-        display: flex;
-        align-items: center;
+        ${flexAligns()}
     }
 `;

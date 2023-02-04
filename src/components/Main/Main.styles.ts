@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import * as sizes from '~/styles/common/sizes';
 import * as colors from '~/styles/common/colors';
+import { flexAligns } from "~/styles/mixins/flexAligns";
 
 export const CardWrapper = styled.div`
     position: relative;
@@ -17,9 +18,7 @@ export const StyledMain = styled.main`
     background-color: ${colors.MAIN_BLACK};
 
     & > .section {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        ${flexAligns()}
         position: absolute;
         width: 100%;
         height: 100%;

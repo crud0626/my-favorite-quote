@@ -2,45 +2,38 @@ import styled from "styled-components";
 import { StyledNavBox } from "../Nav.styles";
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
-import { StyledButton } from "~/styles/common/StyledButton";
-import { navBoxMixin } from "~/styles/mixins/navBoxMixin";
+import { PrimaryButton } from "~/styles/common/PrimaryButton";
+import { navContentBox } from "~/styles/mixins/navContentBox";
+import { flexAligns } from "~/styles/mixins/flexAligns";
 
-interface NavButtonProps {
+interface IProps {
     isOpen: boolean;
 }
 
 export const TextBox = styled.li`
-    ${navBoxMixin}
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-`;
-
-export const StyledNavContentWrapper = styled.ul`
-    min-height: 70px;
-    height: auto;
+    ${navContentBox}
+    ${flexAligns('flex-start')}
     border-top: 1px solid ${colors.LIGHT_GRAY};
-
-    &:last-child {
-        border-bottom: 1px solid ${colors.LIGHT_GRAY};
-    }
-
-    & > :nth-child(2) {
-        border-top: 1px solid ${colors.LIGHT_GRAY};
-    }
+    cursor: unset;
 `;
 
 export const AccordionTitle = styled(StyledNavBox)`
     justify-content: flex-start;
-    cursor: pointer;
+    min-height: 70px;
+    height: auto;
+    border-top: 1px solid ${colors.LIGHT_GRAY};
+    
+    &:hover {
+        background-color: ${colors.BUTTON_HOVER};
+    }
 
     & > :first-child {
         margin-right: ${sizes.SPACE_2X};
     }
 `;
 
-export const NavBodyButton = styled(StyledButton)<NavButtonProps>`
+export const NavBodyButton = styled(PrimaryButton)<IProps>`
     transition: all 0.3s ease-in-out;
-    transform: ${props => props.isOpen ? "rotate(-180deg)" : "rotate(0deg)" };
+    transform: ${({ isOpen }) => isOpen ? "rotate(-180deg)" : "rotate(0deg)" };
     transform-origin: center;
 `;

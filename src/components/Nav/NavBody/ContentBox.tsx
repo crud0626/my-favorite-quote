@@ -3,13 +3,13 @@ import SVGIconBtn from "~/components/common/SVGIconBtn/SVGIconBtn";
 import { ContentBoxWrapper } from "./ContentBox.styles";
 import * as sizes from "~/styles/common/sizes";
 import * as colors from "~/styles/common/colors";
-import { IQuoteData } from "~/types/interface";
+import { IQuoteContent } from "~/types/quote.type";
 import { EmptyHeartIcon, FillHeartIcon } from "~/assets";
 
 interface IProps {
-  content: IQuoteData;
-  onClickNavContent(target: IQuoteData): void;
-  onChangeFavorite(target: IQuoteData): void;
+  content: IQuoteContent;
+  onClickNavContent(target: IQuoteContent): void;
+  onChangeFavorite(target: IQuoteContent): void;
 }
 
 const ContentBox = ({ content, onClickNavContent, onChangeFavorite }: IProps) => {

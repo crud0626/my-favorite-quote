@@ -1,7 +1,11 @@
-import { ProviderNames } from './../types/type';
 import { FacebookAuthProvider, getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
-import { IAuthService, IUserInfo } from "~/types/interface";
 import { firebaseApp } from "~/config/firebase";
+import { IAuthService, ProviderNames } from "~/types/auth.type";
+import { IUserInfo } from "~/types/user.type";
+
+const checkUserInfo = (arg: any): arg is IUserInfo => {
+    return 'displayName' in arg && 'photoURL' in arg && 'uid' in arg;
+}
 
 export class AuthService implements IAuthService {
     auth = getAuth(firebaseApp);
@@ -26,11 +30,12 @@ export class AuthService implements IAuthService {
         }
     }
 
-    async requestLogin(providerName: ProviderNames) {
+    async requestLogin(providerName: ProviderNames): Promise<IUserInfo | null> {
         try {
             const provider = this.checkProvider(providerName);
             const response = await signInWithPopup(this.auth, provider).then(res => res.user);
-            if(response) {
+            
+            if(checkUserInfo(response)) {
                 const userInfo: IUserInfo = {
                     displayName: response.displayName,
                     photoURL: response.photoURL,
@@ -39,6 +44,8 @@ export class AuthService implements IAuthService {
     
                 return userInfo;
             }
+
+            return null;
         } catch (error) {
             let errMessage = "Unknown message";
 
