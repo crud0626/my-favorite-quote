@@ -1,10 +1,9 @@
 import { getDatabase, ref, set, get, child } from "firebase/database";
 import { firebaseApp } from "~/config/firebase";
-import { IQuoteContent } from "~/types/quote.type";
 import { UserQuotesType } from "~/types/user.type";
 
 interface IFirebaseDB {
-    writeUserData(userId: string, history: IQuoteContent[], favorite: IQuoteContent[]): void;
+    writeUserData(userId: string, userData: UserQuotesType): void;
     readUserData(userId: string): Promise<UserQuotesType>;
 }
 
@@ -12,11 +11,8 @@ export class FirebaseDB implements IFirebaseDB {
     private db = getDatabase(firebaseApp);
     constructor() {}
 
-    writeUserData(userId: string, history: IQuoteContent[], favorite: IQuoteContent[]): void {
-        set(ref(this.db, `users/${userId}`), {
-            history: history,
-            favorite: favorite
-        });
+    writeUserData(userId: string, userData: UserQuotesType): void {
+        set(ref(this.db, `users/${userId}`), userData);
     }
 
     async readUserData(userId: string): Promise<UserQuotesType> {

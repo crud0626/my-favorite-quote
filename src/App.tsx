@@ -9,7 +9,7 @@ import { getStorageData, saveStorageData } from '~/utils/sessionStorage';
 import { onAuthStateChanged } from 'firebase/auth';
 import { rotateRegex } from './constants/regex';
 import { FirebaseDB } from './services/database';
-import { CardPositionType, ChevronEventType, IUserInfo } from './types/user.type';
+import { CardPositionType, ChevronEventType, IUserInfo, UserQuotesType } from './types/user.type';
 import { IAuthService, ProviderNames } from './types/auth.type';
 import { DisplayQuotesType, IQuoteContent, ResponseQuote } from './types/quote.type';
 
@@ -24,9 +24,11 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
     const [isLoginBoxOpen, setIsLoginBoxOpen] = useState<boolean>(false);
     const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-    const [historyList, setHistoryList] = useState<IQuoteContent[]>([]);
+    const [userQuotes, setUserQuotes] = useState<UserQuotesType>({
+        history: [],
+        favorite: []
+    });
     const [cardPosition, setCardPosition] = useState<CardPositionType>("front");
-    const [favoriteList, setFavoriteList] = useState<IQuoteContent[]>([]);
     const [displayQuotes, setDisplayQuotes] = useState<DisplayQuotesType>({
         front: null,
         back: null
@@ -44,12 +46,12 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
         };
 
         // history에 변경사항 반영
-        const newHistory = historyList.map((item: IQuoteContent) => {
+        const newHistory = userQuotes.history.map((item: IQuoteContent) => {
             return item.id === willChangeQuote.id ? willChangeQuote : item;
         });
 
         // favorite에 변경사항 반영
-        const newFavorite = [ ...favoriteList ];
+        const newFavorite = [ ...userQuotes.favorite ];
         const matchedIndexInFavorite = newFavorite.findIndex(item => item.id === willChangeQuote.id);
         if(matchedIndexInFavorite !== -1) {
             newFavorite.splice(matchedIndexInFavorite, 1);
@@ -67,22 +69,31 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
             cardPosition === "front" ? newQuoteData.front = willChangeQuote : newQuoteData.back = willChangeQuote;
             setDisplayQuotes(newQuoteData);
         }
+
+        const newUserQuotes = {
+            history: newHistory,
+            favorite: newFavorite
+        };
         
-        setHistoryList(newHistory);
-        setFavoriteList(newFavorite);
-        saveUserData(newHistory, newFavorite);
+        setUserQuotes(newUserQuotes);
+        saveUserData(newUserQuotes);
     };
 
     const updateHistory = (newItem: IQuoteContent) => {
-        let newHistory: Array<IQuoteContent> = historyList.filter(quote => quote.id !== newItem.id);
-        
-        if(historyList.length > 9) {
-            newHistory = newHistory.slice(0, 9);
-        }
+        setUserQuotes((prevState) => {
+            const newUserQuotes = { ...prevState };
 
-        newHistory.unshift(newItem);
-        setHistoryList(newHistory);
-        saveUserData(newHistory);
+            const filteredList = prevState.history
+                .filter(quote => quote.id !== newItem.id)
+                .slice(0, 9);
+
+            newUserQuotes.history = [newItem, ...filteredList];
+
+            // Anti-pattern
+            saveUserData(newUserQuotes);
+
+            return newUserQuotes;
+        });
     }
 
     const checkFavoriteQuote = (resQuote: ResponseQuote) => {
@@ -91,7 +102,7 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
             favorite: false
         };
 
-        if(favoriteList.some(item => item.id === resQuote.id)) {
+        if(userQuotes.favorite.some(item => item.id === resQuote.id)) {
             currentQuote.favorite = true;
         }
 
@@ -104,11 +115,18 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
             if (resData) {
                 const newQuote = checkFavoriteQuote(resData);
 
-                cardPosition === "front" 
-                ? setDisplayQuotes({...displayQuotes, back: newQuote}) 
-                : setDisplayQuotes({...displayQuotes, front: newQuote});
+                setCardPosition((prevState) => {
+                    const nextPosition = prevState === 'front' ? 'back' : 'front';
 
-                setCardPosition((prevState) => prevState === "front" ? "back" : "front");
+                    // Anti-Pattern
+                    setDisplayQuotes({
+                        ...displayQuotes,
+                        [nextPosition]: newQuote
+                    });
+
+                    return nextPosition;
+                });
+
                 updateHistory(newQuote);
                 handleCardFilp();
 
@@ -135,8 +153,10 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
 
         if(status) {
             setUserInfo(null);
-            setHistoryList([]);
-            setFavoriteList([]);
+            setUserQuotes({
+                history: [],
+                favorite: []
+            });
             setIsLoggedIn(false);
             window.alert("로그아웃 되었습니다.");
             return;
@@ -183,12 +203,11 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
     }
 
     const initData = () => {
-        const { history, favorite } = getStorageData();
+        const savedUserData = getStorageData();
 
-        if(history && favorite) {
-            const recentQuote = history[0];
-            setHistoryList(history);
-            setFavoriteList(favorite);
+        if(savedUserData) {
+            const recentQuote = savedUserData.history[0];
+            setUserQuotes(savedUserData);
             setDisplayQuotes({
                 ...displayQuotes,
                 back: recentQuote
@@ -201,25 +220,21 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
         requestData();
     }
 
-    const saveUserData = (history?: IQuoteContent[], favorite?: IQuoteContent[]) => {
-        const newHistory = history ? history : historyList;
-        const newFavorite = favorite ? favorite : favoriteList;
-
+    const saveUserData = (newUserQuotes: UserQuotesType) => {
         if(userInfo) {
-            firebaseDB.writeUserData(userInfo.uid, newHistory, newFavorite);
+            firebaseDB.writeUserData(userInfo.uid, newUserQuotes);
             return;
         }
 
-        saveStorageData(newHistory, newFavorite);
+        saveStorageData(newUserQuotes);
     }
 
     const getUserData = async (userId: string): Promise<void> => {
-        const { history, favorite } = await firebaseDB.readUserData(userId);
+        const userData = await firebaseDB.readUserData(userId);
 
-        if(history && favorite) {
-            const recentQuote = history[0];
-            setHistoryList(history);
-            setFavoriteList(favorite);
+        if(userData) {
+            const recentQuote = userData.history[0];
+            setUserQuotes(userData);
             setDisplayQuotes({
                 ...displayQuotes,
                 back: recentQuote
@@ -250,11 +265,10 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
                     cardWrapperRef={cardWrapperRef}
                     isNavOpen={isNavOpen} 
                     displayQuotes={displayQuotes}
-                    historyList={historyList}
+                    userQuotes={userQuotes}
                     cardPosition={cardPosition}
                     isLoggedIn={isLoggedIn}
                     userInfo={userInfo}
-                    favoriteList={favoriteList}
                     requestData={requestData}
                     handleNav={handleNav}
                     handleLoginBox={handleLoginBox}

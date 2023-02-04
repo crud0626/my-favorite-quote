@@ -1,4 +1,3 @@
-import { IQuoteContent } from '~/types/quote.type';
 import { UserQuotesType } from '~/types/user.type';
 
 const STORAGE = window.sessionStorage;
@@ -21,8 +20,6 @@ export const getStorageData = (): UserQuotesType => {
     return userData;
 }
 
-export const saveStorageData = (history: IQuoteContent[], favorite: IQuoteContent[]) => {
-    const userData = { history, favorite };
-
+export const saveStorageData = (userData: UserQuotesType) => {
     STORAGE.setItem(STORAGE_KEY, JSON.stringify(userData));
 }

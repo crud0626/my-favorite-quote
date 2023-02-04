@@ -4,15 +4,14 @@ import Card from './Card/Card';
 import ChevronBox from './ChevronBox/ChevronBox';
 import { CardWrapper, StyledMain } from './Main.styles';
 import { downloadToImg } from '~/services/html2canvas';
-import { CardPositionType, ChevronEventType, IUserInfo } from '~/types/user.type';
+import { CardPositionType, ChevronEventType, IUserInfo, UserQuotesType } from '~/types/user.type';
 import { DisplayQuotesType, IQuoteContent } from '~/types/quote.type';
 
 interface IProps {
     cardWrapperRef: MutableRefObject<HTMLDivElement | null>;
     isNavOpen: boolean;
     displayQuotes: DisplayQuotesType;
-    historyList: IQuoteContent[];
-    favoriteList: IQuoteContent[];
+    userQuotes: UserQuotesType;
     cardPosition: CardPositionType;
     userInfo: IUserInfo | null;
     isLoggedIn: boolean;
@@ -27,7 +26,7 @@ interface IProps {
 
 const cardPositions: CardPositionType[] = ['front', 'back'];
 
-const Main = ({ cardWrapperRef, isNavOpen, displayQuotes, historyList, cardPosition, favoriteList, userInfo, isLoggedIn, requestData, handleNav, handleLoginBox, onLogout, onChangeFavorite, onClickNavContent }: IProps) => {
+const Main = ({ cardWrapperRef, isNavOpen, displayQuotes, userQuotes, cardPosition, userInfo, isLoggedIn, requestData, handleNav, handleLoginBox, onLogout, onChangeFavorite, onClickNavContent }: IProps) => {
     const onDownload = (): void => {
         if(cardWrapperRef.current) {
             downloadToImg(cardWrapperRef.current);
@@ -55,10 +54,9 @@ const Main = ({ cardWrapperRef, isNavOpen, displayQuotes, historyList, cardPosit
             </section>
             <Nav 
                 isNavOpen={isNavOpen} 
-                historyList={historyList}
+                userQuotes={userQuotes}
                 userInfo={userInfo}
                 isLoggedIn={isLoggedIn}
-                favoriteList={favoriteList}
                 onClickNavContent={onClickNavContent}
                 handleNav={handleNav}
                 handleLoginBox={handleLoginBox}
