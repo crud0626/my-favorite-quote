@@ -4,14 +4,13 @@ import * as sizes from '~/styles/common/sizes';
 import * as colors from '~/styles/common/colors';
 import { PrimaryButton } from "~/styles/common/PrimaryButton";
 import { StyledLoginButton, StyledNavHeader } from "./NavHeader.styles";
-import { IUserInfo } from "~/types/user.type";
 import { LoginIcon, LogoutIcon } from "~/assets";
+import { useUserStore } from "~/stores/useUserStore";
+import { IAuthService } from "~/types/auth.type";
 
 interface IProps {
-    userInfo: IUserInfo | null;
-    isLoggedIn: boolean;
+    authService: IAuthService;
     handleLoginBox(): void;
-    onLogout(): Promise<void>;
 }
 
 const LoginButton = ({ handleLoginBox }: Pick<IProps, 'handleLoginBox'>) => {
@@ -25,7 +24,22 @@ const LoginButton = ({ handleLoginBox }: Pick<IProps, 'handleLoginBox'>) => {
     );
 };
 
-const UserInfo = ({ userInfo, isLoggedIn, onLogout }: Omit<IProps, 'handleLoginBox'>) => {
+const UserInfo = ({ authService }: Pick<IProps, 'authService'>) => {
+    const { isLoggedIn, userInfo, updateUserInfo, clearUserQuotes} = useUserStore();
+
+    const onLogout = async (): Promise<void> => {
+        const status = await authService.requestLogout();
+
+        if(status) {
+            updateUserInfo();
+            clearUserQuotes();
+            window.alert("로그아웃 되었습니다.");
+            return;
+        }
+
+        alert("로그아웃 도중 에러가 발생했습니다.");
+    }
+
     if (!userInfo) return null;
 
     const { displayName, photoURL } = userInfo;
@@ -48,12 +62,14 @@ const UserInfo = ({ userInfo, isLoggedIn, onLogout }: Omit<IProps, 'handleLoginB
     );
 }
 
-const NavHeader = ({ userInfo, isLoggedIn, handleLoginBox, onLogout }: IProps) => {
+const NavHeader = ({ authService, handleLoginBox }: IProps) => {
+    const { isLoggedIn } = useUserStore();
+
     return (
         <StyledNavHeader>
             {
-                isLoggedIn && userInfo
-                ? <UserInfo { ...{userInfo, isLoggedIn, onLogout}} />
+                isLoggedIn
+                ? <UserInfo { ...{ authService, isLoggedIn }} />
                 : <LoginButton handleLoginBox={handleLoginBox} />
             }
         </StyledNavHeader>

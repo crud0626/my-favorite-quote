@@ -4,13 +4,14 @@ import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
 import { MainLogo, NavBtnWrapper, StyledHeader } from './Header.styles';
 import { LoginIcon, LogoutIcon } from '~/assets';
+import { useUserStore } from '~/stores/useUserStore';
+import { IAuthService } from '~/types/auth.type';
 
 interface IProps {
     isNavOpen: boolean;
-    isLoggedIn: boolean;
+    authService: IAuthService;
     handleNav(): void;
     handleLoginBox(): void;
-    onLogout(): Promise<void>;
 }
 
 const NavButton = ({ isNavOpen, handleNav }: Pick<IProps, 'isNavOpen' | 'handleNav'>) => {
@@ -25,7 +26,22 @@ const NavButton = ({ isNavOpen, handleNav }: Pick<IProps, 'isNavOpen' | 'handleN
     );
 }
 
-const Header = ({ isNavOpen, isLoggedIn, handleNav, handleLoginBox, onLogout }: IProps) => {
+const Header = ({ isNavOpen, authService, handleNav, handleLoginBox }: IProps) => {
+    const { isLoggedIn, updateUserInfo, clearUserQuotes } = useUserStore();
+
+    const onLogout = async (): Promise<void> => {
+        const status = await authService.requestLogout();
+
+        if(status) {
+            updateUserInfo();
+            clearUserQuotes();
+            window.alert("로그아웃 되었습니다.");
+            return;
+        }
+
+        alert("로그아웃 도중 에러가 발생했습니다.");
+    }
+
     const onClick = () => {
         isLoggedIn ? onLogout() : handleLoginBox();
     }

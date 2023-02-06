@@ -9,10 +9,11 @@ import { getStorageData, saveStorageData } from '~/utils/sessionStorage';
 import { onAuthStateChanged } from 'firebase/auth';
 import { rotateRegex } from './constants/regex';
 import { FirebaseDB } from './services/database';
-import { ChevronEventType, IUserInfo, UserQuotesType } from './types/user.type';
-import { IAuthService, ProviderNames } from './types/auth.type';
+import { ChevronEventType, UserQuotesType } from './types/user.type';
+import { IAuthService } from './types/auth.type';
 import { IQuoteContent, ResponseQuote } from './types/quote.type';
 import { useCardStore } from './stores/useCardStore';
+import { useUserStore } from './stores/useUserStore';
 
 interface IProps {
     authService: IAuthService;
@@ -22,15 +23,10 @@ interface IProps {
 
 const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
     const { cardPosition, displayQuotes, changeCardPosition, changeDisplayQuote, updateDisplayQuotes } = useCardStore();
+    const { userInfo, userQuotes, updateUserInfo, updateHistory, updateFavorite } = useUserStore();
     const cardWrapperRef = useRef<HTMLDivElement | null>(null);
     const [isLoginBoxOpen, setIsLoginBoxOpen] = useState<boolean>(false);
     const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
-    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-    const [userQuotes, setUserQuotes] = useState<UserQuotesType>({
-        history: [],
-        favorite: []
-    });
-    const [userInfo, setUserInfo] = useState<IUserInfo | null>(null);
 
     const handleNav = useCallback(() => setIsNavOpen(state => !state), []);
     const handleLoginBox = useCallback(() => setIsLoginBoxOpen((prev) => !prev), []);
@@ -72,26 +68,10 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
             favorite: newFavorite
         };
         
-        setUserQuotes(newUserQuotes);
+        updateHistory(newUserQuotes.history);
+        updateFavorite(newUserQuotes.favorite);
         saveUserData(newUserQuotes);
     };
-
-    const updateHistory = (newItem: IQuoteContent) => {
-        setUserQuotes((prevState) => {
-            const newUserQuotes = { ...prevState };
-
-            const filteredList = prevState.history
-                .filter(quote => quote.id !== newItem.id)
-                .slice(0, 9);
-
-            newUserQuotes.history = [newItem, ...filteredList];
-
-            // Anti-pattern
-            saveUserData(newUserQuotes);
-
-            return newUserQuotes;
-        });
-    }
 
     const checkFavoriteQuote = (resQuote: ResponseQuote) => {
         const currentQuote = {
@@ -125,44 +105,14 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
         }
     }
 
-    const onLogin = async (providerName: ProviderNames): Promise<void> => {
-        const userInfo = await authService.requestLogin(providerName);
-        if(userInfo) {
-            setUserInfo(userInfo);
-            setIsLoggedIn(true);
-
-            if(userInfo.uid) getUserData(userInfo.uid);
-        }
-    }
-
-    const onLogout = async (): Promise<void> => {
-        const status = await authService.requestLogout();
-
-        if(status) {
-            setUserInfo(null);
-            setUserQuotes({
-                history: [],
-                favorite: []
-            });
-            setIsLoggedIn(false);
-            window.alert("로그아웃 되었습니다.");
-            return;
-        }
-
-        alert("로그아웃 도중 에러가 발생했습니다.");
-    }
-
     const checkUserInfo = () => {
         onAuthStateChanged(authService.auth, (user) => {
             if(user && user.displayName && user.photoURL) {
-                const { displayName, photoURL, uid } = user;
-                setUserInfo({ displayName, photoURL, uid });
-                setIsLoggedIn(true);
+                updateUserInfo(user);
                 getUserData(user.uid);
                 return;
             }
 
-            setIsLoggedIn(false);
             initData();
         });
     }
@@ -191,7 +141,10 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
 
         if(savedUserData) {
             const recentQuote = savedUserData.history[0];
-            setUserQuotes(savedUserData);
+            const { history, favorite } = savedUserData;
+
+            updateHistory(history);
+            updateFavorite(favorite);
             changeDisplayQuote(recentQuote, cardPosition);
             changeCardPosition();
             handleCardFilp();
@@ -215,7 +168,9 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
 
         if(userData) {
             const recentQuote = userData.history[0];
-            setUserQuotes(userData);
+            const { history, favorite } = userData;
+            updateHistory(history);
+            updateFavorite(favorite);
             changeDisplayQuote(recentQuote, cardPosition);
             changeCardPosition();
             handleCardFilp();
@@ -234,22 +189,17 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
             <GlobalStyle />
                 <Header 
                     isNavOpen={isNavOpen} 
-                    isLoggedIn={isLoggedIn}
+                    authService={authService}
                     handleNav={handleNav}
                     handleLoginBox={handleLoginBox}
-                    onLogout={onLogout}
                 />
                 <Main 
                     cardWrapperRef={cardWrapperRef}
                     isNavOpen={isNavOpen} 
-                    userQuotes={userQuotes}
-                    isLoggedIn={isLoggedIn}
-                    userInfo={userInfo}
+                    authService={authService}
                     requestData={requestData}
                     handleNav={handleNav}
                     handleLoginBox={handleLoginBox}
-                    handleCardFilp={handleCardFilp}
-                    onLogout={onLogout}
                     onChangeFavorite={onChangeFavorite}
                     onClickNavContent={onClickNavContent}
                 />
@@ -257,7 +207,8 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
                 {
                     isLoginBoxOpen &&
                     <LoginBox 
-                        onLogin={onLogin}
+                        authService={authService}
+                        getUserData={getUserData}
                         handleLoginBox={handleLoginBox}
                     />
                 }

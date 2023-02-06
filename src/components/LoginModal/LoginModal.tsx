@@ -4,15 +4,16 @@ import { StyledLoginModal } from './LoginModal.styles';
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
 import SVGIconBtn from '../common/SVGIconBtn/SVGIconBtn';
-import { ProviderNames } from '~/types/auth.type';
+import { IAuthService } from '~/types/auth.type';
 import { CloseIcon } from '~/assets';
 
 interface IProps {
-    onLogin(providerName: ProviderNames): Promise<void>;
+    authService: IAuthService;
+    getUserData: (userId: string) => Promise<void>;
     handleLoginBox(): void;
 }
 
-const LoginBox = ({ onLogin, handleLoginBox }: IProps) => {
+const LoginBox = ({ authService, getUserData, handleLoginBox }: IProps) => {
     const onClick = useCallback(({ target, currentTarget }: React.MouseEvent) => {
         if (target === currentTarget) handleLoginBox();
     }, [handleLoginBox]);
@@ -25,7 +26,8 @@ const LoginBox = ({ onLogin, handleLoginBox }: IProps) => {
                     <span className='sub_title'>Please enter your details.</span>
                 </div>
                 <SocialLoginBox 
-                    onLogin={onLogin}
+                    authService={authService}
+                    getUserData={getUserData}
                     handleLoginBox={handleLoginBox}
                 />
                 <SVGIconBtn

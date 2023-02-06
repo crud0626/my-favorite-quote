@@ -3,20 +3,20 @@ import NavHeader from './NavHeader/NavHeader';
 import NavAccordion from './NavBody/NavAccordion';
 import { StyledNav, StyledNavProps } from './Nav.styles';
 import { IQuoteContent } from '~/types/quote.type';
-import { IUserInfo, UserQuotesType } from '~/types/user.type';
+import { useUserStore } from '~/stores/useUserStore';
+import { IAuthService } from '~/types/auth.type';
 
 interface IProps extends StyledNavProps {
-    userQuotes: UserQuotesType;
-    userInfo: IUserInfo | null;
-    isLoggedIn: boolean;
+    authService: IAuthService;
     handleNav(): void;
     handleLoginBox(): void;
-    onLogout(): Promise<void>;
     onClickNavContent(target: IQuoteContent): void;
     onChangeFavorite(target: IQuoteContent): void;
 }
 
-const Nav = ({ isNavOpen, userQuotes, userInfo, isLoggedIn, onClickNavContent, handleNav, handleLoginBox, onLogout, onChangeFavorite }: IProps) => {
+const Nav = ({ isNavOpen, authService, onClickNavContent, handleNav, handleLoginBox, onChangeFavorite }: IProps) => {
+    const { userQuotes } = useUserStore();
+
     const onClick = useCallback((event: React.MouseEvent) => {
         if(event.target === event.currentTarget) {
             handleNav();
@@ -27,10 +27,8 @@ const Nav = ({ isNavOpen, userQuotes, userInfo, isLoggedIn, onClickNavContent, h
         <StyledNav isNavOpen={isNavOpen} onClick={onClick}>
             <div>
                 <NavHeader 
-                    userInfo={userInfo}
-                    isLoggedIn={isLoggedIn}
+                    authService={authService}
                     handleLoginBox={handleLoginBox}
-                    onLogout={onLogout}
                 />
                 <ul className='nav_body'>
                     <NavAccordion 
