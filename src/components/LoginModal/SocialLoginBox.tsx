@@ -1,17 +1,17 @@
 import React, { useCallback } from 'react';
 import { SocialBox } from './LoginModal.styles';
-import { IAuthService, ProviderNames } from '~/types/auth.type';
-import { socialProviders } from '~/constants/login';
-import { FACEBOOK_LOGO, GITHUB_LOGO, GOOGLE_LOGO } from '~/assets';
 import { useUserStore } from '~/stores/useUserStore';
+import { authService } from '~/services/authService';
+import { socialProviders } from '~/constants/login';
+import { ProviderNames } from '~/types/auth.type';
+import { FACEBOOK_LOGO, GITHUB_LOGO, GOOGLE_LOGO } from '~/assets';
 
 interface IProps {
-    authService: IAuthService;
-    getUserData: (userId: string) => Promise<void>;
+    getUserData(userId: string): Promise<void>;
     handleLoginBox(): void;
 }
 
-const SocialLoginBox = ({ authService, getUserData, handleLoginBox }: IProps) => {
+const SocialLoginBox = ({ getUserData, handleLoginBox }: IProps) => {
     const { updateUserInfo } = useUserStore();
     const setLogo = useCallback((name: ProviderNames) => {
         switch(name) {

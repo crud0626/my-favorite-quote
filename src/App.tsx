@@ -4,25 +4,19 @@ import Header from '~/components/Header/Header';
 import Main from '~/components/Main/Main';
 import LoginBox from '~/components/LoginModal/LoginModal';
 import GlobalStyle from '~/styles/common/GlobalStyle';
-import { QuotesAPI } from '~/services/quotesApi';
 import { getStorageData, saveStorageData } from '~/utils/sessionStorage';
 import { onAuthStateChanged } from 'firebase/auth';
 import { rotateRegex } from './constants/regex';
-import { FirebaseDB } from './services/database';
 import { ChevronEventType, UserQuotesType } from './types/user.type';
-import { IAuthService } from './types/auth.type';
 import { IQuoteContent, ResponseQuote } from './types/quote.type';
 import { useCardStore } from './stores/useCardStore';
 import { useUserStore } from './stores/useUserStore';
 import { useLoginBoxStore } from './stores/useLoginBoxStore';
+import { firebaseDB } from './services/database';
+import { authService } from './services/authService';
+import { quotesAPI } from './services/quotesApi';
 
-interface IProps {
-    authService: IAuthService;
-    firebaseDB: FirebaseDB;
-    quotesAPI: InstanceType<typeof QuotesAPI>;
-}
-
-const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
+const App = () => {
     const { cardPosition, displayQuotes, changeCardPosition, changeDisplayQuote, updateDisplayQuotes } = useCardStore();
     const { userInfo, userQuotes, updateUserInfo, updateHistory, updateFavorite } = useUserStore();
     const cardWrapperRef = useRef<HTMLDivElement | null>(null);
@@ -175,12 +169,9 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
     return (
         <>
             <GlobalStyle />
-                <Header 
-                    authService={authService}
-                />
+                <Header />
                 <Main 
                     cardWrapperRef={cardWrapperRef}
-                    authService={authService}
                     requestData={requestData}
                     onChangeFavorite={onChangeFavorite}
                     handleCardFilp={handleCardFilp}
@@ -188,10 +179,7 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
                 <Footer />
                 {
                     isLoginBoxOpen &&
-                    <LoginBox 
-                        authService={authService}
-                        getUserData={getUserData}
-                    />
+                    <LoginBox getUserData={getUserData} />
                 }
         </>
     );

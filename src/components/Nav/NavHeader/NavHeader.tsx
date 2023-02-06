@@ -6,12 +6,8 @@ import { PrimaryButton } from "~/styles/common/PrimaryButton";
 import { StyledLoginButton, StyledNavHeader } from "./NavHeader.styles";
 import { LoginIcon, LogoutIcon } from "~/assets";
 import { useUserStore } from "~/stores/useUserStore";
-import { IAuthService } from "~/types/auth.type";
 import { useLoginBoxStore } from "~/stores/useLoginBoxStore";
-
-interface IProps {
-    authService: IAuthService;
-}
+import { authService } from "~/services/authService";
 
 const LoginButton = () => {
     const { handleLoginBox } = useLoginBoxStore();
@@ -26,7 +22,7 @@ const LoginButton = () => {
     );
 };
 
-const UserInfo = ({ authService }: Pick<IProps, 'authService'>) => {
+const UserInfo = () => {
     const { isLoggedIn, userInfo, updateUserInfo, clearUserQuotes} = useUserStore();
 
     const onLogout = async (): Promise<void> => {
@@ -64,14 +60,14 @@ const UserInfo = ({ authService }: Pick<IProps, 'authService'>) => {
     );
 }
 
-const NavHeader = ({ authService }: IProps) => {
+const NavHeader = () => {
     const { isLoggedIn } = useUserStore();
 
     return (
         <StyledNavHeader>
             {
                 isLoggedIn
-                ? <UserInfo { ...{ authService, isLoggedIn }} />
+                ? <UserInfo />
                 : <LoginButton />
             }
         </StyledNavHeader>

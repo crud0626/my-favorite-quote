@@ -2,7 +2,7 @@ import { ResponseQuote } from "~/types/quote.type";
 
 const API_END_POINT = "https://api.quotable.io";
 
-export class QuotesAPI {
+class QuotesAPI {
     getQuotesData = async (id?: string): Promise<ResponseQuote> => {
         const requestURL = id ? `${API_END_POINT}/quotes/${id}` : `${API_END_POINT}/random`;
 
@@ -27,3 +27,5 @@ export class QuotesAPI {
         }
     }
 }
+
+export const quotesAPI = new QuotesAPI();

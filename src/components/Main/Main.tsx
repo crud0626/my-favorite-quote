@@ -6,11 +6,9 @@ import { CardWrapper, StyledMain } from './Main.styles';
 import { downloadToImg } from '~/services/html2canvas';
 import { CardPositionType, ChevronEventType } from '~/types/user.type';
 import { IQuoteContent } from '~/types/quote.type';
-import { IAuthService } from '~/types/auth.type';
 
 interface IProps {
     cardWrapperRef: MutableRefObject<HTMLDivElement | null>;
-    authService: IAuthService;
     requestData(id?: string): Promise<any>;
     handleCardFilp(direction: ChevronEventType): void;
     onChangeFavorite(target: IQuoteContent): void;
@@ -18,7 +16,7 @@ interface IProps {
 
 const cardPositions: CardPositionType[] = ['front', 'back'];
 
-const Main = ({ cardWrapperRef, authService, requestData, handleCardFilp, onChangeFavorite }: IProps) => {
+const Main = ({ cardWrapperRef, requestData, handleCardFilp, onChangeFavorite }: IProps) => {
 
     const onDownload = (): void => {
         if(cardWrapperRef.current) {
@@ -44,7 +42,6 @@ const Main = ({ cardWrapperRef, authService, requestData, handleCardFilp, onChan
                 </div>
             </section>
             <Nav 
-                authService={authService} 
                 handleCardFilp={handleCardFilp}
                 onChangeFavorite={onChangeFavorite}
             />

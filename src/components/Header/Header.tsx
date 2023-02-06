@@ -3,15 +3,11 @@ import SVGIconBtn from '~/components/common/SVGIconBtn/SVGIconBtn';
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
 import { MainLogo, NavBtnWrapper, StyledHeader } from './Header.styles';
-import { LoginIcon, LogoutIcon } from '~/assets';
 import { useUserStore } from '~/stores/useUserStore';
-import { IAuthService } from '~/types/auth.type';
 import { useNavStore } from '~/stores/useNavStore';
 import { useLoginBoxStore } from '~/stores/useLoginBoxStore';
-
-interface IProps {
-    authService: IAuthService;
-}
+import { authService } from '~/services/authService';
+import { LoginIcon, LogoutIcon } from '~/assets';
 
 const NavButton = () => {
     const { isOpenNav, handleNav } = useNavStore();
@@ -26,7 +22,7 @@ const NavButton = () => {
     );
 }
 
-const Header = ({ authService }: IProps) => {
+const Header = () => {
     const { isLoggedIn, updateUserInfo, clearUserQuotes } = useUserStore();
     const { handleLoginBox } = useLoginBoxStore();
 

@@ -7,7 +7,7 @@ interface IFirebaseDB {
     readUserData(userId: string): Promise<UserQuotesType>;
 }
 
-export class FirebaseDB implements IFirebaseDB {
+class FirebaseDB implements IFirebaseDB {
     private db = getDatabase(firebaseApp);
     constructor() {}
 
@@ -40,3 +40,5 @@ export class FirebaseDB implements IFirebaseDB {
         }
     }
 }
+
+export const firebaseDB = new FirebaseDB();

@@ -2,20 +2,17 @@ import React, { useCallback } from 'react';
 import NavHeader from './NavHeader/NavHeader';
 import NavAccordion from './NavBody/NavAccordion';
 import { StyledNav } from './Nav.styles';
-import { IQuoteContent } from '~/types/quote.type';
 import { useUserStore } from '~/stores/useUserStore';
-import { IAuthService } from '~/types/auth.type';
 import { useNavStore } from '~/stores/useNavStore';
+import { IQuoteContent } from '~/types/quote.type';
 import { ChevronEventType } from '~/types/user.type';
 
 interface IProps {
-    authService: IAuthService;
-    // handleLoginBox(): void;
     handleCardFilp(direction: ChevronEventType): void;
     onChangeFavorite(target: IQuoteContent): void;
 }
 
-const Nav = ({ authService, handleCardFilp, onChangeFavorite }: IProps) => {
+const Nav = ({ handleCardFilp, onChangeFavorite }: IProps) => {
     const { isOpenNav, handleNav } = useNavStore();
     const { userQuotes } = useUserStore();
 
@@ -28,9 +25,7 @@ const Nav = ({ authService, handleCardFilp, onChangeFavorite }: IProps) => {
     return (
         <StyledNav isOpenNav={isOpenNav} onClick={onClick}>
             <div>
-                <NavHeader 
-                    authService={authService}
-                />
+                <NavHeader />
                 <ul className='nav_body'>
                     <NavAccordion 
                         titleName={"history"}
