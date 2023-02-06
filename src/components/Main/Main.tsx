@@ -10,18 +10,16 @@ import { IAuthService } from '~/types/auth.type';
 
 interface IProps {
     cardWrapperRef: MutableRefObject<HTMLDivElement | null>;
-    isNavOpen: boolean;
     authService: IAuthService;
     requestData(id?: string): Promise<any>;
-    handleNav(): void;
     handleLoginBox(): void;
+    handleCardFilp(direction: ChevronEventType): void;
     onChangeFavorite(target: IQuoteContent): void;
-    onClickNavContent(target: IQuoteContent): void;
 }
 
 const cardPositions: CardPositionType[] = ['front', 'back'];
 
-const Main = ({ cardWrapperRef, isNavOpen, authService, requestData, handleNav, handleLoginBox, onChangeFavorite, onClickNavContent }: IProps) => {
+const Main = ({ cardWrapperRef, authService, requestData, handleLoginBox, handleCardFilp, onChangeFavorite }: IProps) => {
 
     const onDownload = (): void => {
         if(cardWrapperRef.current) {
@@ -47,10 +45,8 @@ const Main = ({ cardWrapperRef, isNavOpen, authService, requestData, handleNav, 
                 </div>
             </section>
             <Nav 
-                isNavOpen={isNavOpen}
                 authService={authService} 
-                onClickNavContent={onClickNavContent}
-                handleNav={handleNav}
+                handleCardFilp={handleCardFilp}
                 handleLoginBox={handleLoginBox}
                 onChangeFavorite={onChangeFavorite}
             />

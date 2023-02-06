@@ -1,20 +1,22 @@
 import React, { useCallback } from 'react';
 import NavHeader from './NavHeader/NavHeader';
 import NavAccordion from './NavBody/NavAccordion';
-import { StyledNav, StyledNavProps } from './Nav.styles';
+import { StyledNav } from './Nav.styles';
 import { IQuoteContent } from '~/types/quote.type';
 import { useUserStore } from '~/stores/useUserStore';
 import { IAuthService } from '~/types/auth.type';
+import { useNavStore } from '~/stores/useNavStore';
+import { ChevronEventType } from '~/types/user.type';
 
-interface IProps extends StyledNavProps {
+interface IProps {
     authService: IAuthService;
-    handleNav(): void;
     handleLoginBox(): void;
-    onClickNavContent(target: IQuoteContent): void;
+    handleCardFilp(direction: ChevronEventType): void;
     onChangeFavorite(target: IQuoteContent): void;
 }
 
-const Nav = ({ isNavOpen, authService, onClickNavContent, handleNav, handleLoginBox, onChangeFavorite }: IProps) => {
+const Nav = ({ authService, handleLoginBox, handleCardFilp, onChangeFavorite }: IProps) => {
+    const { isOpenNav, handleNav } = useNavStore();
     const { userQuotes } = useUserStore();
 
     const onClick = useCallback((event: React.MouseEvent) => {
@@ -24,7 +26,7 @@ const Nav = ({ isNavOpen, authService, onClickNavContent, handleNav, handleLogin
     }, []);
 
     return (
-        <StyledNav isNavOpen={isNavOpen} onClick={onClick}>
+        <StyledNav isOpenNav={isOpenNav} onClick={onClick}>
             <div>
                 <NavHeader 
                     authService={authService}
@@ -34,13 +36,13 @@ const Nav = ({ isNavOpen, authService, onClickNavContent, handleNav, handleLogin
                     <NavAccordion 
                         titleName={"history"}
                         contents={userQuotes.history}
-                        onClickNavContent={onClickNavContent}
+                        handleCardFilp={handleCardFilp}
                         onChangeFavorite={onChangeFavorite}
                     />
                     <NavAccordion 
                         titleName={"favorite"}
                         contents={userQuotes.favorite}
-                        onClickNavContent={onClickNavContent}
+                        handleCardFilp={handleCardFilp}
                         onChangeFavorite={onChangeFavorite}
                     />
                 </ul>

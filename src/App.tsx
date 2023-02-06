@@ -26,9 +26,6 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
     const { userInfo, userQuotes, updateUserInfo, updateHistory, updateFavorite } = useUserStore();
     const cardWrapperRef = useRef<HTMLDivElement | null>(null);
     const [isLoginBoxOpen, setIsLoginBoxOpen] = useState<boolean>(false);
-    const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
-
-    const handleNav = useCallback(() => setIsNavOpen(state => !state), []);
     const handleLoginBox = useCallback(() => setIsLoginBoxOpen((prev) => !prev), []);
 
     const onChangeFavorite = (target: IQuoteContent) => {
@@ -117,15 +114,6 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
         });
     }
 
-    const onClickNavContent = (targetQuote: IQuoteContent): void => {
-        if(displayQuotes[cardPosition]?.id === targetQuote.id) return;
-
-        changeDisplayQuote(targetQuote, cardPosition);
-        changeCardPosition();
-        updateHistory(targetQuote);
-        handleCardFilp();
-    }
-
     const handleCardFilp = (direction: ChevronEventType = "next"): void => {
         if(cardWrapperRef.current) {
             const matched = cardWrapperRef.current.style.transform.match(rotateRegex);
@@ -188,20 +176,16 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
         <>
             <GlobalStyle />
                 <Header 
-                    isNavOpen={isNavOpen} 
                     authService={authService}
-                    handleNav={handleNav}
                     handleLoginBox={handleLoginBox}
                 />
                 <Main 
                     cardWrapperRef={cardWrapperRef}
-                    isNavOpen={isNavOpen} 
                     authService={authService}
                     requestData={requestData}
-                    handleNav={handleNav}
                     handleLoginBox={handleLoginBox}
                     onChangeFavorite={onChangeFavorite}
-                    onClickNavContent={onClickNavContent}
+                    handleCardFilp={handleCardFilp}
                 />
                 <Footer />
                 {

@@ -4,16 +4,17 @@ import * as colors from '~/styles/common/colors';
 import { AccordionTitle, NavBodyButton, TextBox } from './NavAccordion.styles';
 import { IQuoteContent, QuotesGroupType } from '~/types/quote.type';
 import { BottomChevron } from '~/assets';
+import { ChevronEventType } from '~/types/user.type';
 
 export interface ContentProps {
     titleName: QuotesGroupType;
     contents: IQuoteContent[];
-    onClickNavContent(target: IQuoteContent): void;
+    handleCardFilp(direction: ChevronEventType): void;
     onChangeFavorite(target: IQuoteContent): void;
 }
 
 const NavContentWrapper = (props: Omit<ContentProps, 'titleName'>) => {
-    const { contents, onClickNavContent, onChangeFavorite } = props;
+    const { contents, handleCardFilp, onChangeFavorite } = props;
 
     return (
         <ul>
@@ -24,7 +25,7 @@ const NavContentWrapper = (props: Omit<ContentProps, 'titleName'>) => {
                     <ContentBox 
                         key={content.id}
                         content={content}
-                        onClickNavContent={onClickNavContent}
+                        handleCardFilp={handleCardFilp}
                         onChangeFavorite={onChangeFavorite}
                     />
                 ))

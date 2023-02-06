@@ -6,27 +6,27 @@ import { MainLogo, NavBtnWrapper, StyledHeader } from './Header.styles';
 import { LoginIcon, LogoutIcon } from '~/assets';
 import { useUserStore } from '~/stores/useUserStore';
 import { IAuthService } from '~/types/auth.type';
+import { useNavStore } from '~/stores/useNavStore';
 
 interface IProps {
-    isNavOpen: boolean;
     authService: IAuthService;
-    handleNav(): void;
     handleLoginBox(): void;
 }
 
-const NavButton = ({ isNavOpen, handleNav }: Pick<IProps, 'isNavOpen' | 'handleNav'>) => {
+const NavButton = () => {
+    const { isOpenNav, handleNav } = useNavStore();
     const lineLen = new Array(3).fill("");
 
     return (
         <div>
-            <NavBtnWrapper isOpen={isNavOpen} onClick={handleNav}>
+            <NavBtnWrapper isOpen={isOpenNav} onClick={handleNav}>
                 {lineLen.map((_, i) => <span key={i} className='line'></span>)}
             </NavBtnWrapper>
         </div>
     );
 }
 
-const Header = ({ isNavOpen, authService, handleNav, handleLoginBox }: IProps) => {
+const Header = ({ authService, handleLoginBox }: IProps) => {
     const { isLoggedIn, updateUserInfo, clearUserQuotes } = useUserStore();
 
     const onLogout = async (): Promise<void> => {
@@ -48,10 +48,7 @@ const Header = ({ isNavOpen, authService, handleNav, handleLoginBox }: IProps) =
 
     return (
         <StyledHeader>
-            <NavButton
-                isNavOpen={isNavOpen} 
-                handleNav={handleNav}
-            />
+            <NavButton />
             <div>
                 <MainLogo as="a">
                     <h1>myFavoriteQuotes</h1>
