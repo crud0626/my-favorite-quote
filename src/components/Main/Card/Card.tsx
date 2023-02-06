@@ -5,14 +5,17 @@ import * as sizes from '~/styles/common/sizes';
 import { InnerBtnWrapper, StyledCard, StyledCardProps } from './Card.styles';
 import { IQuoteContent } from '~/types/quote.type';
 import { DownloadIcon, EmptyHeartIcon, FillHeartIcon } from '~/assets';
+import { useCardStore } from '~/stores/useCardStore';
 
-interface IProps extends StyledCardProps {
-    quoteContent: IQuoteContent | null;
+interface IProps extends Pick<StyledCardProps, 'position'> {
     onDownload(): void;
     onChangeFavorite(target: IQuoteContent): void;
 }
 
-const Card = ({ position, cardPosition, quoteContent, onDownload, onChangeFavorite }: IProps) => {
+const Card = ({ position, onDownload, onChangeFavorite }: IProps) => {
+    const { cardPosition, displayQuotes } = useCardStore();
+    const quoteContent = displayQuotes[position];
+
     return (
         <StyledCard position={position} cardPosition={cardPosition}>
             {quoteContent &&

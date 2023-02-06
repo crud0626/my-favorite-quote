@@ -9,9 +9,10 @@ import { getStorageData, saveStorageData } from '~/utils/sessionStorage';
 import { onAuthStateChanged } from 'firebase/auth';
 import { rotateRegex } from './constants/regex';
 import { FirebaseDB } from './services/database';
-import { CardPositionType, ChevronEventType, IUserInfo, UserQuotesType } from './types/user.type';
+import { ChevronEventType, IUserInfo, UserQuotesType } from './types/user.type';
 import { IAuthService, ProviderNames } from './types/auth.type';
-import { DisplayQuotesType, IQuoteContent, ResponseQuote } from './types/quote.type';
+import { IQuoteContent, ResponseQuote } from './types/quote.type';
+import { useCardStore } from './stores/useCardStore';
 
 interface IProps {
     authService: IAuthService;
@@ -20,6 +21,7 @@ interface IProps {
 }
 
 const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
+    const { cardPosition, displayQuotes, changeCardPosition, changeDisplayQuote, updateDisplayQuotes } = useCardStore();
     const cardWrapperRef = useRef<HTMLDivElement | null>(null);
     const [isLoginBoxOpen, setIsLoginBoxOpen] = useState<boolean>(false);
     const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
@@ -27,11 +29,6 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
     const [userQuotes, setUserQuotes] = useState<UserQuotesType>({
         history: [],
         favorite: []
-    });
-    const [cardPosition, setCardPosition] = useState<CardPositionType>("front");
-    const [displayQuotes, setDisplayQuotes] = useState<DisplayQuotesType>({
-        front: null,
-        back: null
     });
     const [userInfo, setUserInfo] = useState<IUserInfo | null>(null);
 
@@ -67,7 +64,7 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
         if(cardPosition) {
             const newQuoteData = { ...displayQuotes };
             cardPosition === "front" ? newQuoteData.front = willChangeQuote : newQuoteData.back = willChangeQuote;
-            setDisplayQuotes(newQuoteData);
+            updateDisplayQuotes(newQuoteData);
         }
 
         const newUserQuotes = {
@@ -115,18 +112,8 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
             if (resData) {
                 const newQuote = checkFavoriteQuote(resData);
 
-                setCardPosition((prevState) => {
-                    const nextPosition = prevState === 'front' ? 'back' : 'front';
-
-                    // Anti-Pattern
-                    setDisplayQuotes({
-                        ...displayQuotes,
-                        [nextPosition]: newQuote
-                    });
-
-                    return nextPosition;
-                });
-
+                changeCardPosition();
+                changeDisplayQuote(newQuote, cardPosition);
                 updateHistory(newQuote);
                 handleCardFilp();
 
@@ -183,11 +170,8 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
     const onClickNavContent = (targetQuote: IQuoteContent): void => {
         if(displayQuotes[cardPosition]?.id === targetQuote.id) return;
 
-        cardPosition === "front" 
-        ? setDisplayQuotes({...displayQuotes, back: targetQuote}) 
-        : setDisplayQuotes({...displayQuotes, front: targetQuote});
-
-        setCardPosition((prevState) => prevState === "front" ? "back" : "front");
+        changeDisplayQuote(targetQuote, cardPosition);
+        changeCardPosition();
         updateHistory(targetQuote);
         handleCardFilp();
     }
@@ -208,11 +192,8 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
         if(savedUserData) {
             const recentQuote = savedUserData.history[0];
             setUserQuotes(savedUserData);
-            setDisplayQuotes({
-                ...displayQuotes,
-                back: recentQuote
-            });
-            setCardPosition((prevState) => prevState === "front" ? "back" : "front");
+            changeDisplayQuote(recentQuote, cardPosition);
+            changeCardPosition();
             handleCardFilp();
             return;
         }
@@ -235,11 +216,8 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
         if(userData) {
             const recentQuote = userData.history[0];
             setUserQuotes(userData);
-            setDisplayQuotes({
-                ...displayQuotes,
-                back: recentQuote
-            });
-            setCardPosition((prevState) => prevState === "front" ? "back" : "front");
+            changeDisplayQuote(recentQuote, cardPosition);
+            changeCardPosition();
             handleCardFilp();
             return;
         }
@@ -264,9 +242,7 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
                 <Main 
                     cardWrapperRef={cardWrapperRef}
                     isNavOpen={isNavOpen} 
-                    displayQuotes={displayQuotes}
                     userQuotes={userQuotes}
-                    cardPosition={cardPosition}
                     isLoggedIn={isLoggedIn}
                     userInfo={userInfo}
                     requestData={requestData}
