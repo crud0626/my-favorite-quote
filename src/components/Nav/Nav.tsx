@@ -10,12 +10,12 @@ import { ChevronEventType } from '~/types/user.type';
 
 interface IProps {
     authService: IAuthService;
-    handleLoginBox(): void;
+    // handleLoginBox(): void;
     handleCardFilp(direction: ChevronEventType): void;
     onChangeFavorite(target: IQuoteContent): void;
 }
 
-const Nav = ({ authService, handleLoginBox, handleCardFilp, onChangeFavorite }: IProps) => {
+const Nav = ({ authService, handleCardFilp, onChangeFavorite }: IProps) => {
     const { isOpenNav, handleNav } = useNavStore();
     const { userQuotes } = useUserStore();
 
@@ -30,7 +30,6 @@ const Nav = ({ authService, handleLoginBox, handleCardFilp, onChangeFavorite }: 
             <div>
                 <NavHeader 
                     authService={authService}
-                    handleLoginBox={handleLoginBox}
                 />
                 <ul className='nav_body'>
                     <NavAccordion 

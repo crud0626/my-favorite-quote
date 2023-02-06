@@ -7,10 +7,10 @@ import { LoginIcon, LogoutIcon } from '~/assets';
 import { useUserStore } from '~/stores/useUserStore';
 import { IAuthService } from '~/types/auth.type';
 import { useNavStore } from '~/stores/useNavStore';
+import { useLoginBoxStore } from '~/stores/useLoginBoxStore';
 
 interface IProps {
     authService: IAuthService;
-    handleLoginBox(): void;
 }
 
 const NavButton = () => {
@@ -26,8 +26,9 @@ const NavButton = () => {
     );
 }
 
-const Header = ({ authService, handleLoginBox }: IProps) => {
+const Header = ({ authService }: IProps) => {
     const { isLoggedIn, updateUserInfo, clearUserQuotes } = useUserStore();
+    const { handleLoginBox } = useLoginBoxStore();
 
     const onLogout = async (): Promise<void> => {
         const status = await authService.requestLogout();

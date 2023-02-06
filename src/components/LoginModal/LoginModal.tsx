@@ -6,14 +6,16 @@ import * as sizes from '~/styles/common/sizes';
 import SVGIconBtn from '../common/SVGIconBtn/SVGIconBtn';
 import { IAuthService } from '~/types/auth.type';
 import { CloseIcon } from '~/assets';
+import { useLoginBoxStore } from '~/stores/useLoginBoxStore';
 
 interface IProps {
     authService: IAuthService;
     getUserData: (userId: string) => Promise<void>;
-    handleLoginBox(): void;
 }
 
-const LoginBox = ({ authService, getUserData, handleLoginBox }: IProps) => {
+const LoginBox = ({ authService, getUserData }: IProps) => {
+    const { handleLoginBox } = useLoginBoxStore();
+    
     const onClick = useCallback(({ target, currentTarget }: React.MouseEvent) => {
         if (target === currentTarget) handleLoginBox();
     }, [handleLoginBox]);

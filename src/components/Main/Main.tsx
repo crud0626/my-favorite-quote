@@ -12,14 +12,13 @@ interface IProps {
     cardWrapperRef: MutableRefObject<HTMLDivElement | null>;
     authService: IAuthService;
     requestData(id?: string): Promise<any>;
-    handleLoginBox(): void;
     handleCardFilp(direction: ChevronEventType): void;
     onChangeFavorite(target: IQuoteContent): void;
 }
 
 const cardPositions: CardPositionType[] = ['front', 'back'];
 
-const Main = ({ cardWrapperRef, authService, requestData, handleLoginBox, handleCardFilp, onChangeFavorite }: IProps) => {
+const Main = ({ cardWrapperRef, authService, requestData, handleCardFilp, onChangeFavorite }: IProps) => {
 
     const onDownload = (): void => {
         if(cardWrapperRef.current) {
@@ -47,7 +46,6 @@ const Main = ({ cardWrapperRef, authService, requestData, handleLoginBox, handle
             <Nav 
                 authService={authService} 
                 handleCardFilp={handleCardFilp}
-                handleLoginBox={handleLoginBox}
                 onChangeFavorite={onChangeFavorite}
             />
         </StyledMain>

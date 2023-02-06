@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Footer from '~/components/Footer/Footer';
 import Header from '~/components/Header/Header';
 import Main from '~/components/Main/Main';
@@ -14,6 +14,7 @@ import { IAuthService } from './types/auth.type';
 import { IQuoteContent, ResponseQuote } from './types/quote.type';
 import { useCardStore } from './stores/useCardStore';
 import { useUserStore } from './stores/useUserStore';
+import { useLoginBoxStore } from './stores/useLoginBoxStore';
 
 interface IProps {
     authService: IAuthService;
@@ -25,8 +26,7 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
     const { cardPosition, displayQuotes, changeCardPosition, changeDisplayQuote, updateDisplayQuotes } = useCardStore();
     const { userInfo, userQuotes, updateUserInfo, updateHistory, updateFavorite } = useUserStore();
     const cardWrapperRef = useRef<HTMLDivElement | null>(null);
-    const [isLoginBoxOpen, setIsLoginBoxOpen] = useState<boolean>(false);
-    const handleLoginBox = useCallback(() => setIsLoginBoxOpen((prev) => !prev), []);
+    const { isLoginBoxOpen } = useLoginBoxStore();
 
     const onChangeFavorite = (target: IQuoteContent) => {
         // 선택된 quote의 favorite 값 반대로 변환
@@ -177,13 +177,11 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
             <GlobalStyle />
                 <Header 
                     authService={authService}
-                    handleLoginBox={handleLoginBox}
                 />
                 <Main 
                     cardWrapperRef={cardWrapperRef}
                     authService={authService}
                     requestData={requestData}
-                    handleLoginBox={handleLoginBox}
                     onChangeFavorite={onChangeFavorite}
                     handleCardFilp={handleCardFilp}
                 />
@@ -193,7 +191,6 @@ const App = ({ authService, firebaseDB, quotesAPI }: IProps) => {
                     <LoginBox 
                         authService={authService}
                         getUserData={getUserData}
-                        handleLoginBox={handleLoginBox}
                     />
                 }
         </>

@@ -7,13 +7,15 @@ import { StyledLoginButton, StyledNavHeader } from "./NavHeader.styles";
 import { LoginIcon, LogoutIcon } from "~/assets";
 import { useUserStore } from "~/stores/useUserStore";
 import { IAuthService } from "~/types/auth.type";
+import { useLoginBoxStore } from "~/stores/useLoginBoxStore";
 
 interface IProps {
     authService: IAuthService;
-    handleLoginBox(): void;
 }
 
-const LoginButton = ({ handleLoginBox }: Pick<IProps, 'handleLoginBox'>) => {
+const LoginButton = () => {
+    const { handleLoginBox } = useLoginBoxStore();
+
     return (
         <StyledLoginButton onClick={handleLoginBox}>
             <span>LOGIN</span>
@@ -62,7 +64,7 @@ const UserInfo = ({ authService }: Pick<IProps, 'authService'>) => {
     );
 }
 
-const NavHeader = ({ authService, handleLoginBox }: IProps) => {
+const NavHeader = ({ authService }: IProps) => {
     const { isLoggedIn } = useUserStore();
 
     return (
@@ -70,7 +72,7 @@ const NavHeader = ({ authService, handleLoginBox }: IProps) => {
             {
                 isLoggedIn
                 ? <UserInfo { ...{ authService, isLoggedIn }} />
-                : <LoginButton handleLoginBox={handleLoginBox} />
+                : <LoginButton />
             }
         </StyledNavHeader>
     );
