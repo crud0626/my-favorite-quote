@@ -1,13 +1,13 @@
 import React, { useCallback } from 'react';
 import { useQuotesStore } from '~/stores/useQuotesStore';
 import { useCardStore } from '~/stores/useCardStore';
-import { ChevronButton, ChevronWrapper } from './ChevronBox.styles';
 import * as colors from '~/styles/common/colors';
+import { ChevronButton, ChevronWrapper } from './ChevronBox.styles';
 import { debounce } from '~/utils/debounce';
 import { LeftChevron, RightChevron } from '~/assets';
 
 const ChevronBox = () => {
-    const { cardPosition, changeCardPosition, handleCardFlip, changeDisplayQuote} = useCardStore();
+    const { changeDisplayQuote} = useCardStore();
     const { requestRandomQuote } = useQuotesStore();
 
     const fetchNewQuote = () => {
@@ -15,9 +15,7 @@ const ChevronBox = () => {
         .then(newQuote => {
             if (!newQuote) return;
 
-            changeCardPosition();
-            changeDisplayQuote(newQuote, cardPosition);
-            handleCardFlip();
+            changeDisplayQuote(newQuote);
         })
     }
     const onClick = useCallback(debounce(fetchNewQuote, 300, true), []);

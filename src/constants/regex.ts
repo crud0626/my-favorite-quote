@@ -1,1 +1,0 @@
-export const rotateRegex = /\-?\d{1,}\.?\d?(?=turn)/;

@@ -8,47 +8,26 @@ import { getStorageData } from '~/utils/sessionStorage';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useCardStore } from './stores/useCardStore';
 import { useUserStore } from './stores/useUserStore';
-import { useLoginBoxStore } from './stores/useLoginBoxStore';
 import { useQuotesStore } from './stores/useQuotesStore';
+import { useLoginBoxStore } from './stores/useLoginBoxStore';
 import { authService } from './services/authService';
 
 const App = () => {
-    const { cardPosition, changeCardPosition, changeDisplayQuote, handleCardFlip } = useCardStore();
     const { updateHistory, updateFavorite, getUserData, requestRandomQuote } = useQuotesStore();
+    const { changeDisplayQuote } = useCardStore();
     const { updateUserInfo } = useUserStore();    
     const { isLoginBoxOpen } = useLoginBoxStore();
-
-    const checkUserInfo = () => {
-        onAuthStateChanged(authService.auth, async (user) => {
-            if(user && user.displayName && user.photoURL) {
-                updateUserInfo(user);
-                
-                const latestHistory = await getUserData(user.uid);
-
-                if (latestHistory) {
-                    changeDisplayQuote(latestHistory, cardPosition);
-                    changeCardPosition();
-                    handleCardFlip();
-                }
-                return;
-            }
-
-            initData();
-        });
-    }
 
     const initData = () => {
         const savedUserData = getStorageData();
 
         if(savedUserData) {
-            const recentQuote = savedUserData.history[0];
             const { history, favorite } = savedUserData;
+            const latestHistory = savedUserData.history[0];
 
             updateHistory(history);
             updateFavorite(favorite);
-            changeDisplayQuote(recentQuote, cardPosition);
-            changeCardPosition();
-            handleCardFlip();
+            changeDisplayQuote(latestHistory);
             return;
         }
 
@@ -56,10 +35,23 @@ const App = () => {
         .then(newQuote => {
             if (!newQuote) return;
 
-            changeCardPosition();
-            changeDisplayQuote(newQuote, cardPosition);
-            handleCardFlip();
+            changeDisplayQuote(newQuote);
         })
+    }
+
+    const checkUserInfo = () => {
+        onAuthStateChanged(authService.auth, async (user) => {
+            if(user && user.displayName && user.photoURL) {
+                updateUserInfo(user);
+                
+                const latestHistory = await getUserData(user.uid);
+                if (latestHistory) changeDisplayQuote(latestHistory);
+                
+                return;
+            }
+
+            initData();
+        });
     }
 
     useEffect(() => {

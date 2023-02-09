@@ -4,14 +4,14 @@ import * as colors from '~/styles/common/colors';
 import { flexAligns } from "~/styles/mixins/flexAligns";
 
 interface ICardWrapper {
-    cardRotate: number;
+    cardRotation: number;
 }
 
 export const CardWrapper = styled.div<ICardWrapper>`
     position: relative;
     width: 100%;
     height: 100%;
-    transform: ${({ cardRotate }) => `rotateY(${cardRotate}turn)`};
+    transform: ${({ cardRotation }) => `rotateY(${cardRotation}turn)`};
     transform-style: preserve-3d;
     transition: transform 0.6s ease-in-out;
 `;

@@ -10,7 +10,7 @@ import { ProviderNames } from '~/types/auth.type';
 import { FACEBOOK_LOGO, GITHUB_LOGO, GOOGLE_LOGO } from '~/assets';
 
 const SocialLoginBox = () => {
-    const { cardPosition, changeDisplayQuote, changeCardPosition, handleCardFlip } = useCardStore();
+    const { changeDisplayQuote } = useCardStore();
     const { updateUserInfo } = useUserStore();
     const { getUserData } = useQuotesStore();
     const { handleLoginBox } = useLoginBoxStore();
@@ -30,15 +30,12 @@ const SocialLoginBox = () => {
         const userInfo = await authService.requestLogin(providerName);
 
         if(userInfo) {
-            const latestHistory = await getUserData(userInfo.uid);
             updateUserInfo(userInfo);
 
-            if (latestHistory) {
-                changeDisplayQuote(latestHistory, cardPosition);
-                changeCardPosition();
-                handleCardFlip();
-            }
-            handleLoginBox()
+            const latestHistory = await getUserData(userInfo.uid);
+            if (latestHistory) changeDisplayQuote(latestHistory);
+
+            handleLoginBox();
         }
     }, []);
 

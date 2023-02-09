@@ -14,26 +14,14 @@ import { DownloadIcon, EmptyHeartIcon, FillHeartIcon } from '~/assets';
 interface IProps extends Pick<StyledCardProps, 'position'> {}
 
 const Card = ({ position }: IProps) => {
-    const { cardPosition, displayQuotes, updateDisplayQuotes } = useCardStore();
+    const { cardPosition, displayQuotes, replaceDisplayQuotes } = useCardStore();
     const { userInfo } = useUserStore();
     const { onChangeFavorite } = useQuotesStore();
-    const quoteContent = displayQuotes[position];
 
-    // 훅으로 뺼 예정
     const onChange = (target: IQuoteContent) => {
         const { newUserQuotes, willChangeQuote } = onChangeFavorite(target);
-    
-        const cardPosition = displayQuotes.front?.id === willChangeQuote.id 
-        ? "front" : displayQuotes.back?.id === willChangeQuote.id 
-        ? "back" : null;
-        
-        if(cardPosition) {
-            const newQuoteData = { ...displayQuotes };
-            newQuoteData[cardPosition] = willChangeQuote
 
-            updateDisplayQuotes(newQuoteData);
-        }
-
+        replaceDisplayQuotes(willChangeQuote);
         saveUserData(newUserQuotes, userInfo?.uid);
     };
 
@@ -43,6 +31,8 @@ const Card = ({ position }: IProps) => {
             if (wrapperElem instanceof HTMLElement) downloadToImg(wrapperElem);
         }
     }, []);
+
+    const quoteContent = displayQuotes[position];
 
     return (
         <StyledCard position={position} cardPosition={cardPosition}>

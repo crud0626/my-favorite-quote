@@ -15,34 +15,21 @@ interface IProps {
 }
 
 const ContentBox = ({ content }: IProps) => {
-  const { displayQuotes, cardPosition, changeDisplayQuote, changeCardPosition, handleCardFlip, updateDisplayQuotes } = useCardStore();
+  const { displayQuotes, cardPosition, changeDisplayQuote, replaceDisplayQuotes } = useCardStore();
   const { onChangeFavorite, updateHistory } = useQuotesStore();
   const { userInfo } = useUserStore();
 
   const onClickNavContent = (targetQuote: IQuoteContent): void => {
     if(displayQuotes[cardPosition]?.id === targetQuote.id) return;
 
-    changeDisplayQuote(targetQuote, cardPosition);
-    changeCardPosition();
+    changeDisplayQuote(targetQuote);
     updateHistory(targetQuote);
-    handleCardFlip();
   }
   
-  // 훅으로 뺼 예정
   const onChange = (target: IQuoteContent) => {
       const { newUserQuotes, willChangeQuote } = onChangeFavorite(target);
-  
-      const cardPosition = displayQuotes.front?.id === willChangeQuote.id 
-      ? "front" : displayQuotes.back?.id === willChangeQuote.id 
-      ? "back" : null;
-      
-      if(cardPosition) {
-          const newQuoteData = { ...displayQuotes };
-          newQuoteData[cardPosition] = willChangeQuote
 
-          updateDisplayQuotes(newQuoteData);
-      }
-
+      replaceDisplayQuotes(willChangeQuote);
       saveUserData(newUserQuotes, userInfo?.uid);
   };
 
