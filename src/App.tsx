@@ -9,11 +9,13 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { useCardStore } from './stores/useCardStore';
 import { useUserStore } from './stores/useUserStore';
 import { useLoginBoxStore } from './stores/useLoginBoxStore';
+import { useQuotesStore } from './stores/useQuotesStore';
 import { authService } from './services/authService';
 
 const App = () => {
     const { cardPosition, changeCardPosition, changeDisplayQuote, handleCardFlip } = useCardStore();
-    const { updateUserInfo, updateHistory, updateFavorite, getUserData, requestRandomQuote } = useUserStore();
+    const { updateHistory, updateFavorite, getUserData, requestRandomQuote } = useQuotesStore();
+    const { updateUserInfo } = useUserStore();    
     const { isLoginBoxOpen } = useLoginBoxStore();
 
     const checkUserInfo = () => {

@@ -6,6 +6,7 @@ import * as colors from "~/styles/common/colors";
 import { IQuoteContent } from "~/types/quote.type";
 import { useCardStore } from "~/stores/useCardStore";
 import { useUserStore } from "~/stores/useUserStore";
+import { useQuotesStore } from "~/stores/useQuotesStore";
 import { saveUserData } from "~/utils/saveUserData";
 import { EmptyHeartIcon, FillHeartIcon } from "~/assets";
 
@@ -15,7 +16,8 @@ interface IProps {
 
 const ContentBox = ({ content }: IProps) => {
   const { displayQuotes, cardPosition, changeDisplayQuote, changeCardPosition, handleCardFlip, updateDisplayQuotes } = useCardStore();
-  const { userInfo, onChangeFavorite, updateHistory } = useUserStore();
+  const { onChangeFavorite, updateHistory } = useQuotesStore();
+  const { userInfo } = useUserStore();
 
   const onClickNavContent = (targetQuote: IQuoteContent): void => {
     if(displayQuotes[cardPosition]?.id === targetQuote.id) return;

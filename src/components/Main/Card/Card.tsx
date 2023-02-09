@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import { downloadToImg } from '~/services/html2canvas';
 import { useCardStore } from '~/stores/useCardStore';
 import { useUserStore } from '~/stores/useUserStore';
+import { useQuotesStore } from '~/stores/useQuotesStore';
 import SVGIconBtn from '~/components/common/SVGIconBtn/SVGIconBtn';
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
@@ -14,7 +15,8 @@ interface IProps extends Pick<StyledCardProps, 'position'> {}
 
 const Card = ({ position }: IProps) => {
     const { cardPosition, displayQuotes, updateDisplayQuotes } = useCardStore();
-    const { userInfo, onChangeFavorite } = useUserStore();
+    const { userInfo } = useUserStore();
+    const { onChangeFavorite } = useQuotesStore();
     const quoteContent = displayQuotes[position];
 
     // 훅으로 뺼 예정

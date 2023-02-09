@@ -5,6 +5,7 @@ import * as sizes from '~/styles/common/sizes';
 import { MainLogo, NavBtnWrapper, StyledHeader } from './Header.styles';
 import { useUserStore } from '~/stores/useUserStore';
 import { useNavStore } from '~/stores/useNavStore';
+import { useQuotesStore } from '~/stores/useQuotesStore';
 import { useLoginBoxStore } from '~/stores/useLoginBoxStore';
 import { authService } from '~/services/authService';
 import { LoginIcon, LogoutIcon } from '~/assets';
@@ -23,7 +24,8 @@ const NavButton = () => {
 }
 
 const Header = () => {
-    const { isLoggedIn, updateUserInfo, clearUserQuotes } = useUserStore();
+    const { isLoggedIn, updateUserInfo } = useUserStore();
+    const { clearUserQuotes } = useQuotesStore();
     const { handleLoginBox } = useLoginBoxStore();
 
     const onLogout = async (): Promise<void> => {

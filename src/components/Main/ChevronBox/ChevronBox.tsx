@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { useUserStore } from '~/stores/useUserStore';
+import { useQuotesStore } from '~/stores/useQuotesStore';
 import { useCardStore } from '~/stores/useCardStore';
 import { ChevronButton, ChevronWrapper } from './ChevronBox.styles';
 import * as colors from '~/styles/common/colors';
@@ -8,7 +8,7 @@ import { LeftChevron, RightChevron } from '~/assets';
 
 const ChevronBox = () => {
     const { cardPosition, changeCardPosition, handleCardFlip, changeDisplayQuote} = useCardStore();
-    const { requestRandomQuote } = useUserStore();
+    const { requestRandomQuote } = useQuotesStore();
 
     const fetchNewQuote = () => {
         requestRandomQuote()

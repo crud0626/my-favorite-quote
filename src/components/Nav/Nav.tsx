@@ -2,12 +2,12 @@ import React, { useCallback } from 'react';
 import NavHeader from './NavHeader/NavHeader';
 import NavAccordion from './NavBody/NavAccordion';
 import { StyledNav } from './Nav.styles';
-import { useUserStore } from '~/stores/useUserStore';
 import { useNavStore } from '~/stores/useNavStore';
+import { useQuotesStore } from '~/stores/useQuotesStore';
 
 const Nav = () => {
     const { isOpenNav, handleNav } = useNavStore();
-    const { userQuotes } = useUserStore();
+    const { userQuotes } = useQuotesStore();
 
 
     const onClick = useCallback((event: React.MouseEvent) => {

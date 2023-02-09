@@ -4,10 +4,11 @@ import * as sizes from '~/styles/common/sizes';
 import * as colors from '~/styles/common/colors';
 import { PrimaryButton } from "~/styles/common/PrimaryButton";
 import { StyledLoginButton, StyledNavHeader } from "./NavHeader.styles";
-import { LoginIcon, LogoutIcon } from "~/assets";
 import { useUserStore } from "~/stores/useUserStore";
 import { useLoginBoxStore } from "~/stores/useLoginBoxStore";
+import { useQuotesStore } from "~/stores/useQuotesStore";
 import { authService } from "~/services/authService";
+import { LoginIcon, LogoutIcon } from "~/assets";
 
 const LoginButton = () => {
     const { handleLoginBox } = useLoginBoxStore();
@@ -23,7 +24,8 @@ const LoginButton = () => {
 };
 
 const UserInfo = () => {
-    const { isLoggedIn, userInfo, updateUserInfo, clearUserQuotes} = useUserStore();
+    const { isLoggedIn, userInfo, updateUserInfo } = useUserStore();
+    const { clearUserQuotes } = useQuotesStore();
 
     const onLogout = async (): Promise<void> => {
         const status = await authService.requestLogout();

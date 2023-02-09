@@ -3,6 +3,7 @@ import { SocialBox } from './LoginModal.styles';
 import { useUserStore } from '~/stores/useUserStore';
 import { useCardStore } from '~/stores/useCardStore';
 import { useLoginBoxStore } from '~/stores/useLoginBoxStore';
+import { useQuotesStore } from '~/stores/useQuotesStore';
 import { authService } from '~/services/authService';
 import { socialProviders } from '~/constants/login';
 import { ProviderNames } from '~/types/auth.type';
@@ -10,7 +11,8 @@ import { FACEBOOK_LOGO, GITHUB_LOGO, GOOGLE_LOGO } from '~/assets';
 
 const SocialLoginBox = () => {
     const { cardPosition, changeDisplayQuote, changeCardPosition, handleCardFlip } = useCardStore();
-    const { updateUserInfo, getUserData } = useUserStore();
+    const { updateUserInfo } = useUserStore();
+    const { getUserData } = useQuotesStore();
     const { handleLoginBox } = useLoginBoxStore();
 
     const setLogo = useCallback((name: ProviderNames) => {
