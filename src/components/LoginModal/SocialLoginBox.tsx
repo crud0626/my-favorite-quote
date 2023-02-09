@@ -1,18 +1,18 @@
 import React, { useCallback } from 'react';
 import { SocialBox } from './LoginModal.styles';
 import { useUserStore } from '~/stores/useUserStore';
+import { useCardStore } from '~/stores/useCardStore';
+import { useLoginBoxStore } from '~/stores/useLoginBoxStore';
 import { authService } from '~/services/authService';
 import { socialProviders } from '~/constants/login';
 import { ProviderNames } from '~/types/auth.type';
 import { FACEBOOK_LOGO, GITHUB_LOGO, GOOGLE_LOGO } from '~/assets';
 
-interface IProps {
-    getUserData(userId: string): Promise<void>;
-    handleLoginBox(): void;
-}
+const SocialLoginBox = () => {
+    const { cardPosition, changeDisplayQuote, changeCardPosition, handleCardFlip } = useCardStore();
+    const { updateUserInfo, getUserData } = useUserStore();
+    const { handleLoginBox } = useLoginBoxStore();
 
-const SocialLoginBox = ({ getUserData, handleLoginBox }: IProps) => {
-    const { updateUserInfo } = useUserStore();
     const setLogo = useCallback((name: ProviderNames) => {
         switch(name) {
             case "Google":
@@ -24,18 +24,20 @@ const SocialLoginBox = ({ getUserData, handleLoginBox }: IProps) => {
         }
     }, []);
 
-    const onLogin = async (providerName: ProviderNames): Promise<void> => {
+    const onClick = useCallback(async (providerName: ProviderNames): Promise<void> => {
         const userInfo = await authService.requestLogin(providerName);
+
         if(userInfo) {
+            const latestHistory = await getUserData(userInfo.uid);
             updateUserInfo(userInfo);
 
-            if (userInfo.uid) getUserData(userInfo.uid);
+            if (latestHistory) {
+                changeDisplayQuote(latestHistory, cardPosition);
+                changeCardPosition();
+                handleCardFlip();
+            }
+            handleLoginBox()
         }
-    }
-
-    const onClick = useCallback((name: ProviderNames) => {
-        onLogin(name)
-        .then(() => handleLoginBox());
     }, []);
 
     return (

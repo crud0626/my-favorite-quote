@@ -4,32 +4,49 @@ import { ContentBoxWrapper } from "./ContentBox.styles";
 import * as sizes from "~/styles/common/sizes";
 import * as colors from "~/styles/common/colors";
 import { IQuoteContent } from "~/types/quote.type";
-import { EmptyHeartIcon, FillHeartIcon } from "~/assets";
 import { useCardStore } from "~/stores/useCardStore";
 import { useUserStore } from "~/stores/useUserStore";
-import { ChevronEventType } from "~/types/user.type";
+import { saveUserData } from "~/utils/saveUserData";
+import { EmptyHeartIcon, FillHeartIcon } from "~/assets";
 
 interface IProps {
   content: IQuoteContent;
-  handleCardFilp(direction: ChevronEventType): void;
-  onChangeFavorite(target: IQuoteContent): void;
 }
 
-const ContentBox = ({ content, handleCardFilp, onChangeFavorite }: IProps) => {
-  const { displayQuotes, cardPosition, changeDisplayQuote, changeCardPosition } = useCardStore();
-  const { updateHistory } = useUserStore();
+const ContentBox = ({ content }: IProps) => {
+  const { displayQuotes, cardPosition, changeDisplayQuote, changeCardPosition, handleCardFlip, updateDisplayQuotes } = useCardStore();
+  const { userInfo, onChangeFavorite, updateHistory } = useUserStore();
+
   const onClickNavContent = (targetQuote: IQuoteContent): void => {
     if(displayQuotes[cardPosition]?.id === targetQuote.id) return;
 
     changeDisplayQuote(targetQuote, cardPosition);
     changeCardPosition();
     updateHistory(targetQuote);
-    handleCardFilp('next');
+    handleCardFlip();
   }
+  
+  // 훅으로 뺼 예정
+  const onChange = (target: IQuoteContent) => {
+      const { newUserQuotes, willChangeQuote } = onChangeFavorite(target);
+  
+      const cardPosition = displayQuotes.front?.id === willChangeQuote.id 
+      ? "front" : displayQuotes.back?.id === willChangeQuote.id 
+      ? "back" : null;
+      
+      if(cardPosition) {
+          const newQuoteData = { ...displayQuotes };
+          newQuoteData[cardPosition] = willChangeQuote
+
+          updateDisplayQuotes(newQuoteData);
+      }
+
+      saveUserData(newUserQuotes, userInfo?.uid);
+  };
 
   const onClickHeart = (event: React.MouseEvent) => {
     event.stopPropagation();
-    onChangeFavorite(content);
+    onChange(content);
   };
   
   return (

@@ -7,28 +7,21 @@ import SVGIconBtn from '../common/SVGIconBtn/SVGIconBtn';
 import { useLoginBoxStore } from '~/stores/useLoginBoxStore';
 import { CloseIcon } from '~/assets';
 
-interface IProps {
-    getUserData: (userId: string) => Promise<void>;
-}
-
-const LoginBox = ({ getUserData }: IProps) => {
+const LoginBox = () => {
     const { handleLoginBox } = useLoginBoxStore();
     
-    const onClick = useCallback(({ target, currentTarget }: React.MouseEvent) => {
+    const onClickOuterModal = useCallback(({ target, currentTarget }: React.MouseEvent<HTMLElement>) => {
         if (target === currentTarget) handleLoginBox();
-    }, [handleLoginBox]);
+    }, []);
     
     return (
-        <StyledLoginModal onClick={onClick}>
+        <StyledLoginModal onClick={onClickOuterModal}>
             <div className='wrapper'>
                 <div className='header'>
                     <h1 className='title'>Welcome back!</h1>
                     <span className='sub_title'>Please enter your details.</span>
                 </div>
-                <SocialLoginBox 
-                    getUserData={getUserData}
-                    handleLoginBox={handleLoginBox}
-                />
+                <SocialLoginBox />
                 <SVGIconBtn
                     src={<CloseIcon />}
                     position={'absolute'}
@@ -37,7 +30,7 @@ const LoginBox = ({ getUserData }: IProps) => {
                     size={sizes.SMALL_ICON_SIZE}
                     color={colors.MAIN_WHITE}
                     hoverColor={colors.ICON_HOVER_COLOR}
-                    onClick={() => handleLoginBox()}
+                    onClick={handleLoginBox}
                 />
             </div>
         </StyledLoginModal>

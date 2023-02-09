@@ -1,16 +1,19 @@
 import { create } from "zustand";
-import { CardPositionType } from '~/types/user.type';
+import { CardPositionType, ChevronEventType } from '~/types/user.type';
 import { DisplayQuotesType, IQuoteContent } from '~/types/quote.type';
 
 interface ICardStore {
+    cardRotate: number;
     cardPosition: CardPositionType;
     displayQuotes: DisplayQuotesType;
     changeCardPosition: () => void;
     changeDisplayQuote: (nextQuote: IQuoteContent, currentPosition: CardPositionType) => void;
     updateDisplayQuotes: (newDisplayQuotes: DisplayQuotesType) => void;
+    handleCardFlip: (direction?: ChevronEventType) => void;
 }
 
 export const useCardStore = create<ICardStore>((set) => ({
+    cardRotate: 0,
     cardPosition: 'front',
     displayQuotes: {
         front: null,
@@ -46,5 +49,12 @@ export const useCardStore = create<ICardStore>((set) => ({
                 displayQuotes: newDisplayQuotes
             }
         });
+    },
+    handleCardFlip: (direction = 'next') => {
+        const nextTurn = direction === 'next' ? 0.5 : -0.5;
+        set((prevState) => ({
+            ...prevState,
+            cardRotate: prevState.cardRotate + nextTurn
+        }));
     }
 }));

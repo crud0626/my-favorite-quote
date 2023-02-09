@@ -3,10 +3,15 @@ import * as sizes from '~/styles/common/sizes';
 import * as colors from '~/styles/common/colors';
 import { flexAligns } from "~/styles/mixins/flexAligns";
 
-export const CardWrapper = styled.div`
+interface ICardWrapper {
+    cardRotate: number;
+}
+
+export const CardWrapper = styled.div<ICardWrapper>`
     position: relative;
     width: 100%;
     height: 100%;
+    transform: ${({ cardRotate }) => `rotateY(${cardRotate}turn)`};
     transform-style: preserve-3d;
     transition: transform 0.6s ease-in-out;
 `;

@@ -4,18 +4,13 @@ import * as colors from '~/styles/common/colors';
 import { AccordionTitle, NavBodyButton, TextBox } from './NavAccordion.styles';
 import { IQuoteContent, QuotesGroupType } from '~/types/quote.type';
 import { BottomChevron } from '~/assets';
-import { ChevronEventType } from '~/types/user.type';
 
 export interface ContentProps {
     titleName: QuotesGroupType;
     contents: IQuoteContent[];
-    handleCardFilp(direction: ChevronEventType): void;
-    onChangeFavorite(target: IQuoteContent): void;
 }
 
-const NavContentWrapper = (props: Omit<ContentProps, 'titleName'>) => {
-    const { contents, handleCardFilp, onChangeFavorite } = props;
-
+const NavContentWrapper = ({ contents }: Pick<ContentProps, 'contents'>) => {
     return (
         <ul>
             {
@@ -25,8 +20,6 @@ const NavContentWrapper = (props: Omit<ContentProps, 'titleName'>) => {
                     <ContentBox 
                         key={content.id}
                         content={content}
-                        handleCardFilp={handleCardFilp}
-                        onChangeFavorite={onChangeFavorite}
                     />
                 ))
             }
@@ -34,9 +27,10 @@ const NavContentWrapper = (props: Omit<ContentProps, 'titleName'>) => {
     );
 }
 
-const NavAccordion = ({ titleName, ...contentProps }: ContentProps) => {
+const NavAccordion = ({ titleName, contents }: ContentProps) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
+    // utils함수로 뺄 예정
     const toCapitalizeFirst = useCallback((str: string): string => {
         return `${str.charAt(0).toUpperCase()}${str.slice(1)}`;
     }, []);
@@ -53,7 +47,7 @@ const NavAccordion = ({ titleName, ...contentProps }: ContentProps) => {
                 </NavBodyButton>
                 <span>{toCapitalizeFirst(titleName)}</span>
             </AccordionTitle>
-            { isOpen && <NavContentWrapper { ...contentProps } /> }
+            { isOpen && <NavContentWrapper contents={contents} /> }
         </>
     );
 };
