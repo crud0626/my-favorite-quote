@@ -12,7 +12,7 @@ import { LoginIcon, LogoutIcon } from "~/assets";
 
 const NavHeader = () => {
     const { userInfo, onLogout } = useUserStore();
-    const { clearUserQuotes } = useQuotesStore();
+    const { replaceQuotes } = useQuotesStore();
     const { handleLoginBox } = useLoginBoxStore();
     const { replaceDisplayQuotes } = useCardStore();
 
@@ -20,7 +20,7 @@ const NavHeader = () => {
         onLogout()
         .then(result => {
             if (result) {
-                clearUserQuotes();
+                replaceQuotes();
                 replaceDisplayQuotes();
             }
         });

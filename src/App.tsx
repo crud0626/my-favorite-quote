@@ -12,7 +12,7 @@ import GlobalStyle from '~/styles/common/GlobalStyle';
 import { getStorageData } from '~/utils/sessionStorage';
 
 const App = () => {
-    const { updateHistory, updateFavorite, getUserData, requestRandomQuote } = useQuotesStore();
+    const { replaceQuotes, getUserQuotes, requestQuote } = useQuotesStore();
     const { changeDisplayQuote } = useCardStore();
     const { checkLoggedIn } = useUserStore();    
     const { isLoginBoxOpen } = useLoginBoxStore();
@@ -21,16 +21,14 @@ const App = () => {
         const savedUserData = getStorageData();
 
         if(savedUserData) {
-            const { history, favorite } = savedUserData;
             const latestHistory = savedUserData.history[0];
 
-            updateHistory(history);
-            updateFavorite(favorite);
+            replaceQuotes(savedUserData);
             changeDisplayQuote(latestHistory);
             return;
         }
 
-        requestRandomQuote()
+        requestQuote()
         .then(newQuote => {
             if (!newQuote) return;
 
@@ -44,8 +42,11 @@ const App = () => {
             return;
         }
         
-        const latestHistory = await getUserData(user.uid);
-        if (latestHistory) changeDisplayQuote(latestHistory);
+        const resQuotes = await getUserQuotes(user.uid);
+        if (resQuotes) {
+            const latestHistory = resQuotes.history[0] || null;
+            if (latestHistory) changeDisplayQuote(latestHistory);
+        }
     }
 
     useEffect(() => {

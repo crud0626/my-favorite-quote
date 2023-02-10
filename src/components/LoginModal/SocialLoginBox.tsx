@@ -11,7 +11,7 @@ import { FACEBOOK_LOGO, GITHUB_LOGO, GOOGLE_LOGO } from '~/assets';
 const SocialLoginBox = () => {
     const { changeDisplayQuote } = useCardStore();
     const { onLogin } = useUserStore();
-    const { getUserData } = useQuotesStore();
+    const { getUserQuotes } = useQuotesStore();
     const { handleLoginBox } = useLoginBoxStore();
 
     const setLogo = useCallback((name: ProviderNames) => {
@@ -28,12 +28,15 @@ const SocialLoginBox = () => {
     const onClick = useCallback(async (providerName: ProviderNames): Promise<void> => {
         const userInfo = await onLogin(providerName);
 
-        if(userInfo) {
-            const latestHistory = await getUserData(userInfo.uid);
-            if (latestHistory) changeDisplayQuote(latestHistory);
+        if (!userInfo) return;
 
-            handleLoginBox();
+        const resQuotes = await getUserQuotes(userInfo.uid);
+        if (resQuotes) {
+            const latestHistory = resQuotes.history[0] || null;
+            if (latestHistory) changeDisplayQuote(latestHistory);
         }
+
+        handleLoginBox();
     }, []);
 
     return (

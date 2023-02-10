@@ -16,20 +16,20 @@ interface IProps {
 
 const ContentBox = ({ content }: IProps) => {
   const { displayQuotes, cardPosition, changeDisplayQuote, replaceDisplayQuotes } = useCardStore();
-  const { onChangeFavorite, updateHistory } = useQuotesStore();
+  const { onChangeFavorite, updateQuotes } = useQuotesStore();
   const { userInfo } = useUserStore();
 
   const onClickNavContent = (targetQuote: IQuoteContent): void => {
     if(displayQuotes[cardPosition]?.id === targetQuote.id) return;
 
     changeDisplayQuote(targetQuote);
-    updateHistory(targetQuote);
+    updateQuotes(targetQuote, 'history');
   }
   
   const onChange = (target: IQuoteContent) => {
-      const { newUserQuotes, willChangeQuote } = onChangeFavorite(target);
+      const { newUserQuotes, targetQuote } = onChangeFavorite(target);
 
-      replaceDisplayQuotes(willChangeQuote);
+      replaceDisplayQuotes(targetQuote);
       saveUserData(newUserQuotes, userInfo?.uid);
   };
 

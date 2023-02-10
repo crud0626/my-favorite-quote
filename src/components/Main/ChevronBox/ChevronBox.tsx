@@ -8,10 +8,10 @@ import { LeftChevron, RightChevron } from '~/assets';
 
 const ChevronBox = () => {
     const { changeDisplayQuote} = useCardStore();
-    const { requestRandomQuote } = useQuotesStore();
+    const { requestQuote } = useQuotesStore();
 
     const fetchNewQuote = () => {
-        requestRandomQuote()
+        requestQuote()
         .then(newQuote => {
             if (!newQuote) return;
 

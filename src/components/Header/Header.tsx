@@ -26,7 +26,7 @@ const NavButton = () => {
 
 const Header = () => {
     const { isLoggedIn, onLogout } = useUserStore();
-    const { clearUserQuotes } = useQuotesStore();
+    const { replaceQuotes } = useQuotesStore();
     const { handleLoginBox } = useLoginBoxStore();
     const { replaceDisplayQuotes } = useCardStore();
 
@@ -39,7 +39,7 @@ const Header = () => {
         onLogout()
         .then(result => {
             if (result) {
-                clearUserQuotes();
+                replaceQuotes();
                 replaceDisplayQuotes();
             }
         });

@@ -1,18 +1,18 @@
 import { create } from 'zustand';
-import { UserQuotesType } from '~/types/user.type';
-import { IQuoteContent } from '~/types/quote.type';
 import { firebaseDB } from '~/services/database';
 import { quotesAPI } from '~/services/quotesApi';
+import { UserQuotesType } from '~/types/user.type';
+import { IQuoteContent, QuotesGroupType } from '~/types/quote.type';
 
 interface IStore {
     userQuotes: UserQuotesType;
-    updateHistory: (newHistory: IQuoteContent[] | IQuoteContent) => void;
-    updateFavorite: (newFavoriteList: IQuoteContent[]) => void;
-    clearUserQuotes: () => void;
-    getUserData: (userId: string) => Promise<IQuoteContent | void>;
-    requestRandomQuote: (id?: string) => Promise<IQuoteContent | void>;
-    onChangeFavorite: (target: IQuoteContent) => {
-        newUserQuotes: UserQuotesType, willChangeQuote: IQuoteContent
+    updateQuotes: (newQuotes: IQuoteContent, quoteType: QuotesGroupType) => void;
+    replaceQuotes: (newQuotes?: UserQuotesType) => void;
+    getUserQuotes: (userId: string) => Promise<UserQuotesType | void>;
+    requestQuote: (id?: string) => Promise<IQuoteContent | void>;
+    onChangeFavorite: (targetQuote: IQuoteContent) => {
+        newUserQuotes: UserQuotesType, 
+        targetQuote: IQuoteContent
     };
 }
 
@@ -21,102 +21,66 @@ export const useQuotesStore = create<IStore>((set, get) => ({
         history: [],
         favorite: []
     },
-    updateHistory: (newHistory) => {
-        if(!Array.isArray(newHistory)) {
-            set(({ userQuotes }) => {
-                const newUserQuotes = { ...userQuotes };
-                const filteredList = userQuotes.history
-                    .filter(quote => quote.id !== newHistory.id)
-                    .slice(0, 9);
-    
-                newUserQuotes.history = [newHistory, ...filteredList];
-    
-                return { userQuotes: newUserQuotes };
-            });
-        } else {
-            set((prevState) => {
-                const newUserQuotes = { ...prevState.userQuotes };
-                newUserQuotes.history = newHistory;
+    updateQuotes: (newQuotes, quoteType) => {
+        const { userQuotes } = get();
+        const filteredList = userQuotes[quoteType]
+            .filter(quote => quote.id !== newQuotes.id)
+            .slice(0, 9);
 
-                return {
-                    ...prevState,
-                    userQuotes: newUserQuotes
-                }
-            })
+        filteredList.unshift(newQuotes);
+
+        set({ userQuotes: {
+            ...userQuotes,
+            [quoteType]: [...filteredList]
+        }});
+    },
+    replaceQuotes: (newQuotes) => {
+        if (newQuotes) {
+            set({ userQuotes: newQuotes });
+            return;
         }
-    },
-    updateFavorite: (newFavoriteList) => {
-        set((prevState) => {
-            const newUserQuotes = {...prevState.userQuotes};
-            newUserQuotes.favorite = newFavoriteList;
 
-            return {
-                ...prevState,
-                userQuotes: newUserQuotes
-            }
-        });
+        set({ userQuotes: { history: [], favorite: [] }});
     },
-    clearUserQuotes: () => {
-        set((prevState) => ({
-            ...prevState,
-            userQuotes: {
-                history: [],
-                favorite: []
-            }
-        }))
-    },
-    getUserData: async (userId) => {
+    getUserQuotes: async (userId) => {
         const userData = await firebaseDB.readUserData(userId);
 
         if(userData) {
-            const latestHistory = userData.history[0];
-            const { history, favorite } = userData;
-
-            set((prevState) => ({
-                ...prevState,
-                userQuotes: { history, favorite }
-            }));
-
-            return latestHistory;
+            set({ userQuotes: userData });
+            return userData;
         }
     },
-    requestRandomQuote: async (id) => {
-        try {
-            const resData = await quotesAPI.getQuotesData(id);
+    requestQuote: async (id) => {
+        const { userQuotes, updateQuotes } = get();
 
-            const userFavoriteList = get().userQuotes.favorite;
-            const isFavoriteQuote = userFavoriteList.some(item => item.id === resData.id);
+        try {
+            const resQuote = await quotesAPI.getQuotesData(id);
+
+            const isFavorite = userQuotes.favorite.some(item => item.id === resQuote.id);
             const newQuote: IQuoteContent = {
-                ...resData,
-                favorite: isFavoriteQuote
+                ...resQuote,
+                favorite: isFavorite ? true : false
             };
 
-            get().updateHistory(newQuote);
+            updateQuotes(newQuote, 'history');
+
             return newQuote;
         } catch (error) {
             alert("데이터를 요청 하던 도중 에러가 발생했습니다.");
         }
     },
-    onChangeFavorite: (target) => {
-        const willChangeQuote: IQuoteContent = {
-            ...target,
-            favorite: !target.favorite
-        };
+    onChangeFavorite: (targetQuote) => {
+        const { history, favorite } = get().userQuotes;
+        targetQuote.favorite = !targetQuote.favorite;
+        
+        const newHistory = history.map(item => item.id === targetQuote.id ? targetQuote : item);
+        const newFavorite = [...favorite];
 
-        const userQuotes = get().userQuotes;
-
-        // 히스토리에 반영
-        const newHistory = userQuotes.history.map((item: IQuoteContent) => {
-            return item.id === willChangeQuote.id ? willChangeQuote : item;
-        });
-
-        // favorite에 반영
-        const newFavorite = [ ...userQuotes.favorite ];
-        const matchedIndexInFavorite = newFavorite.findIndex(item => item.id === willChangeQuote.id);
-        if(matchedIndexInFavorite !== -1) {
-            newFavorite.splice(matchedIndexInFavorite, 1);
+        const targetIndex = newFavorite.findIndex(item => item.id === targetQuote.id);
+        if (targetIndex !== -1) {
+            newFavorite.splice(targetIndex, 1);
         } else {
-            newFavorite.unshift(willChangeQuote);
+            newFavorite.unshift(targetQuote);
         }
 
         const newUserQuotes: UserQuotesType = {
@@ -124,11 +88,8 @@ export const useQuotesStore = create<IStore>((set, get) => ({
             favorite: newFavorite
         }
 
-        set((prevState) => ({
-            ...prevState,
-            userQuotes: { ...newUserQuotes }
-        }));
+        set({ userQuotes: newUserQuotes });
 
-        return { newUserQuotes, willChangeQuote };
+        return { newUserQuotes, targetQuote };
     }
 }));

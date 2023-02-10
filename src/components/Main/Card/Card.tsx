@@ -19,9 +19,9 @@ const Card = ({ position }: IProps) => {
     const { onChangeFavorite } = useQuotesStore();
 
     const onChange = (target: IQuoteContent) => {
-        const { newUserQuotes, willChangeQuote } = onChangeFavorite(target);
+        const { newUserQuotes, targetQuote } = onChangeFavorite(target);
 
-        replaceDisplayQuotes(willChangeQuote);
+        replaceDisplayQuotes(targetQuote);
         saveUserData(newUserQuotes, userInfo?.uid);
     };
 
