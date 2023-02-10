@@ -4,17 +4,24 @@ import { onAuthStateChanged, User } from "firebase/auth";
 import { ProviderNames } from "~/types/auth.type";
 import { IUserInfo } from '~/types/user.type';
 
-interface IUserStore {
+interface IState {
     isLoggedIn: boolean;
     userInfo: IUserInfo | null;
+}
+
+interface IUserStore extends IState {
     onLogin: (provider: ProviderNames) => Promise<IUserInfo | void>;
     onLogout: () => Promise<boolean>;
     checkLoggedIn: (callbackFn: (user: User | null) => void) => void;
 }
 
-export const useUserStore = create<IUserStore>((set) => ({
+const initialState = {
     isLoggedIn: false,
-    userInfo: null,
+    userInfo: null
+}
+
+export const useUserStore = create<IUserStore>((set) => ({
+    ...initialState,
     onLogin: async (provider) => {
         const userInfo = await authService.requestLogin(provider);
 

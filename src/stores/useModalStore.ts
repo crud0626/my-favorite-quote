@@ -1,15 +1,22 @@
 import { create } from "zustand";
 
-interface IStore {
+interface IState {
     isOpenNav: boolean;
     isOpenLoginModal: boolean;
+}
+
+interface IStore extends IState {
     toggleNav: () => void;
     toggleLoginModal: () => void;
 }
 
-export const useModalStore = create<IStore>((set) => ({
+const initialState: IState = {
     isOpenNav: false,
-    isOpenLoginModal: false,
+    isOpenLoginModal: false
+}
+
+export const useModalStore = create<IStore>((set) => ({
+    ...initialState,
     toggleNav: () => {
         set(({ isOpenNav }) => ({ isOpenNav: !isOpenNav}))
     },

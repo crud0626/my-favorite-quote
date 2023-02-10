@@ -4,8 +4,11 @@ import { quotesAPI } from '~/services/quotesApi';
 import { UserQuotesType } from '~/types/user.type';
 import { IQuoteContent, QuotesGroupType } from '~/types/quote.type';
 
-interface IStore {
+interface IState {
     userQuotes: UserQuotesType;
+}
+
+interface IStore extends IState {
     updateQuotes: (newQuotes: IQuoteContent, quoteType: QuotesGroupType) => void;
     replaceQuotes: (newQuotes?: UserQuotesType) => void;
     getUserQuotes: (userId: string) => Promise<UserQuotesType | void>;
@@ -16,11 +19,15 @@ interface IStore {
     };
 }
 
-export const useQuotesStore = create<IStore>((set, get) => ({
+const initialState = {
     userQuotes: {
         history: [],
         favorite: []
-    },
+    }
+}
+
+export const useQuotesStore = create<IStore>((set, get) => ({
+    ...initialState,
     updateQuotes: (newQuotes, quoteType) => {
         const { userQuotes } = get();
         const filteredList = userQuotes[quoteType]
@@ -40,7 +47,7 @@ export const useQuotesStore = create<IStore>((set, get) => ({
             return;
         }
 
-        set({ userQuotes: { history: [], favorite: [] }});
+        set({ userQuotes: initialState.userQuotes});
     },
     getUserQuotes: async (userId) => {
         const userData = await firebaseDB.readUserData(userId);
