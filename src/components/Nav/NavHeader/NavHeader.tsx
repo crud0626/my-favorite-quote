@@ -1,6 +1,5 @@
 import React, { useCallback } from "react";
 import { useUserStore } from "~/stores/useUserStore";
-import { useLoginBoxStore } from "~/stores/useLoginBoxStore";
 import { useQuotesStore } from "~/stores/useQuotesStore";
 import { useCardStore } from "~/stores/useCardStore";
 import UserAvatar from "~/components/common/UserAvatar/UserAvatar";
@@ -9,11 +8,12 @@ import * as colors from '~/styles/common/colors';
 import { PrimaryButton } from "~/styles/common/PrimaryButton";
 import { LoginButton, StyledNavHeader } from "./NavHeader.styles";
 import { LoginIcon, LogoutIcon } from "~/assets";
+import { useModalStore } from "~/stores/useModalStore";
 
 const NavHeader = () => {
     const { userInfo, onLogout } = useUserStore();
     const { replaceQuotes } = useQuotesStore();
-    const { handleLoginBox } = useLoginBoxStore();
+    const { toggleLoginModal } = useModalStore();
     const { replaceDisplayQuotes } = useCardStore();
 
     const onClick = useCallback(() => {
@@ -47,7 +47,7 @@ const NavHeader = () => {
                     </>
                 ) : 
                 (
-                    <LoginButton onClick={handleLoginBox}>
+                    <LoginButton onClick={toggleLoginModal}>
                         <span>LOGIN</span>
                         <div className='icon_wrapper'>
                             <LoginIcon fill={colors.LINK_BLUE} />

@@ -1,23 +1,22 @@
 import React from 'react';
+import { useUserStore } from '~/stores/useUserStore';
+import { useQuotesStore } from '~/stores/useQuotesStore';
+import { useCardStore } from '~/stores/useCardStore';
+import { useModalStore } from '~/stores/useModalStore';
 import SVGIconBtn from '~/components/common/SVGIconBtn/SVGIconBtn';
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
 import { MainLogo, NavBtnWrapper, StyledHeader } from './Header.styles';
-import { useUserStore } from '~/stores/useUserStore';
-import { useNavStore } from '~/stores/useNavStore';
-import { useQuotesStore } from '~/stores/useQuotesStore';
-import { useLoginBoxStore } from '~/stores/useLoginBoxStore';
 import { LoginIcon, LogoutIcon } from '~/assets';
-import { useCardStore } from '~/stores/useCardStore';
 
 const lineLen = new Array(3).fill("");
 
 const NavButton = () => {
-    const { isOpenNav, handleNav } = useNavStore();
+    const { isOpenNav, toggleNav } = useModalStore();
 
     return (
         <div>
-            <NavBtnWrapper isOpen={isOpenNav} onClick={handleNav}>
+            <NavBtnWrapper isOpen={isOpenNav} onClick={toggleNav}>
                 {lineLen.map((_, i) => <span key={i} className='line'></span>)}
             </NavBtnWrapper>
         </div>
@@ -27,12 +26,12 @@ const NavButton = () => {
 const Header = () => {
     const { isLoggedIn, onLogout } = useUserStore();
     const { replaceQuotes } = useQuotesStore();
-    const { handleLoginBox } = useLoginBoxStore();
+    const { toggleLoginModal } = useModalStore();
     const { replaceDisplayQuotes } = useCardStore();
 
     const onClick = () => {
         if (!isLoggedIn) {
-            handleLoginBox();
+            toggleLoginModal();
             return;
         }
         

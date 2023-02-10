@@ -2,8 +2,8 @@ import React, { useCallback } from 'react';
 import { SocialBox } from './LoginModal.styles';
 import { useUserStore } from '~/stores/useUserStore';
 import { useCardStore } from '~/stores/useCardStore';
-import { useLoginBoxStore } from '~/stores/useLoginBoxStore';
 import { useQuotesStore } from '~/stores/useQuotesStore';
+import { useModalStore } from '~/stores/useModalStore';
 import { socialProviders } from '~/constants/login';
 import { ProviderNames } from '~/types/auth.type';
 import { FACEBOOK_LOGO, GITHUB_LOGO, GOOGLE_LOGO } from '~/assets';
@@ -12,7 +12,7 @@ const SocialLoginBox = () => {
     const { changeDisplayQuote } = useCardStore();
     const { onLogin } = useUserStore();
     const { getUserQuotes } = useQuotesStore();
-    const { handleLoginBox } = useLoginBoxStore();
+    const { toggleLoginModal } = useModalStore();
 
     const setLogo = useCallback((name: ProviderNames) => {
         switch(name) {
@@ -36,7 +36,7 @@ const SocialLoginBox = () => {
             if (latestHistory) changeDisplayQuote(latestHistory);
         }
 
-        handleLoginBox();
+        toggleLoginModal();
     }, []);
 
     return (

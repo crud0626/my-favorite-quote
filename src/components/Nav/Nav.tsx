@@ -1,18 +1,17 @@
 import React, { useCallback } from 'react';
+import { useQuotesStore } from '~/stores/useQuotesStore';
+import { useModalStore } from '~/stores/useModalStore';
 import NavHeader from './NavHeader/NavHeader';
 import NavAccordion from './NavBody/NavAccordion';
 import { StyledNav } from './Nav.styles';
-import { useNavStore } from '~/stores/useNavStore';
-import { useQuotesStore } from '~/stores/useQuotesStore';
 
 const Nav = () => {
-    const { isOpenNav, handleNav } = useNavStore();
+    const { isOpenNav, toggleNav } = useModalStore();
     const { userQuotes } = useQuotesStore();
-
 
     const onClick = useCallback((event: React.MouseEvent) => {
         if(event.target === event.currentTarget) {
-            handleNav();
+            toggleNav();
         }
     }, []);
 

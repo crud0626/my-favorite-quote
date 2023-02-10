@@ -1,17 +1,17 @@
 import React, { useCallback } from 'react';
+import { useModalStore } from '~/stores/useModalStore';
 import SocialLoginBox from './SocialLoginBox';
 import { StyledLoginModal } from './LoginModal.styles';
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
 import SVGIconBtn from '../common/SVGIconBtn/SVGIconBtn';
-import { useLoginBoxStore } from '~/stores/useLoginBoxStore';
 import { CloseIcon } from '~/assets';
 
 const LoginBox = () => {
-    const { handleLoginBox } = useLoginBoxStore();
+    const { toggleLoginModal } = useModalStore();
     
     const onClickOuterModal = useCallback(({ target, currentTarget }: React.MouseEvent<HTMLElement>) => {
-        if (target === currentTarget) handleLoginBox();
+        if (target === currentTarget) toggleLoginModal();
     }, []);
     
     return (
@@ -30,7 +30,7 @@ const LoginBox = () => {
                     size={sizes.SMALL_ICON_SIZE}
                     color={colors.MAIN_WHITE}
                     hoverColor={colors.ICON_HOVER_COLOR}
-                    onClick={handleLoginBox}
+                    onClick={toggleLoginModal}
                 />
             </div>
         </StyledLoginModal>

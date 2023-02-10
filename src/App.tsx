@@ -3,7 +3,7 @@ import { User } from 'firebase/auth';
 import { useCardStore } from './stores/useCardStore';
 import { useUserStore } from './stores/useUserStore';
 import { useQuotesStore } from './stores/useQuotesStore';
-import { useLoginBoxStore } from './stores/useLoginBoxStore';
+import { useModalStore } from './stores/useModalStore';
 import Footer from '~/components/Footer/Footer';
 import Header from '~/components/Header/Header';
 import Main from '~/components/Main/Main';
@@ -15,7 +15,7 @@ const App = () => {
     const { replaceQuotes, getUserQuotes, requestQuote } = useQuotesStore();
     const { changeDisplayQuote } = useCardStore();
     const { checkLoggedIn } = useUserStore();    
-    const { isLoginBoxOpen } = useLoginBoxStore();
+    const { isOpenLoginModal } = useModalStore();
 
     const setLocalData = () => {
         const savedUserData = getStorageData();
@@ -60,7 +60,7 @@ const App = () => {
                 <Main />
                 <Footer />
                 {
-                    isLoginBoxOpen &&
+                    isOpenLoginModal &&
                     <LoginBox />
                 }
         </>
