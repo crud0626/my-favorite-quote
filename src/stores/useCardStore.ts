@@ -7,7 +7,7 @@ interface ICardStore {
     cardPosition: CardPositionType;
     displayQuotes: DisplayQuotesType;
     changeDisplayQuote: (nextQuote: IQuoteContent, direction?: ChevronEventType) => void;
-    replaceDisplayQuotes: (targetQuote: IQuoteContent) => void;
+    replaceDisplayQuotes: (targetQuote?: IQuoteContent) => void;
     rotateCard: (direction?: ChevronEventType) => void;
 }
 
@@ -29,10 +29,14 @@ export const useCardStore = create<ICardStore>((set, get) => ({
             displayQuotes: newDisplayQuotes
         }));
     },
-    /* Favorite 변경시 사용됨. */
+    /* Favorite, 로그아웃 시 사용됨. */
     replaceDisplayQuotes: (target) => {
-        const displayQuotes = get().displayQuotes;
+        if (!target) {
+            set({ displayQuotes: { front: null, back: null }});
+            return;
+        }
 
+        const displayQuotes = get().displayQuotes;
         const cardPosition = displayQuotes.front?.id === target.id 
         ? "front" : displayQuotes.back?.id === target.id 
         ? "back" : null;

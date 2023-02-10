@@ -4,14 +4,13 @@ import { useUserStore } from '~/stores/useUserStore';
 import { useCardStore } from '~/stores/useCardStore';
 import { useLoginBoxStore } from '~/stores/useLoginBoxStore';
 import { useQuotesStore } from '~/stores/useQuotesStore';
-import { authService } from '~/services/authService';
 import { socialProviders } from '~/constants/login';
 import { ProviderNames } from '~/types/auth.type';
 import { FACEBOOK_LOGO, GITHUB_LOGO, GOOGLE_LOGO } from '~/assets';
 
 const SocialLoginBox = () => {
     const { changeDisplayQuote } = useCardStore();
-    const { updateUserInfo } = useUserStore();
+    const { onLogin } = useUserStore();
     const { getUserData } = useQuotesStore();
     const { handleLoginBox } = useLoginBoxStore();
 
@@ -27,11 +26,9 @@ const SocialLoginBox = () => {
     }, []);
 
     const onClick = useCallback(async (providerName: ProviderNames): Promise<void> => {
-        const userInfo = await authService.requestLogin(providerName);
+        const userInfo = await onLogin(providerName);
 
         if(userInfo) {
-            updateUserInfo(userInfo);
-
             const latestHistory = await getUserData(userInfo.uid);
             if (latestHistory) changeDisplayQuote(latestHistory);
 

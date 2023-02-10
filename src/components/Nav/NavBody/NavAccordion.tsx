@@ -14,7 +14,7 @@ const NavContentWrapper = ({ contents }: Pick<ContentProps, 'contents'>) => {
     return (
         <ul>
             {
-                contents.length === 0 
+                contents.length === 0
                 ? <TextBox>{"No Contents"}</TextBox>  
                 : contents.map(content => (
                     <ContentBox 

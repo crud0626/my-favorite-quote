@@ -11,7 +11,7 @@ export const StyledNavHeader = styled(StyledNavBox)`
     }
 `;
 
-export const StyledLoginButton = styled(PrimaryButton)`
+export const LoginButton = styled(PrimaryButton)`
     ${flexAligns()}
     flex-grow: 1;
     height: 60%;

@@ -7,12 +7,13 @@ import { useUserStore } from '~/stores/useUserStore';
 import { useNavStore } from '~/stores/useNavStore';
 import { useQuotesStore } from '~/stores/useQuotesStore';
 import { useLoginBoxStore } from '~/stores/useLoginBoxStore';
-import { authService } from '~/services/authService';
 import { LoginIcon, LogoutIcon } from '~/assets';
+import { useCardStore } from '~/stores/useCardStore';
+
+const lineLen = new Array(3).fill("");
 
 const NavButton = () => {
     const { isOpenNav, handleNav } = useNavStore();
-    const lineLen = new Array(3).fill("");
 
     return (
         <div>
@@ -24,25 +25,24 @@ const NavButton = () => {
 }
 
 const Header = () => {
-    const { isLoggedIn, updateUserInfo } = useUserStore();
+    const { isLoggedIn, onLogout } = useUserStore();
     const { clearUserQuotes } = useQuotesStore();
     const { handleLoginBox } = useLoginBoxStore();
-
-    const onLogout = async (): Promise<void> => {
-        const status = await authService.requestLogout();
-
-        if(status) {
-            updateUserInfo();
-            clearUserQuotes();
-            window.alert("로그아웃 되었습니다.");
-            return;
-        }
-
-        alert("로그아웃 도중 에러가 발생했습니다.");
-    }
+    const { replaceDisplayQuotes } = useCardStore();
 
     const onClick = () => {
-        isLoggedIn ? onLogout() : handleLoginBox();
+        if (!isLoggedIn) {
+            handleLoginBox();
+            return;
+        }
+        
+        onLogout()
+        .then(result => {
+            if (result) {
+                clearUserQuotes();
+                replaceDisplayQuotes();
+            }
+        });
     }
 
     return (
