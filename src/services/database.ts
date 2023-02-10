@@ -26,8 +26,8 @@ class FirebaseDB implements IFirebaseDB {
             .then(snapshot => {
                 if(snapshot.exists()) {
                     const { history, favorite } = snapshot.val();
-                    userQuotes.history = history;
-                    userQuotes.favorite = favorite;
+                    if (history) userQuotes.history = history;
+                    if (favorite) userQuotes.favorite = favorite;
                 }
             });
 
