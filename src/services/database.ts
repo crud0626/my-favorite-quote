@@ -7,7 +7,7 @@ interface IFirebaseDB {
     readUserData(userId: string): Promise<UserQuotesType>;
 }
 
-export class FirebaseDB implements IFirebaseDB {
+class FirebaseDB implements IFirebaseDB {
     private db = getDatabase(firebaseApp);
     constructor() {}
 
@@ -26,8 +26,8 @@ export class FirebaseDB implements IFirebaseDB {
             .then(snapshot => {
                 if(snapshot.exists()) {
                     const { history, favorite } = snapshot.val();
-                    userQuotes.history = history;
-                    userQuotes.favorite = favorite;
+                    if (history) userQuotes.history = history;
+                    if (favorite) userQuotes.favorite = favorite;
                 }
             });
 
@@ -40,3 +40,5 @@ export class FirebaseDB implements IFirebaseDB {
         }
     }
 }
+
+export const firebaseDB = new FirebaseDB();

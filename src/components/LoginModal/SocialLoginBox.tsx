@@ -1,15 +1,19 @@
 import React, { useCallback } from 'react';
 import { SocialBox } from './LoginModal.styles';
-import { ProviderNames } from '~/types/auth.type';
+import { useUserStore } from '~/stores/useUserStore';
+import { useCardStore } from '~/stores/useCardStore';
+import { useQuotesStore } from '~/stores/useQuotesStore';
+import { useModalStore } from '~/stores/useModalStore';
 import { socialProviders } from '~/constants/login';
+import { ProviderNames } from '~/types/auth.type';
 import { FACEBOOK_LOGO, GITHUB_LOGO, GOOGLE_LOGO } from '~/assets';
 
-interface IProps {
-    onLogin(providerName: ProviderNames): Promise<void>;
-    handleLoginBox(): void;
-}
+const SocialLoginBox = () => {
+    const { changeDisplayQuote } = useCardStore();
+    const { onLogin } = useUserStore();
+    const { getUserQuotes } = useQuotesStore();
+    const { toggleLoginModal } = useModalStore();
 
-const SocialLoginBox = ({ onLogin, handleLoginBox }: IProps) => {
     const setLogo = useCallback((name: ProviderNames) => {
         switch(name) {
             case "Google":
@@ -21,9 +25,18 @@ const SocialLoginBox = ({ onLogin, handleLoginBox }: IProps) => {
         }
     }, []);
 
-    const onClick = useCallback((name: ProviderNames) => {
-        onLogin(name)
-        .then(() => handleLoginBox());
+    const onClick = useCallback(async (providerName: ProviderNames): Promise<void> => {
+        const userInfo = await onLogin(providerName);
+
+        if (!userInfo) return;
+
+        const resQuotes = await getUserQuotes(userInfo.uid);
+        if (resQuotes) {
+            const latestHistory = resQuotes.history[0] || null;
+            if (latestHistory) changeDisplayQuote(latestHistory);
+        }
+
+        toggleLoginModal();
     }, []);
 
     return (

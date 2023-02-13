@@ -7,7 +7,7 @@ const checkUserInfo = (arg: any): arg is IUserInfo => {
     return 'displayName' in arg && 'photoURL' in arg && 'uid' in arg;
 }
 
-export class AuthService implements IAuthService {
+class AuthService implements IAuthService {
     auth = getAuth(firebaseApp);
     private googleProvider = new GoogleAuthProvider();
     private facebookProvider = new FacebookAuthProvider();
@@ -68,3 +68,5 @@ export class AuthService implements IAuthService {
         }
     }
 }
+
+export const authService = new AuthService();

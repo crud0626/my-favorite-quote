@@ -5,7 +5,7 @@ import { flexAligns } from "~/styles/mixins/flexAligns";
 import { navContentBox } from "~/styles/mixins/navContentBox";
 
 export interface StyledNavProps {
-    isNavOpen: boolean;
+    isOpenNav: boolean;
 }
 
 export const StyledNav = styled.nav<StyledNavProps>`
@@ -13,7 +13,7 @@ export const StyledNav = styled.nav<StyledNavProps>`
     height: 100%;
     position: absolute;
     background-color: ${colors.CONTAINER_ALPHA};
-    visibility: ${props => props.isNavOpen ? "visible" : "hidden"};
+    visibility: ${props => props.isOpenNav ? "visible" : "hidden"};
     z-index: 5;
 
     & > div {
@@ -21,7 +21,7 @@ export const StyledNav = styled.nav<StyledNavProps>`
         height: 100%;
         background-color: ${colors.MAIN_WHITE};
         transition: all 0.2s ease-in-out;
-        transform: ${props => props.isNavOpen ? "translateX(0)" : "translateX(-101%)"};
+        transform: ${props => props.isOpenNav ? "translateX(0)" : "translateX(-101%)"};
         overflow-y: auto;
         color: ${colors.MAIN_BLACK};
     }

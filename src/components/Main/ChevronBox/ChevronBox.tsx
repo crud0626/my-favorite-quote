@@ -1,15 +1,24 @@
 import React, { useCallback } from 'react';
-import { ChevronButton, ChevronWrapper } from './ChevronBox.styles';
+import { useQuotesStore } from '~/stores/useQuotesStore';
+import { useCardStore } from '~/stores/useCardStore';
 import * as colors from '~/styles/common/colors';
+import { ChevronButton, ChevronWrapper } from './ChevronBox.styles';
 import { debounce } from '~/utils/debounce';
 import { LeftChevron, RightChevron } from '~/assets';
 
-interface IChevronWrapper {
-    requestData(id?: string): Promise<any>;
-}
+const ChevronBox = () => {
+    const { changeDisplayQuote} = useCardStore();
+    const { requestQuote } = useQuotesStore();
 
-const ChevronBox = ({ requestData }: IChevronWrapper) => {
-    const onClick = useCallback(debounce(requestData, 300, true), []);
+    const fetchNewQuote = () => {
+        requestQuote()
+        .then(newQuote => {
+            if (!newQuote) return;
+
+            changeDisplayQuote(newQuote);
+        })
+    }
+    const onClick = useCallback(debounce(fetchNewQuote, 300, true), []);
 
     return (
         <ChevronWrapper>

@@ -7,7 +7,7 @@ export interface ResponseQuote {
 }
 
 export interface IQuoteContent extends ResponseQuote {
-    readonly favorite: boolean;
+    favorite: boolean;
 }
 
 export type DisplayQuotesType = {

@@ -8,24 +8,18 @@ import { BottomChevron } from '~/assets';
 export interface ContentProps {
     titleName: QuotesGroupType;
     contents: IQuoteContent[];
-    onClickNavContent(target: IQuoteContent): void;
-    onChangeFavorite(target: IQuoteContent): void;
 }
 
-const NavContentWrapper = (props: Omit<ContentProps, 'titleName'>) => {
-    const { contents, onClickNavContent, onChangeFavorite } = props;
-
+const NavContentWrapper = ({ contents }: Pick<ContentProps, 'contents'>) => {
     return (
         <ul>
             {
-                contents.length === 0 
+                contents.length === 0
                 ? <TextBox>{"No Contents"}</TextBox>  
                 : contents.map(content => (
                     <ContentBox 
                         key={content.id}
                         content={content}
-                        onClickNavContent={onClickNavContent}
-                        onChangeFavorite={onChangeFavorite}
                     />
                 ))
             }
@@ -33,9 +27,10 @@ const NavContentWrapper = (props: Omit<ContentProps, 'titleName'>) => {
     );
 }
 
-const NavAccordion = ({ titleName, ...contentProps }: ContentProps) => {
+const NavAccordion = ({ titleName, contents }: ContentProps) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
+    // utils함수로 뺄 예정
     const toCapitalizeFirst = useCallback((str: string): string => {
         return `${str.charAt(0).toUpperCase()}${str.slice(1)}`;
     }, []);
@@ -52,7 +47,7 @@ const NavAccordion = ({ titleName, ...contentProps }: ContentProps) => {
                 </NavBodyButton>
                 <span>{toCapitalizeFirst(titleName)}</span>
             </AccordionTitle>
-            { isOpen && <NavContentWrapper { ...contentProps } /> }
+            { isOpen && <NavContentWrapper contents={contents} /> }
         </>
     );
 };
