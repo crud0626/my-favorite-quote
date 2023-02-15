@@ -38,7 +38,7 @@ const NavHeader = () => {
                                 size={sizes.LARGE_ICON_SIZE} 
                             />
                             <span>
-                                {userInfo.displayName}
+                                {userInfo.displayName || 'Welcome!'}
                             </span>
                         </div>
                         <PrimaryButton onClick={onClick}>

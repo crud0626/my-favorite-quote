@@ -9,6 +9,7 @@ import FillHeartIcon from './fill-heart-icon.svg';
 import LoginIcon from './login-icon.svg';
 import LogoutIcon from './logout-icon.svg';
 import UserIcon from './user-icon.svg';
+import UserDefaultIcon from './user-default-icon.png';
 import GithubIcon from './github-logo.svg';
 
 export {
@@ -22,5 +23,6 @@ export {
     LoginIcon,
     LogoutIcon,
     UserIcon,
+    UserDefaultIcon,
     GithubIcon
 }
