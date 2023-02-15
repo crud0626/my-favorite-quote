@@ -7,7 +7,7 @@ import * as sizes from '~/styles/common/sizes';
 import SVGIconBtn from '../common/SVGIconBtn/SVGIconBtn';
 import { CloseIcon } from '~/assets/icons';
 
-const LoginBox = () => {
+const LoginModal = () => {
     const { toggleLoginModal } = useModalStore();
     
     const onClickOuterModal = useCallback(({ target, currentTarget }: React.MouseEvent<HTMLElement>) => {
@@ -37,4 +37,4 @@ const LoginBox = () => {
     );
 };
 
-export default LoginBox;
+export default LoginModal;
