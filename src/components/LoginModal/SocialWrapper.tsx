@@ -8,7 +8,7 @@ import { socialProviders } from '~/constants/login';
 import { ProviderNames } from '~/types/auth.type';
 import { FACEBOOK_LOGO, GITHUB_LOGO, GOOGLE_LOGO } from '~/assets/logos';
 
-const SocialLoginBox = () => {
+const SocialWrapper = () => {
     const { changeDisplayQuote } = useCardStore();
     const { onLogin } = useUserStore();
     const { getUserQuotes } = useQuotesStore();
@@ -57,4 +57,4 @@ const SocialLoginBox = () => {
     );
 };
 
-export default SocialLoginBox;
+export default SocialWrapper;

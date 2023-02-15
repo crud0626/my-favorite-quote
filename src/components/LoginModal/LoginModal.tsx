@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useModalStore } from '~/stores/useModalStore';
-import SocialLoginBox from './SocialLoginBox';
+import SocialWrapper from './SocialWrapper';
 import { StyledLoginModal } from './LoginModal.styles';
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
@@ -21,7 +21,7 @@ const LoginModal = () => {
                     <h1 className='title'>Welcome back!</h1>
                     <span className='sub_title'>Please enter your details.</span>
                 </div>
-                <SocialLoginBox />
+                <SocialWrapper />
                 <SVGIconBtn
                     src={<CloseIcon />}
                     position={'absolute'}
