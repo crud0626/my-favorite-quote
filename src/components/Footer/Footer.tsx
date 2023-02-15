@@ -1,6 +1,6 @@
 import React from 'react';
 import { FooterLinkBtn, StyledFooter } from './Footer.styles';
-import { GithubIcon } from '~/assets';
+import { GithubIcon } from '~/assets/icons';
 
 const Footer = React.memo(() => {
     return (

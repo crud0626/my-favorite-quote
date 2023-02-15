@@ -6,7 +6,7 @@ import { useQuotesStore } from '~/stores/useQuotesStore';
 import { useModalStore } from '~/stores/useModalStore';
 import { socialProviders } from '~/constants/login';
 import { ProviderNames } from '~/types/auth.type';
-import { FACEBOOK_LOGO, GITHUB_LOGO, GOOGLE_LOGO } from '~/assets';
+import { FACEBOOK_LOGO, GITHUB_LOGO, GOOGLE_LOGO } from '~/assets/logos';
 
 const SocialLoginBox = () => {
     const { changeDisplayQuote } = useCardStore();

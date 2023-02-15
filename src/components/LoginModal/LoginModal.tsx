@@ -5,7 +5,7 @@ import { StyledLoginModal } from './LoginModal.styles';
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
 import SVGIconBtn from '../common/SVGIconBtn/SVGIconBtn';
-import { CloseIcon } from '~/assets';
+import { CloseIcon } from '~/assets/icons';
 
 const LoginBox = () => {
     const { toggleLoginModal } = useModalStore();

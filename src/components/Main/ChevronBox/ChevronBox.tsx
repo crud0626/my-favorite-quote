@@ -5,7 +5,7 @@ import * as colors from '~/styles/common/colors';
 import { ChevronButton, ChevronWrapper } from './ChevronBox.styles';
 import { debounce } from '~/utils/debounce';
 import { ChevronEventType } from '~/types/user.type';
-import { LeftChevron, RightChevron } from '~/assets';
+import { LeftChevron, RightChevron } from '~/assets/icons';
 
 const ChevronBox = () => {
     const { changeDisplayQuote} = useCardStore();

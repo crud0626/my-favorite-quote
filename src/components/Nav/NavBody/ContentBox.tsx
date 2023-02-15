@@ -8,7 +8,7 @@ import { useCardStore } from "~/stores/useCardStore";
 import { useUserStore } from "~/stores/useUserStore";
 import { useQuotesStore } from "~/stores/useQuotesStore";
 import { saveUserData } from "~/utils/saveUserData";
-import { EmptyHeartIcon, FillHeartIcon } from "~/assets";
+import { EmptyHeartIcon, FillHeartIcon } from "~/assets/icons";
 
 interface IProps {
   content: IQuoteContent;

@@ -4,7 +4,7 @@ import * as colors from '~/styles/common/colors';
 import { AccordionTitle, NavBodyButton, TextBox } from './NavAccordion.styles';
 import { IQuoteContent, QuotesGroupType } from '~/types/quote.type';
 import { capitalizeFirst } from '~/utils/capitalizeFirst';
-import { BottomChevron } from '~/assets';
+import { BottomChevron } from '~/assets/icons';
 
 export interface ContentProps {
     titleName: QuotesGroupType;

@@ -9,7 +9,7 @@ import { InnerBtnWrapper, StyledCard, StyledCardProps } from './Card.styles';
 import { IQuoteContent } from '~/types/quote.type';
 import { saveUserData } from '~/utils/saveUserData';
 import { downloadImage } from '~/utils/downloadImage';
-import { DownloadIcon, EmptyHeartIcon, FillHeartIcon } from '~/assets';
+import { DownloadIcon, EmptyHeartIcon, FillHeartIcon } from '~/assets/icons';
 
 interface IProps extends Pick<StyledCardProps, 'position'> {}
 

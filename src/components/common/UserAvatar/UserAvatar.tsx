@@ -1,7 +1,7 @@
 import React from 'react';
 import * as colors from '~/styles/common/colors';
 import { StyledUserAvatar, IStyledUserAvatar } from './UserAvatar.styles';
-import { UserIcon } from '~/assets';
+import { UserIcon } from '~/assets/icons';
 
 interface IProps extends IStyledUserAvatar {
     userPhotoSrc: string | null;
