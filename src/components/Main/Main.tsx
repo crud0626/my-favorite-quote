@@ -3,13 +3,16 @@ import Nav from '~/components/Nav/Nav';
 import Card from './Card/Card';
 import ChevronBox from './ChevronBox/ChevronBox';
 import { useCardStore } from '~/stores/useCardStore';
+import { useModalStore } from '~/stores/useModalStore';
 import { CardWrapper, StyledMain } from './Main.styles';
 import { CardPositionType } from '~/types/user.type';
+import LoginModal from '~/components/LoginModal/LoginModal';
 
 const cardPositions: CardPositionType[] = ['front', 'back'];
 
 const Main = () => {
     const { cardRotation } = useCardStore();
+    const { isOpenLoginModal } = useModalStore();
 
     return(
         <StyledMain>
@@ -30,6 +33,7 @@ const Main = () => {
                 </div>
             </section>
             <Nav />
+            {isOpenLoginModal && <LoginModal />}
         </StyledMain>
     );
 }

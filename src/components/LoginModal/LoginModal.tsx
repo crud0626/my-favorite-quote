@@ -1,13 +1,13 @@
 import React, { useCallback } from 'react';
 import { useModalStore } from '~/stores/useModalStore';
-import SocialLoginBox from './SocialLoginBox';
+import SocialWrapper from './SocialWrapper';
 import { StyledLoginModal } from './LoginModal.styles';
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
 import SVGIconBtn from '../common/SVGIconBtn/SVGIconBtn';
-import { CloseIcon } from '~/assets';
+import { CloseIcon } from '~/assets/icons';
 
-const LoginBox = () => {
+const LoginModal = () => {
     const { toggleLoginModal } = useModalStore();
     
     const onClickOuterModal = useCallback(({ target, currentTarget }: React.MouseEvent<HTMLElement>) => {
@@ -21,7 +21,7 @@ const LoginBox = () => {
                     <h1 className='title'>Welcome back!</h1>
                     <span className='sub_title'>Please enter your details.</span>
                 </div>
-                <SocialLoginBox />
+                <SocialWrapper />
                 <SVGIconBtn
                     src={<CloseIcon />}
                     position={'absolute'}
@@ -37,4 +37,4 @@ const LoginBox = () => {
     );
 };
 
-export default LoginBox;
+export default LoginModal;

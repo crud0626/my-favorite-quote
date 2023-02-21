@@ -2,13 +2,13 @@ import React, { useCallback } from "react";
 import { useUserStore } from "~/stores/useUserStore";
 import { useQuotesStore } from "~/stores/useQuotesStore";
 import { useCardStore } from "~/stores/useCardStore";
+import { useModalStore } from "~/stores/useModalStore";
 import UserAvatar from "~/components/common/UserAvatar/UserAvatar";
 import * as sizes from '~/styles/common/sizes';
 import * as colors from '~/styles/common/colors';
 import { PrimaryButton } from "~/styles/common/PrimaryButton";
 import { LoginButton, StyledNavHeader } from "./NavHeader.styles";
-import { LoginIcon, LogoutIcon } from "~/assets";
-import { useModalStore } from "~/stores/useModalStore";
+import { LoginIcon, LogoutIcon } from "~/assets/icons";
 
 const NavHeader = () => {
     const { userInfo, onLogout } = useUserStore();
@@ -38,7 +38,7 @@ const NavHeader = () => {
                                 size={sizes.LARGE_ICON_SIZE} 
                             />
                             <span>
-                                {userInfo.displayName}
+                                {userInfo.displayName || 'Welcome!'}
                             </span>
                         </div>
                         <PrimaryButton onClick={onClick}>

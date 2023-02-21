@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import * as sizes from '~/styles/common/sizes';
 import { CardPositionType } from '~/types/user.type';
-import { CARD_BG } from '~/assets';
+import { DEFAULT_BG } from '~/assets/cards';
 import { flexAligns } from '~/styles/mixins/flexAligns';
 
 export interface StyledCardProps {
@@ -23,7 +23,7 @@ export const StyledCard = styled.div<StyledCardProps>`
         content: "";
         position: absolute;
         inset: 0;
-        background: no-repeat center / cover url(${CARD_BG});
+        background: no-repeat center / cover url(${DEFAULT_BG});
         opacity: 0.6;
         border-radius: ${sizes.CARD_BORDER_RADIUS};
     }

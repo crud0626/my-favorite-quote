@@ -7,7 +7,7 @@ import SVGIconBtn from '~/components/common/SVGIconBtn/SVGIconBtn';
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
 import { MainLogo, NavBtnWrapper, StyledHeader } from './Header.styles';
-import { LoginIcon, LogoutIcon } from '~/assets';
+import { LoginIcon, LogoutIcon } from '~/assets/icons';
 
 const lineLen = new Array(3).fill("");
 

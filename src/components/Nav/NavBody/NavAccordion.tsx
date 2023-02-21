@@ -3,7 +3,8 @@ import ContentBox from './ContentBox';
 import * as colors from '~/styles/common/colors';
 import { AccordionTitle, NavBodyButton, TextBox } from './NavAccordion.styles';
 import { IQuoteContent, QuotesGroupType } from '~/types/quote.type';
-import { BottomChevron } from '~/assets';
+import { capitalizeFirst } from '~/utils/capitalizeFirst';
+import { BottomChevron } from '~/assets/icons';
 
 export interface ContentProps {
     titleName: QuotesGroupType;
@@ -30,11 +31,6 @@ const NavContentWrapper = ({ contents }: Pick<ContentProps, 'contents'>) => {
 const NavAccordion = ({ titleName, contents }: ContentProps) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
-    // utils함수로 뺄 예정
-    const toCapitalizeFirst = useCallback((str: string): string => {
-        return `${str.charAt(0).toUpperCase()}${str.slice(1)}`;
-    }, []);
-
     const handleContent = useCallback(() => 
         setIsOpen((prevState) => !prevState)
     , []);
@@ -45,7 +41,7 @@ const NavAccordion = ({ titleName, contents }: ContentProps) => {
                 <NavBodyButton isOpen={isOpen}>
                     <BottomChevron color={colors.MAIN_BLACK} />
                 </NavBodyButton>
-                <span>{toCapitalizeFirst(titleName)}</span>
+                <span>{capitalizeFirst(titleName)}</span>
             </AccordionTitle>
             { isOpen && <NavContentWrapper contents={contents} /> }
         </>

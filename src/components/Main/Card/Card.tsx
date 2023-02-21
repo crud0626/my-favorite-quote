@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-import { downloadToImg } from '~/services/html2canvas';
 import { useCardStore } from '~/stores/useCardStore';
 import { useUserStore } from '~/stores/useUserStore';
 import { useQuotesStore } from '~/stores/useQuotesStore';
@@ -9,7 +8,8 @@ import * as sizes from '~/styles/common/sizes';
 import { InnerBtnWrapper, StyledCard, StyledCardProps } from './Card.styles';
 import { IQuoteContent } from '~/types/quote.type';
 import { saveUserData } from '~/utils/saveUserData';
-import { DownloadIcon, EmptyHeartIcon, FillHeartIcon } from '~/assets';
+import { downloadImage } from '~/utils/downloadImage';
+import { DownloadIcon, EmptyHeartIcon, FillHeartIcon } from '~/assets/icons';
 
 interface IProps extends Pick<StyledCardProps, 'position'> {}
 
@@ -28,7 +28,7 @@ const Card = ({ position }: IProps) => {
     const onDownload = useCallback(({ currentTarget }: React.MouseEvent<HTMLElement>) => {
         if(currentTarget instanceof HTMLElement) {
             const wrapperElem = currentTarget.closest('.card_wrapper');
-            if (wrapperElem instanceof HTMLElement) downloadToImg(wrapperElem);
+            if (wrapperElem instanceof HTMLElement) downloadImage(wrapperElem);
         }
     }, []);
 
