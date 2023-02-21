@@ -19,7 +19,7 @@ export const CardWrapper = styled.div<ICardWrapper>`
 export const StyledMain = styled.main`
     position: relative;
     width: 100%;
-    height: calc(${sizes.SECTION_HEIGHT});
+    height: 100%;
     background-color: ${colors.MAIN_BLACK};
 
     & > .section {

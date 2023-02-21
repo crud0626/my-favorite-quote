@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { User } from 'firebase/auth';
+import { useSetHeight } from './hooks/useSetHeight';
 import { useCardStore } from './stores/useCardStore';
 import { useUserStore } from './stores/useUserStore';
 import { useQuotesStore } from './stores/useQuotesStore';
@@ -40,6 +41,7 @@ const App = () => {
     }
 
     useEffect(() => {
+        useSetHeight();
         addUserStateListener(initData);
     }, []);
 

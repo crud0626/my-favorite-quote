@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import * as colors from '~/styles/common/colors';
+import * as sizes from '~/styles/common/sizes';
 
 const GlobalStyle = createGlobalStyle`
     * {
@@ -50,26 +51,32 @@ const GlobalStyle = createGlobalStyle`
         border-spacing: 0;
     }
 
-    html {
-        width: 100vw;
-        height: 100vh;
-    }
-
-    body {
-        width: 100%;
-        height: 100%;
-        font-family: 'Noto Serif KR', 'Nanum Myeongjo', serif;
-        color: ${colors.MAIN_WHITE};
-    }
-
     a, button {
         background: transparent;
         cursor: pointer;
     }
 
-    svg {
+    html, body, #root, svg {
         width: 100%;
         height: 100%;
+    }
+
+    body {
+        font-family: 'Noto Serif KR', 'Nanum Myeongjo', serif;
+        color: ${colors.MAIN_WHITE};
+    }
+
+    #root {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    /* 모바일 브라우저 화면 대응 */
+    @media screen and (max-device-width: ${sizes.TABLET_VIEWPORT_SIZE}){
+        body {
+            height: calc(var(--vh, 1vh) * 100);
+        }
     }
 `;
 
