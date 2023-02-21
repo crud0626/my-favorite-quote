@@ -6,6 +6,8 @@ import { PrimaryButton } from '~/styles/common/PrimaryButton';
 import { flexAligns } from "~/styles/mixins/flexAligns";
 
 export const StyledNavHeader = styled(StyledNavBox)`
+    cursor: unset;
+    
     & > :first-child > :first-child {
         margin-right: ${sizes.SPACE_2X};
     }

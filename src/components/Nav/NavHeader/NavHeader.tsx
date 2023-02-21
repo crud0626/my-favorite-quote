@@ -4,9 +4,9 @@ import { useQuotesStore } from "~/stores/useQuotesStore";
 import { useCardStore } from "~/stores/useCardStore";
 import { useModalStore } from "~/stores/useModalStore";
 import UserAvatar from "~/components/common/UserAvatar/UserAvatar";
+import SVGIconBtn from "~/components/common/SVGIconBtn/SVGIconBtn";
 import * as sizes from '~/styles/common/sizes';
 import * as colors from '~/styles/common/colors';
-import { PrimaryButton } from "~/styles/common/PrimaryButton";
 import { LoginButton, StyledNavHeader } from "./NavHeader.styles";
 import { LoginIcon, LogoutIcon } from "~/assets/icons";
 
@@ -41,9 +41,13 @@ const NavHeader = () => {
                                 {userInfo.displayName || 'Welcome!'}
                             </span>
                         </div>
-                        <PrimaryButton onClick={onClick}>
-                            <LogoutIcon fill={colors.MAIN_BLACK} />
-                        </PrimaryButton>
+                        <SVGIconBtn 
+                            src={<LogoutIcon />}
+                            size={sizes.DEFAULT_ICON_SIZE}
+                            color={colors.MAIN_BLACK}
+                            hoverColor={colors.ICON_HOVER_COLOR}
+                            onClick={onClick}
+                        />
                     </>
                 ) : 
                 (
