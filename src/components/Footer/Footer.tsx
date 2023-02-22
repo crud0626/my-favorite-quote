@@ -11,7 +11,10 @@ const Footer = React.memo(() => {
                 </span>
             </div>
             <div>
-                <FooterLinkBtn link='https://github.com/crud0626' >
+                <FooterLinkBtn 
+                    link='https://github.com/crud0626' 
+                    aria-label='github link'
+                >
                     <GithubIcon />
                 </FooterLinkBtn>
             </div>

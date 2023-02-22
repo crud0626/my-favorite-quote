@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { SocialBox } from './LoginModal.styles';
-import { useUserStore } from '~/stores/useUserStore';
-import { useModalStore } from '~/stores/useModalStore';
+import { useUserStore } from '~/hooks/stores/useUserStore';
+import { useModalStore } from '~/hooks/stores/useModalStore';
 import { socialProviders } from '~/constants/login';
 import { ProviderNames } from '~/types/auth.type';
 import { FACEBOOK_LOGO, GITHUB_LOGO, GOOGLE_LOGO } from '~/assets/logos';

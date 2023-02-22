@@ -72,6 +72,7 @@ export const StyledHeader = styled.header`
     width: 100%;
     height: ${sizes.HEADER_HEIGHT};
     background: ${colors.SUB_BLACK};
+    user-select: none;
 
     @media screen and (max-width: ${sizes.TABLET_VIEWPORT_SIZE}) {
         padding: ${sizes.SPACE_2X}

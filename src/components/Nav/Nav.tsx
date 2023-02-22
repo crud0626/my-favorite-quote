@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
-import { useQuotesStore } from '~/stores/useQuotesStore';
-import { useModalStore } from '~/stores/useModalStore';
+import { useQuotesStore } from '~/hooks/stores/useQuotesStore';
+import { useModalStore } from '~/hooks/stores/useModalStore';
 import NavHeader from './NavHeader/NavHeader';
 import NavAccordion from './NavBody/NavAccordion';
 import { StyledNav } from './Nav.styles';

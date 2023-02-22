@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { User } from 'firebase/auth';
-import { useSetHeight } from './hooks/useSetHeight';
-import { useCardStore } from './stores/useCardStore';
-import { useUserStore } from './stores/useUserStore';
-import { useQuotesStore } from './stores/useQuotesStore';
+import { useSetHeight } from './hooks/customs/useSetHeight';
+import { useCardStore } from './hooks/stores/useCardStore';
+import { useUserStore } from './hooks/stores/useUserStore';
+import { useQuotesStore } from './hooks/stores/useQuotesStore';
 import Footer from '~/components/Footer/Footer';
 import Header from '~/components/Header/Header';
 import Main from '~/components/Main/Main';

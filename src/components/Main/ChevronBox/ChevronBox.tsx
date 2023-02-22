@@ -1,7 +1,8 @@
 import React, { useCallback } from 'react';
-import { useQuotesStore } from '~/stores/useQuotesStore';
-import { useCardStore } from '~/stores/useCardStore';
-import { useUserStore } from '~/stores/useUserStore';
+import { useTouchSlide } from '~/hooks/customs/useTouchSlide';
+import { useQuotesStore } from '~/hooks/stores/useQuotesStore';
+import { useCardStore } from '~/hooks/stores/useCardStore';
+import { useUserStore } from '~/hooks/stores/useUserStore';
 import * as colors from '~/styles/common/colors';
 import { ChevronButton, ChevronWrapper } from './ChevronBox.styles';
 import { debounce } from '~/utils/debounce';
@@ -28,12 +29,27 @@ const ChevronBox = () => {
     
     const onClick = useCallback(debounce(fetchNewQuote, 300, true), [fetchNewQuote]);
 
+    const [setTouchStart, setTouchEnd] = useTouchSlide(() => 
+        onClick('next', userInfo?.uid), 'horizontal'
+    );
+
     return (
-        <ChevronWrapper>
-            <ChevronButton direction={"prev"} onClick={() => onClick("prev", userInfo?.uid)}>
+        <ChevronWrapper 
+            onTouchStart={setTouchStart} 
+            onTouchEnd={setTouchEnd}
+        >
+            <ChevronButton 
+                direction={"prev"} 
+                aria-label={"turn left"}
+                onClick={() => onClick("prev", userInfo?.uid)}
+            >
                 <LeftChevron fill={colors.MAIN_WHITE} />
             </ChevronButton>
-            <ChevronButton direction={"next"} onClick={() => onClick("next", userInfo?.uid)}>
+            <ChevronButton 
+                direction={"next"} 
+                aria-label={"turn right"}
+                onClick={() => onClick("next", userInfo?.uid)}
+            >
                 <RightChevron fill={colors.MAIN_WHITE} />
             </ChevronButton>
         </ChevronWrapper>

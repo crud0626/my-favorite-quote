@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { useModalStore } from '~/stores/useModalStore';
+import { useModalStore } from '~/hooks/stores/useModalStore';
 import SocialWrapper from './SocialWrapper';
 import { StyledLoginModal } from './LoginModal.styles';
 import * as colors from '~/styles/common/colors';
@@ -30,6 +30,7 @@ const LoginModal = () => {
                     size={sizes.SMALL_ICON_SIZE}
                     color={colors.MAIN_WHITE}
                     hoverColor={colors.ICON_HOVER_COLOR}
+                    aria-label={'close login modal'}
                     onClick={toggleLoginModal}
                 />
             </div>

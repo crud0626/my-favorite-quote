@@ -1,8 +1,8 @@
 import React from 'react';
-import { useUserStore } from '~/stores/useUserStore';
-import { useQuotesStore } from '~/stores/useQuotesStore';
-import { useCardStore } from '~/stores/useCardStore';
-import { useModalStore } from '~/stores/useModalStore';
+import { useUserStore } from '~/hooks/stores/useUserStore';
+import { useQuotesStore } from '~/hooks/stores/useQuotesStore';
+import { useCardStore } from '~/hooks/stores/useCardStore';
+import { useModalStore } from '~/hooks/stores/useModalStore';
 import SVGIconBtn from '~/components/common/SVGIconBtn/SVGIconBtn';
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
@@ -16,7 +16,11 @@ const NavButton = () => {
 
     return (
         <div>
-            <NavBtnWrapper isOpen={isOpenNav} onClick={toggleNav}>
+            <NavBtnWrapper 
+                isOpen={isOpenNav}
+                aria-label={`${isOpenNav ? 'close' : 'open'} navigation`} 
+                onClick={toggleNav}
+            >
                 {lineLen.map((_, i) => <span key={i} className='line'></span>)}
             </NavBtnWrapper>
         </div>
@@ -58,6 +62,7 @@ const Header = () => {
                 color={colors.MAIN_WHITE}
                 hoverColor={colors.ICON_HOVER_COLOR}
                 onClick={() => onClick()}
+                aria-label={isLoggedIn ? "logout" : "login"}
             />
         </StyledHeader>
     );
