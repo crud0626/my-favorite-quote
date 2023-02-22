@@ -16,7 +16,11 @@ const NavButton = () => {
 
     return (
         <div>
-            <NavBtnWrapper isOpen={isOpenNav} onClick={toggleNav}>
+            <NavBtnWrapper 
+                isOpen={isOpenNav}
+                aria-label={`${isOpenNav ? 'close' : 'open'} navigation`} 
+                onClick={toggleNav}
+            >
                 {lineLen.map((_, i) => <span key={i} className='line'></span>)}
             </NavBtnWrapper>
         </div>
@@ -58,6 +62,7 @@ const Header = () => {
                 color={colors.MAIN_WHITE}
                 hoverColor={colors.ICON_HOVER_COLOR}
                 onClick={() => onClick()}
+                aria-label={isLoggedIn ? "logout" : "login"}
             />
         </StyledHeader>
     );

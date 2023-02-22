@@ -47,11 +47,15 @@ const NavHeader = () => {
                             color={colors.MAIN_BLACK}
                             hoverColor={colors.ICON_HOVER_COLOR}
                             onClick={onClick}
+                            aria-label={"logout"}
                         />
                     </>
                 ) : 
                 (
-                    <LoginButton onClick={toggleLoginModal}>
+                    <LoginButton 
+                        aria-label={"login"} 
+                        onClick={toggleLoginModal}
+                    >
                         <span>LOGIN</span>
                         <div className='icon_wrapper'>
                             <LoginIcon fill={colors.LINK_BLUE} />

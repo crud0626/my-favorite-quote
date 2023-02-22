@@ -30,10 +30,18 @@ const ChevronBox = () => {
 
     return (
         <ChevronWrapper>
-            <ChevronButton direction={"prev"} onClick={() => onClick("prev", userInfo?.uid)}>
+            <ChevronButton 
+                direction={"prev"} 
+                aria-label={"turn left"}
+                onClick={() => onClick("prev", userInfo?.uid)}
+            >
                 <LeftChevron fill={colors.MAIN_WHITE} />
             </ChevronButton>
-            <ChevronButton direction={"next"} onClick={() => onClick("next", userInfo?.uid)}>
+            <ChevronButton 
+                direction={"next"} 
+                aria-label={"turn right"}
+                onClick={() => onClick("next", userInfo?.uid)}
+            >
                 <RightChevron fill={colors.MAIN_WHITE} />
             </ChevronButton>
         </ChevronWrapper>

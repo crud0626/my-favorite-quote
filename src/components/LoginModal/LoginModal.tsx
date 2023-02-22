@@ -30,6 +30,7 @@ const LoginModal = () => {
                     size={sizes.SMALL_ICON_SIZE}
                     color={colors.MAIN_WHITE}
                     hoverColor={colors.ICON_HOVER_COLOR}
+                    aria-label={'close login modal'}
                     onClick={toggleLoginModal}
                 />
             </div>

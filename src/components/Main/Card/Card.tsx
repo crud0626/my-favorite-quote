@@ -49,6 +49,7 @@ const Card = ({ position }: IProps) => {
                             size={sizes.SMALL_ICON_SIZE}
                             color={quoteContent?.favorite ? colors.BUTTON_RED : colors.MAIN_WHITE}
                             hoverColor={colors.ICON_HOVER_COLOR}
+                            aria-label={`${quoteContent?.favorite ? 'cancel' : 'add' } favorite`}
                             onClick={() => onChange(quoteContent)}
                         />
                         {/* 다운로드 버튼 */}
@@ -57,6 +58,7 @@ const Card = ({ position }: IProps) => {
                             size={sizes.SMALL_ICON_SIZE}
                             color={colors.MAIN_WHITE}
                             hoverColor={colors.ICON_HOVER_COLOR}
+                            aria-label={'download image'}
                             onClick={onDownload}
                         />
                     </InnerBtnWrapper>
