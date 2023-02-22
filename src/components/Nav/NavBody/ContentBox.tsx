@@ -1,12 +1,12 @@
 import React from "react";
 import SVGIconBtn from "~/components/common/SVGIconBtn/SVGIconBtn";
 import { ContentBoxWrapper } from "./ContentBox.styles";
-import * as sizes from "~/styles/common/sizes";
-import * as colors from "~/styles/common/colors";
-import { IQuoteContent } from "~/types/quote.type";
 import { useCardStore } from "~/stores/useCardStore";
 import { useUserStore } from "~/stores/useUserStore";
 import { useQuotesStore } from "~/stores/useQuotesStore";
+import * as sizes from "~/styles/common/sizes";
+import * as colors from "~/styles/common/colors";
+import { IQuoteContent } from "~/types/quote.type";
 import { saveUserData } from "~/utils/saveUserData";
 import { EmptyHeartIcon, FillHeartIcon } from "~/assets/icons";
 
@@ -23,19 +23,17 @@ const ContentBox = ({ content }: IProps) => {
     if(displayQuotes[cardPosition]?.id === targetQuote.id) return;
 
     changeDisplayQuote(targetQuote);
-    updateQuotes(targetQuote, 'history');
+    const newQuotesList = updateQuotes(targetQuote, 'history');
+    saveUserData(newQuotesList, userInfo?.uid);
   }
   
-  const onChange = (target: IQuoteContent) => {
-      const { newUserQuotes, targetQuote } = onChangeFavorite(target);
+  const onClickHeart = (e: React.MouseEvent, target: IQuoteContent) => {
+    e.stopPropagation();
 
-      replaceDisplayQuotes(targetQuote);
-      saveUserData(newUserQuotes, userInfo?.uid);
-  };
+    const { newUserQuotes, targetQuote } = onChangeFavorite(target);
 
-  const onClickHeart = (event: React.MouseEvent) => {
-    event.stopPropagation();
-    onChange(content);
+    replaceDisplayQuotes(targetQuote);
+    saveUserData(newUserQuotes, userInfo?.uid);
   };
   
   return (
@@ -50,7 +48,7 @@ const ContentBox = ({ content }: IProps) => {
           color={content.favorite ? colors.BUTTON_RED : colors.MAIN_BLACK}
           size={sizes.SMALL_ICON_SIZE}
           hoverColor={colors.ICON_HOVER_COLOR}
-          onClick={onClickHeart}
+          onClick={(e) => onClickHeart(e, content)}
         />
       </div>
     </ContentBoxWrapper>

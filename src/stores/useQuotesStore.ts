@@ -9,18 +9,23 @@ interface IState {
     userQuotes: UserQuotesType;
 }
 
+interface ResponseRequestQuote {
+    newQuote: IQuoteContent;
+    newQuotesList: UserQuotesType;
+}
+
 interface IStore extends IState {
-    updateQuotes: (newQuotes: IQuoteContent, quoteType: QuotesGroupType) => void;
+    updateQuotes: (newQuotes: IQuoteContent, quoteType: QuotesGroupType) => UserQuotesType;
     replaceQuotes: (newQuotes?: UserQuotesType) => void;
     getUserQuotes: (userId: string) => Promise<UserQuotesType | void>;
-    requestQuote: (id?: string) => Promise<IQuoteContent | void>;
+    requestQuote: (id?: string) => Promise<ResponseRequestQuote | void>;
     onChangeFavorite: (targetQuote: IQuoteContent) => {
         newUserQuotes: UserQuotesType, 
         targetQuote: IQuoteContent
     };
 }
 
-const initialState = {
+const initialState: IState = {
     userQuotes: {
         history: [],
         favorite: []
@@ -33,16 +38,18 @@ export const useQuotesStore = create<IStore>()(
             ...initialState,
             updateQuotes: (newQuotes, quoteType) => {
                 const { userQuotes } = get();
-                const filteredList = userQuotes[quoteType]
+
+                const newQuotesList = {...userQuotes};
+                const filteredList = newQuotesList[quoteType]
                     .filter(quote => quote.id !== newQuotes.id)
                     .slice(0, 9);
-
                 filteredList.unshift(newQuotes);
 
-                set({ userQuotes: {
-                    ...userQuotes,
-                    [quoteType]: [...filteredList]
-                }});
+                newQuotesList[quoteType] = filteredList;
+
+                set({ userQuotes: newQuotesList });
+
+                return newQuotesList;
             },
             replaceQuotes: (newQuotes) => {
                 if (newQuotes) {
@@ -72,9 +79,9 @@ export const useQuotesStore = create<IStore>()(
                         favorite: isFavorite ? true : false
                     };
 
-                    updateQuotes(newQuote, 'history');
+                    const newQuotesList = updateQuotes(newQuote, 'history');
 
-                    return newQuote;
+                    return { newQuote, newQuotesList };
                 } catch (error) {
                     alert("데이터를 요청 하던 도중 에러가 발생했습니다.");
                 }
