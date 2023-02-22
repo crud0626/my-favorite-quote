@@ -3,21 +3,18 @@ import { UserQuotesType } from '~/types/user.type';
 const STORAGE = window.sessionStorage;
 const STORAGE_KEY = "mfq-history-list";
 
-export const getStorageData = (): UserQuotesType => {
-    const userData = {
-        history: [],
-        favorite: []
-    };
-
+export const getStorageData = (): UserQuotesType | null => {
     const savedData = STORAGE.getItem(STORAGE_KEY);
 
     if (savedData) {
         const sessionData = JSON.parse(savedData);
-        userData.history = sessionData.history;
-        userData.favorite = sessionData.favorite;
+        return {
+            history: sessionData.history,
+            favorite: sessionData.favorite
+        };
     }
 
-    return userData;
+    return null;
 }
 
 export const saveStorageData = (userData: UserQuotesType) => {

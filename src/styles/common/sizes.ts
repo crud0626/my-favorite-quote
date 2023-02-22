@@ -1,7 +1,6 @@
 export const BODY_MIN_WIDTH = "320px";
 export const HEADER_HEIGHT = "49px";
 export const FOOTER_HEIGHT = "49px";
-export const SECTION_HEIGHT = `100vh - ${HEADER_HEIGHT} - ${FOOTER_HEIGHT}`;
 
 // Icon
 export const SMALL_ICON_SIZE = "24px";

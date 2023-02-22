@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { User } from 'firebase/auth';
+import { useSetHeight } from './hooks/useSetHeight';
 import { useCardStore } from './stores/useCardStore';
 import { useUserStore } from './stores/useUserStore';
 import { useQuotesStore } from './stores/useQuotesStore';
@@ -10,27 +11,20 @@ import GlobalStyle from '~/styles/common/GlobalStyle';
 import { getStorageData } from '~/utils/sessionStorage';
 
 const App = () => {
-    const { replaceQuotes, getUserQuotes, requestQuote } = useQuotesStore();
+    const { replaceQuotes, getUserQuotes } = useQuotesStore();
     const { changeDisplayQuote } = useCardStore();
-    const { checkLoggedIn } = useUserStore();    
+    const { addUserStateListener } = useUserStore();    
     
     const setLocalData = () => {
         const savedUserData = getStorageData();
 
         if(savedUserData) {
             const latestHistory = savedUserData.history[0];
-
+            
             replaceQuotes(savedUserData);
             changeDisplayQuote(latestHistory);
             return;
         }
-
-        requestQuote()
-        .then(newQuote => {
-            if (!newQuote) return;
-
-            changeDisplayQuote(newQuote);
-        });
     }
 
     const initData = async (user: User | null) => {
@@ -47,7 +41,8 @@ const App = () => {
     }
 
     useEffect(() => {
-        checkLoggedIn(initData);
+        useSetHeight();
+        addUserStateListener(initData);
     }, []);
 
     return (

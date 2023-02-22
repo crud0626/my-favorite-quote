@@ -13,10 +13,10 @@ interface IState {
 interface IUserStore extends IState {
     onLogin: (provider: ProviderNames) => Promise<IUserInfo | void>;
     onLogout: () => Promise<boolean>;
-    checkLoggedIn: (callbackFn: (user: User | null) => void) => void;
+    addUserStateListener: (callbackFn: (user: User | null) => void) => void;
 }
 
-const initialState = {
+const initialState: IState = {
     isLoggedIn: false,
     userInfo: null
 }
@@ -47,12 +47,13 @@ export const useUserStore = create<IUserStore>()(
                 window.alert("로그아웃 되었습니다.");
                 return true;
             },
-            checkLoggedIn: (callbackFn) => {
-                onAuthStateChanged(authService.auth, async (user) => {
+            addUserStateListener: (callbackFn) => {
+                onAuthStateChanged(authService.auth, (user) => {
                     if (user) {
                         set({ userInfo: user, isLoggedIn: true });
-                        callbackFn(user);
                     }
+                    
+                    callbackFn(user);
                 });
             }
         }),
