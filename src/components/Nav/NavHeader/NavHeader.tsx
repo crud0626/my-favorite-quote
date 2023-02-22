@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
-import { useUserStore } from "~/stores/useUserStore";
-import { useQuotesStore } from "~/stores/useQuotesStore";
-import { useCardStore } from "~/stores/useCardStore";
-import { useModalStore } from "~/stores/useModalStore";
+import { useUserStore } from "~/hooks/stores/useUserStore";
+import { useQuotesStore } from "~/hooks/stores/useQuotesStore";
+import { useCardStore } from "~/hooks/stores/useCardStore";
+import { useModalStore } from "~/hooks/stores/useModalStore";
 import UserAvatar from "~/components/common/UserAvatar/UserAvatar";
 import SVGIconBtn from "~/components/common/SVGIconBtn/SVGIconBtn";
 import * as sizes from '~/styles/common/sizes';

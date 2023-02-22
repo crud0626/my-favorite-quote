@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
-import { useTouchSlide } from '~/hooks/useTouchSlide';
-import { useQuotesStore } from '~/stores/useQuotesStore';
-import { useCardStore } from '~/stores/useCardStore';
-import { useUserStore } from '~/stores/useUserStore';
+import { useTouchSlide } from '~/hooks/customs/useTouchSlide';
+import { useQuotesStore } from '~/hooks/stores/useQuotesStore';
+import { useCardStore } from '~/hooks/stores/useCardStore';
+import { useUserStore } from '~/hooks/stores/useUserStore';
 import * as colors from '~/styles/common/colors';
 import { ChevronButton, ChevronWrapper } from './ChevronBox.styles';
 import { debounce } from '~/utils/debounce';

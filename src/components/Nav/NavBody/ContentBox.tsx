@@ -1,9 +1,9 @@
 import React from "react";
 import SVGIconBtn from "~/components/common/SVGIconBtn/SVGIconBtn";
 import { ContentBoxWrapper } from "./ContentBox.styles";
-import { useCardStore } from "~/stores/useCardStore";
-import { useUserStore } from "~/stores/useUserStore";
-import { useQuotesStore } from "~/stores/useQuotesStore";
+import { useCardStore } from "~/hooks/stores/useCardStore";
+import { useUserStore } from "~/hooks/stores/useUserStore";
+import { useQuotesStore } from "~/hooks/stores/useQuotesStore";
 import * as sizes from "~/styles/common/sizes";
 import * as colors from "~/styles/common/colors";
 import { IQuoteContent } from "~/types/quote.type";

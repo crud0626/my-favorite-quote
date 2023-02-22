@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
-import { useCardStore } from '~/stores/useCardStore';
-import { useUserStore } from '~/stores/useUserStore';
-import { useQuotesStore } from '~/stores/useQuotesStore';
+import { useCardStore } from '~/hooks/stores/useCardStore';
+import { useUserStore } from '~/hooks/stores/useUserStore';
+import { useQuotesStore } from '~/hooks/stores/useQuotesStore';
 import SVGIconBtn from '~/components/common/SVGIconBtn/SVGIconBtn';
 import * as colors from '~/styles/common/colors';
 import * as sizes from '~/styles/common/sizes';
