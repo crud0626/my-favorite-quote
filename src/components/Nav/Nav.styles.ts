@@ -14,6 +14,7 @@ export const StyledNav = styled.nav<StyledNavProps>`
     position: absolute;
     background-color: ${colors.CONTAINER_ALPHA};
     visibility: ${props => props.isOpenNav ? "visible" : "hidden"};
+    user-select: none;
     z-index: 5;
 
     & > div {
