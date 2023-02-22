@@ -36,16 +36,21 @@ export const useUserStore = create<IUserStore>()(
                 return;
             },
             onLogout: async () => {
-                const status = await authService.requestLogout();
+                const wantToLogout = window.confirm("Are you sure you want to log out now?");
+                
+                if (wantToLogout) {
+                    const status = await authService.requestLogout();
 
-                if (!status) {
+                    if (status) {
+                        set({ userInfo: null, isLoggedIn: false });
+                        window.alert("You have successfully logged out!");
+                        return true;
+                    }
+
                     window.alert("로그아웃 도중 에러가 발생했습니다.");
-                    return false;
                 }
 
-                set({ userInfo: null, isLoggedIn: false });
-                window.alert("로그아웃 되었습니다.");
-                return true;
+                return false;
             },
             addUserStateListener: (callbackFn) => {
                 onAuthStateChanged(authService.auth, (user) => {
