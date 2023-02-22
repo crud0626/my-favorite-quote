@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { useTouchSlide } from '~/hooks/useTouchSlide';
 import { useQuotesStore } from '~/stores/useQuotesStore';
 import { useCardStore } from '~/stores/useCardStore';
 import { useUserStore } from '~/stores/useUserStore';
@@ -28,8 +29,15 @@ const ChevronBox = () => {
     
     const onClick = useCallback(debounce(fetchNewQuote, 300, true), [fetchNewQuote]);
 
+    const [setTouchStart, setTouchEnd] = useTouchSlide(() => 
+        onClick('next', userInfo?.uid), 'horizontal'
+    );
+
     return (
-        <ChevronWrapper>
+        <ChevronWrapper 
+            onTouchStart={setTouchStart} 
+            onTouchEnd={setTouchEnd}
+        >
             <ChevronButton 
                 direction={"prev"} 
                 aria-label={"turn left"}

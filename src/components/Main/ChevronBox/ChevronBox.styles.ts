@@ -17,7 +17,7 @@ export const ChevronWrapper = styled.div`
     margin: auto 0;
     position: absolute;
     width: 100%;
-    height: 0px;
+    height: 100%;
     background-color: transparent;
 `;
 
