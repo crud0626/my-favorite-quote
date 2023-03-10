@@ -8,7 +8,8 @@
   "scripts": {
     "start": "webpack-dev-server --config ./config/webpack.dev.js",
     "build": "webpack --config ./config/webpack.prod.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --watchAll",
+    "test:coverage": "jest --watchAll --coverage"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.20.2",
