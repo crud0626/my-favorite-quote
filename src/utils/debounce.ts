@@ -11,7 +11,7 @@ export const debounce = <F extends (...args: Parameters<F>) => ReturnType<F>>(
 
         if (leading && timer === null) callbackFn.apply(context, args);
         
-        if (typeof timer === 'number') clearTimeout(timer);
+        if (timer !== null) clearTimeout(timer);
 
         timer = setTimeout(() => {
             timer = null;
