@@ -4,4 +4,8 @@ module.exports = {
   coverageDirectory: "coverage",
   preset: 'ts-jest',
   testEnvironment: 'node',
+  setupFiles: ['./src/test/mocks/sessionStorageMock.ts'],
+  globals: {
+    window: {}
+  }
 };
