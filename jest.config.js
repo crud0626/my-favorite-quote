@@ -3,9 +3,9 @@ module.exports = {
   collectCoverage: true,
   coverageDirectory: "coverage",
   preset: 'ts-jest',
-  testEnvironment: 'node',
-  setupFiles: ['./src/test/mocks/sessionStorageMock.ts'],
-  globals: {
-    window: {}
+  testEnvironment: 'jsdom',
+  setupFiles: ['<rootDir>/src/test/mocks/sessionStorageMock.ts'],
+  moduleNameMapper: {
+    '^\~\/': '<rootDir>/src/',
   }
 };
