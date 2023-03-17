@@ -1,4 +1,8 @@
-import { ResponseQuote } from "~/types/quote.type";
+import { ResponseQuote, ServerQuoteForm } from "~/types/quote.type";
+
+function isCorrectQuote(arg: any): arg is ServerQuoteForm {
+    return arg._id && arg.content && arg.author;
+}
 
 const API_END_POINT = "https://api.quotable.io";
 
@@ -8,10 +12,11 @@ class QuotesAPI {
 
         try {
             const response = await fetch(requestURL);
+            const resData = await response.json();
 
-            const { _id, content, author } = await response.json();
+            if(response.ok && isCorrectQuote(resData)) {
+                const { _id, content, author} = resData;
 
-            if(response.ok) {
                 const data: ResponseQuote = {
                     id: _id,
                     quote: content,
@@ -21,7 +26,7 @@ class QuotesAPI {
                 return data;
             }
 
-            throw new Error(`API 통신 중 에러가 발생했습니다. ${response.status}`);
+            throw response.status;
         } catch(error) {
             throw new Error(`API 통신 중 에러가 발생했습니다. ${error}`);
         }

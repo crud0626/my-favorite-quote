@@ -1,5 +1,11 @@
 import { CardPositionType } from "./user.type";
 
+export interface ServerQuoteForm {
+    _id: string;
+    content: string;
+    author: string;
+} 
+
 export interface ResponseQuote {
     readonly id: string;
     readonly quote: string;
