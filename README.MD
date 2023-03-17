@@ -14,6 +14,8 @@
 
 ## 사용 기술
 <div align='center'>
+  <img src="https://img.shields.io/badge/Jest-^29.5.0-C21325?logo=jest" />
+  <img src="https://img.shields.io/badge/React_Testing_Library-^14.0.0-E33332?logo=testinglibrary&logoColor=white" />
   <img src="https://img.shields.io/badge/TypeScript-^4.9.4-3178C6?logo=typescript&logoColor=white" />
   <img src="https://img.shields.io/badge/React-^18.2.0-61DAFB?logo=react" />
   <img src="https://img.shields.io/badge/Zustand-^4.3.2-FFFFFF" />
