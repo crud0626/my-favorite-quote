@@ -7,6 +7,7 @@ import { flexAligns } from '~/styles/mixins/flexAligns';
 export interface StyledCardProps {
     cardPosition: CardPositionType;
     position: CardPositionType;
+    cardImage?: string | null;
 }
 
 export const StyledCard = styled.div<StyledCardProps>`
@@ -23,7 +24,7 @@ export const StyledCard = styled.div<StyledCardProps>`
         content: "";
         position: absolute;
         inset: 0;
-        background: no-repeat center / cover url(${DEFAULT_BG});
+        background: no-repeat center / cover url(${({ cardImage }) => cardImage || DEFAULT_BG });
         opacity: 0.6;
         border-radius: ${sizes.CARD_BORDER_RADIUS};
     }

@@ -10,6 +10,7 @@ import { IQuoteContent } from '~/types/quote.type';
 import { saveUserData } from '~/utils/saveUserData';
 import { downloadImage } from '~/utils/downloadImage';
 import { DownloadIcon, EmptyHeartIcon, FillHeartIcon } from '~/assets/icons';
+import * as CARD_IMAGES from '~/assets/card_images';
 
 interface IProps extends Pick<StyledCardProps, 'position'> {}
 
@@ -17,6 +18,18 @@ const Card = ({ position }: IProps) => {
     const { cardPosition, displayQuotes, replaceDisplayQuotes } = useCardStore();
     const { userInfo } = useUserStore();
     const { onChangeFavorite } = useQuotesStore();
+
+    const getRandomImage = (cardImages: { [key: string]: string }): string => {
+        const avilableImages = { ...cardImages };
+    
+        if ('DEFAULT' in avilableImages) delete avilableImages.DEFAULT;
+
+        const imageNames = Object.keys(avilableImages);
+        const randomIndex = Math.floor(Math.random() * imageNames.length);
+        const targetImage = imageNames[randomIndex];
+        
+        return avilableImages[targetImage];
+    }
 
     const onChange = (target: IQuoteContent) => {
         const { newUserQuotes, targetQuote } = onChangeFavorite(target);
@@ -35,7 +48,11 @@ const Card = ({ position }: IProps) => {
     const quoteContent = displayQuotes[position];
 
     return (
-        <StyledCard position={position} cardPosition={cardPosition}>
+        <StyledCard 
+            position={position} 
+            cardPosition={cardPosition}
+            cardImage={quoteContent && getRandomImage(CARD_IMAGES)}
+        >
             {quoteContent &&
                 <>
                     <div data-id={quoteContent.id} className='card_content'>
