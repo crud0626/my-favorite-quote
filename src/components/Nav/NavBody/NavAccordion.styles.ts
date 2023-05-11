@@ -1,10 +1,7 @@
-import styled from "styled-components";
-import { StyledNavBox } from "../Nav.styles";
-import * as colors from '~/styles/common/colors';
-import * as sizes from '~/styles/common/sizes';
-import { PrimaryButton } from "~/styles/common/PrimaryButton";
-import { navContentBox } from "~/styles/mixins/navContentBox";
-import { flexAligns } from "~/styles/mixins/flexAligns";
+import styled from 'styled-components';
+import { StyledNavBox } from '../Nav.styles';
+import { PrimaryButton, colors, sizes } from '~/styles/common';
+import { flexAligns, navContentBox } from '~/styles/mixins';
 
 interface IProps {
     isOpen: boolean;

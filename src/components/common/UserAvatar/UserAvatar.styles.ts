@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import * as sizes from '~/styles/common/sizes';
+import styled from 'styled-components';
+import { sizes } from '~/styles/common';
 
 export interface IStyledUserAvatar {
     size?: string;

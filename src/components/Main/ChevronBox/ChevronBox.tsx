@@ -1,14 +1,11 @@
 import React, { useCallback } from 'react';
-import { useTouchSlide } from '~/hooks/customs/useTouchSlide';
-import { useQuotesStore } from '~/hooks/stores/useQuotesStore';
-import { useCardStore } from '~/hooks/stores/useCardStore';
-import { useUserStore } from '~/hooks/stores/useUserStore';
-import * as colors from '~/styles/common/colors';
+import { colors } from '~/styles/common';
 import { ChevronButton, ChevronWrapper } from './ChevronBox.styles';
-import { debounce } from '~/utils/debounce';
+import { useTouchSlide } from '~/hooks/customs';
+import { useCardStore, useQuotesStore, useUserStore } from '~/hooks/stores';
+import { debounce, saveUserData } from '~/utils';
 import { ChevronEventType } from '~/types/user.type';
 import { LeftChevron, RightChevron } from '~/assets/icons';
-import { saveUserData } from '~/utils/saveUserData';
 
 const ChevronBox = () => {
     const { changeDisplayQuote} = useCardStore();

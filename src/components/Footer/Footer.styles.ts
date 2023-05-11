@@ -1,7 +1,6 @@
-import styled from "styled-components";
-import * as sizes from '~/styles/common/sizes';
-import * as colors from '~/styles/common/colors';
-import { flexAligns } from "~/styles/mixins/flexAligns";
+import styled from 'styled-components';
+import { colors, sizes } from '~/styles/common';
+import { flexAligns } from '~/styles/mixins';
 
 interface BtnProps {
     link: string;

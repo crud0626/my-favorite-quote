@@ -1,6 +1,6 @@
-import { getDatabase, ref, set, get, child } from "firebase/database";
-import { firebaseApp } from "~/config/firebase";
-import { UserQuotesType } from "~/types/user.type";
+import { getDatabase, ref, set, get, child } from 'firebase/database';
+import { firebaseApp } from '~/config/firebase';
+import { UserQuotesType } from '~/types/user.type';
 
 interface IFirebaseDB {
     writeUserData(userId: string, userData: UserQuotesType): void;

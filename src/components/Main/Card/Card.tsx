@@ -1,14 +1,10 @@
 import React, { useCallback, useMemo } from 'react';
-import { useCardStore } from '~/hooks/stores/useCardStore';
-import { useUserStore } from '~/hooks/stores/useUserStore';
-import { useQuotesStore } from '~/hooks/stores/useQuotesStore';
-import SVGIconBtn from '~/components/common/SVGIconBtn/SVGIconBtn';
-import * as colors from '~/styles/common/colors';
-import * as sizes from '~/styles/common/sizes';
+import { useCardStore, useQuotesStore, useUserStore } from '~/hooks/stores';
+import { SVGIconBtn } from '~/components/common';
+import { colors, sizes } from '~/styles/common';
 import { InnerBtnWrapper, StyledCard, StyledCardProps } from './Card.styles';
 import { IQuoteContent } from '~/types/quote.type';
-import { saveUserData } from '~/utils/saveUserData';
-import { downloadImage } from '~/utils/downloadImage';
+import { downloadImage, saveUserData } from '~/utils';
 import { DownloadIcon, EmptyHeartIcon, FillHeartIcon } from '~/assets/icons';
 import * as CARD_IMAGES from '~/assets/card_images';
 

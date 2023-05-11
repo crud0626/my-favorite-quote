@@ -1,5 +1,5 @@
 import React from 'react';
-import * as colors from '~/styles/common/colors';
+import { colors } from '~/styles/common';
 import { StyledUserAvatar, IStyledUserAvatar } from './UserAvatar.styles';
 import { UserIcon, UserDefaultIcon } from '~/assets/icons';
 

@@ -2,11 +2,11 @@ import React from 'react';
 import Nav from '~/components/Nav/Nav';
 import Card from './Card/Card';
 import ChevronBox from './ChevronBox/ChevronBox';
-import { useCardStore } from '~/hooks/stores/useCardStore';
-import { useModalStore } from '~/hooks/stores/useModalStore';
+import LoginModal from '~/components/LoginModal/LoginModal';
+import { useCardStore, useModalStore } from '~/hooks/stores';
 import { CardWrapper, StyledMain } from './Main.styles';
 import { CardPositionType } from '~/types/user.type';
-import LoginModal from '~/components/LoginModal/LoginModal';
+
 
 const cardPositions: CardPositionType[] = ['front', 'back'];
 

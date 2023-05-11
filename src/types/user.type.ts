@@ -1,5 +1,5 @@
-import { UserInfo } from "firebase/auth";
-import { IQuoteContent, QuotesGroupType } from "./quote.type";
+import { UserInfo } from 'firebase/auth';
+import { IQuoteContent, QuotesGroupType } from './quote.type';
 
 export interface IUserInfo extends Pick<UserInfo, 'displayName' | 'photoURL' | 'uid'> {};
 

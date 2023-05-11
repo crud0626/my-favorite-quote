@@ -1,4 +1,4 @@
-import { ResponseQuote, ServerQuoteForm } from "~/types/quote.type";
+import { ResponseQuote, ServerQuoteForm } from '~/types/quote.type';
 
 function isCorrectQuote(arg: any): arg is ServerQuoteForm {
     return arg._id && arg.content && arg.author;

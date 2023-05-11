@@ -1,9 +1,7 @@
-import styled from "styled-components";
-import { StyledNavBox } from "~/components/Nav/Nav.styles";
-import * as sizes from '~/styles/common/sizes';
-import * as colors from '~/styles/common/colors';
-import { PrimaryButton } from '~/styles/common/PrimaryButton';
-import { flexAligns } from "~/styles/mixins/flexAligns";
+import styled from 'styled-components';
+import { StyledNavBox } from '~/components/Nav/Nav.styles';
+import { PrimaryButton, colors, sizes } from '~/styles/common';
+import { flexAligns } from '~/styles/mixins';
 
 export const StyledNavHeader = styled(StyledNavBox)`
     cursor: unset;

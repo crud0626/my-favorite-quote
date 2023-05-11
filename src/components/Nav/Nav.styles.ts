@@ -1,8 +1,6 @@
-import styled from "styled-components";
-import * as colors from '~/styles/common/colors';
-import * as sizes from '~/styles/common/sizes';
-import { flexAligns } from "~/styles/mixins/flexAligns";
-import { navContentBox } from "~/styles/mixins/navContentBox";
+import styled from 'styled-components';
+import { colors, sizes } from '~/styles/common';
+import { flexAligns, navContentBox } from '~/styles/mixins';
 
 export interface StyledNavProps {
     isOpenNav: boolean;

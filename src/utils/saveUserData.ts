@@ -1,6 +1,6 @@
-import { saveStorageData } from "./sessionStorage";
-import { firebaseDB } from "~/services/database";
-import { UserQuotesType } from "~/types/user.type";
+import { saveStorageData } from './sessionStorage';
+import { firebaseDB } from '~/services';
+import { UserQuotesType } from '~/types/user.type';
 
 export const saveUserData = (newUserQuotes: UserQuotesType, userId?: string): void => {
     if(userId) {

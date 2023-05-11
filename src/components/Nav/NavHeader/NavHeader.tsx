@@ -1,14 +1,9 @@
-import React, { useCallback } from "react";
-import { useUserStore } from "~/hooks/stores/useUserStore";
-import { useQuotesStore } from "~/hooks/stores/useQuotesStore";
-import { useCardStore } from "~/hooks/stores/useCardStore";
-import { useModalStore } from "~/hooks/stores/useModalStore";
-import UserAvatar from "~/components/common/UserAvatar/UserAvatar";
-import SVGIconBtn from "~/components/common/SVGIconBtn/SVGIconBtn";
-import * as sizes from '~/styles/common/sizes';
-import * as colors from '~/styles/common/colors';
-import { LoginButton, StyledNavHeader } from "./NavHeader.styles";
-import { LoginIcon, LogoutIcon } from "~/assets/icons";
+import React, { useCallback } from 'react';
+import { useCardStore, useModalStore, useQuotesStore, useUserStore } from '~/hooks/stores';
+import { SVGIconBtn, UserAvatar } from '~/components/common';
+import { colors, sizes } from '~/styles/common';
+import { LoginButton, StyledNavHeader } from './NavHeader.styles';
+import { LoginIcon, LogoutIcon } from '~/assets/icons';
 
 const NavHeader = () => {
     const { userInfo, onLogout } = useUserStore();

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import * as sizes from '~/styles/common/sizes';
+import { sizes } from '~/styles/common';
 import { CardPositionType } from '~/types/user.type';
 import { DEFAULT as DEFAULT_BG } from '~/assets/card_images';
-import { flexAligns } from '~/styles/mixins/flexAligns';
+import { flexAligns } from '~/styles/mixins';
 
 export interface StyledCardProps {
     cardPosition: CardPositionType;
