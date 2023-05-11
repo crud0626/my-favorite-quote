@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useCardStore } from '~/hooks/stores/useCardStore';
 import { useUserStore } from '~/hooks/stores/useUserStore';
 import { useQuotesStore } from '~/hooks/stores/useQuotesStore';
@@ -12,9 +12,7 @@ import { downloadImage } from '~/utils/downloadImage';
 import { DownloadIcon, EmptyHeartIcon, FillHeartIcon } from '~/assets/icons';
 import * as CARD_IMAGES from '~/assets/card_images';
 
-interface IProps extends Pick<StyledCardProps, 'position'> {}
-
-const Card = ({ position }: IProps) => {
+const Card = ({ position }: Pick<StyledCardProps, 'position'>) => {
     const { cardPosition, displayQuotes, replaceDisplayQuotes } = useCardStore();
     const { userInfo } = useUserStore();
     const { onChangeFavorite } = useQuotesStore();
@@ -46,13 +44,10 @@ const Card = ({ position }: IProps) => {
     }, []);
 
     const quoteContent = displayQuotes[position];
+    const cardImage = useMemo(() => getRandomImage(CARD_IMAGES), [quoteContent]);
 
     return (
-        <StyledCard 
-            position={position} 
-            cardPosition={cardPosition}
-            cardImage={quoteContent && getRandomImage(CARD_IMAGES)}
-        >
+        <StyledCard {...{ position, cardPosition, cardImage }}>
             {quoteContent &&
                 <>
                     <div data-id={quoteContent.id} className='card_content'>

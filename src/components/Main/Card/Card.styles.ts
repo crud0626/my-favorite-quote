@@ -7,7 +7,7 @@ import { flexAligns } from '~/styles/mixins/flexAligns';
 export interface StyledCardProps {
     cardPosition: CardPositionType;
     position: CardPositionType;
-    cardImage?: string | null;
+    cardImage?: string | boolean;
 }
 
 export const StyledCard = styled.div<StyledCardProps>`
