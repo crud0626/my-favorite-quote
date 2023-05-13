@@ -40,7 +40,9 @@ const Card = ({ position }: Pick<StyledCardProps, 'position'>) => {
     }, []);
 
     const quoteContent = displayQuotes[position];
-    const cardImage = useMemo(() => getRandomImage(CARD_IMAGES), [quoteContent]);
+    const cardImage = useMemo(() => 
+        quoteContent ? getRandomImage(CARD_IMAGES) : CARD_IMAGES.DEFAULT
+    , [quoteContent]);
 
     return (
         <StyledCard {...{ position, cardPosition, cardImage }}>
