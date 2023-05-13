@@ -1,23 +1,25 @@
 import { ServerQuoteForm } from "~/types/quote.type";
 import { quotesAPI } from "../quotesApi";
 
-describe("quotesApi", () => {
+describe("quotesApi", () => {    
     const tempQuote: ServerQuoteForm = {
         _id: "123",
         content: "test",
         author: "tester"
     };
+    const randomQuote: ServerQuoteForm[] = [tempQuote];
 
     it("Returns a quote if the response is successful", async () => {
         global.fetch = jest.fn(() => Promise.resolve({
             ok: true,
-            json: () => Promise.resolve(tempQuote)
+            json: () => Promise.resolve(randomQuote)
         })) as jest.Mock;
 
         const response = await quotesAPI.getQuotesData();
 
-        expect(global.fetch).toBeCalledWith("https://api.quotable.io/random");
+        expect(global.fetch).toBeCalledWith("https://api.quotable.io/quotes/random");
 
+        // 응답되는 객체가 1개이기 때문에 객체만 반환
         expect(response).toStrictEqual({
             id: tempQuote._id,
             quote: tempQuote.content,
