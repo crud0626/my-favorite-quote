@@ -1,4 +1,4 @@
-import * as colors from '~/styles/common/colors';
+import { colors } from '~/styles/common';
 
 export const HTML2CANVAS_CONFIG = {
     logging: false,

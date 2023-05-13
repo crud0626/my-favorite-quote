@@ -1,14 +1,12 @@
 import React, { useEffect } from 'react';
 import { User } from 'firebase/auth';
-import { useSetHeight } from './hooks/customs/useSetHeight';
-import { useCardStore } from './hooks/stores/useCardStore';
-import { useUserStore } from './hooks/stores/useUserStore';
-import { useQuotesStore } from './hooks/stores/useQuotesStore';
 import Footer from '~/components/Footer/Footer';
 import Header from '~/components/Header/Header';
 import Main from '~/components/Main/Main';
-import GlobalStyle from '~/styles/common/GlobalStyle';
-import { getStorageData } from '~/utils/sessionStorage';
+import { useSetHeight } from './hooks/customs';
+import { useCardStore, useQuotesStore, useUserStore } from './hooks/stores';
+import { GlobalStyle } from '~/styles/common';
+import { getStorageData } from './utils';
 
 const App = () => {
     const { replaceQuotes, getUserQuotes } = useQuotesStore();

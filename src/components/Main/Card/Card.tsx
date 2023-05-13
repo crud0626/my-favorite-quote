@@ -1,22 +1,29 @@
-import React, { useCallback } from 'react';
-import { useCardStore } from '~/hooks/stores/useCardStore';
-import { useUserStore } from '~/hooks/stores/useUserStore';
-import { useQuotesStore } from '~/hooks/stores/useQuotesStore';
-import SVGIconBtn from '~/components/common/SVGIconBtn/SVGIconBtn';
-import * as colors from '~/styles/common/colors';
-import * as sizes from '~/styles/common/sizes';
+import React, { useCallback, useMemo } from 'react';
+import { useCardStore, useQuotesStore, useUserStore } from '~/hooks/stores';
+import { SVGIconBtn } from '~/components/common';
+import { colors, sizes } from '~/styles/common';
 import { InnerBtnWrapper, StyledCard, StyledCardProps } from './Card.styles';
 import { IQuoteContent } from '~/types/quote.type';
-import { saveUserData } from '~/utils/saveUserData';
-import { downloadImage } from '~/utils/downloadImage';
+import { downloadImage, saveUserData } from '~/utils';
 import { DownloadIcon, EmptyHeartIcon, FillHeartIcon } from '~/assets/icons';
+import * as CARD_IMAGES from '~/assets/card_images';
 
-interface IProps extends Pick<StyledCardProps, 'position'> {}
-
-const Card = ({ position }: IProps) => {
+const Card = ({ position }: Pick<StyledCardProps, 'position'>) => {
     const { cardPosition, displayQuotes, replaceDisplayQuotes } = useCardStore();
     const { userInfo } = useUserStore();
     const { onChangeFavorite } = useQuotesStore();
+
+    const getRandomImage = (cardImages: { [key: string]: string }): string => {
+        const avilableImages = { ...cardImages };
+    
+        if ('DEFAULT' in avilableImages) delete avilableImages.DEFAULT;
+
+        const imageNames = Object.keys(avilableImages);
+        const randomIndex = Math.floor(Math.random() * imageNames.length);
+        const targetImage = imageNames[randomIndex];
+        
+        return avilableImages[targetImage];
+    }
 
     const onChange = (target: IQuoteContent) => {
         const { newUserQuotes, targetQuote } = onChangeFavorite(target);
@@ -33,9 +40,12 @@ const Card = ({ position }: IProps) => {
     }, []);
 
     const quoteContent = displayQuotes[position];
+    const cardImage = useMemo(() => 
+        quoteContent ? getRandomImage(CARD_IMAGES) : CARD_IMAGES.DEFAULT
+    , [quoteContent]);
 
     return (
-        <StyledCard position={position} cardPosition={cardPosition}>
+        <StyledCard {...{ position, cardPosition, cardImage }}>
             {quoteContent &&
                 <>
                     <div data-id={quoteContent.id} className='card_content'>

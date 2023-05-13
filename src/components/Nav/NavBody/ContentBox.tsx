@@ -1,14 +1,11 @@
-import React from "react";
-import SVGIconBtn from "~/components/common/SVGIconBtn/SVGIconBtn";
-import { ContentBoxWrapper } from "./ContentBox.styles";
-import { useCardStore } from "~/hooks/stores/useCardStore";
-import { useUserStore } from "~/hooks/stores/useUserStore";
-import { useQuotesStore } from "~/hooks/stores/useQuotesStore";
-import * as sizes from "~/styles/common/sizes";
-import * as colors from "~/styles/common/colors";
-import { IQuoteContent } from "~/types/quote.type";
-import { saveUserData } from "~/utils/saveUserData";
-import { EmptyHeartIcon, FillHeartIcon } from "~/assets/icons";
+import React from 'react';
+import { SVGIconBtn } from '~/components/common';
+import { ContentBoxWrapper } from './ContentBox.styles';
+import { useCardStore, useQuotesStore, useUserStore } from '~/hooks/stores';
+import { colors, sizes } from '~/styles/common';
+import { IQuoteContent } from '~/types/quote.type';
+import { saveUserData } from '~/utils';
+import { EmptyHeartIcon, FillHeartIcon } from '~/assets/icons';
 
 interface IProps {
   content: IQuoteContent;

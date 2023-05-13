@@ -1,9 +1,9 @@
 import React, { useCallback, useState } from 'react';
 import ContentBox from './ContentBox';
-import * as colors from '~/styles/common/colors';
+import { colors } from '~/styles/common';
 import { AccordionTitle, NavBodyButton, TextBox } from './NavAccordion.styles';
 import { IQuoteContent, QuotesGroupType } from '~/types/quote.type';
-import { capitalizeFirst } from '~/utils/capitalizeFirst';
+import { capitalizeFirst } from '~/utils';
 import { BottomChevron } from '~/assets/icons';
 
 export interface ContentProps {

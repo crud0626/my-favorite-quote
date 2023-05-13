@@ -1,8 +1,8 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
-import { authService } from "~/services/authService";
-import { onAuthStateChanged, User } from "firebase/auth";
-import { ProviderNames } from "~/types/auth.type";
+import { authService } from '~/services';
+import { onAuthStateChanged, User } from 'firebase/auth';
+import { ProviderNames } from '~/types/auth.type';
 import { IUserInfo } from '~/types/user.type';
 
 interface IState {

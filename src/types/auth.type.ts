@@ -1,5 +1,5 @@
-import { Auth } from "firebase/auth";
-import { IUserInfo } from "./user.type";
+import { Auth } from 'firebase/auth';
+import { IUserInfo } from './user.type';
 
 export type ProviderNames = "Google" | "Facebook" | "Github";
 

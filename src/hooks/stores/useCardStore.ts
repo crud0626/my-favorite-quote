@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { CardPositionType, ChevronEventType } from '~/types/user.type';
 import { DisplayQuotesType, IQuoteContent } from '~/types/quote.type';

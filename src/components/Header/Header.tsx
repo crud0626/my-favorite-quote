@@ -1,11 +1,7 @@
 import React from 'react';
-import { useUserStore } from '~/hooks/stores/useUserStore';
-import { useQuotesStore } from '~/hooks/stores/useQuotesStore';
-import { useCardStore } from '~/hooks/stores/useCardStore';
-import { useModalStore } from '~/hooks/stores/useModalStore';
-import SVGIconBtn from '~/components/common/SVGIconBtn/SVGIconBtn';
-import * as colors from '~/styles/common/colors';
-import * as sizes from '~/styles/common/sizes';
+import { useCardStore, useModalStore, useQuotesStore, useUserStore } from '~/hooks/stores';
+import { SVGIconBtn } from '../common';
+import { colors, sizes } from '~/styles/common';
 import { MainLogo, NavBtnWrapper, StyledHeader } from './Header.styles';
 import { LoginIcon, LogoutIcon } from '~/assets/icons';
 

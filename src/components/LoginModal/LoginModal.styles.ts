@@ -1,8 +1,6 @@
 import styled from 'styled-components';
-import * as colors from '~/styles/common/colors';
-import * as sizes from '~/styles/common/sizes';
-import { PrimaryButton } from '~/styles/common/PrimaryButton';
-import { flexAligns } from '~/styles/mixins/flexAligns';
+import { PrimaryButton, colors, sizes } from '~/styles/common';
+import { flexAligns } from '~/styles/mixins';
 
 export const SocialBox = styled(PrimaryButton)`
     ${flexAligns('space-between')};

@@ -1,4 +1,4 @@
-import { CardPositionType } from "./user.type";
+import { CardPositionType } from './user.type';
 
 export interface ServerQuoteForm {
     _id: string;

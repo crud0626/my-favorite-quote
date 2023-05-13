@@ -1,12 +1,13 @@
 import styled from 'styled-components';
-import * as sizes from '~/styles/common/sizes';
+import { sizes } from '~/styles/common';
 import { CardPositionType } from '~/types/user.type';
-import { DEFAULT_BG } from '~/assets/cards';
-import { flexAligns } from '~/styles/mixins/flexAligns';
+import { DEFAULT as DEFAULT_BG } from '~/assets/card_images';
+import { flexAligns } from '~/styles/mixins';
 
 export interface StyledCardProps {
     cardPosition: CardPositionType;
     position: CardPositionType;
+    cardImage?: string | boolean;
 }
 
 export const StyledCard = styled.div<StyledCardProps>`
@@ -23,7 +24,7 @@ export const StyledCard = styled.div<StyledCardProps>`
         content: "";
         position: absolute;
         inset: 0;
-        background: no-repeat center / cover url(${DEFAULT_BG});
+        background: no-repeat center / cover url(${({ cardImage }) => cardImage || DEFAULT_BG });
         opacity: 0.6;
         border-radius: ${sizes.CARD_BORDER_RADIUS};
     }

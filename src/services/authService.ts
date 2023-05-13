@@ -1,7 +1,14 @@
-import { FacebookAuthProvider, getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
-import { firebaseApp } from "~/config/firebase";
-import { IAuthService, ProviderNames } from "~/types/auth.type";
-import { IUserInfo } from "~/types/user.type";
+import { 
+    FacebookAuthProvider, 
+    getAuth, 
+    GithubAuthProvider, 
+    GoogleAuthProvider, 
+    signInWithPopup, 
+    signOut
+} from 'firebase/auth';
+import { firebaseApp } from '~/config/firebase';
+import { IAuthService, ProviderNames } from '~/types/auth.type';
+import { IUserInfo } from '~/types/user.type';
 
 const checkUserInfo = (arg: any): arg is IUserInfo => {
     return 'displayName' in arg && 'photoURL' in arg && 'uid' in arg;

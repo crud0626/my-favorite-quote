@@ -1,5 +1,5 @@
-import html2canvas from "html2canvas";
-import { HTML2CANVAS_CONFIG } from "~/config/html2canvas";
+import html2canvas from 'html2canvas';
+import { HTML2CANVAS_CONFIG } from '~/config/html2canvas';
 
 export const downloadImage = (target: HTMLElement): void => {
     html2canvas(target, HTML2CANVAS_CONFIG)

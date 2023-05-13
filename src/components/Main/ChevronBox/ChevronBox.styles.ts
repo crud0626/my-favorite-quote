@@ -1,10 +1,7 @@
-import styled from "styled-components";
-import * as sizes from '~/styles/common/sizes';
-import * as colors from '~/styles/common/colors';
-import { PrimaryButton } from '~/styles/common/PrimaryButton';
-import { ChevronEventType } from "~/types/user.type";
-import { flexAligns } from "~/styles/mixins/flexAligns";
-
+import styled from 'styled-components';
+import { PrimaryButton, colors, sizes } from '~/styles/common';
+import { flexAligns } from '~/styles/mixins';
+import { ChevronEventType } from '~/types/user.type';
 
 interface IProps {
     direction: ChevronEventType;
@@ -17,7 +14,7 @@ export const ChevronWrapper = styled.div`
     margin: auto 0;
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: 0px;
     background-color: transparent;
 `;
 

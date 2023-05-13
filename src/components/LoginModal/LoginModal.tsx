@@ -1,10 +1,9 @@
 import React, { useCallback } from 'react';
-import { useModalStore } from '~/hooks/stores/useModalStore';
+import { SVGIconBtn } from '~/components/common';
+import { useModalStore } from '~/hooks/stores';
 import SocialWrapper from './SocialWrapper';
 import { StyledLoginModal } from './LoginModal.styles';
-import * as colors from '~/styles/common/colors';
-import * as sizes from '~/styles/common/sizes';
-import SVGIconBtn from '../common/SVGIconBtn/SVGIconBtn';
+import { colors, sizes } from '~/styles/common';
 import { CloseIcon } from '~/assets/icons';
 
 const LoginModal = () => {

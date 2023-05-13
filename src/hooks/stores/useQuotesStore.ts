@@ -1,7 +1,6 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
-import { firebaseDB } from '~/services/database';
-import { quotesAPI } from '~/services/quotesApi';
+import { firebaseDB, quotesAPI } from '~/services';
 import { UserQuotesType } from '~/types/user.type';
 import { IQuoteContent, QuotesGroupType } from '~/types/quote.type';
 

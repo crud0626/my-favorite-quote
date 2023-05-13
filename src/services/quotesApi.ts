@@ -1,4 +1,4 @@
-import { ResponseQuote, ServerQuoteForm } from "~/types/quote.type";
+import { ResponseQuote, ServerQuoteForm } from '~/types/quote.type';
 
 function isCorrectQuote(arg: any): arg is ServerQuoteForm {
     return arg._id && arg.content && arg.author;
@@ -8,11 +8,14 @@ const API_END_POINT = "https://api.quotable.io";
 
 class QuotesAPI {
     getQuotesData = async (id?: string): Promise<ResponseQuote> => {
-        const requestURL = id ? `${API_END_POINT}/quotes/${id}` : `${API_END_POINT}/random`;
+        const requestURL = `${API_END_POINT}/quotes/${id || "random"}`;
 
         try {
             const response = await fetch(requestURL);
-            const resData = await response.json();
+            let resData = await response.json();
+
+            // random 요청시에만 배열 형태로 응답.
+            if (Array.isArray(resData)) resData = resData[0];
 
             if(response.ok && isCorrectQuote(resData)) {
                 const { _id, content, author} = resData;
